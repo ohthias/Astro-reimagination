@@ -9,6 +9,7 @@
       rel="stylesheet"
       href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200"
     />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
     <link rel="stylesheet" href="../CSS/font.css" />
     <link rel="stylesheet" href="../CSS/variables.css" />
     <link rel="stylesheet" href="../CSS/root.css" />
@@ -22,21 +23,23 @@
         <h1 class="bebas-neue-regular">Cadastrar</h1>
         <a href="#" class="button-redirect bebas-neue-regular">Cadastrar</a>
 
-        <form action="" method="post">
+        <form action="#" method="post">
             <div class="form-container">
                 <label for="username" class="montserrat-medium">Usuário</label>
                 <input type="text" name="username" id="username" class="montserrat-medium" placeholder="Digite o nome de usuário" required>
             </div>
             <div class="form-container">
-                <label for="email" class="montserrat-medium">Usuário</label>
-                <input type="email" name="email" id="email" class="montserrat-medium" placeholder="Digite o nome de usuário" required>
+                <label for="email" class="montserrat-medium">Email</label>
+                <input type="email" name="email" id="email" class="montserrat-medium" placeholder="Digite seu email" required>
             </div>
             <div class="form-container">
-                <label for="password" class="montserrat-medium">Usuário</label>
+                <label for="password" class="montserrat-medium">Senha</label>
                 <div class="password-input">
-                    <input type="password" name="password" id="password" class="montserrat-medium" placeholder="Digite o nome de usuário" required> 
-                    <span class="material-symbols-outlined" onclick="togglePassword()">visibility</span>
-                </div>
+                    <input type="password" name="password" id="password" class="montserrat-medium" placeholder="Digite sua senha" required> 
+                    <span class="material-symbols-outlined">
+                      visibility_off
+                      </span>                  
+                  </div>
             </div>
             <input type="submit" value="Cadastrar">
         </form>

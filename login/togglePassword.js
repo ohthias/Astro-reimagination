@@ -1,11 +1,8 @@
-function togglePassword() {
-  const passwordField = document.querySelector('input[type="password"]');
-  const icon = document.querySelector(".material-symbols-outlined");
-  if (passwordField.type === "password") {
-    passwordField.type = "text";
-    icon.textContent = "visibility_off"; // Change to eye-off icon
-  } else {
-    passwordField.type = "password";
-    icon.textContent = "visibility"; // Change back to eye icon
-  }
-}
+const togglePassword = document.querySelector(".material-symbols-outlined");
+const password = document.querySelector('input[type="password"]');
+
+togglePassword.addEventListener("click", function () {
+    const type = password.getAttribute("type") === "password" ? "text" : "password";
+    password.setAttribute("type", type);
+    this.textContent = password.getAttribute("type") === "password" ? "visibility_off" : "visibility";;
+});
