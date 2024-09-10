@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./login.css" />
+    <link rel="stylesheet" href="./root css/font.css" />
+    <link rel="stylesheet" href="./root css/root.css" />
+    <link rel="stylesheet" href="./root css/variables.css" />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+    />
+    <title>ASTRO</title>
+  </head>
+  <body>
+    <div class="header">
+      <h1 class="bebas-neue-regular">ASTRO</h1>
+    </div>
+
+    <h1 class="bebas-neue-regular">ENTRAR</h1>
+    <div class="cadastrar">
+      <p class="montserrat-regular">CADASTRAR</p>
+    </div>
+    <input type="text" placeholder="NOME DE USUÁRIO/EMAIL" />
+    <div class="password-field">
+      <input type="password" placeholder="SENHA" />
+      <span class="material-symbols-outlined" onclick="togglePassword()">
+        visibility
+      </span>
+    </div>
+
+    <div class="social-buttons">
+      <button class="social-button">
+        <i class="fab fa-google social-icon"></i>
+        Google
+      </button>
+      <button class="social-button">
+        <i class="fab fa-facebook-f social-icon"></i>
+        Facebook
+      </button>
+    </div>
+    <br /><br />
+    <button>ENTRAR</button>
+
+    <script>
+      function togglePassword() {
+        const passwordField = document.querySelector('input[type="password"]');
+        const icon = document.querySelector(".material-symbols-outlined");
+        if (passwordField.type === "password") {
+          passwordField.type = "text";
+          icon.textContent = "visibility_off"; // Change to eye-off icon
+        } else {
+          passwordField.type = "password";
+          icon.textContent = "visibility"; // Change back to eye icon
+        }
+      }
+    </script>
+  </body>
+</html>
