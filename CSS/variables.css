@@ -11,7 +11,11 @@
   --white-shadow: #f3f3f376;
   --shadow-shadow: #05061e76;
 
+  --primary-shadow-light: #4a0072b4;
+  --secondary-shadow-light: #ff3d20b4;
+  --tertiary-shadow-light: #29f2474;
+  
   --primary-shadow: #4b007276;
-  --secundary-shadow: #ff3d2076;
+  --secondary-shadow: #ff3d2076;
   --tertiary-shadow: #29f24776;
 }
