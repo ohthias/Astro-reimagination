@@ -1,0 +1,39 @@
+p.primary {
+  color: var(--primary);
+}
+
+p.secondary {
+  color: var(--secondary);
+}
+
+p.tertiary {
+  color: var(--tertiary);
+}
+p.shadow {
+  color: var(--shadow);
+}
+p.white {
+  color: var(--white);
+}
+p.white-shadow {
+  color: var(--white-shadow);
+}
+p.shadow-shadow {
+  color: var(--shadow-shadow);
+}
+
+p.primary-shadow {
+  color: var(--primary-shadow);
+}
+p.secundary-shadow {
+  color: var(--secundary-shadow);
+}
+p.tertiary-shadow {
+  color: var(--tertiary-shadow);
+}
+p.shadow-blue {
+  color: var(--shadow-blue);
+}
+p.shadow-white {
+  color: var(--shadow-white);
+}
