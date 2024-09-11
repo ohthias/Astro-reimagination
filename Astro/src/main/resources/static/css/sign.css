@@ -1,10 +1,84 @@
+body {
+  background: linear-gradient(to left, var(--shadow), var(--primary)), var(--shadow);
+  color: var(--font-all);
+}
+
 label.logo-title {
   position: absolute;
   top: 20px;
   left: 20px;
+  font-size: 21px;
 }
 
 main.container {
-    margin: 0 auto;
-    
+  height: 100%;
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  flex-direction: column;
+
+  .title-container {
+    text-align: center;
+  }
+
+  h1 {
+    font-size: 56px;
+    letter-spacing: 5px;
+  }
+
+  a {
+    font-size: 21px;
+    text-align: center;
+    color: var(--tertiary);
+  }
+}
+
+.form-container {
+  margin: 1rem 0;
+  width: 450px;
+
+  &:first-child {
+    margin-top: 0;
+  }
+
+  label {
+    color: var(--white-shadow);
+    transition: 500ms;
+    top: -64px;
+    position: relative;
+  }
+}
+
+.form-container input {
+  margin: 0.5rem 0;
+  padding: 0.8rem 0.5rem;
+  width: 100%;
+  background: none;
+  border: 0;
+  border-bottom: 2px solid var(--white-shadow);
+  color: var(--white-shadow);
+  outline: none;
+  font-size: 16px;
+  transition: 500ms;
+
+  &::placeholder {
+    color: var(--white-shadow);
+  }
+
+  &:focus {
+    color: var(--white);
+  }
+}
+
+.form-container input:focus ~ label {
+  color: var(--white);
+}
+
+.password-input {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
