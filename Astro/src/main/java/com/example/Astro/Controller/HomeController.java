@@ -7,6 +7,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 public class HomeController {
     @GetMapping("/")
     public String index() {
-        return "Astro/src/main/resources/templetes/index.html";
+        return "index";
     }
 }
