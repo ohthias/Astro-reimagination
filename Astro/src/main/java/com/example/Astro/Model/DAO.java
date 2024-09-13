@@ -1,7 +1,5 @@
 package com.example.Astro.Model;
 
-import org.apache.catalina.User;
-
 import javax.sql.DataSource;
 import java.sql.*;
 import java.util.ArrayList;
@@ -16,9 +14,9 @@ public class DAO {
 
      */
 
-    public ArrayList<UserBeans> listarUser() {
+    public ArrayList<User> listarUser() {
         // Criando um objeto para acessar a classe UserBeans
-        ArrayList<UserBeans> clientes = new ArrayList<>();
+        ArrayList<User> clientes = new ArrayList<>();
         String read = "Select * from cliente";
 
         try {
@@ -39,7 +37,7 @@ public class DAO {
                 String cliente_lastAcess = rs.getString(6);
 
                 // populando o arraylist
-                clientes.add(new UserBeans(id_cliente,cliente_email,cliente_hashword,cliente_username,
+                clientes.add(new User(id_cliente,cliente_email,cliente_hashword,cliente_username,
                         cliente_creationDate, cliente_lastAcess));
 
             }
@@ -62,7 +60,7 @@ public class DAO {
 
      */
 
-    public void insertUser(UserBeans usuario) {
+    public void insertUser(User usuario) {
         String insert = "insert into cliente (cliente_email, cliente_hashword, cliente_username) values " +
                 "(?, ?, ?)";
         try {

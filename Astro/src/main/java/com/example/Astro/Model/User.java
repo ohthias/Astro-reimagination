@@ -1,27 +1,29 @@
 package com.example.Astro.Model;
 
-public class UserBeans {
-    private String idCliente;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+
+@Entity
+public class User {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+
     private String clienteEmail;
     private String clienteHashWord;
     private String clienteUsername;
 
-    public UserBeans(String idCliente, String clienteEmail, String clienteHashWord, String clienteUsername) {
-        this.idCliente = idCliente;
+    public User(String idCliente, String clienteEmail, String clienteHashWord, String clienteUsername) {
+
         this.clienteEmail = clienteEmail;
         this.clienteHashWord = clienteHashWord;
         this.clienteUsername = clienteUsername;
     }
 
-    public UserBeans(String idCliente, String clienteEmail, String clienteHashword, String clienteUsername, String clienteCreationDate, String clienteLastAcess) {
-    }
-
-    public String getIdCliente() {
-        return idCliente;
-    }
-
-    public void setIdCliente(String idCliente) {
-        this.idCliente = idCliente;
+    public User(String idCliente, String clienteEmail, String clienteHashword, String clienteUsername, String clienteCreationDate, String clienteLastAcess) {
     }
 
     public String getClienteEmail() {
