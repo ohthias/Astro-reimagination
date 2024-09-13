@@ -38,7 +38,7 @@ main.container {
 
 .form-container {
   margin: 1rem 0;
-  width: 450px;
+  width: 420px;
 
   &:first-child {
     margin-top: 0;
@@ -47,7 +47,7 @@ main.container {
   label {
     color: var(--white-shadow);
     transition: 500ms;
-    top: -64px;
+    top: -68px;
     position: relative;
   }
 }
@@ -70,6 +70,7 @@ main.container {
 
   &:focus {
     color: var(--white);
+    border-color: var(--white);
   }
 }
 
@@ -81,4 +82,45 @@ main.container {
   display: flex;
   justify-content: space-between;
   align-items: center;
+}
+
+input[type="submit"].button-submit {
+  width: 100%;
+  padding: 1rem 0;
+  border: 0;
+  border-radius: 12px;
+  background: var(--tertiary);
+  cursor: pointer;
+  font-size: 21px;
+  transition: 500ms;
+
+  &:hover {
+    box-shadow: 0 0 25px var(--tertiary-shadow-light);
+  }
+}
+
+span.material-symbols-outlined {
+  position: absolute;
+  right: 0;
+  color: var(--white-shadow);
+  transition: 250ms;
+
+  &:hover, &:focus {
+    color: var(--white);
+  }
+}
+
+span.material-symbols-outlined.visible {
+  color: var(--white);
+}
+
+span.material-symbols-outlined.hidden {
+  color: var(--white-shadow);
+}
+
+p {
+  text-align: center;
+  margin: 1rem 0;
+  font-size: 21px;
+  color: var(--tertiary);
 }
