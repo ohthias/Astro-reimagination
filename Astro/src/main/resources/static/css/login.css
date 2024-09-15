@@ -1,7 +1,8 @@
-.header {
+label.logo-title {
   position: absolute;
-  top: 20px;
-  left: 20px;
+  top: 24px;
+  left: 32px;
+  font-size: 26px;
 }
 
 body {

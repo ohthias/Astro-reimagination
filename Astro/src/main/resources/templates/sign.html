@@ -17,12 +17,12 @@
     <title>Astro</title>
   </head>
   <body>
-    <label class="logo-title bebas-neue-regular">Astro</label>
+    <label class="logo-title bebas-neue-regular" onclick="redirect('index')">Astro</label>
 
     <main class="container">
       <div class="title-container">
         <h1 class="bebas-neue-regular">Cadastrar</h1>
-        <a href="#" class="button-redirect bebas-neue-regular">Entrar</a>
+        <a href="./login.html" class="button-redirect bebas-neue-regular">Entrar</a>
       </div>
 
         <form action="#" method="post">
@@ -43,10 +43,11 @@
               </div>
               <label for="password" class="montserrat-medium">Senha</label>
             </div>
-            <p class="bebas-neue-regular">Concordo com os <a href="#" target="_blank" class="bebas-neue-regular">termos da plataforma</a></p>
+            <p class="bebas-neue-regular">Concordo com os <a href="https://github.com/ohthias/Astro-reimagination/wiki/Termos" target="_blank" class="bebas-neue-regular">termos da plataforma</a></p>
             <input type="submit" class="button-submit bebas-neue-regular" value="Cadastrar">
         </form>
     </main>
     <script src="../static/js/togglePassword.js"></script>
+    <script src="../static/js/redirects.js"></script>
   </body>
 </html>
