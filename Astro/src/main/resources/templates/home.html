@@ -3,25 +3,38 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="../static/css/root/font.css" />
-    <link rel="stylesheet" href="../static/css/root/root.css" />
-    <link rel="stylesheet" href="../static/css/root/variables.css" />
-    <link rel="stylesheet" href="../static/css/sign.css" />
-    <link
-      rel="stylesheet"
-      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0"
-    />
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
-    />
-    <title>ASTRO</title>
+    <meta name="keywords" content="Astro, music, songs" />
+    <meta name="description" content="Astro, o reprodutor de músicas da web" />
+    <title>Astro - Home</title>
+    <link rel="stylesheet" href="..."/> <!-- Link para seus arquivos CSS -->
 </head>
 <body>
-    
-    <nav class="navgation-bar-profile">
-        <button class="logo-astro">Astro</button>
-        <button class="profile" id="profile"></button>
-    </nav>
+<h1>Bem-vindo, <span id="usernameDisplay"></span></h1>
+
+<script>
+    const token = localStorage.getItem('token'); // Recupera o token do localStorage
+
+    if (token) {
+        fetch('/home', {
+            method: 'GET',
+            headers: {
+                'Authorization': 'Bearer ' + token, // Inclui o token no cabeçalho da requisição
+                'Content-Type': 'application/json'
+            }
+        })
+        .then(response => response.json())
+        .then(data => {
+            document.getElementById('usernameDisplay').innerText = data.username; // Exibe o nome do usuário
+        })
+        .catch(error => {
+            console.error('Erro ao buscar o nome do usuário:', error);
+            alert('Erro ao acessar a página home: ' + error.message);
+        });
+    } else {
+        console.error('Token não encontrado');
+        alert('Você não está autenticado. Por favor, faça login.');
+        window.location.href = "login"; // Redireciona para a página de login se não houver token
+    }
+</script>
 </body>
 </html>
