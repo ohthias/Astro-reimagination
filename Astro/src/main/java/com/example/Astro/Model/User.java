@@ -1,11 +1,9 @@
 package com.example.Astro.Model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 
 @Entity
+@Table(name = "cliente")
 public class User {
 
     @Id
@@ -14,17 +12,20 @@ public class User {
 
     private String clienteEmail;
     private String clienteHashWord;
-    private String clienteUsername;
+    private String username;
 
-    public User(String idCliente, String clienteEmail, String clienteHashWord, String clienteUsername) {
+    public User(){
+        super();
+    }
 
+    public User(Long idCliente, String clienteEmail, String clienteHashWord, String username) {
+        super();
+        this.id = idCliente;
         this.clienteEmail = clienteEmail;
         this.clienteHashWord = clienteHashWord;
-        this.clienteUsername = clienteUsername;
+        this.username = username;
     }
 
-    public User(String idCliente, String clienteEmail, String clienteHashword, String clienteUsername, String clienteCreationDate, String clienteLastAcess) {
-    }
 
     public String getClienteEmail() {
         return clienteEmail;
@@ -43,10 +44,14 @@ public class User {
     }
 
     public String getClienteUsername() {
-        return clienteUsername;
+        return username;
     }
 
     public void setClienteUsername(String clienteUsername) {
-        this.clienteUsername = clienteUsername;
+        this.username = clienteUsername;
     }
+
+    public Long getId() {return id;}
+
+    public void setId(Long id) {this.id = id;}
 }
