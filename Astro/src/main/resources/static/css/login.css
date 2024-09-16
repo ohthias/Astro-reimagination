@@ -6,7 +6,13 @@ label.logo-title {
 }
 
 body {
-  background: linear-gradient(to right, #0f2027, #203a43, #2c5364);
+  background: linear-gradient(
+      to right,
+      var(--shadow) 50%,
+      var(--tertiary-shadow) 85%,
+      var(--tertiary-shadow-light) 100%
+    ),
+    var(--shadow);
   color: #fff;
   font-family: sans-serif;
   display: flex;
@@ -19,13 +25,12 @@ body {
 
 h1 {
   margin-bottom: 20px;
-  letter-spacing: 2px; 
+  letter-spacing: 2px;
   font-size: 3em;
-
 }
 
-
-input[type="text"], input[type="password"] {
+input[type="text"],
+input[type="password"] {
   width: 300px;
   padding: 10px;
   margin-bottom: 15px;
@@ -56,8 +61,8 @@ button {
 }
 
 .cadastrar {
-  margin-bottom: 15px; 
-  color:  #ff3d20;
+  margin-bottom: 15px;
+  color: #ff3d20;
   text-decoration: underline;
 }
 
