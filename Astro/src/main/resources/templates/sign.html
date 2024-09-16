@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-br">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -16,34 +16,74 @@
     <link rel="stylesheet" href="/css/sign.css" />
     <title>Astro</title>
   </head>
-  <body>
-    <label class="logo-title bebas-neue-regular">Astro</label>
+  <body class="sign">
+    <label class="logo-title bebas-neue-regular" onclick="redirect('index')"
+      >Astro</label
+    >
 
     <main class="container">
+      <div class="title-container">
         <h1 class="bebas-neue-regular">Cadastrar</h1>
-        <a href="#" class="button-redirect bebas-neue-regular">Cadastrar</a>
+        <a href="./login.html" class="button-redirect bebas-neue-regular"
+          >Entrar</a
+        >
+      </div>
 
-        <form action="register" method="post">
-            <div class="form-container">
-                <label for="username" class="montserrat-medium">Usuário</label>
-                <input type="text" name="username" id="username" class="montserrat-medium" placeholder="Digite o nome de usuário" required>
-            </div>
-            <div class="form-container">
-                <label for="email" class="montserrat-medium">Email</label>
-                <input type="email" name="email" id="email" class="montserrat-medium" placeholder="Digite seu email" required>
-            </div>
-            <div class="form-container">
-                <label for="hashWord" class="montserrat-medium">Senha</label>
-                <div class="password-input">
-                    <input type="password" name="hashWord" id="hashWord" class="montserrat-medium" placeholder="Digite sua senha" required>
-                    <span class="material-symbols-outlined">
-                      visibility_off
-                      </span>                  
-                  </div>
-            </div>
-            <input type="submit" value="Cadastrar">
-        </form>
+      <form action="#" method="post">
+        <div class="form-container">
+          <input
+            type="text"
+            name="username"
+            id="username"
+            class="montserrat-medium"
+            placeholder="Digite o nome de usuário"
+            required
+          />
+          <label for="username" class="montserrat-semi-bold">Usuário</label>
+        </div>
+        <div class="form-container">
+          <input
+            type="email"
+            name="email"
+            id="email"
+            class="montserrat-medium"
+            placeholder="Digite seu email"
+            required
+          />
+          <label for="email" class="montserrat-semi-bold">Email</label>
+        </div>
+        <div class="form-container">
+          <div class="password-input">
+            <input
+              type="password"
+              name="password"
+              id="password"
+              class="montserrat-medium"
+              placeholder="Digite sua senha"
+              required
+            />
+            <span class="material-symbols-outlined"> visibility_off </span>
+          </div>
+          <label for="password" class="montserrat-medium">Senha</label>
+        </div>
+        <p class="bebas-neue-regular">
+          Concordo com os
+          <a
+            href="https://github.com/ohthias/Astro-reimagination/wiki/Termos"
+            target="_blank"
+            class="bebas-neue-regular"
+            >termos da plataforma</a
+          >
+        </p>
+        <input
+          type="submit"
+          class="button-submit bebas-neue-regular"
+          value="Cadastrar"
+        />
+      </form>
     </main>
+
+    <script src="/js/togglePassword.js"></script>
     <script src="/js/togglePassword.js"></script>
   </body>
 </html>

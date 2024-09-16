@@ -17,51 +17,53 @@
     />
     <title>ASTRO</title>
   </head>
-  <body>
-    <header class="header">
-      <h1 class="bebas-neue-regular">ASTRO</h1>
-    </header>
-    <main>
-      <h1 class="bebas-neue-regular">Entrar</h1>
-      <div class="cadastrar">
-        <a href="sign" class="montserrat-regular">Cadastrar</a>
+  <body class="login">
+    <label class="logo-title bebas-neue-regular" onclick="redirect('index')"
+      >Astro</label
+    >
+
+    <main class="container">
+      <div class="title-container">
+        <h1 class="bebas-neue-regular">Entrar</h1>
+        <a href="./sign.html" class="button-redirect bebas-neue-regular"
+          >Cadastrar</a
+        >
       </div>
-      <form action="" method="get">
-        <div class="container-input">
-          <label for="username"></label>
+
+      <form action="#" method="post">
+        <div class="form-container">
           <input
             type="text"
-            id="username"
             name="username"
-            placeholder="Digite o seu usuário/email"
+            id="username"
+            class="montserrat-medium"
+            placeholder="Digite o nome de usuário"
             required
           />
+          <label for="username" class="montserrat-semi-bold">Usuário</label>
         </div>
-        <div class="password-field">
-          <input
-            type="password"
-            id="password"
-            name="password"
-            placeholder="Digite sua senha"
-          />
-          <span class="material-symbols-outlined" onclick="togglePassword()">
-            visibility
-          </span>
+        <div class="form-container">
+          <div class="password-input">
+            <input
+              type="password"
+              name="password"
+              id="password"
+              class="montserrat-medium"
+              placeholder="Digite sua senha"
+              required
+            />
+            <span class="material-symbols-outlined"> visibility_off </span>
+          </div>
+          <label for="password" class="montserrat-medium">Senha</label>
         </div>
-        <input type="submit" value="Entrar" class="button-entrar" />
+        <input
+          type="submit"
+          class="button-submit bebas-neue-regular"
+          value="Cadastrar"
+        />
       </form>
-
-      <div class="social-buttons">
-        <button class="social-button">
-          <i class="fab fa-google social-icon"></i>
-          Google
-        </button>
-        <button class="social-button">
-          <i class="fab fa-facebook-f social-icon"></i>
-          Facebook
-        </button>
-      </div>
     </main>
     <script src="/js/togglePassword.js"></script>
+    <script src="/js/redirects.js"></script>
   </body>
 </html>
