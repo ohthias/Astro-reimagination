@@ -1,0 +1,194 @@
+:root {
+    --background-all: #0b1215;
+    --font-all: #f3f3f3;
+    --primary: #4b0072;
+    --secondary: #ff3d20;
+    --tertiary: #29f247;
+    --shadow: #05061e;
+    --white: #f3f3f3;
+    --white-shadow: #f3f3f376;
+    --shadow-shadow: #05061e76;
+    --primary-shadow-light: #4a0072b4;
+    --secondary-shadow-light: #ff3d20b4;
+    --tertiary-shadow-light: #29f24772;
+    --primary-shadow: #4b007276;
+    --secondary-shadow: #ff3d2076;
+    --tertiary-shadow: #29f24749;
+}
+
+body {
+    margin: 0;
+    font-family: "Roboto", sans-serif;
+    background-image: url("https://m.media-amazon.com/images/S/le-target-images-prod/amzn1.dv.gti.4abd6810-ef08-0490-d751-d4945c304a8e/2/HERO-16X9/en-US._UR1920,1080_SX1080_FMjpg_.jpg");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    color: var(--font-all);
+}
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+    background-color: #f8f9fa;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+
+.sidebar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 60px;
+    max-height: 100vh; /* Define uma altura máxima para a sidebar */
+    height: auto; /* Ajusta a altura automaticamente até o máximo definido */
+    background-color: var(--shadow-shadow);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 10px;
+    gap: 5px;
+    margin: 0;
+    border-radius: 10px;
+    overflow-y: auto; /* Permite rolar verticalmente se o conteúdo exceder a altura */
+}
+
+.sidebar img {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    margin-bottom: 10px;
+}
+
+.sidebar i {
+    font-size: 20px;
+    margin: 10px 0;
+    color: var(--font-all);
+}
+
+.sidebar i:hover {
+    color: white;
+}
+
+.main-content {
+    margin-left: 80px; /* Ajuste conforme necessário */
+    padding: 20px;
+}
+
+.header {
+    position: relative;
+    height: 400px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    text-align: left;
+    color: var(--white-);
+}
+
+.button-text-container {
+    display: flex;
+    align-items: center;
+}
+
+.button-text {
+    margin-left: 10px; 
+}
+
+.header h1 {
+    font-size: 48px;
+    margin: 0;
+    color: var(--font-all);
+    text-shadow: 2px 2px var(--secondary);
+}
+
+.header p {
+    font-size: 18px;
+    margin: 10px 0;
+}
+
+.header .play-button {
+    background-color: var(--secondary);
+    border: none;
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+}
+
+.header .play-button i {
+    color: white;
+    font-size: 24px;
+}
+
+.music-item {
+    background: var(--shadow-shadow);
+    padding: 10px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    box-sizing: border-box; /* Inclui o padding e a borda no cálculo da largura */
+    margin-bottom: 2x; /* Espaço entre os itens */
+    width: 1000vw;
+}
+
+
+.music-item img {
+    width: 100%; /* Ajusta a imagem para a largura do contêiner */
+    height: auto; /* Mantém a proporção da imagem */
+    object-fit: cover;
+    border-radius: 10px;
+    margin-bottom: 10px;
+}
+
+.info {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.controls {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    width: 100%;
+    margin-bottom: 10px;
+}
+
+.controls .material-icons-outlined {
+    font-size: 24px;
+    margin-right: 15px;
+    cursor: pointer;
+}
+
+.progress-container {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    justify-content: center;
+}
+
+.progress-bar {
+    width: 100%; /* Ajusta a barra de progresso para a largura do contêiner */
+    max-width: 800px; /* Define uma largura máxima para a barra de progresso */
+    height: 10px;
+    background: #ddd;
+    border-radius: 5px;
+    margin: 0 10px;
+    position: relative;
+}
+
+.progress-bar div {
+    width: 50%; /* Valor de exemplo, ajuste conforme a necessidade */
+    height: 100%;
+    background: #4caf50;
+    border-radius: 5px;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+.time {
+    font-size: 14px;
+    color: #555;
+}
