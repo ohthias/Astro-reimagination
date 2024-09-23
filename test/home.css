@@ -1,194 +1,181 @@
 :root {
-    --background-all: #0b1215;
-    --font-all: #f3f3f3;
-    --primary: #4b0072;
-    --secondary: #ff3d20;
-    --tertiary: #29f247;
-    --shadow: #05061e;
-    --white: #f3f3f3;
-    --white-shadow: #f3f3f376;
-    --shadow-shadow: #05061e76;
-    --primary-shadow-light: #4a0072b4;
-    --secondary-shadow-light: #ff3d20b4;
-    --tertiary-shadow-light: #29f24772;
-    --primary-shadow: #4b007276;
-    --secondary-shadow: #ff3d2076;
-    --tertiary-shadow: #29f24749;
+  --background-all: #0b1215;
+  --font-all: #f3f3f3;
+  --primary: #4b0072;
+  --secondary: #ff3d20;
+  --tertiary: #29f247;
+  --shadow: #05061e;
+  --white: #f3f3f3;
+  --white-shadow: #f3f3f376;
+  --shadow-shadow: #05061e76;
+  --primary-shadow-light: #4a0072b4;
+  --secondary-shadow-light: #ff3d20b4;
+  --tertiary-shadow-light: #29f24772;
+  --primary-shadow: #4b007276;
+  --secondary-shadow: #ff3d2076;
+  --tertiary-shadow: #29f24749;
 }
 
 body {
-    margin: 0;
-    font-family: "Roboto", sans-serif;
-    background-image: url("https://m.media-amazon.com/images/S/le-target-images-prod/amzn1.dv.gti.4abd6810-ef08-0490-d751-d4945c304a8e/2/HERO-16X9/en-US._UR1920,1080_SX1080_FMjpg_.jpg");
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-    color: var(--font-all);
+  margin: 0;
+  font-family: "Roboto", sans-serif;
+  background-image: url("");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  color: var(--font-all);
 }
 header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 20px;
-    background-color: #f8f9fa;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  }
-
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px;
+  background-color: #f8f9fa;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
 .sidebar {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 60px;
-    max-height: 100vh; /* Define uma altura máxima para a sidebar */
-    height: auto; /* Ajusta a altura automaticamente até o máximo definido */
-    background-color: var(--shadow-shadow);
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding-top: 10px;
-    gap: 5px;
-    margin: 0;
-    border-radius: 10px;
-    overflow-y: auto; /* Permite rolar verticalmente se o conteúdo exceder a altura */
+  position: fixed;
+  top: 10px;
+  left: 16px;
+  width: 55px;
+  height: 80vh;
+  background-color: var(--shadow-shadow);
+  backdrop-filter: blur(2px);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 10px;
+  gap: 1px;
+  margin: 0;
+  border-radius: 10px;
+}
+
+.botaoPbaixo {
+  margin-top: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
 }
 
 .sidebar img {
-    width: 30px;
-    height: 30px;
-    border-radius: 50%;
-    margin-bottom: 10px;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  margin-bottom: 10px;
 }
 
 .sidebar i {
-    font-size: 20px;
-    margin: 10px 0;
-    color: var(--font-all);
+  font-size: 20px;
+  margin: 10px 0;
+  color: var(--font-all);
 }
 
 .sidebar i:hover {
-    color: white;
+  color: white;
 }
 
 .main-content {
-    margin-left: 80px; /* Ajuste conforme necessário */
-    padding: 20px;
+  margin-left: 80px;
+  padding: 20px;
 }
 
 .header {
-    position: relative;
-    height: 400px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: flex-start;
-    text-align: left;
-    color: var(--white-);
+  position: relative;
+  height: 400px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  text-align: left;
+  color: var(--white-);
 }
 
 .button-text-container {
-    display: flex;
-    align-items: center;
+  display: flex;
+  align-items: center;
 }
 
 .button-text {
-    margin-left: 10px; 
+  margin-left: 10px;
 }
 
 .header h1 {
-    font-size: 48px;
-    margin: 0;
-    color: var(--font-all);
-    text-shadow: 2px 2px var(--secondary);
+  font-size: 48px;
+  margin: 0;
+  color: var(--font-all);
+  text-shadow: 2px 2px var(--secondary);
 }
 
 .header p {
-    font-size: 18px;
-    margin: 10px 0;
+  font-size: 18px;
+  margin: 10px 0;
 }
 
 .header .play-button {
-    background-color: var(--secondary);
-    border: none;
-    border-radius: 50%;
-    width: 50px;
-    height: 50px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    cursor: pointer;
+  background-color: var(--white);
+  border: none;
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
 }
 
 .header .play-button i {
-    color: white;
-    font-size: 24px;
+  color: rgb(220, 0, 0);
+  font-size: 24px;
 }
 
 .music-item {
-    background: var(--shadow-shadow);
-    padding: 10px;
-    border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    box-sizing: border-box; /* Inclui o padding e a borda no cálculo da largura */
-    margin-bottom: 2x; /* Espaço entre os itens */
-    width: 1000vw;
-}
-
-
-.music-item img {
-    width: 100%; /* Ajusta a imagem para a largura do contêiner */
-    height: auto; /* Mantém a proporção da imagem */
-    object-fit: cover;
-    border-radius: 10px;
-    margin-bottom: 10px;
-}
-
-.info {
-    text-align: center;
-    margin-bottom: 20px;
+  background-color: var(--shadow-shadow);
+  backdrop-filter: blur(2px);
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  margin-bottom: 20px;
+  width: 100vh;
 }
 
 .controls {
-    display: flex;
-    justify-content: flex-start;
-    align-items: center;
-    width: 100%;
-    margin-bottom: 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
 }
 
-.controls .material-icons-outlined {
-    font-size: 24px;
-    margin-right: 15px;
-    cursor: pointer;
+.controls .material-symbols-outlined {
+  font-size: 24px; /* Tamanho dos ícones */
+  margin: 0 10px; /* Margens laterais */
+  cursor: pointer; /* Cursor em forma de mão ao passar o mouse */
+  transition: color 0.3s; /* Efeito de transição para a cor */
 }
 
-.progress-container {
-    display: flex;
-    align-items: center;
-    width: 100%;
-    justify-content: center;
+.controls .material-symbols-outlined:hover {
+  color: #4caf50; /* Muda a cor ao passar o mouse */
 }
 
 .progress-bar {
-    width: 100%; /* Ajusta a barra de progresso para a largura do contêiner */
-    max-width: 800px; /* Define uma largura máxima para a barra de progresso */
-    height: 10px;
-    background: #ddd;
-    border-radius: 5px;
-    margin: 0 10px;
-    position: relative;
+  flex-grow: 1; /* Permite que a barra de progresso cresça */
+  height: 10px;
+  background: #ddd; /* Fundo da barra de progresso */
+  border-radius: 5px; /* Bordas arredondadas */
+  margin: 0 10px; /* Margem lateral para espaçamento */
+  position: relative; /* Para posicionar a barra interna */
 }
 
 .progress-bar div {
-    width: 50%; /* Valor de exemplo, ajuste conforme a necessidade */
-    height: 100%;
-    background: #4caf50;
-    border-radius: 5px;
-    position: absolute;
-    top: 0;
-    left: 0;
+  width: 50%; /* Exemplo de progresso, ajuste conforme necessário */
+  height: 100%;
+  background: #4caf50; /* Cor da barra de progresso */
+  border-radius: 5px; /* Bordas arredondadas */
+  position: absolute; /* Para garantir que fique sobre a barra */
 }
 
 .time {
-    font-size: 14px;
-    color: #555;
+  font-size: 14px; /* Tamanho da fonte */
+  color: #555; /* Cor do texto */
+  text-align: center; /* Centraliza o texto */
+  margin: 0 5px; /* Margens laterais */
 }
