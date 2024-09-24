@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Busca de Músicas Last.fm</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            padding: 20px;
+            background-color: #f4f4f4;
+        }
+        input, button {
+            padding: 10px;
+            margin: 5px;
+        }
+        #results {
+            margin-top: 20px;
+            background-color: white;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+        .track-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+        .track-item img {
+            width: 50px;
+            height: 50px;
+            margin-right: 10px;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Buscar Músicas na Last.fm</h1>
+    <input type="text" id="track-name" placeholder="Nome da Música">
+    <button id="search-button">Buscar</button>
+
+    <div id="results"></div>
+
+    <script>
+        const apiKey = '01bdc79df110067ff9eedcf67cbf5419'; // Substitua pela sua chave de API
+
+        document.getElementById('search-button').addEventListener('click', () => {
+            const trackName = document.getElementById('track-name').value;
+            fetchTracks(trackName);
+        });
+
+        const fetchTracks = async (trackName) => {
+            const baseUrl = 'https://ws.audioscrobbler.com/2.0/';
+            const query = `?method=track.search&track=${encodeURIComponent(trackName)}&api_key=${apiKey}&format=json`;
+
+            try {
+                const response = await fetch(baseUrl + query);
+                if (!response.ok) {
+                    throw new Error('Network response was not ok');
+                }
+
+                const data = await response.json();
+                displayTracks(data.results.trackmatches.track);
+            } catch (error) {
+                console.error('Erro ao buscar músicas:', error);
+                document.getElementById('results').innerText = 'Erro ao buscar músicas.';
+            }
+        };
+
+        const fetchAlbumInfo = async (artist, album) => {
+            const baseUrl = 'https://ws.audioscrobbler.com/2.0/';
+            const query = `?method=album.getinfo&api_key=${apiKey}&artist=${encodeURIComponent(artist)}&album=${encodeURIComponent(album)}&format=json`;
+
+            try {
+                const response = await fetch(baseUrl + query);
+                if (!response.ok) {
+                    throw new Error('Network response was not ok');
+                }
+
+                const data = await response.json();
+                return data.album.image; // Retorna a imagem do álbum
+            } catch (error) {
+                console.error('Erro ao buscar informações do álbum:', error);
+                return []; // Retorna um array vazio se houver erro
+            }
+        };
+
+        const displayTracks = async (tracks) => {
+            const resultsDiv = document.getElementById('results');
+            resultsDiv.innerHTML = '';
+
+            if (tracks && tracks.length > 0) {
+                let tracksHtml = '<h3>Músicas Encontradas:</h3><ul>';
+                for (const track of tracks) {
+                    const trackLink = track.url; // URL da música na Last.fm
+                    const album = track.name; // Captura o nome do álbum
+                    console.log(album + track.artist);
+                    // Busca a imagem do álbum
+                    const albumImage = await fetchAlbumInfo(track.artist, album); 
+                    const imageUrl = albumImage.length > 0 ? albumImage[2]['#text'] : 'https://via.placeholder.com/50'; // Usa a imagem de tamanho médio
+
+                    tracksHtml += `
+                        <li class="track-item">
+                            <img src="${imageUrl}" alt="${track.name} - ${track.artist}">
+                            <span>${track.name} - ${track.artist} <a href="${trackLink}" target="_blank">Ouvir</a></span>
+                        </li>`;
+                }
+                tracksHtml += '</ul>';
+                resultsDiv.innerHTML = tracksHtml;
+            } else {
+                resultsDiv.innerHTML = '<p>Nenhuma música encontrada.</p>';
+            }
+        };
+    </script>
+
+</body>
+</html>
