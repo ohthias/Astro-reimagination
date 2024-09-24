@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Busca Artista Last.fm</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            padding: 20px;
+            background-color: #f4f4f4;
+        }
+        input, button {
+            padding: 10px;
+            margin: 5px;
+        }
+        #artist-info {
+            margin-top: 20px;
+            background-color: white;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Buscar Artista na Last.fm</h1>
+    <input type="text" id="artist-name" placeholder="Nome do Artista">
+    <button id="search-button">Buscar</button>
+
+    <div id="artist-info"></div>
+    <script src="./musics.js"></script>
+</body>
+</html>

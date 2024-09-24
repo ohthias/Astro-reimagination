@@ -1,33 +1,33 @@
-.bebas-neue-regular {
-  font-family: "Bebas Neue", sans-serif;
-  font-weight: 400;
-  font-style: normal;
-}
+  .bebas-neue-regular {
+    font-family: "Bebas Neue", Arial;
+    font-weight: 700;
+    font-style: normal;
+  }
 
-.montserrat-regular {
-  font-family: "Montserrat", sans-serif;
-  font-optical-sizing: auto;
-  font-weight: 400;
-  font-style: normal;
-}
+  .montserrat-regular {
+    font-family: "Montserrat", Helvetica;
+    font-optical-sizing: auto;
+    font-weight: 400;
+    font-style: normal;
+  }
 
-.montserrat-medium {
-  font-family: "Montserrat", sans-serif;
-  font-optical-sizing: auto;
-  font-weight: 500;
-  font-style: normal;
-}
+  .montserrat-medium {
+    font-family: "Montserrat", Helvetica;
+    font-optical-sizing: auto;
+    font-weight: 500;
+    font-style: normal;
+  }
 
-.montserrat-semi-bold {
-  font-family: "Montserrat", sans-serif;
-  font-optical-sizing: auto;
-  font-weight: 600;
-  font-style: normal;
-}
+  .montserrat-semi-bold {
+    font-family: "Montserrat", Helvetica;
+    font-optical-sizing: auto;
+    font-weight: 600;
+    font-style: normal;
+  }
 
-.montserrat-bold {
-  font-family: "Montserrat", sans-serif;
-  font-optical-sizing: auto;
-  font-weight: 700;
-  font-style: normal;
-}
+  .montserrat-bold {
+    font-family: "Montserrat", Helvetica;
+    font-optical-sizing: auto;
+    font-weight: 700;
+    font-style: normal;
+  }
