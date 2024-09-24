@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="pt-BR" xmlns:th="http://www.w3.org/1999/xhtml">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -30,7 +30,7 @@
         >
       </div>
 
-      <form action="/login" method="post">
+      <form action="/login-user" method="post">
         <div class="form-container">
           <input
             type="text"
@@ -46,7 +46,7 @@
           <div class="password-input">
             <input
               type="password"
-              name="password"
+              name="hashWord"
               id="password"
               class="montserrat-medium"
               placeholder="Digite sua senha"
@@ -63,6 +63,16 @@
         />
       </form>
     </main>
+    <script th:inline="javascript">
+      /*<![CDATA[*/
+      var errorMessage = /*[[${errorMessage}]]*/ '';
+      if (errorMessage && errorMessage.trim() !== '') {
+          alert(errorMessage); // Exibe o alerta somente se houver uma mensagem de erro
+      }
+      /*]]>*/
+    </script>
+
+
     <script src="/js/togglePassword.js"></script>
     <script src="/js/redirects.js"></script>
   </body>
