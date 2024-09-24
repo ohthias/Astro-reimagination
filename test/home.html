@@ -76,7 +76,7 @@
       </ul>
     </div>
 
-    <div class="containner_player">
+    <div class="container_player">
       <div class="player">
         <div class="side-left">
           <div class="player_image">
@@ -86,36 +86,34 @@
               alt="Song_Image"
             />
           </div>
-          <div class="player_infoMusic fullscreen">
-            <span id="musicName" class="montserrat-bold">A Sky full stars</span>
-            <span id="artistName" class="montserrat-regular">Coldplay</span>
+          <div class="player_infoMusic">
+            <span id="musicName" class="montserrat-bold">Título da Música</span>
+            <span id="artistName" class="montserrat-regular">Artista</span>
           </div>
         </div>
         <div class="user-prefers">
           <button id="heartMusic">
-            <span class="material-symbols-outlined heart"> favorite </span>
+            <span class="material-symbols-outlined heart">favorite</span>
           </button>
           <button id="prevButton">
-            <span class="material-symbols-outlined skip_previous">
-              skip_previous
-            </span>
+            <span class="material-symbols-outlined skip_previous"
+              >skip_previous</span
+            >
           </button>
           <button id="playPauseButton">
-            <span class="material-symbols-outlined play_arrow">
-              play_arrow
-            </span>
+            <span class="material-symbols-outlined play_arrow">play_arrow</span>
           </button>
           <button id="nextButton">
-            <span class="material-symbols-outlined skip_next"> skip_next </span>
+            <span class="material-symbols-outlined skip_next">skip_next</span>
           </button>
           <button id="randomPlayerMusic">
-            <span class="material-symbols-outlined shuffle"> shuffle </span>
+            <span class="material-symbols-outlined shuffle">shuffle</span>
           </button>
         </div>
         <audio id="player" src=""></audio>
         <div class="timecode_player">
           <span id="currentTime" class="montserrat-medium">0:00</span>
-          <div class="progress-bar">
+          <div class="progress-bar" id="progressBar" style="cursor: pointer;">
             <div class="progress"></div>
           </div>
           <span id="duration" class="montserrat-medium">0:00</span>

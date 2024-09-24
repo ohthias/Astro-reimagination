@@ -1,150 +1,130 @@
-const player = document.querySelector("#player");
-const musicName = document.querySelector("#musicName");
-const artistName = document.querySelector("#artistName");
-const imgSong = document.querySelector("#imgSong");
-const heartMusic = document.querySelector("#heartMusic");
-const playPauseButton = document.querySelector("#playPauseButton");
-const prevButton = document.querySelector("#prevButton");
-const nextButton = document.querySelector("#nextButton");
-const currentTime = document.querySelector("#currentTime");
-const duration = document.querySelector("#duration");
-const progressBar = document.querySelector(".progress-bar");
-const progress = document.querySelector(".progress");
+import localSongs from "./localSongs.mjs";
 
-// Icones para botão
-const textButtonPlay = "<span class='material-symbols-outlined play_arrow'>play_arrow</span>";
-const textButtonPause = "<span class='material-symbols-outlined play_arrow'>pause</span>";
+let currentSongIndex = 0;
+const player = document.getElementById('player');
+const imgSong = document.getElementById('imgSong');
+const musicName = document.getElementById('musicName');
+const artistName = document.getElementById('artistName');
+const playPauseButton = document.getElementById('playPauseButton');
+const prevButton = document.getElementById('prevButton');
+const nextButton = document.getElementById('nextButton');
+const currentTimeDisplay = document.getElementById('currentTime');
+const durationDisplay = document.getElementById('duration');
+const progressBar = document.querySelector('.progress');
+const progressBarContainer = document.getElementById('progressBar');
 
-let index = 0;
+function loadSavedState() {
+  const savedIndex = localStorage.getItem('currentSongIndex');
+  const savedTime = localStorage.getItem('currentTime');
+  const savedPlaying = localStorage.getItem('isPlaying') === 'true';
 
-// Keyboard atalhos
-const pressPrevNext = (event) => {
-  if (event.key === "ArrowLeft") {
-    prevNextMusic("prev");
-  } else if (event.key == "ArrowRight") {
-    prevNextMusic();
-  } else if (event.key === "m" && event.ctrlKey) {
-    stateButtonVolume();
-  } else if (event.key === "p" && event.altKey && event.ctrlKey) {
-    playPause();
+  if (savedIndex !== null) {
+    currentSongIndex = parseInt(savedIndex, 10);
   }
-};
 
-//Eventos
-document.addEventListener("keydown", pressPrevNext);
-prevButton.onclick = () => prevNextMusic("prev");
-nextButton.onclick = () => prevNextMusic();
-playPauseButton.onclick = () => playPause();
-player.ontimeupdate = () => updateTime();
+  loadSong(localSongs[currentSongIndex]);
 
-let isPlaying = false;
+  if (savedTime !== null) {
+    player.currentTime = parseFloat(savedTime);
+  }
 
-/**
- * @param {function} playPause - controle de estado de reprodução do player de áudio,
- * juntamente com a atualização do ícone do botão de reprodução/pausa, @param {updatePlayPauseIcon}.
- */
-const playPause = () => {
-  if (player.paused) {
+  if (savedPlaying) {
     player.play();
-    startListening();
-    isPlaying = true; // Atualize o estado para tocando
-  } else {
-    stopListening();
-    player.pause();
-    isPlaying = false; // Atualize o estado para pausado
+    playPauseButton.innerHTML = '<span class="material-symbols-outlined pause">pause</span>';
   }
-  updatePlayPauseIcon(); // Atualiza o ícone do botão Play/Pause
-};
+}
 
-const updatePlayPauseIcon = () => {
+function loadSong(song) {
+  player.src = song.url;
+  imgSong.src = song.image.url;
+  imgSong.alt = song.image.alt;
+  musicName.textContent = song.name;
+  artistName.textContent = song.artist;
+  player.load();
+}
+
+function fadeOut(element, duration, callback) {
+  element.style.transition = `opacity ${duration}s`;
+  element.style.opacity = 0;
+  setTimeout(callback, duration * 1000);
+}
+
+function fadeIn(element, duration) {
+  element.style.transition = `opacity ${duration}s`;
+  element.style.opacity = 1;
+}
+
+function playSong() {
+  player.play();
+  playPauseButton.innerHTML = '<span class="material-symbols-outlined pause">pause</span>';
+  localStorage.setItem('isPlaying', 'true');
+}
+
+function pauseSong() {
+  player.pause();
+  playPauseButton.innerHTML = '<span class="material-symbols-outlined play_arrow">play_arrow</span>';
+  localStorage.setItem('isPlaying', 'false');
+}
+
+function updateProgressBar() {
+  const progressPercentage = (player.currentTime / player.duration) * 100;
+  progressBar.style.width = progressPercentage + '%';
+  currentTimeDisplay.textContent = formatTime(player.currentTime);
+  durationDisplay.textContent = formatTime(player.duration);
+}
+
+function formatTime(seconds) {
+  const minutes = Math.floor(seconds / 60);
+  const secondsDisplay = Math.floor(seconds % 60);
+  return `${minutes}:${secondsDisplay < 10 ? '0' : ''}${secondsDisplay}`;
+}
+
+function nextSong() {
+  fadeOut(imgSong, 0.5, () => {
+    currentSongIndex = (currentSongIndex + 1) % localSongs.length;
+    localStorage.setItem('currentSongIndex', currentSongIndex);
+    loadSong(localSongs[currentSongIndex]);
+    fadeIn(imgSong, 0.5);
+    playSong();
+  });
+}
+
+function prevSong() {
+  fadeOut(imgSong, 0.5, () => {
+    currentSongIndex = (currentSongIndex - 1 + localSongs.length) % localSongs.length;
+    localStorage.setItem('currentSongIndex', currentSongIndex);
+    loadSong(localSongs[currentSongIndex]);
+    fadeIn(imgSong, 0.5);
+    playSong();
+  });
+}
+
+// Salvar tempo atual antes de mudar de faixa
+player.addEventListener('pause', () => {
+  localStorage.setItem('currentTime', player.currentTime);
+});
+
+player.addEventListener('ended', nextSong);
+
+playPauseButton.addEventListener('click', () => {
   if (player.paused) {
-    playPauseButton.innerHTML = textButtonPlay;
+    playSong();
   } else {
-    playPauseButton.innerHTML = textButtonPause;
+    pauseSong();
   }
-};
+});
 
-/**
- * @param {fuction} updateTime - Atualiza a exibição do tempo de reprodução
- *  atual e da duração da faixa no formato de minutos e segundos, bem como
- *  atualizar visualmente a barra de progresso, com base no estado de reprodução
- *  do player de áudio. A função updateTime calcula os minutos e segundos do tempo
- *  atual de reprodução e da duração total da faixa, formatando-os para exibição.
- *  Além disso, ela atualiza a largura da barra de progresso de acordo com o
- * progresso da reprodução. A função formatZero garante que os números menores que
- * 10 sejam exibidos com um zero à esquerda. O evento onclick na progressBar permite
- * que o usuário clique na barra de progresso para ajustar a minutagem da reprodução
- * com base na posição do clique.
- */
-const updateTime = () => {
-  const currentMinutes = Math.floor(player.currentTime / 60);
-  const currentSeconds = Math.floor(player.currentTime % 60);
-  currentTime.textContent = currentMinutes + ":" + formatZero(currentSeconds);
+nextButton.addEventListener('click', nextSong);
+prevButton.addEventListener('click', prevSong);
+player.addEventListener('timeupdate', updateProgressBar);
 
-  const durationFormatted = isNaN(player.duration) ? 0 : player.duration;
-  const durationMinutes = Math.floor(durationFormatted / 60);
-  const durationSeconds = Math.floor(durationFormatted % 60);
-  duration.textContent = durationMinutes + ":" + formatZero(durationSeconds);
+// Adicionar evento de clique na barra de progresso
+progressBarContainer.addEventListener('click', (event) => {
+  const progressBarWidth = progressBarContainer.clientWidth; // largura total da barra
+  const clickX = event.offsetX; // posição do clique
+  const newTime = (clickX / progressBarWidth) * player.duration; // calcular novo tempo
+  player.currentTime = newTime; // atualizar o tempo atual do player
+});
 
-  const progressWidth = durationFormatted
-    ? (player.currentTime / durationFormatted) * 100
-    : 0;
-
-  progress.style.width = progressWidth + "%";
-};
-
-const formatZero = (n) => (n < 10 ? "0" + n : n);
-
-progressBar.onclick = (e) => {
-  const newTime = (e.offsetX / progressBar.offsetWidth) * player.duration;
-  player.currentTime = newTime;
-};
-
-
-/**
- * @param {fuction} prevNextMusic - Gerencia a reprodução de músicas
- *  anteriores e próximas do player, considerando também o modo de reprodução
- *  aleatória. A função prevNextMusic é acionada ao clicar nos botões de
- *  avançar ou retroceder e aceita um argumento type, que especifica a ação
- *  ("next" para avançar ou "prev" para retroceder). Dependendo do modo de
- *  reprodução aleatória (randomMode), ele pode selecionar aleatoriamente uma
- *  nova música (getRandomIndex()) ou atualizar o índice da música atual. Se
- *  o modo aleatório não estiver ativado, ele ajusta o índice com base nas ações
- *  do usuário. Os detalhes da nova música são carregados no player de áudio,
- *  incluindo a fonte, o nome, o artista e a capa. Além disso, se o player não
- *  estiver reproduzindo, inicia a reprodução, atualiza os detalhes exibidos e
- *  chama a função updateTime(). Se a ação for "next", também atualiza a lista de
- *  próximas músicas com showUpcomingSongs(). Em resumo, esse código permite a
- *  navegação entre músicas e a atualização dos detalhes da reprodução, considerando
- *  tanto a reprodução aleatória quanto o estado de reprodução anterior.
- */
-const prevNextMusic = (type = "next") => {
-  if (
-    (type == "next" && index + 1 === allSongs.length) ||
-    type === "init"
-  ) {
-    index = 0;
-  } else if (type == "prev" && index === 0) {
-    index = allSongs.length;
-  } else {
-    index = type === "prev" && index ? index - 1 : index + 1;
-  }
-  player.src = Object.values(allSongs)[index].src;
-  musicName.innerHTML = Object.values(allSongs)[index].nameSong;
-  artistName.innerHTML = Object.values(allSongs)[index].artist;
-  imgSong.src = Object.values(allSongs)[index].imgSong;
-  heartMusic.innerHTML = textNormalHeartMusic;
-
-  if (!isPlaying) {
-    player.play();
-  }
-
-  updateTime();
-  playPause();
-
-  if (type === "next") {
-    showUpcomingSongs();
-  }
-};
-
-prevNextMusic("init");
+// Carregar estado ao iniciar
+loadSavedState();
