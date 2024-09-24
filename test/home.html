@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="pt">
+  <head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Astro</title>
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/icon?family=Material+Symbols+Outlined"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="/Astro/src/main/resources/static/css/root/font.css"
+    />
+    <link
+      rel="stylesheet"
+      href="/Astro/src/main/resources/static/css/root/root.css"
+    />
+    <link
+      rel="stylesheet"
+      href="/Astro/src/main/resources/static/css/root/variables.css"
+    />
+
+    <link rel="stylesheet" href="sidebar.css" />
+    <link rel="stylesheet" href="player.css" />
+  </head>
+  <body>
+    <div class="sidebar">
+      <ul class="nav-list">
+        <li>
+          <a href="#">
+            <i class="material-icons">public</i>
+            <span class="links_name bebas-neue-regular">Home</span>
+          </a>
+          <span class="tooltip bebas-neue-regular">Home</span>
+        </li>
+        <li>
+          <a href="/Astro/Frontend/Html/Others/search.html">
+            <i class="material-icons">search</i>
+            <span class="tooltip bebas-neue-regular">Search</span>
+          </a>
+        </li>
+        <hr />
+        <li>
+          <a href="/Astro/Frontend/Html/Erro/comingSoon.html">
+            <i class="material-icons">folder</i>
+            <span class="links_name bebas-neue-regular">Biblioteca</span>
+          </a>
+          <span class="tooltip bebas-neue-regular">Biblioteca</span>
+        </li>
+        <li>
+          <button id="new_playlist">
+            <i class="material-icons">add</i>
+          </button>
+          <span class="tooltip bebas-neue-regular">Criar</span>
+        </li>
+
+        <div class="exit-container">
+          <li>
+            <hr />
+            <a href="" class="exit-button">
+              <i class="material-icons">exit_to_app</i>
+              <span class="links_name bebas-neue-regular">Sair</span>
+            </a>
+            <span class="tooltip bebas-neue-regular">Sair</span>
+          </li>
+        </div>
+      </ul>
+    </div>
+
+    <div class="container_player">
+      <div class="player">
+        <div class="side-left">
+          <div class="player_image">
+            <img
+              id="imgSong"
+              src="https://fakeimg.pl/210x210/e9e9e9/e9e9e9"
+              alt="Song_Image"
+            />
+          </div>
+          <div class="player_infoMusic">
+            <span id="musicName" class="montserrat-bold">Título da Música</span>
+            <span id="artistName" class="montserrat-regular">Artista</span>
+          </div>
+        </div>
+        <div class="user-prefers">
+          <button id="heartMusic">
+            <span class="material-symbols-outlined heart">favorite</span>
+          </button>
+          <button id="prevButton">
+            <span class="material-symbols-outlined skip_previous"
+              >skip_previous</span
+            >
+          </button>
+          <button id="playPauseButton">
+            <span class="material-symbols-outlined play_arrow">play_arrow</span>
+          </button>
+          <button id="nextButton">
+            <span class="material-symbols-outlined skip_next">skip_next</span>
+          </button>
+          <button id="randomPlayerMusic">
+            <span class="material-symbols-outlined shuffle">shuffle</span>
+          </button>
+        </div>
+        <audio id="player" src=""></audio>
+        <div class="timecode_player">
+          <span id="currentTime" class="montserrat-medium">0:00</span>
+          <div class="progress-bar" id="progressBar" style="cursor: pointer;">
+            <div class="progress"></div>
+          </div>
+          <span id="duration" class="montserrat-medium">0:00</span>
+        </div>
+      </div>
+    </div>
+    <script type="module" src="./js/musicPlayer.js"></script>
+  </body>
+</html>
