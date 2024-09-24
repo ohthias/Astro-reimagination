@@ -28,9 +28,9 @@
       rel="stylesheet"
       href="/Astro/src/main/resources/static/css/root/variables.css"
     />
-    
+
     <link rel="stylesheet" href="sidebar.css" />
-    <link rel="stylesheet" href="player.css">
+    <link rel="stylesheet" href="player.css" />
   </head>
   <body>
     <div class="sidebar">
@@ -64,7 +64,7 @@
         </li>
 
         <div class="exit-container">
-        <li>
+          <li>
             <hr />
             <a href="" class="exit-button">
               <i class="material-icons">exit_to_app</i>
@@ -76,51 +76,49 @@
       </ul>
     </div>
 
-    <div class="containner_player fullscreen">
-      <div class="player fullscreen">
-        <div class="player_image fullscreen">
-          <img id="imgSong" src="https://fakeimg.pl/210x210/e9e9e9/e9e9e9" alt="Song Image">
+    <div class="containner_player">
+      <div class="player">
+        <div class="side-left">
+          <div class="player_image">
+            <img
+              id="imgSong"
+              src="https://fakeimg.pl/210x210/e9e9e9/e9e9e9"
+              alt="Song_Image"
+            />
+          </div>
+          <div class="player_infoMusic fullscreen">
+            <span id="musicName" class="montserrat-bold">A Sky full stars</span>
+            <span id="artistName" class="montserrat-regular">Coldplay</span>
+          </div>
         </div>
-        <div class="player_infoMusic fullscreen">
-          <span id="musicName">▅▅▅▅▅▅</span>
-          <span id="artistName">▅▅▅▅▅▅</span>
-        </div>
-        <button id="heartMusic">
-          <span class="material-symbols-outlined">
-            favorite
-            </span>
-        </button>
-        <div class="controls fullscreen">
+        <div class="user-prefers">
+          <button id="heartMusic">
+            <span class="material-symbols-outlined heart"> favorite </span>
+          </button>
           <button id="prevButton">
-            <span class="material-symbols-outlined">
+            <span class="material-symbols-outlined skip_previous">
               skip_previous
-              </span>
+            </span>
           </button>
           <button id="playPauseButton">
-            <span class="material-symbols-outlined">
+            <span class="material-symbols-outlined play_arrow">
               play_arrow
-              </span>
+            </span>
           </button>
           <button id="nextButton">
-            <span class="material-symbols-outlined">
-              skip_next
-              </span>
+            <span class="material-symbols-outlined skip_next"> skip_next </span>
+          </button>
+          <button id="randomPlayerMusic">
+            <span class="material-symbols-outlined shuffle"> shuffle </span>
           </button>
         </div>
-        <button id="randomPlayerMusic">
-          <span class="material-symbols-outlined">
-            shuffle
-            </span>
-        </button>
         <audio id="player" src=""></audio>
-        <div class="footer fullscreen">
-          <div class="timecode_player fullscreen">
-            <span id="currentTime">0:00</span>
-            <div class="progress-bar fullscreen">
-              <div class="progress fullscreen"></div>
-            </div>
-            <span id="duration">0:00</span>
+        <div class="timecode_player">
+          <span id="currentTime" class="montserrat-medium">0:00</span>
+          <div class="progress-bar">
+            <div class="progress"></div>
           </div>
+          <span id="duration" class="montserrat-medium">0:00</span>
         </div>
       </div>
     </div>

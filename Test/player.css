@@ -1,9 +1,3 @@
-/*
- * Root: Player
- * UTA - Matheus 10/10
- * código documentado conforme html
- */
-
 .containner_player {
   z-index: 12;
   position: fixed;
@@ -25,6 +19,12 @@
   backdrop-filter: blur(20px);
 }
 
+.side-left {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
 .player_image {
   margin-right: 10px;
 }
@@ -37,396 +37,114 @@
 }
 
 .player_infoMusic {
-  margin: 0 5px;
-  width: 100%;
-  max-width: 150px;
+  height: 50px;
+  width: 250px;
   display: flex;
   flex-direction: column;
-  cursor: pointer;
+  align-items: self-start;
+  justify-content: space-evenly;
+  cursor: default;
+
+  #musicName {
+    width: 100%;
+    font-size: 1.25em;
+    text-transform: capitalize;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    color: var(--white);
+  }
+
+  #artistName {
+    width: 100%;
+    font-size: 0.7em;
+    text-transform: capitalize;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    color: var(--white);
+  }
 }
 
-.player_infoMusic #musicName {
-  font-size: 1.5em;
-  letter-spacing: 1px;
-  text-transform: capitalize;
-}
+.user-prefers {
+  width: 18%;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
 
-.player_infoMusic #artistName {
-  font-family: "Montserrat", sans-serif;
-  font-size: 0.725em;
-  text-transform: capitalize;
-  color: var(--primary);
-}
-
-#artistName:hover,
-#musicName:hover {
-  -webkit-text-decoration: 1.5px underline var(--primary);
-  text-decoration: 1.5px underline var(--primary);
+  button {
+    border: 0;
+    background: transparent;
+    cursor: pointer;
+    align-items: center;
+    width: 40px;
+    height: 40px;
+    text-align: center;
+  }
 }
 
 #heartMusic,
 #randomPlayerMusic {
-  margin: 0 20px;
-  border: 0;
-  background: transparent;
   font-size: 1.2em;
   color: var(--shadow-shadow);
   transition: 250ms;
-  cursor: pointer;
+
+  &:hover {
+    color: var(--secondary-shadow);
+  }
 }
 
-.fi-sr-heart,
-.fi-ss-shuffle {
-  text-shadow: 0 0 10px var(--details-shadow), 0 0 25px var(--secondary-shadow);
-  color: var(--primary);
-  transition: 750ms ease;
-}
+button:is(#prevButton, #playPauseButton, #nextButton) {
+  color: var(--white);
+  transition: 250ms;
+  span {
+    font-size: 2.5em;
+  }
 
-.fi-sr-heart:hover,
-.fi-ss-shuffle:hover {
-  color: var(--details-shadow);
-}
-
-/* Controls */
-.controls {
-  display: block;
-  margin: 0 10px;
-  padding: 10px;
-  border-radius: 10px;
-  background: var(--details-dark-shadow);
-}
-
-.controls button {
-  border: none;
-  background: transparent;
-  cursor: pointer;
-}
-
-.controls i {
-  margin: 0 5px;
-  font-size: 28px;
-  padding: 5px;
-  border-radius: 50%;
-  background-color: transparent;
-  transition: all 0.2s;
-}
-
-.controls i:hover {
-  color: var(--primary);
-  background: var(--secondary-shadow);
-}
-
-.controls i.bx-caret-right,
-.controls i.bx-pause {
-  color: var(--primary);
-  background: var(--primary-shadow);
-}
-
-.controls i.bx-caret-right:hover {
-  color: var(--primary);
+  &:hover {
+    color: var(--tertiary);
+  }
 }
 
 /* Timecode player */
-.time {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-}
-
-.time span {
-  margin: 10px;
-  font-size: 18px;
-  letter-spacing: 1px;
-  color: var(--font-all);
-  text-shadow: 0 0 10px var(--details-shadow);
-}
-
-.footer {
-  margin: 0 auto;
-  width: 100%;
-  max-width: 500px;
-}
-
 .timecode_player {
   display: flex;
-  align-items: stretch;
-  justify-content: space-evenly;
+  align-items: center;
+  justify-content: space-around;
+  max-width: 800px;
+  width: 100%;
 }
 
 .progress-bar {
   width: 80%;
   height: 8px;
-  background: var(--details-dark-shadow);
+  background: var(--white-shadow);
   cursor: pointer;
-  margin-bottom: 5px;
   border-radius: 5px;
   pointer-events: all;
   transition: 150ms;
-}
 
-.progress-bar:hover {
-  background: var(--background-smoke);
+  &:hover {
+    background: var(--tertiary-shadow-light);
+  }
 }
 
 .progress {
   height: 8px;
-  background: var(--font-all);
+  background: var(--tertiary);
   border-radius: 15px;
   transition: 150ms;
-}
 
-.progress:hover {
-  background: var(--primary-shadow);
+  &:hover {
+    background: var(--tertiary-shadow);
+  }
 }
 
 #duration,
 #currentTime {
-  font-family: "Montserrat", sans-serif;
   font-size: 0.6em;
   letter-spacing: 1px;
-  color: var(--font-all);
-}
-
-/* Container more options */
-.containner_more {
-  max-width: 350px;
-  width: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: space-around;
-}
-
-/* Range volume*/
-.container_volume {
-  display: flex;
-  align-self: center;
-  justify-content: center;
-}
-
-#volumeButton {
-  margin: 0 10px;
-  border: 0;
-  font-size: 1.2em;
-  background: none;
-  cursor: pointer;
-  transition: 500ms;
-  display: flex;
-  align-items: center;
-}
-
-.fi-ss-volume,
-.fi-ss-volume-mute {
-  color: var(--font-all);
-  transition: 500ms;
-}
-
-.fi-ss-volume:hover,
-.fi-ss-volume-mute:hover {
-  filter: drop-shadow(
-    0 0 5px var(--details-shadow),
-    0 0 20px var(--primary-light-shadow)
-  );
-}
-
-.tooltip-volume_control {
-  background: none;
-  white-space: nowrap;
-  pointer-events: visible;
-}
-
-/*********** Baseline, reset styles ***********/
-input[type="range"] {
-  max-width: 120px;
-  -webkit-appearance: none;
-  -moz-appearance: none;
-  appearance: none;
-  background: transparent;
-  cursor: pointer;
-}
-
-input[type="range"]:focus {
-  outline: none;
-}
-
-/******** Chrome, Safari, Opera and Edge Chromium styles ********/
-/* slider track */
-input[type="range"]::-webkit-slider-runnable-track {
-  border-radius: 0.4rem;
-  height: 0.4rem;
-  background: var(--details-dark-shadow);
-}
-
-/* slider thumb */
-input[type="range"]::-webkit-slider-thumb {
-  -webkit-appearance: none;
-  margin-top: -4px;
-  border-radius: 0.5rem;
-  height: 0.8rem;
-  width: 0.8rem;
-  background-color: var(--font-all);
-  box-shadow: 0 0 5px var(--details-shadow), 0 0 20px var(--primary-shadow);
-  appearance: none;
-}
-
-input[type="range"]::-webkit-slider-runnable-track:hover {
-  margin-top: -2px;
-}
-
-/*********** Firefox styles ***********/
-/* slider track */
-input[type="range"]::-moz-range-track {
-  background: var(--details-dark-shadow);
-  border-radius: 0.3rem;
-  height: 0.3rem;
-}
-
-/* slider thumb */
-input[type="range"]::-moz-range-thumb {
-  background-color: var(--primary);
-  border: none;
-  border-radius: 0.5rem;
-}
-
-/* Others options */
-.fi-rr-menu-burger {
-  cursor: pointer;
-  transition: 200ms;
-}
-
-.fi-rr-menu-burger:hover,
-#fullScreenButton .fi-rr-angle-up:hover {
-  color: var(--primary);
-  transition: 750ms;
-}
-
-/*Next Songs*/
-.container_faixas {
-  display: block;
-}
-
-.container_faixas .container_faixas_detalhes {
-  animation: inDown 500ms ease;
-  display: none;
-}
-
-.container_faixas .container_faixas_detalhes.open {
-  display: block;
-  margin: 10px 0;
-  padding: 8px 0;
-  border-radius: 20px;
-  position: absolute;
-  top: -360px;
-  right: 0;
-  max-width: 200px;
-  width: 100%;
-  height: -moz-max-content;
-  height: max-content;
-  background: var(--background-details-shadow);
-  -webkit-backdrop-filter: blur(20px);
-  backdrop-filter: blur(20px);
-  animation: inTop 500ms ease;
-}
-
-@keyframes inTop {
-  0% {
-    transform: translateY(20px);
-  }
-
-  100% {
-    transform: translateY(0);
-  }
-}
-
-@keyframes inDown {
-  0% {
-    transform: translateY(0);
-    opacity: 1;
-  }
-
-  100% {
-    transform: translateY(-20px);
-    opacity: 0;
-  }
-}
-
-.container_faixas_detalhes li {
-  padding: 8px 0;
-  padding-inline: 1rem;
-  filter: opacity(0.8);
-  font-family: "Montserrat", sans-serif;
-  font-weight: 700;
-  font-size: 16px;
-  text-align: left;
-  text-transform: capitalize;
-  color: var(--font-all);
-  transition: 250ms;
-  -webkit-user-select: none;
-  -moz-user-select: none;
-  user-select: none;
-}
-
-.container_faixas_detalhes li:hover {
-  filter: opacity(1);
-  filter: drop-shadow(
-    0 0 5px var(--details-shadow),
-    0 0 20px var(--primary-shadow)
-  );
-}
-
-#upcomingSongsList li {
-  list-style: none;
-}
-
-.Songlits {
-  display: flex;
-  align-items: center;
-  cursor: pointer;
-}
-
-.Songlits img {
-  border-radius: 5px;
-  width: 50px;
-}
-
-.Songlist-details {
-  margin: 0 15px;
-}
-
-.Songlist-details h5 {
-  font-family: "Montserrat", sans-serif;
-  font-size: 0.8em;
-  font-weight: 700;
-  text-align: left;
-  text-transform: capitalize;
-  color: var(--font-all-detail);
-}
-
-.Songlist-details p {
-  font-family: "Montserrat", sans-serif;
-  font-size: 0.7em;
-  text-align: left;
-  text-transform: capitalize;
-  color: var(--primary);
-}
-
-/*Fullscreen*/
-#fullScreenButton {
-  border: 0;
-  font-size: 16px;
-  background: none;
-  transition: 750ms;
-  cursor: pointer;
-}
-
-/* Animations */
-@keyframes upInDownMusic {
-  0% {
-    text-shadow: 0 0 10px var(--details-shadow);
-  }
-
-  100% {
-    text-shadow: 0 0 10px var(--details-shadow), 0 0 25px var(--details-shadow);
-  }
+  color: var(--white-shadow);
 }
 
 /* Media screen */
