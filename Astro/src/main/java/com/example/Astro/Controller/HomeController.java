@@ -1,5 +1,10 @@
 package com.example.Astro.Controller;
 
+/*
+    Autor: Kaique Magalhães Santos
+    Projeto: Astro
+    Data: 24.09.2024
+ */
 import com.example.Astro.Model.User;
 import com.example.Astro.Repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
