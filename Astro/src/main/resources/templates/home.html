@@ -4,6 +4,10 @@
     <meta charset="utf-8" />
     <meta content="width=device-width, initial-scale=1.0" name="viewport" />
     <title>Astro</title>
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+    <link rel="manifest" href="/site.webmanifest" />
     <link
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
       rel="stylesheet"
@@ -16,23 +20,23 @@
       href="https://fonts.googleapis.com/icon?family=Material+Symbols+Outlined"
       rel="stylesheet"
     />
-    <link
-      rel="stylesheet"
-      href="/css/root/font.css"
-    />
-    <link
-      rel="stylesheet"
-      href="/css/root/root.css"
-    />
-    <link
-      rel="stylesheet"
-      href="/css/root/variables.css"
-    />
+    <link rel="stylesheet" href="../static/css/root/font.css" />
+    <link rel="stylesheet" href="../static/css/root/root.css" />
+    <link rel="stylesheet" href="../static/css/root/variables.css" />
 
-    <link rel="stylesheet" href="/css/sidebar.css" />
-    <link rel="stylesheet" href="/css/player.css" />
+    <link rel="stylesheet" href="../static/css/sidebar.css" />
+    <link rel="stylesheet" href="../static/css/player.css" />
+    <link rel="stylesheet" href="../static/css/home.css" />
   </head>
   <body>
+    <nav class="navgation_bar">
+      <a href="#" class="nav-logo bebas-neue-regular">Astro</a>
+      <img
+        src="../static/images/placeholder.png"
+        alt="placeholder"
+        class="user-perfil"
+      />
+    </nav>
     <div class="sidebar">
       <ul class="nav-list">
         <li>
@@ -113,13 +117,45 @@
         <audio id="player" src=""></audio>
         <div class="timecode_player">
           <span id="currentTime" class="montserrat-medium">0:00</span>
-          <div class="progress-bar" id="progressBar" style="cursor: pointer;">
+          <div class="progress-bar" id="progressBar" style="cursor: pointer">
             <div class="progress"></div>
           </div>
           <span id="duration" class="montserrat-medium">0:00</span>
         </div>
       </div>
     </div>
+
+    <main>
+      <div class="wrapper">
+        <div class="display-infomation-artist">
+          <p class="montserrat-regular">Conheça mais sobre</p>
+          <h1 class="bebas-neue-regular">Coldplay</h1>
+          <button id="navgationArtist" class="montserrat-semi-bold">
+            Encontre outras músicas
+          </button>
+        </div>
+        <div class="display-others-artist">
+          <h2 class="montserrat-regular">Continue escutando</h2>
+          <div class="section-artist">
+            <a href="#" class="card-artist">
+              <div class="card-artist-box" style="background: url('https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcQMJu44513s78l4Bzyurm_zL0oZhkn_3Un9oKwnBn7Aqr9QI7bI'); background-size: cover; background-position: 50% 50%;">
+                <p class="bebas-neue-regular">Adele</p>
+              </div>
+            </a>
+            <a href="#" class="card-artist">
+              <div class="card-artist-box" style="background: url('https://i.ytimg.com/vi/fHI8X4OXluQ/hq720.jpg?sqp=-oaymwEhCK4FEIIDSFryq4qpAxMIARUAAAAAGAElAADIQj0AgKJD&rs=AOn4CLDkvNyb9DIvJuwUcn0anv3POazJWg'); background-size: cover; background-position: 50% 50%;">
+                <p class="bebas-neue-regular">The Weeknd</p>
+              </div>
+            </a>
+            <a href="#" class="card-artist">
+              <div class="card-artist-box" style="background: url('https://i.insider.com/6523dcd36561dd877e745ee2?width=700'); background-size: cover; background-position: 50% 50%;">
+                <p class="bebas-neue-regular">Drake</p>
+              </div>
+            </a>
+          </div>
+        </div>
+      </div>
+    </main>
     <script type="module" src="/js/musicPlayer.js"></script>
   </body>
 </html>
