@@ -260,77 +260,188 @@ main {
     }
   }
   /*# sourceMappingURL=index.css.map */
-.parteDBiaxo {
+.container2
+  {
     display: flex;
     justify-content: center;
     flex-wrap: wrap;
-    background-color: var(--primary-shadow);
+    background-color: transparent 
 }
 
 .imagens {
-    display: flex;
-    justify-content: space-between;
-    width: 100%;
-    max-width: 1200px; /* Define um máximo se necessário */
+  display: flex;
+  justify-content: center;
 }
 
-.imagem-container {
-    text-align: center;
-    margin: 30px;
-    flex: 1 1 calc(25% - 20px);
+.imagem-containerRedondas {
+  margin: 20px;
+  text-align: center;
+  flex: 1;
 }
 
 .imagem-containerRedondas img {
-    width: 120px; /* Ajuste a largura conforme necessário */
-    height: 120px; /* Ajuste a altura para igualar a largura */
-    border-radius: 50%; /* Torna as imagens redondas */
+  width: 140px;
+  height:140px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-bottom: 10px;
 }
 
-h1 {
+.imagem-containerRedondas h3, .imagem-containerRedondas p {
+  margin-bottom: 10px;
+}
+
+
+.container3{
+  background-color: var(--shadow-shadow);
+  font-size: large
+;
+}
+.textocontainer3{
+    text-align: center; /* Centraliza o texto */
+    margin-top: 50px; /* Aumenta o espaço acima do texto */
+    font-size: 48px; /* Aumente o tamanho da fonte conforme necessário */
+    font-weight: bold; /* Define o texto como negrito */
     color: var(--tertiary);
-    font-size: 24px; /* Ajuste o tamanho da fonte se necessário */
 }
 
-h3 {
-    margin: 10px 0 5px; /* Ajuste a margem superior */
-}
-
-p {
-    margin: 5px 0; /* Ajuste a margem superior e inferior */
-    font-size: 14px; /* Ajuste o tamanho da fonte se necessário */
-}
 
 .imagem-album {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin: 20px 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 20px 0;
 }
 
 .imagem-container {
-    margin: 10px;
-    position: relative;
-    overflow: hidden;
+  margin: 5%; /* Aumentei a margem para 20px */
+  position: relative;
+  overflow: hidden;
 }
 
 .imagem-container img {
-    width: 100px; /* Tamanho padrão das imagens menores */
-    height: 100px; /* Ajuste conforme necessário */
-    border-radius: 10px; /* Bordas arredondadas */
-    filter: blur(2px); /* Imagens desfocadas */
-    transition: all 0.3s ease; /* Transição suave para efeitos */
+  width: 100px; /* Tamanho padrão das imagens menores */
+  height: 100px; /* Ajuste conforme necessário */
+  border-radius: 10px; /* Bordas arredondadas */
+  filter: blur(2px); /* Imagens desfocadas */
+  transition: all 0.3s ease; /* Transição suave para efeitos */
 }
 
 .imagem-container.central img {
-    width: 150px; /* Tamanho da imagem central */
-    height: 150px; /* Ajuste conforme necessário */
-    filter: none; /* Sem desfoque para a imagem central */
-    box-shadow: 0 0 15px rgba(255, 255, 255, 0.8); /* Efeito de luz */
-    z-index: 1; /* Garante que a imagem central fique acima */
+  width: 150px; /* Tamanho da imagem central */
+  height: 150px; /* Ajuste conforme necessário */
+  filter: none; /* Sem desfoque para a imagem central */
+  box-shadow: 0 0 15px rgba(255, 255, 255, 0.8); /* Efeito de luz */
+  z-index: 1; /* Garante que a imagem central fique acima */
+  text-align: center;
 }
 
-.bebas-neue-regular {
-    text-align: center;
-    margin-top: 5px;
-    font-size: 16px; /* Ajuste o tamanho da fonte se necessário */
+.container4 {
+  background-color: var(--shadow-shadow);
+  color: white; /* Cor do texto */
+  padding: 40px 20px; /* Espaçamento interno */
+  text-align: center; /* Centraliza o texto */
+}
+
+.container4 h1 {
+  margin: 0; /* Remove margens para alinhamento adequado */
+  font-size: 36px; /* Tamanho do título */
+  color: var(--secondary);
+}
+
+.container4 p {
+  margin-top: 10px; /* Espaço acima do parágrafo */
+  font-size: 18px; /* Tamanho do texto do parágrafo */
+  color: var(--white);
+}
+
+.container5 {
+  display: flex; /* Usar flexbox para layout */
+  align-items: center; /* Alinha itens verticalmente no centro */
+  padding: 40px 20px; /* Espaçamento interno */
+}
+
+.container5 img {
+  max-width: 150px; /* Ajuste o tamanho da imagem */
+  height: auto; /* Mantém a proporção da imagem */
+  margin-right: 20px; /* Espaço entre a imagem e o texto */
+}
+
+.container5 h1 {
+  margin: 0; /* Remove margens do título */
+  font-size: 36px; /* Tamanho do título */
+  color: var(--secondary);
+}
+
+.container5 p {
+  margin: 10px 0; /* Espaçamento acima e abaixo do parágrafo */
+  font-size: 18px; /* Tamanho do texto do parágrafo */
+}
+
+.menu-button-redirect {
+  display: inline-block; /* Para que o botão ocupe apenas o espaço necessário */
+  padding: 10px 20px; /* Espaçamento interno do botão */
+  background-color: #3498db; /* Cor de fundo do botão */
+  color: white; /* Cor do texto do botão */
+  border: none; /* Remove a borda padrão */
+  border-radius: 5px; /* Bordas arredondadas */
+  text-decoration: none; /* Remove sublinhado */
+  font-size: 18px; /* Tamanho da fonte do botão */
+  transition: background-color 0.3s; /* Transição suave ao passar o mouse */
+}
+
+.menu-button-redirect:hover {
+  background-color: #2980b9; /* Cor do botão ao passar o mouse */
+}
+footer {
+  background-color: var(--shadow-shadow); /* Cor de fundo do footer */
+  color: white; /* Cor do texto */
+  padding: 40px 20px; /* Espaçamento interno */
+  display: flex; /* Usar flexbox para layout */
+  flex-direction: row; /* Alinha itens em linha */
+  align-items: flex-start; /* Alinha itens ao topo */
+  justify-content: space-between; /* Espaço entre os itens */
+}
+
+#logo {
+  font-size: 36px; /* Tamanho do logo */
+  font-weight: bold; /* Negrito para o logo */
+  
+}
+
+footer .footer-section {
+  flex-direction: column; /* Alinha os itens em coluna */
+  margin: 100px;
+}
+
+
+h2 {
+  margin: 10px 0; /* Margens para os títulos */
+  font-size: 24px; /* Tamanho dos títulos */
+  text-align: center;
+}
+
+ul {
+  list-style-type: none; /* Remove marcadores da lista */
+  padding: 0; /* Remove padding da lista */
+  margin: 0; /* Remove margens da lista */
+}
+
+ul p {
+  margin: 5px 0; /* Espaçamento entre os itens da lista */
+}
+
+footer p {
+  margin: 10px 0; /* Espaçamento para os parágrafos */
+  font-size: 14px; /* Tamanho do texto adicional */
+  text-align: center; /* Centraliza texto no rodapé */
+}
+.copyright {
+  text-align: center; /* Centraliza o conteúdo da seção de copyright */
+  margin-top: 15px; /* Espaço acima do copyright */
+}
+.copyright li {
+  display: inline-block; /* Itens lado a lado */
+  margin: 0 50px; /* Espaçamento horizontal */
+  margin-bottom: 10px;
 }

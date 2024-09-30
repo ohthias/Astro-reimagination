@@ -1,0 +1,244 @@
+<html lang="pt-BR"></html>
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <title>
+   Astro
+  </title>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&amp;display=swap" rel="stylesheet"/>
+  <style>
+   body {
+            margin: 0;
+            font-family: 'Roboto', sans-serif;
+            background: black;
+            color: white;
+        }
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 50px;
+        }
+        header a {
+            color: white;
+            text-decoration: none;
+            margin: 0 15px;
+            font-weight: bold;
+        }
+        header a:last-child {
+            border: 2px solid white;
+            padding: 5px 15px;
+            border-radius: 20px;
+        }
+        img{
+            border-radius: 10% ;
+        }
+        .hero {
+            text-align: center;
+            padding: 100px 20px;
+        }
+        .hero h1 {
+            font-size: 80px;
+            margin: 0;
+            position: relative;
+        }
+        .hero h1::after {
+            content: '';
+            position: absolute;
+            width: 100px;
+            height: 5px;
+            background: #6C63FF;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+        .hero p {
+            font-size: 24px;
+            margin: 20px 0;
+        }
+        .hero p span {
+            color: #FF512F;
+        }
+        .hero .buttons {
+            margin-top: 30px;
+        }
+        .hero .buttons a {
+            text-decoration: none;
+            color: white;
+            padding: 10px 30px;
+            border-radius: 30px;
+            margin: 0 10px;
+            font-weight: bold;
+        }
+        .hero .buttons a:first-child {
+            background: transparent;
+            border: 2px solid white;
+        }
+        .hero .buttons a:last-child {
+            background: #FF512F;
+        }
+        .features {
+            display: flex;
+            justify-content: space-around;
+            padding: 50px 20px;
+            background: #1C1C1C;
+        }
+        .features .feature {
+            text-align: center;
+            max-width: 200px;
+        }
+        .features .feature img {
+            width: 100px;
+            height: 100px;
+        }
+        .features .feature h3 {
+            font-size: 18px;
+            margin: 20px 0 10px;
+        }
+        .features .feature p {
+            font-size: 14px;
+            color: #B3B3B3;
+        }
+        .music-section {
+            text-align: center;
+            padding: 50px 20px;
+            background: #0D0D0D;
+        }
+        .music-section h2 {
+            font-size: 36px;
+            color: #00FF00;
+            margin-bottom: 30px;
+        }
+        .music-section .music-cards {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+        }
+        .music-section .music-card {
+            width: 150px;
+            text-align: center;
+        }
+        .music-section .music-card img {
+            width: 100%;
+            border-radius: 10px;
+        }
+        .music-section .music-card h3 {
+            font-size: 16px;
+            margin: 10px 0 5px;
+        }
+        .music-section .music-card p {
+            font-size: 14px;
+            color: #B3B3B3;
+        }
+        .cta-section {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 50px 20px;
+            background: #1C1C1C;
+        }
+        .cta-section .cta-text {
+            max-width: 50%;
+        }
+        .cta-section .cta-text h2 {
+            font-size: 36px;
+            color: #FF512F;
+        }
+        .cta-section .cta-text p {
+            font-size: 18px;
+            color: #B3B3B3;
+        }
+        .cta-section .cta-text a {
+            text-decoration: none;
+            color: white;
+            padding: 10px 30px;
+            border-radius: 30px;
+            background: transparent;
+            border: 2px solid white;
+            font-weight: bold;
+        }
+        .cta-section img {
+            width: 300px;
+        }
+        footer {
+            background: #0D0D0D;
+            padding: 50px 20px;
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+        }
+        footer .footer-section {
+            max-width: 200px;
+        }
+        footer .footer-section h3 {
+            font-size: 18px;
+            margin-bottom: 20px;
+        }
+        footer .footer-section a {
+            color: #B3B3B3;
+            text-decoration: none;
+            display: block;
+            margin: 5px 0;
+        }
+        footer .footer-section a:hover {
+            color: white;
+        }
+        footer .footer-bottom {
+            text-align: center;
+            width: 100%;
+            margin-top: 20px;
+            color: #B3B3B3;
+        }
+  </style>
+ </head>
+ <body>
+  
+ 
+    
+  </section>
+  <section class="music-section">
+   <h2>
+    MAIS 250 MIL MÚSICAS
+   </h2>
+   <div class="music-cards">
+    <div class="music-card">
+     <img alt="Capa do álbum Future" height="150" src="https://oaidalleapiprodscus.blob.core.windows.net/private/org-LmQ09WWGIGwOeeA4ArnRw0x5/user-uJPET5fjNenSso8wCETWVNOp/img-TtUeQAX2kFMTSwwN8U83Lwwk.png?st=2024-09-23T17%3A23%3A15Z&amp;se=2024-09-23T19%3A23%3A15Z&amp;sp=r&amp;sv=2024-08-04&amp;sr=b&amp;rscd=inline&amp;rsct=image/png&amp;skoid=d505667d-d6c1-4a0a-bac7-5c84a87759f8&amp;sktid=a48cca56-e6da-484e-a814-9c849652bcb3&amp;skt=2024-09-23T18%3A05%3A12Z&amp;ske=2024-09-24T18%3A05%3A12Z&amp;sks=b&amp;skv=2024-08-04&amp;sig=tA5j77DSitTmz0TtntNBfATIcqnVrX2az9tYJ4NLJUM%3D" width="150"/>
+     <h3>
+      Future
+     </h3>
+     <p>
+      Artista
+     </p>
+    </div>
+    <div class="music-card">
+     <img alt="Capa do álbum Lover" height="150" src="https://oaidalleapiprodscus.blob.core.windows.net/private/org-LmQ09WWGIGwOeeA4ArnRw0x5/user-uJPET5fjNenSso8wCETWVNOp/img-i0HGYqYUrjWsdENdRaNLeKN0.png?st=2024-09-23T17%3A23%3A15Z&amp;se=2024-09-23T19%3A23%3A15Z&amp;sp=r&amp;sv=2024-08-04&amp;sr=b&amp;rscd=inline&amp;rsct=image/png&amp;skoid=d505667d-d6c1-4a0a-bac7-5c84a87759f8&amp;sktid=a48cca56-e6da-484e-a814-9c849652bcb3&amp;skt=2024-09-23T18%3A10%3A08Z&amp;ske=2024-09-24T18%3A10%3A08Z&amp;sks=b&amp;skv=2024-08-04&amp;sig=/slz7mX19VnqXA2M8e6fmyTQXTciawMuJkuNUgNYJPY%3D" width="150"/>
+     <h3>
+      Lover
+     </h3>
+     <p>
+      Sebasthian
+     </p>
+    </div>
+    <div class="music-card">
+     <img alt="Capa do álbum Abstraction" height="150" src="https://oaidalleapiprodscus.blob.core.windows.net/private/org-LmQ09WWGIGwOeeA4ArnRw0x5/user-uJPET5fjNenSso8wCETWVNOp/img-igTZsE0Yc9hGZtyIP22hufB2.png?st=2024-09-23T17%3A23%3A14Z&amp;se=2024-09-23T19%3A23%3A14Z&amp;sp=r&amp;sv=2024-08-04&amp;sr=b&amp;rscd=inline&amp;rsct=image/png&amp;skoid=d505667d-d6c1-4a0a-bac7-5c84a87759f8&amp;sktid=a48cca56-e6da-484e-a814-9c849652bcb3&amp;skt=2024-09-23T18%3A13%3A00Z&amp;ske=2024-09-24T18%3A13%3A00Z&amp;sks=b&amp;skv=2024-08-04&amp;sig=tfRGlwSrxaJrkZXnkTEKlcCBEn9tFY49kc0QiCWoPSE%3D" width="150"/>
+     <h3>
+      Abstraction
+     </h3>
+     <p>
+      Artista
+     </p>
+    </div>
+    <div class="music-card">
+     <img alt="Capa do álbum" src="https://placehold.co/150x150"/>
+     <h3>
+      Álbum
+     </h3>
+     <p>
+      Artista
+     </p>
+    </div>
+   </div>
+  </section>
+ </body>
+</html>
