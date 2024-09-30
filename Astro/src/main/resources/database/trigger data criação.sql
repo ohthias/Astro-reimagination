@@ -1,4 +1,4 @@
-use mydb;
+use astro_database;
 
 delimiter $$
 

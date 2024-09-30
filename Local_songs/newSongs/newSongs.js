@@ -105,7 +105,7 @@ const updateMusicList = () => {
             name: "${music.name}",<br>
             artist: "${music.artist}",<br>
             tags: [${music.tags.map((tag) => `"${tag}"`).join(", ")}],<br>
-            url: "${music.url}",<br>
+            url: "$/musicas/${music.url}",<br>
             image: {<br>
               url: "${music.image.url}",<br>
               alt: "${music.image.alt}"<br>
