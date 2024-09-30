@@ -20,6 +20,8 @@
       href="https://fonts.googleapis.com/icon?family=Material+Symbols+Outlined"
       rel="stylesheet"
     />
+    <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
+<script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
     <link rel="stylesheet" href="../static/css/root/font.css" />
     <link rel="stylesheet" href="../static/css/root/root.css" />
     <link rel="stylesheet" href="../static/css/root/variables.css" />
@@ -155,7 +157,27 @@
           </div>
         </div>
       </div>
+      <div class="content-section">
+        <section class="artistas-section">
+          <h2 class="bebas-neue-regular categoria-name">Top Artistas</h2>
+          <div class="swiper-container-artistas">
+            <div class="swiper-wrapper" id="lista-artistas"></div>
+            <div class="swiper-button-next-artistas"></div>
+            <div class="swiper-button-prev-artistas"></div>
+          </div>          
+        </section>
+
+        <section class="music-section">
+          <h2 class="bebas-neue-regular categoria-name">Rock</h2>
+          <div class="swiper-container-musicas">
+            <div class="swiper-wrapper" id="lista-musicas"></div>
+            <div class="swiper-button-next-musicas"></div>
+            <div class="swiper-button-prev-musicas"></div>
+          </div>
+        </section>
+      </div>
     </main>
+    <script src="../static/js/api/apiAcess.js"></script>
     <script type="module" src="/js/musicPlayer.js"></script>
   </body>
 </html>
