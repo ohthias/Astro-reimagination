@@ -128,7 +128,7 @@ const exibirArtistas = (artistas) => {
 
     // Define o HTML da slide
     slide.innerHTML = `
-      <a href="./artist.html?id=${artista.id}" class="artist-link" data-artist-id="${artista.id}" data-genero="pop">
+      <a href="./artist?id=${artista.id}" class="artist-link" data-artist-id="${artista.id}" data-genero="pop">
         <img src="${imgUrl}" class="artist_image" alt="${artista.name}" />
         <h4 class="bebas-neue-regular">${artista.name}</h4>
       </a>
