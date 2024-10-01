@@ -9,10 +9,15 @@ import com.example.Astro.Model.User;
 import com.example.Astro.Repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.batch.BatchTransactionManager;
+import org.springframework.http.HttpEntity;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpMethod;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.client.RestTemplate;
 
 @Controller
 public class HomeController {
@@ -38,6 +43,40 @@ public class HomeController {
     @GetMapping("/home")
     public String homePage(){
         return "home";
+    }
+
+    @GetMapping("/artist/{id}")
+    public String getArtistDetails(@PathVariable("id") String artistId, Model model) {
+        String spotifyApiUrl = "https://api.spotify.com/v1/artists/" + artistId;
+        RestTemplate restTemplate = new RestTemplate();
+
+        // Aqui você precisa autenticar e obter o token do Spotify.
+        String token = "SEU_TOKEN_DE_ACESSO_AQUI";
+
+        HttpHeaders headers = new HttpHeaders();
+        headers.set("Authorization", "Bearer " + token);
+        HttpEntity<String> entity = new HttpEntity<>(headers);
+
+        try {
+            ResponseEntity<String> response = restTemplate.exchange(spotifyApiUrl, HttpMethod.GET, entity, String.class);
+
+            if (response.getStatusCode().is2xxSuccessful()) {
+                // Parsear a resposta JSON para pegar os detalhes do artista
+                String artistDetailsJson = response.getBody();
+
+                // Adicione os detalhes à model para serem exibidos na página
+                model.addAttribute("artistDetails", artistDetailsJson);
+
+                return "artist"; // Nome da view (HTML) para exibir os detalhes do artista
+            } else {
+                model.addAttribute("errorMessage", "Não foi possível buscar os detalhes do artista");
+                return "error"; // Página de erro
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            model.addAttribute("errorMessage", "Erro ao buscar os detalhes do artista");
+            return "error"; // Página de erro
+        }
     }
 
     @PostMapping("/register")
