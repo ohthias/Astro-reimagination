@@ -4,10 +4,24 @@
     <meta charset="utf-8" />
     <meta content="width=device-width, initial-scale=1.0" name="viewport" />
     <title>Astro</title>
-    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
-    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
-    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
-    <link rel="manifest" href="/site.webmanifest" />
+    <link
+      rel="apple-touch-icon"
+      sizes="180x180"
+      href="/favicon/apple-touch-icon.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="32x32"
+      href="/favicon/favicon-32x32.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="16x16"
+      href="/favicon/favicon-16x16.png"
+    />
+    <link rel="manifest" href="/favicon/site.webmanifest" />
     <link
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
       rel="stylesheet"
@@ -20,17 +34,27 @@
       href="https://fonts.googleapis.com/icon?family=Material+Symbols+Outlined"
       rel="stylesheet"
     />
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/swiper/swiper-bundle.min.css"
+    />
+    <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/driver.js@1.0.1/dist/driver.js.iife.js"></script>
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/driver.js@1.0.1/dist/driver.css"
+    />
+    <link rel="stylesheet" href="./css/api/drive.css" />
     <link rel="stylesheet" href="./css/root/font.css" />
     <link rel="stylesheet" href="./css/root/root.css" />
     <link rel="stylesheet" href="./css/root/variables.css" />
-
     <link rel="stylesheet" href="./css/sidebar.css" />
     <link rel="stylesheet" href="./css/player.css" />
     <link rel="stylesheet" href="./css/home.css" />
   </head>
   <body>
     <nav class="navgation_bar">
-      <a href="#" class="nav-logo bebas-neue-regular">Astro</a>
+      <a href="/home" class="nav-logo bebas-neue-regular">Astro</a>
       <img
         src="./images/placeholder.png"
         alt="placeholder"
@@ -40,7 +64,7 @@
     <div class="sidebar">
       <ul class="nav-list">
         <li>
-          <a href="#">
+          <a href="/home">
             <i class="material-icons">public</i>
             <span class="links_name bebas-neue-regular">Home</span>
           </a>
@@ -122,6 +146,16 @@
           </div>
           <span id="duration" class="montserrat-medium">0:00</span>
         </div>
+        <div class="volume-control">
+          <input
+            type="range"
+            id="volumeSlider"
+            min="0"
+            max="1"
+            step="0.01"
+            value="1"
+          />
+        </div>
       </div>
     </div>
 
@@ -138,24 +172,76 @@
           <h2 class="montserrat-regular">Continue escutando</h2>
           <div class="section-artist">
             <a href="#" class="card-artist">
-              <div class="card-artist-box" style="background: url('https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcQMJu44513s78l4Bzyurm_zL0oZhkn_3Un9oKwnBn7Aqr9QI7bI'); background-size: cover; background-position: 50% 50%;">
+              <div
+                class="card-artist-box"
+                style="
+                  background: url('https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcQMJu44513s78l4Bzyurm_zL0oZhkn_3Un9oKwnBn7Aqr9QI7bI');
+                  background-size: cover;
+                  background-position: 50% 50%;
+                "
+              >
                 <p class="bebas-neue-regular">Adele</p>
               </div>
             </a>
             <a href="#" class="card-artist">
-              <div class="card-artist-box" style="background: url('https://i.ytimg.com/vi/fHI8X4OXluQ/hq720.jpg?sqp=-oaymwEhCK4FEIIDSFryq4qpAxMIARUAAAAAGAElAADIQj0AgKJD&rs=AOn4CLDkvNyb9DIvJuwUcn0anv3POazJWg'); background-size: cover; background-position: 50% 50%;">
+              <div
+                class="card-artist-box"
+                style="
+                  background: url('https://i.ytimg.com/vi/fHI8X4OXluQ/hq720.jpg?sqp=-oaymwEhCK4FEIIDSFryq4qpAxMIARUAAAAAGAElAADIQj0AgKJD&rs=AOn4CLDkvNyb9DIvJuwUcn0anv3POazJWg');
+                  background-size: cover;
+                  background-position: 50% 50%;
+                "
+              >
                 <p class="bebas-neue-regular">The Weeknd</p>
               </div>
             </a>
             <a href="#" class="card-artist">
-              <div class="card-artist-box" style="background: url('https://i.insider.com/6523dcd36561dd877e745ee2?width=700'); background-size: cover; background-position: 50% 50%;">
+              <div
+                class="card-artist-box"
+                style="
+                  background: url('https://i.insider.com/6523dcd36561dd877e745ee2?width=700');
+                  background-size: cover;
+                  background-position: 50% 50%;
+                "
+              >
                 <p class="bebas-neue-regular">Drake</p>
               </div>
             </a>
           </div>
         </div>
       </div>
+
+      <div class="content-section">
+        <section class="local-tracks">
+          <h2 class="bebas-neue-regular categoria-name">Andrômeda</h2>
+          <div class="swiper-container-musicas">
+            <div class="swiper-wrapper" id="lista-local-songs"></div>
+            <div class="swiper-button-next-musicas"></div>
+            <div class="swiper-button-prev-musicas"></div>
+          </div>
+        </section>
+
+        <section class="artistas-section">
+          <h2 class="bebas-neue-regular categoria-name">Top Artistas</h2>
+          <div class="swiper-container-artistas">
+            <div class="swiper-wrapper" id="lista-artistas"></div>
+            <div class="swiper-button-next-artistas"></div>
+            <div class="swiper-button-prev-artistas"></div>
+          </div>
+        </section>
+
+        <section class="music-section">
+          <h2 class="bebas-neue-regular categoria-name">Rock</h2>
+          <div class="swiper-container-musicas">
+            <div class="swiper-wrapper" id="lista-musicas"></div>
+            <div class="swiper-button-next-musicas"></div>
+            <div class="swiper-button-prev-musicas"></div>
+          </div>
+        </section>
+      </div>
     </main>
+    <script src="/js/api/apiAcess.js"></script>
+    <script src="/js/driver/driver.js"></script>
     <script type="module" src="/js/musicPlayer.js"></script>
   </body>
 </html>

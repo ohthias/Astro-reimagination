@@ -1,0 +1,10 @@
+{
+    "id_user": 1,
+    "theme": "dark",
+    "playlists": {
+        "astPlay010220": {
+            "normal_play": "Playlist",
+            "tracks": "ast001, ast02"
+        }
+    }
+}
