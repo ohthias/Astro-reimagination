@@ -4,10 +4,10 @@
     <meta charset="utf-8" />
     <meta content="width=device-width, initial-scale=1.0" name="viewport" />
     <title>Astro</title>
-    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
-    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
-    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
-    <link rel="manifest" href="/site.webmanifest" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/favicon/apple-touch-icon.png" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon/favicon-16x16.png" />
+    <link rel="manifest" href="/favicon/site.webmanifest" />
     <link
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
       rel="stylesheet"
@@ -106,9 +106,7 @@
             <span class="material-symbols-outlined heart">favorite</span>
           </button>
           <button id="prevButton">
-            <span class="material-symbols-outlined skip_previous"
-              >skip_previous</span
-            >
+            <span class="material-symbols-outlined skip_previous">skip_previous</span>
           </button>
           <button id="playPauseButton">
             <span class="material-symbols-outlined play_arrow">play_arrow</span>
@@ -128,8 +126,11 @@
           </div>
           <span id="duration" class="montserrat-medium">0:00</span>
         </div>
+        <div class="volume-control">
+          <input type="range" id="volumeSlider" min="0" max="1" step="0.01" value="1" />
+        </div>
       </div>
-    </div>
+    </div>    
 
     <main>
       <div class="wrapper">
@@ -161,7 +162,17 @@
           </div>
         </div>
       </div>
+
       <div class="content-section">
+        <section class="local-tracks">
+          <h2 class="bebas-neue-regular categoria-name">Andrômeda</h2>
+          <div class="swiper-container-musicas">
+            <div class="swiper-wrapper" id="lista-local-songs"></div>
+            <div class="swiper-button-next-musicas"></div>
+            <div class="swiper-button-prev-musicas"></div>
+          </div>
+        </section>
+
         <section class="artistas-section">
           <h2 class="bebas-neue-regular categoria-name">Top Artistas</h2>
           <div class="swiper-container-artistas">
@@ -181,8 +192,8 @@
         </section>
       </div>
     </main>
-    <script src="./js/api/apiAcess.js"></script>
-    <script src="./js/driver/driver.js"></script>
+    <script src="/js/api/apiAcess.js"></script>
+    <script src="/js/driver/driver.js"></script>
     <script type="module" src="/js/musicPlayer.js"></script>
   </body>
 </html>
