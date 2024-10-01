@@ -11,32 +11,25 @@ public class User {
     @Column(name = "id_cliente")
     private Long id;
 
-    @Column(name = "cliente_email", nullable = false, unique = true)
+    @Column (name = "cliente_email")
     private String clienteEmail;
-
-    @Column(name = "cliente_hash_word", nullable = false)
+    @Column (name = "cliente_hashword")
     private String clienteHashWord;
-
-    @Column(name = "username", nullable = false)
+    @Column (name = "cliente_username")
     private String username;
 
-    public User() {}
+    public User(){
+        super();
+    }
 
-    public User(Long id, String clienteEmail, String clienteHashWord, String username) {
-        this.id = id;
+    public User(Long idCliente, String clienteEmail, String clienteHashWord, String username) {
+        super();
+        this.id = idCliente;
         this.clienteEmail = clienteEmail;
         this.clienteHashWord = clienteHashWord;
         this.username = username;
     }
 
-    // Getters and setters
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
 
     public String getClienteEmail() {
         return clienteEmail;
@@ -54,11 +47,15 @@ public class User {
         this.clienteHashWord = clienteHashWord;
     }
 
-    public String getUsername() {
+    public String getClienteUsername() {
         return username;
     }
 
-    public void setUsername(String username) {
-        this.username = username;
+    public void setClienteUsername(String clienteUsername) {
+        this.username = clienteUsername;
     }
+
+    public Long getId() {return id;}
+
+    public void setId(Long id) {this.id = id;}
 }
