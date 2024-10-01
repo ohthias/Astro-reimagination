@@ -77,6 +77,7 @@ const displayArtist = async () => {
     artistName = artistData.name;
     console.log("Artista: " + artistName);
     document.getElementById("artist-name").textContent = artistData.name;
+    document.getElementById("ouvintes").textContent = artistData.followers.total;
     document.getElementById("imageArtist").src =
       artistData.images[0]?.url || "https://placehold.co/1000x550"; // Imagem padrão se não houver
     document.title = `Astro - ${artistName}`;
