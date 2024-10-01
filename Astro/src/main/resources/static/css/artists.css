@@ -30,9 +30,11 @@ main {
 img#imageArtist {
   width: 100%;
   height: 500px;
+  object-position: 50% 50%;
   object-fit: cover;
   position: relative;
   border-radius: 24px;
+  place-items: center;
 }
 
 .section-main-content {
@@ -73,10 +75,11 @@ li.track-song {
     gap: 1rem;
     width: calc(100% - 100px);
 
-    img#track-song-image {
+    img.track-song-image {
       width: 50px;
       height: 50px;
       border-radius: 4px;
+      object-fit: cover;
     }
 
     p.name-song {
@@ -93,4 +96,9 @@ li.track-song {
     font-size: 12px;
     font-weight: 300;
   }
+}
+
+.container-songs {
+  display: flex;
+  flex-direction: column;
 }

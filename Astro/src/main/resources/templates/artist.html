@@ -19,12 +19,12 @@
       href="https://fonts.googleapis.com/icon?family=Material+Symbols+Outlined"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="../static/css/root/font.css" />
-    <link rel="stylesheet" href="../static/css/root/root.css" />
-    <link rel="stylesheet" href="../static/css/root/variables.css" />
-    <link rel="stylesheet" href="../static/css/sidebar.css" />
-    <link rel="stylesheet" href="../static/css/player.css" />
-    <link rel="stylesheet" href="../static/css/artists.css" />
+    <link rel="stylesheet" href="/css/root/font.css" />
+    <link rel="stylesheet" href="/css/root/root.css" />
+    <link rel="stylesheet" href="/css/root/variables.css" />
+    <link rel="stylesheet" href="/css/sidebar.css" />
+    <link rel="stylesheet" href="/css/player.css" />
+    <link rel="stylesheet" href="/css/artists.css" />
   </head>
   <body id="backParallax">
     <nav class="navgation_bar">
@@ -125,6 +125,7 @@
     <main>
       <div class="banner-artist">
         <img
+          crossorigin="anonymous"
           id="imageArtist"
           class="artist-image"
           alt="Artista"
@@ -138,18 +139,7 @@
         <div class="hot-tracks">
           <h2 class="montserrat-bold">Musicas em alta</h2>
           <ul class="container-songs">
-            <li class="track-song">
-              <div class="track-song-details">
-                <img
-                id="track-song-image"
-                class="track-song-image"
-                alt="Artista"
-                src="https://placehold.co/50x50"
-                />
-                <p class="name-song montserrat-regular">Name song</p>
-              </div>
-              <span class="time-code montserrat-regular">00:00</span>
-            </li>
+            
           </ul>
         </div>
         <div class="container-details-artist">
@@ -177,8 +167,8 @@
         <br>
       </section>
     </main>
-    <script type="module" src="../static/js/musicPlayer.js"></script>
-    <script src="../static/js/artistPage.js"></script>
-    <script src="../static/js/background-color.js"></script>
+    <script type="module" src="/js/musicPlayer.js"></script>
+    <script src="/js/artistPage.js"></script>
+    <script src="/js/background-color.js"></script>
   </body>
 </html>

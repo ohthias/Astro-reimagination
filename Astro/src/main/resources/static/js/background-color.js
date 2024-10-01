@@ -1,18 +1,18 @@
-const imgSong = document.getElementById("imageArtist");
+const imgArtist = document.getElementById("imageArtist");
 const gradientDiv = document.getElementById("backParallax");
-const defaultColor = "#ffffff";
+const defaultColor = "#05061e";
 
-imgSong.addEventListener("load", analiseDaImagem);
+imgArtist.addEventListener("load", analiseDaImagem);
 
 function analiseDaImagem() {
   const canvas = document.createElement("canvas");
-  canvas.width = imgSong.width;
-  canvas.height = imgSong.height;
+  canvas.width = imgArtist.width;
+  canvas.height = imgArtist.height;
 
   const ctx = canvas.getContext("2d");
-  ctx.drawImage(imgSong, 0, 0, imgSong.width, imgSong.height);
+  ctx.drawImage(imgArtist, 0, 0, imgArtist.width, imgArtist.height);
 
-  const imageData = ctx.getImageData(0, 0, imgSong.width, imgSong.height);
+  const imageData = ctx.getImageData(0, 0, imgArtist.width, imgArtist.height);
   const pixels = imageData.data;
 
   const contaCor = {};
@@ -29,9 +29,9 @@ function analiseDaImagem() {
   const predominanteCor = Object.keys(contaCor).reduce((a, b) =>
     contaCor[a] > contaCor[b] ? a : b
   );
+  const rgbaPredominanteCor = predominanteCor.replace('rgb', 'rgba').replace(')', ', 0.5)');
+  gradientDiv.style.backgroundColor = rgbaPredominanteCor;
 
-  gradientDiv.style.backgroundColor = predominanteCor;
-
-  const gradient = `linear-gradient(to bottom, ${predominanteCor}, ${defaultColor})`;
+  const gradient = `linear-gradient(to bottom, ${rgbaPredominanteCor} 0%, ${defaultColor} 25%)`;
   gradientDiv.style.background = gradient;
 }
