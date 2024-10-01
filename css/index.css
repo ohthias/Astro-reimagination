@@ -112,6 +112,7 @@ main {
   
   .containner-info-subtitle h2.montserrat-regular {
     font-size: 26px;
+    margin-left: 1px;
   }
   
   .containner-info-subtitle .wrapper {
@@ -214,7 +215,7 @@ main {
       display: none;
     }
     .containner-info {
-      margin-left: 0;
+      margin-left: 0%;
       top: 10%;
       -webkit-transform: translateY(-10%);
               transform: translateY(-10%);
@@ -260,188 +261,239 @@ main {
     }
   }
   /*# sourceMappingURL=index.css.map */
-.container2
-  {
+  .container2 {
     display: flex;
     justify-content: center;
     flex-wrap: wrap;
-    background-color: transparent 
+    background-color: transparent;
+  }
+  
+  .imagens {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap; /* Permite que as imagens se ajustem em várias linhas */
+  }
+  
+  .imagem-containerRedondas {
+    margin: 20px;
+    text-align: center;
+    flex: 1 1 220px; /* Tamanho flexível */
+    max-width: 250px; /* Limite de largura máxima */
+  }
+  
+  .imagem-containerRedondas img {
+    width: 140px;
+    height: 140px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-bottom: 10px;
+    background-color: var(--shadow-shadow);
+  }
+  
+  .container3 {
+    background-color: var(--shadow-shadow);
+    font-size: large;
 }
 
-.imagens {
-  display: flex;
-  justify-content: center;
-}
-
-.imagem-containerRedondas {
-  margin: 20px;
-  text-align: center;
-  flex: 1;
-}
-
-.imagem-containerRedondas img {
-  width: 140px;
-  height:140px;
-  border-radius: 50%;
-  object-fit: cover;
-  margin-bottom: 10px;
-}
-
-.imagem-containerRedondas h3, .imagem-containerRedondas p {
-  margin-bottom: 10px;
-}
-
-
-.container3{
-  background-color: var(--shadow-shadow);
-  font-size: large
-;
-}
-.textocontainer3{
-    text-align: center; /* Centraliza o texto */
-    margin-top: 50px; /* Aumenta o espaço acima do texto */
-    font-size: 48px; /* Aumente o tamanho da fonte conforme necessário */
-    font-weight: bold; /* Define o texto como negrito */
+.textocontainer3 {
+    text-align: center;
+    margin-top: 50px;
+    font-size: 48px;
+    font-weight: bold;
     color: var(--tertiary);
 }
 
-
 .imagem-album {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin: 20px 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap; /* Permite que as imagens se ajustem em várias linhas */
+    margin: 20px 0;
 }
 
 .imagem-container {
-  margin: 5%; /* Aumentei a margem para 20px */
-  position: relative;
-  overflow: hidden;
+    margin: 5%;
+    position: relative;
+    overflow: hidden;
+    display: flex; /* Adicionado para centralizar o conteúdo */
+    justify-content: center; /* Centraliza horizontalmente */
+    align-items: center; /* Centraliza verticalmente */
 }
 
 .imagem-container img {
-  width: 100px; /* Tamanho padrão das imagens menores */
-  height: 100px; /* Ajuste conforme necessário */
-  border-radius: 10px; /* Bordas arredondadas */
-  filter: blur(2px); /* Imagens desfocadas */
-  transition: all 0.3s ease; /* Transição suave para efeitos */
+    width: 100px;
+    height: 100px;
+    border-radius: 10px;
+    filter: blur(2px);
+    transition: all 0.3s ease;
+    /* Removido o box-shadow da imagem padrão */
 }
 
 .imagem-container.central img {
-  width: 150px; /* Tamanho da imagem central */
-  height: 150px; /* Ajuste conforme necessário */
-  filter: none; /* Sem desfoque para a imagem central */
-  box-shadow: 0 0 15px rgba(255, 255, 255, 0.8); /* Efeito de luz */
-  z-index: 1; /* Garante que a imagem central fique acima */
-  text-align: center;
+    width: 180px;
+    height: 180px;
+    filter: none; /* Remove o blur da imagem central */
+    z-index: 1;
 }
 
-.container4 {
-  background-color: var(--shadow-shadow);
-  color: white; /* Cor do texto */
-  padding: 40px 20px; /* Espaçamento interno */
-  text-align: center; /* Centraliza o texto */
-}
 
-.container4 h1 {
-  margin: 0; /* Remove margens para alinhamento adequado */
-  font-size: 36px; /* Tamanho do título */
-  color: var(--secondary);
-}
-
-.container4 p {
-  margin-top: 10px; /* Espaço acima do parágrafo */
-  font-size: 18px; /* Tamanho do texto do parágrafo */
-  color: var(--white);
-}
-
-.container5 {
-  display: flex; /* Usar flexbox para layout */
-  align-items: center; /* Alinha itens verticalmente no centro */
-  padding: 40px 20px; /* Espaçamento interno */
-}
-
-.container5 img {
-  max-width: 150px; /* Ajuste o tamanho da imagem */
-  height: auto; /* Mantém a proporção da imagem */
-  margin-right: 20px; /* Espaço entre a imagem e o texto */
-}
-
-.container5 h1 {
-  margin: 0; /* Remove margens do título */
-  font-size: 36px; /* Tamanho do título */
-  color: var(--secondary);
-}
-
-.container5 p {
-  margin: 10px 0; /* Espaçamento acima e abaixo do parágrafo */
-  font-size: 18px; /* Tamanho do texto do parágrafo */
-}
-
-.menu-button-redirect {
-  display: inline-block; /* Para que o botão ocupe apenas o espaço necessário */
-  padding: 10px 20px; /* Espaçamento interno do botão */
-  background-color: #3498db; /* Cor de fundo do botão */
-  color: white; /* Cor do texto do botão */
-  border: none; /* Remove a borda padrão */
-  border-radius: 5px; /* Bordas arredondadas */
-  text-decoration: none; /* Remove sublinhado */
-  font-size: 18px; /* Tamanho da fonte do botão */
-  transition: background-color 0.3s; /* Transição suave ao passar o mouse */
-}
-
-.menu-button-redirect:hover {
-  background-color: #2980b9; /* Cor do botão ao passar o mouse */
-}
-footer {
-  background-color: var(--shadow-shadow); /* Cor de fundo do footer */
-  color: white; /* Cor do texto */
-  padding: 40px 20px; /* Espaçamento interno */
-  display: flex; /* Usar flexbox para layout */
-  flex-direction: row; /* Alinha itens em linha */
-  align-items: flex-start; /* Alinha itens ao topo */
-  justify-content: space-between; /* Espaço entre os itens */
+  .container4 {
+    background-color: var(--shadow-shadow);
+    color: white;
+    padding: 40px 20px;
+    text-align: center;
+  }
+  
+  .container4 h1 {
+    margin: 0;
+    font-size: 36px;
+    color: var(--secondary);
+  }
+  
+  .container4 p {
+    margin-top: 10px;
+    font-size: 18px;
+    color: var(--white);
+  }
+  
+  .container5 {
+    display: flex;
+    align-items: center;
+    padding: 40px 20px;
+    flex-wrap: wrap; /* Permite que os itens se ajustem em várias linhas */
+  }
+  
+  .container5 img {
+    max-width: 999px;
+    height: auto;
+    margin-right: 150px;
+    margin-left: 20px;
+  }
+  
+  .container5 h1 {
+    margin: 0;
+    font-size: 36px;
+    color: var(--secondary);
+  }
+  
+  .container5 p {
+    margin: 10px 0;
+    font-size: 18px;
+  }
+  
+  .menu-button-redirect {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #3498db;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    text-decoration: none;
+    font-size: 18px;
+    transition: background-color 0.3s;
+  }
+  
+  .menu-button-redirect:hover {
+    background-color: #2980b9;
+  }
+  
+  footer {
+    background-color: var(--shadow-shadow);
+    color: white;
+    padding: 40px 20px;
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    justify-content: space-around; /* Distribui o espaço de forma mais uniforme */
+    flex-wrap: wrap; 
 }
 
 #logo {
-  font-size: 36px; /* Tamanho do logo */
-  font-weight: bold; /* Negrito para o logo */
-  
+    font-size: 36px;
+    font-weight: bold;
 }
 
 footer .footer-section {
-  flex-direction: column; /* Alinha os itens em coluna */
-  margin: 100px;
+    flex-direction: column;
+    margin: 20px; /* Espaço entre seções */
+    text-align: center; /* Centraliza o conteúdo dentro da seção */
 }
 
-
 h2 {
-  margin: 10px 0; /* Margens para os títulos */
-  font-size: 24px; /* Tamanho dos títulos */
-  text-align: center;
+    margin: 10px 0;
+    font-size: 20px;
 }
 
 ul {
-  list-style-type: none; /* Remove marcadores da lista */
-  padding: 0; /* Remove padding da lista */
-  margin: 0; /* Remove margens da lista */
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
 }
 
 ul p {
-  margin: 5px 0; /* Espaçamento entre os itens da lista */
+    margin: 5px 0;
 }
 
 footer p {
-  margin: 10px 0; /* Espaçamento para os parágrafos */
-  font-size: 14px; /* Tamanho do texto adicional */
-  text-align: center; /* Centraliza texto no rodapé */
+    margin: 10px 0;
+    font-size: 14px;
+    text-align: center;
 }
+
 .copyright {
-  text-align: center; /* Centraliza o conteúdo da seção de copyright */
-  margin-top: 15px; /* Espaço acima do copyright */
+    text-align: center;
+    margin-top: 15px;
 }
+
 .copyright li {
-  display: inline-block; /* Itens lado a lado */
-  margin: 0 50px; /* Espaçamento horizontal */
-  margin-bottom: 10px;
+    display: inline-block;
+    margin: 0 20px; /* Espaçamento horizontal */
 }
+
+  /* Media Queries */
+  @media (max-width: 768px) {
+    .container5 {
+      flex-direction: column; /* Alinha a imagem acima do texto */
+      text-align: center; /* Centraliza o texto */
+    }
+  
+    .container5 img {
+      margin: 0 0 20px 0; /* Espaço abaixo da imagem */
+    }
+  
+    .imagem-containerRedondas {
+      flex: 1 1 100%; /* Imagens ocupam 100% em telas menores */
+      max-width: none; /* Remove limite de largura */
+    }
+  
+    .imagem-album {
+      flex-direction: column; /* Imagens em coluna */
+    }
+  
+    footer {
+      flex-direction: column; /* Alinha seções do footer em coluna */
+      align-items: center; /* Centraliza itens no footer */
+    }
+  
+    footer .footer-section {
+      margin: 20px 0; /* Espaço entre as seções */
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .textocontainer3 {
+      font-size: 36px; /* Reduz o tamanho da fonte em telas muito pequenas */
+    }
+  
+    .container4 h1,
+    .container5 h1 {
+      font-size: 28px; /* Reduz o tamanho do título */
+    }
+  
+    .container4 p,
+    .container5 p {
+      font-size: 16px; /* Reduz o tamanho do texto do parágrafo */
+    }
+  }
+  
+  
