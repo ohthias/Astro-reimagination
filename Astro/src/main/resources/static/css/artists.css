@@ -1,0 +1,23 @@
+body {
+    background: var(--shadow);
+    color: var(--font-all);
+}
+
+main {
+    position: relative;
+    max-width: calc(100%-90px);
+    width: 100%;
+    left: 90px;
+}
+
+.banner-artist {
+    width: calc(100% - 100px);
+    position: relative;
+    background: red;
+}
+
+img#imageArtist {
+    width: max-content;
+    height: 500px;
+    object-fit: cover;
+}

@@ -77,8 +77,8 @@ const displayArtist = async () => {
     artistName = artistData.name;
     console.log("Artista: " + artistName);
     document.getElementById("artist-name").textContent = artistData.name;
-    document.getElementById("artist-image").src =
-      artistData.images[0]?.url || "imagem-padrao.png"; // Imagem padrão se não houver
+    document.getElementById("imageArtist").src =
+      artistData.images[0]?.url || "https://placehold.co/1000x550"; // Imagem padrão se não houver
     document.title = `Astro - ${artistName}`;
     // Agora chama a função para buscar a biografia
     const biography = await fetchBiography(artistName);
