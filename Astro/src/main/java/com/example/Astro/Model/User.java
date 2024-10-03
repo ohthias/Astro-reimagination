@@ -8,10 +8,14 @@ public class User {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id_cliente")
     private Long id;
 
+    @Column (name = "cliente_email")
     private String clienteEmail;
+    @Column (name = "cliente_hashword")
     private String clienteHashWord;
+    @Column (name = "cliente_username")
     private String username;
 
     public User(){
