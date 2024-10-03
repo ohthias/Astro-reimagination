@@ -1,4 +1,4 @@
-const apiKey = '01bdc79df110067ff9eedcf67cbf5419'; // Substitua pela sua chave de API
+const apiKey = apiKey
 
 document.getElementById('search-button').addEventListener('click', () => {
     const artistName = document.getElementById('artist-name').value;

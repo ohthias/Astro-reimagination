@@ -1,4 +1,4 @@
-const apiKey = '01bdc79df110067ff9eedcf67cbf5419'; // Substitua pela sua chave de API
+const apiKey = 'apiKey';
 
 const fetchArtistInfo = async (artistName) => {
     const baseUrl = 'https://ws.audioscrobbler.com/2.0/';
