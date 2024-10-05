@@ -1,0 +1,40 @@
+body {
+    background: linear-gradient(45deg, var(--shadow) 0%, var(--background-all) 100%);
+    background-size: cover;
+}
+
+main {
+    position: relative;
+    width: calc(100% - 90px);
+    left: 90px;
+    top: 0;
+}
+
+.container-search {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    position: relative;
+
+    i {
+        position: absolute;
+        left: 0;
+        color: var(--white);
+    }
+
+    input#search {
+        width: 60%;
+        padding: 8px 2px;
+        padding-left: 32px;
+        border: 0;
+        outline: none;
+        border-bottom: 3px solid var(--white-shadow);
+        color: var(--font-all);
+        background: none;
+        box-shadow: none;
+        ::placeholder {
+            color: var(--white-shadow);
+        }
+    }
+}

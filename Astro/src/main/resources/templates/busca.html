@@ -1,46 +1,91 @@
 <!DOCTYPE html>
 <html lang="pt-br">
-<head>
+  <head>
     <head>
-        <!-- settings  -->
-        <meta charset="utf-8" />
-        <meta content="width=device-width, initial-scale=1.0" name="viewport" />
-        <title>Astro</title>
-        <!-- favicon -->
-        <link rel="apple-touch-icon" sizes="180x180" href="/favicon/apple-touch-icon.png" />
-        <link rel="icon" type="image/png" sizes="32x32" href="/favicon/favicon-32x32.png" />
-        <link rel="icon" type="image/png" sizes="16x16" href="/favicon/favicon-16x16.png" />
-        <link rel="manifest" href="/favicon/site.webmanifest" />
-        <!-- External imports -->
-        <link
-          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
-          rel="stylesheet"
-        />
-        <link
-          href="https://fonts.googleapis.com/icon?family=Material+Icons"
-          rel="stylesheet"
-        />
-        <link
-          href="https://fonts.googleapis.com/icon?family=Material+Symbols+Outlined"
-          rel="stylesheet"
-        />
-        <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
-        <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
-        <script src="https://cdn.jsdelivr.net/npm/driver.js@1.0.1/dist/driver.js.iife.js"></script>
-        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/driver.js@1.0.1/dist/driver.css"/>
-        <!-- styles page -->
-        <link rel="stylesheet" href="../static/css/api/drive.css"/>
-        <link rel="stylesheet" href="../static/css/busca.css" />
-        <!-- styles root -->
-        <link rel="stylesheet" href="../static/css/root/variables.css" />
-        <link rel="stylesheet" href="../static/css/root/font.css" />
-        <link rel="stylesheet" href="../static/css/root/root.css" />
-        <link rel="stylesheet" href="../static/css/sidebar.css" />
-        <link rel="stylesheet" href="../static/css/player.css" />
+      <!-- settings  -->
+      <meta charset="utf-8" />
+      <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+      <title>Astro</title>
+      <!-- favicon -->
+      <link
+        rel="apple-touch-icon"
+        sizes="180x180"
+        href="/favicon/apple-touch-icon.png"
+      />
+      <link
+        rel="icon"
+        type="image/png"
+        sizes="32x32"
+        href="/favicon/favicon-32x32.png"
+      />
+      <link
+        rel="icon"
+        type="image/png"
+        sizes="16x16"
+        href="/favicon/favicon-16x16.png"
+      />
+      <link rel="manifest" href="/favicon/site.webmanifest" />
+      <!-- External imports -->
+      <link
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
+        rel="stylesheet"
+      />
+      <link
+        href="https://fonts.googleapis.com/icon?family=Material+Icons"
+        rel="stylesheet"
+      />
+      <link
+        href="https://fonts.googleapis.com/icon?family=Material+Symbols+Outlined"
+        rel="stylesheet"
+      />
+      <link
+        rel="stylesheet"
+        href="https://unpkg.com/swiper/swiper-bundle.min.css"
+      />
+      <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+      <script src="https://cdn.jsdelivr.net/npm/driver.js@1.0.1/dist/driver.js.iife.js"></script>
+      <link
+        rel="stylesheet"
+        href="https://cdn.jsdelivr.net/npm/driver.js@1.0.1/dist/driver.css"
+      />
+      <!-- styles page -->
+      <link rel="stylesheet" href="../static/css/api/drive.css" />
+      <link rel="stylesheet" href="../static/css/busca.css" />
+      <!-- styles root -->
+      <link rel="stylesheet" href="../static/css/root/variables.css" />
+      <link rel="stylesheet" href="../static/css/root/font.css" />
+      <link rel="stylesheet" href="../static/css/root/root.css" />
+      <link rel="stylesheet" href="../static/css/sidebar.css" />
+      <link rel="stylesheet" href="../static/css/player.css" />
     </head>
-</head>
-<body>
+  </head>
+  <body>
+    <main>
+      <div class="container-search">
+        <i class="material-icons">search</i>
+        <input
+          class="montserrat-regular
+          type="search"
+          name="busca"
+          id="search"
+          oninput="searchSpotify()"
+          placeholder="Procure por um artista, uma música ou playlist"
+        />
+      </div>
+
+      <div class="container-results" id="results">
+        <h3 class="campo1 bebas-neue-regular">Tracks</h3>
+        <ul id="track-results"></ul>
+
+        <h3 class=" campo1 bebas-neue-regular">Artists</h3>
+        <ul id="artist-results"></ul>
+      
+        <h3 class="campo1 bebas-neue-regular">Playlists</h3>
+        <ul id="playlist-results"></ul>
+      </div>
+    </main>
+    <script type="module" src="../static/js/search/search.js"></script>
     <script src="../static/js/generator/menus.js"></script>
     <script src="../static/js/generator/player.js"></script>
-</body>
+  </body>
 </html>
