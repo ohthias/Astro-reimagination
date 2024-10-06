@@ -1,21 +1,4 @@
 document.addEventListener("DOMContentLoaded", function () {
-    // Criação do navbar
-    const navigationBar = document.createElement("nav");
-    navigationBar.classList.add("navgation_bar");
-
-    const navLogo = document.createElement("a");
-    navLogo.href = "/home";
-    navLogo.classList.add("nav-logo", "bebas-neue-regular");
-    navLogo.textContent = "Astro";
-
-    const userImage = document.createElement("img");
-    userImage.src = "https://fakeimg.pl/40x40/e9e9e9/e9e9e9";
-    userImage.alt = "placeholder";
-    userImage.classList.add("user-perfil");
-
-    navigationBar.appendChild(navLogo);
-    navigationBar.appendChild(userImage);
-
     // Criação da sidebar
     const sidebar = document.createElement("div");
     sidebar.classList.add("sidebar");
@@ -37,7 +20,7 @@ document.addEventListener("DOMContentLoaded", function () {
     // Search item
     const searchItem = document.createElement("li");
     const searchLink = document.createElement("a");
-    searchLink.href = "#";
+    searchLink.href = "./busca.html";
     searchLink.innerHTML = '<i class="material-icons">search</i><span class="tooltip bebas-neue-regular">Search</span>';
     searchItem.appendChild(searchLink);
 
@@ -96,6 +79,5 @@ document.addEventListener("DOMContentLoaded", function () {
     sidebar.appendChild(navList);
 
     // Adiciona navbar e sidebar à página
-    document.body.appendChild(navigationBar);
     document.body.appendChild(sidebar);
 });

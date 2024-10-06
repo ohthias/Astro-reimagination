@@ -8,27 +8,38 @@ function displaySongs() {
     // Cria um elemento para cada música
     const songItem = document.createElement("div");
     songItem.classList.add("song-item");
-    songItem.innerHTML = `
-        <img src="${song.image.url}" alt="${song.image.alt}" class="song-image" />
-        <div class="song-info">
-          <span class="song-title">${song.name}</span>
-          <span class="song-artist">${song.artist}</span>
-        </div>
-        <button class="playSongButton" data-index="${index}">
-          <span class="material-symbols-outlined play_arrow">play_arrow</span>
-        </button>
-      `;
-    musicList.appendChild(songItem);
-  });
 
-  // Adiciona eventos de clique para cada botão de reprodução
-  const playSongButtons = document.querySelectorAll(".playSongButton");
-  playSongButtons.forEach((button) => {
-    button.addEventListener("click", () => {
-      currentSongIndex = parseInt(button.getAttribute("data-index"));
-      loadSong(localSongs[currentSongIndex]);
-      playSong();
-    });
+    const songImage = document.createElement("img");
+    songImage.src = song.image.url;
+    songImage.alt = song.image.alt;
+    songImage.classList.add("song-image");
+
+    const songInfo = document.createElement("div");
+    songInfo.classList.add("song-info");
+
+    const songTitle = document.createElement("span");
+    songTitle.classList.add("song-title");
+    songTitle.textContent = song.name;
+
+    const songArtist = document.createElement("span");
+    songArtist.classList.add("song-artist");
+    songArtist.textContent = song.artist;
+
+    const playButton = document.createElement("button");
+    playButton.classList.add("playSongButton");
+    playButton.setAttribute("data-index", index);
+
+    const playIcon = document.createElement("span");
+    playIcon.classList.add("material-symbols-outlined", "play_arrow");
+    playIcon.textContent = "play_arrow";
+
+    playButton.appendChild(playIcon);
+    songInfo.appendChild(songTitle);
+    songInfo.appendChild(songArtist);
+    songItem.appendChild(songImage);
+    songItem.appendChild(songInfo);
+    songItem.appendChild(playButton);
+    musicList.appendChild(songItem);
   });
 }
 

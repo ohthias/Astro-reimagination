@@ -9,7 +9,7 @@
   justify-content: space-between;
   pointer-events: all;
   transition: all 0.5s ease;
-  z-index: 2;
+  z-index: 20;
 }
 
 .navgation_bar a.nav-logo {

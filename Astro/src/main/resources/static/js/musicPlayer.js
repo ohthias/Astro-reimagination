@@ -57,8 +57,9 @@ function loadTrackSlider() {
   swiper.update(); // Atualiza o Swiper para reconhecer os novos slides
 }
 
+// !TODO - Corrigir a função de volume do player
 // Configurar o volume inicial do player
-player.volume = volumeSlider.value;
+//player.volume = volumeSlider.value;
 
 // Função para carregar o estado salvo
 function loadSavedState() {
@@ -144,11 +145,13 @@ function formatTime(seconds) {
   return `${minutes}:${secondsDisplay < 10 ? "0" : ""}${secondsDisplay}`;
 }
 
+// !TODO - Corrigir a função de volume do player
 // Atualiza o volume do player quando o slider é movido
-volumeSlider.addEventListener("input", () => {
+/*volumeSlider.addEventListener("input", () => {
   player.volume = volumeSlider.value;
   localStorage.setItem("currentVolume", player.volume); // Salva o volume atual
-});
+});*/
+
 
 // Salvar tempo atual antes de mudar de faixa
 player.addEventListener("pause", () => {
