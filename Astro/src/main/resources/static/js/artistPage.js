@@ -1,4 +1,4 @@
-import SPOTIFY_CONFIG from '../api/config.js';
+import SPOTIFY_CONFIG from './api/config.js';
 
 const clientId = SPOTIFY_CONFIG.SPOTIFY_CLIENT_ID;
 const clientSecret = SPOTIFY_CONFIG.SPOTIFY_CLIENT_SECRET;
@@ -52,7 +52,7 @@ const fetchArtistData = async (artistId) => {
 
 // Função para buscar as músicas mais populares do artista
 const fetchTopTracks = async (artistId) => {
-  const endpoint = `artists/${artistId}/top-tracks?market=US`;
+  const endpoint = `artists/${artistId}/top-tracks?market=BR`;
   return await makeApiRequest(endpoint);
 };
 
@@ -94,7 +94,7 @@ const displayArtist = async () => {
     document.getElementById("artist-name").textContent = artistData.name;
     document.getElementById("ouvintes").textContent = `${(artistData.followers.total).toLocaleString()} ouvintes`;
     document.getElementById("imageArtist").src =
-      artistData.images[0]?.url || "https://placehold.co/1000x550"; // Imagem padrão se não houver
+      artistData.images[0]?.url || "https://placehold.co/1000x550";
     document.title = `Astro - ${artistName}`;
     
     // Agora chama a função para buscar a biografia

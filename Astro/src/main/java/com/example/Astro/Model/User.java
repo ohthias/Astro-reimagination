@@ -5,31 +5,39 @@ import jakarta.persistence.*;
 @Entity
 @Table(name = "cliente")
 public class User {
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_cliente")
     private Long id;
 
-    @Column (name = "cliente_email")
+    @Column(name = "cliente_email")
     private String clienteEmail;
-    @Column (name = "cliente_hashword")
+
+    @Column(name = "cliente_hashword")
     private String clienteHashWord;
-    @Column (name = "cliente_username")
+
+    @Column(name = "cliente_username")
     private String username;
 
-    public User(){
+    public User() {
         super();
     }
 
-    public User(Long idCliente, String clienteEmail, String clienteHashWord, String username) {
-        super();
-        this.id = idCliente;
+    public User(Long id, String clienteEmail, String clienteHashWord, String username) {
+        this.id = id;
         this.clienteEmail = clienteEmail;
         this.clienteHashWord = clienteHashWord;
         this.username = username;
     }
 
+    // Getters e Setters
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
 
     public String getClienteEmail() {
         return clienteEmail;
@@ -47,15 +55,11 @@ public class User {
         this.clienteHashWord = clienteHashWord;
     }
 
-    public String getClienteUsername() {
+    public String getUsername() {
         return username;
     }
 
-    public void setClienteUsername(String clienteUsername) {
-        this.username = clienteUsername;
+    public void setUsername(String username) {
+        this.username = username;
     }
-
-    public Long getId() {return id;}
-
-    public void setId(Long id) {this.id = id;}
 }

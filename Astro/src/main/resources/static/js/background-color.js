@@ -3,7 +3,7 @@
  *  author - @ohthias
 */
 
-const imgArtist = document.getElementById("image");
+const imgArtist = document.getElementById("imageArtist");
 const gradientDiv = document.getElementById("backParallax");
 const defaultColor = "#05061e";
 

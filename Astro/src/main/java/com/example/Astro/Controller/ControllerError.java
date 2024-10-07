@@ -35,13 +35,13 @@ public class ControllerError implements ErrorController {
 
         if (statusCode != null) {
             if (statusCode == 404) {
-                return "erro"; // Redireciona para a página de erro 404
+                return "notFound"; // Redireciona para a página de erro 404
             } else if (statusCode >= 500) {
                 return "erro"; // Redireciona para a página de erro genérico
             }
         }
 
-        return "error"; // Página de erro genérica para outros casos
+        return "notFound"; // Página de erro genérica para outros casos
     }
 
     public String getErrorPath() {
