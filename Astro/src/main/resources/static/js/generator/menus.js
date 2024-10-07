@@ -20,7 +20,7 @@ document.addEventListener("DOMContentLoaded", function () {
     // Search item
     const searchItem = document.createElement("li");
     const searchLink = document.createElement("a");
-    searchLink.href = "busca";
+    searchLink.href = "buscar";
     searchLink.innerHTML = '<i class="material-icons">search</i><span class="tooltip bebas-neue-regular">Search</span>';
     searchItem.appendChild(searchLink);
 

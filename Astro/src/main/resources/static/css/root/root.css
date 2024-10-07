@@ -19,3 +19,29 @@ input:-webkit-autofill {
   -webkit-box-shadow: 0 0 0px 1000px var(--shadow) inset !important;
   -webkit-text-fill-color: var(--font-all) !important;
 }
+
+body {
+  --sb-track-color: #05061e;
+  --sb-thumb-color: #26f245;
+  --sb-size: 8px;
+}
+
+body::-webkit-scrollbar {
+  width: var(--sb-size);
+}
+
+body::-webkit-scrollbar-track {
+  background: var(--sb-track-color);
+  border-radius: 10px;
+}
+
+body::-webkit-scrollbar-thumb {
+  background: var(--sb-thumb-color);
+  border-radius: 10px;
+}
+
+@supports not selector(::-webkit-scrollbar) {
+  body {
+    scrollbar-color: var(--sb-thumb-color) var(--sb-track-color);
+  }
+}

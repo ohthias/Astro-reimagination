@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="pt-br">
   <head>
     <!-- settings  -->
     <meta charset="utf-8" />
@@ -48,7 +48,7 @@
       href="https://cdn.jsdelivr.net/npm/driver.js@1.0.1/dist/driver.css"
     />
     <!-- styles page -->
-    <link rel="stylesheet" href="/css/busca.css" />
+    <link rel="stylesheet" href="/css/artists.css" />
     <!-- styles root -->
     <link rel="stylesheet" href="/css/root/variables.css" />
     <link rel="stylesheet" href="/css/root/font.css" />
@@ -56,10 +56,17 @@
     <link rel="stylesheet" href="/css/sidebar.css" />
     <link rel="stylesheet" href="/css/player.css" />
   </head>
-  <body>
+  <body id="backParallax">
+    <nav class="navgation_bar">
+      <a href="/home" class="nav-logo bebas-neue-regular">Astro</a>
+      <img
+        src="https://fakeimg.pl/40x40/e9e9e9/e9e9e9"
+        alt="placeholder"
+        class="user-perfil"
+      />
+    </nav>
     <div class="container_player">
       <div class="player">
-        <!-- Seção esquerda do player -->
         <div class="side-left">
           <div class="player_image">
             <img
@@ -73,8 +80,6 @@
             <span id="artistName" class="montserrat-regular">Artista</span>
           </div>
         </div>
-
-        <!-- Controles de usuário -->
         <div class="user-prefers">
           <button id="heartMusic">
             <span class="material-symbols-outlined heart">favorite</span>
@@ -94,11 +99,7 @@
             <span class="material-symbols-outlined shuffle">shuffle</span>
           </button>
         </div>
-
-        <!-- Player de áudio -->
         <audio id="player" src=""></audio>
-
-        <!-- Barra de progresso e tempo -->
         <div class="timecode_player">
           <span id="currentTime" class="montserrat-medium">0:00</span>
           <div class="progress-bar" id="progressBar" style="cursor: pointer">
@@ -106,58 +107,57 @@
           </div>
           <span id="duration" class="montserrat-medium">0:00</span>
         </div>
-
-        <!-- Controle de volume -->
-        <div class="volume-control">
-          <input
-            type="range"
-            id="volumeSlider"
-            min="0"
-            max="1"
-            step="0.01"
-            value="1"
-          />
-        </div>
       </div>
     </div>
 
-    <nav class="navgation_bar">
-      <a href="/home" class="nav-logo bebas-neue-regular">Astro</a>
-      <img
-        src="https://fakeimg.pl/40x40/e9e9e9/e9e9e9"
-        alt="placeholder"
-        class="user-perfil"
-      />
-    </nav>
     <main>
-      <div class="container-search">
-        <i class="material-icons">search</i>
-        <input
-          class="montserrat-regular"
-          type="text"
-          name="busca"
-          id="search"
-          placeholder="Procure por um artista, uma música ou playlist"
+      <div class="banner-artist">
+        <img
+          crossorigin="anonymous"
+          id="imageArtist"
+          class="artist-image"
+          alt="Artista"
+          src="https://placehold.co/1000x500"
         />
-      </div>
-
-      <div class="container-results" id="results">
-        <div class="tracks-container">
-          <h2 class="bebas-neue-regular">Músicas</h2>
-          <div id="lista-musicas" class="results-list"></div>
-        </div>
-        <div class="artists-container">
-          <h2 class="bebas-neue-regular">Artistas</h2>
-          <div id="lista-artistas" class="results-list"></div>
-        </div>
-        <div class="playlists-container">
-          <h2 class="bebas-neue-regular">Playlists</h2>
-          <div id="lista-playlists" class="results-list"></div>
+        <div class="banner-details">
+          <h1 id="artist-name" class="bebas-neue-regular">
+            Placeholder Artist
+          </h1>
         </div>
       </div>
+      <section class="section-main-content">
+        <div class="hot-tracks">
+          <h2 class="montserrat-bold">Musicas em alta</h2>
+          <ul class="container-songs"></ul>
+        </div>
+        <div class="container-details-artist">
+          <h3 id="ouvintes" class="montserrat-bold">000.000</h3>
+          <div id="artist-biography" class="montserrat-regular">
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptas
+            aperiam accusamus soluta totam delectus aut molestias nemo, fugit
+            optio corporis modi illo repellendus itaque quas ipsum error ratione
+            sequi hic.Lorem ipsum dolor sit amet consectetur adipisicing elit.
+            Voluptas aperiam accusamus soluta totam delectus aut molestias nemo,
+            fugit optio corporis modi illo repellendus itaque quas ipsum error
+            ratione sequi hic.Lorem ipsum dolor sit amet consectetur adipisicing
+            elit. Voluptas aperiam accusamus soluta totam delectus aut molestias
+            nemo, fugit optio corporis modi illo repellendus itaque quas ipsum
+            error ratione sequi hic.
+          </div>
+        </div>
+      </section>
+      <section class="section-playlists">
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+      </section>
     </main>
-    <script src="/js/search.js"></script>
-    <script src="js/generator/menus.js"></script>
-    <script type="module" src="js/musicPlayer.js"></script>
+    <script type="module" src="/js/musicPlayer.js"></script>
+    <script type="module" src="/js/artistPage.js"></script>
+    <script src="/js/generator/menus.js"></script>
+    <script src="/js/background-color.js"></script>
   </body>
 </html>
