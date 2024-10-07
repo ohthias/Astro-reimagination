@@ -51,6 +51,18 @@ public class HomeController {
     @GetMapping("/busca")
     public  String busca() {return "busca";}
 
+    @GetMapping("/user/{token}")
+    public String userProfile() {return "user";}
+
+    @GetMapping("/playlist/{id}")
+    public String playlist() {return  "playlist";}
+
+    @GetMapping("/album/{id}")
+    public String album() {return  "album";}
+
+    @GetMapping("/single/{id}")
+    public String single() {return  single;}
+
     @GetMapping("/artist/{id}")
     public String getArtistDetails(@PathVariable("id") String artistId, Model model) {
         String spotifyApiUrl = "https://api.spotify.com/v1/artists/" + artistId;
