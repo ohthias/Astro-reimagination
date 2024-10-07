@@ -28,7 +28,7 @@ main {
     color: var(--white);
   }
 
-  input#searchInput {
+  input#search {
     width: 60%;
     padding: 8px 2px;
     padding-left: 32px;
