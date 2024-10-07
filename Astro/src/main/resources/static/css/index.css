@@ -254,3 +254,112 @@ img.logo-image {
   }
 }
 /*# sourceMappingURL=index.css.map */
+
+.container3 {
+            text-align: center;
+            padding: 50px 0;
+            color: #00ff00;
+            font-size: 36px;
+        }
+        .music-section {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+            padding: 50px 0;
+        }
+        .music-section img {
+            width: 100px;
+            height: 100px;
+            margin: 0 10px;
+            border-radius: 10px;
+        }
+        .music-section .highlight {
+            width: 150px;
+            height: 150px;
+            border: 2px solid #00ff00;
+            padding: 10px;
+        }
+        .music-section .highlight img {
+            width: 100%;
+            height: 100%;
+            border-radius: 10px;
+        }
+        .music-section .highlight .title {
+            text-align: center;
+            margin-top: 10px;
+            font-size: 18px;
+        }
+        .music-section .highlight .artist {
+            text-align: center;
+            font-size: 14px;
+            color: #888;
+        }
+        .free-section {
+            text-align: center;
+            padding: 50px 0;
+            color: #ff4500;
+            font-size: 24px;
+        }
+        .free-section p {
+            color: #888;
+            font-size: 18px;
+        }
+        .launch-section {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 50px 0;
+        }
+        .launch-section img {
+            width: 150px;
+            height: 150px;
+        }
+        .launch-section .text {
+            margin-left: 20px;
+        }
+        .launch-section .text h2 {
+            color: #ff4500;
+            font-size: 24px;
+        }
+        .launch-section .text p {
+            color: #888;
+            font-size: 18px;
+        }
+        .launch-section .text button {
+            margin-top: 10px;
+            padding: 10px 20px;
+            border: 2px solid #888;
+            background: none;
+            color: white;
+            cursor: pointer;
+        }
+        .footer {
+            background-color: #0b0d1a;
+            padding: 50px 0;
+            text-align: center;
+            color: #888;
+        }
+        .footer .columns {
+            display: flex;
+            justify-content: space-around;
+            margin-bottom: 20px;
+        }
+        .footer .columns div {
+            text-align: left;
+        }
+        .footer .columns div h3 {
+            color: white;
+            font-size: 18px;
+        }
+        .footer .columns div p {
+            margin: 5px 0;
+        }
+        .footer .columns div a {
+            color: #888;
+            text-decoration: none;
+        }
+        .footer .bottom {
+            border-top: 1px solid #888;
+            padding-top: 20px;
+        }
