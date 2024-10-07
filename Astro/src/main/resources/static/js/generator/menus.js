@@ -9,7 +9,7 @@ document.addEventListener("DOMContentLoaded", function () {
     // Home item
     const homeItem = document.createElement("li");
     const homeLink = document.createElement("a");
-    homeLink.href = "/home";
+    homeLink.href = "home";
     homeLink.innerHTML = '<i class="material-icons">public</i><span class="links_name bebas-neue-regular">Home</span>';
     const homeTooltip = document.createElement("span");
     homeTooltip.classList.add("tooltip", "bebas-neue-regular");
@@ -20,7 +20,7 @@ document.addEventListener("DOMContentLoaded", function () {
     // Search item
     const searchItem = document.createElement("li");
     const searchLink = document.createElement("a");
-    searchLink.href = "./busca.html";
+    searchLink.href = "busca";
     searchLink.innerHTML = '<i class="material-icons">search</i><span class="tooltip bebas-neue-regular">Search</span>';
     searchItem.appendChild(searchLink);
 
