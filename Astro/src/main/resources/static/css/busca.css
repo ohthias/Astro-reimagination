@@ -5,6 +5,7 @@ body {
     var(--background-all) 100%
   );
   background-size: cover;
+  color: var(--font-all);
 }
 
 main {
@@ -27,8 +28,8 @@ main {
     left: 0;
     color: var(--white);
   }
-
-  input#searchInput {
+  
+  #search {
     width: 60%;
     padding: 8px 2px;
     padding-left: 32px;
@@ -38,11 +39,13 @@ main {
     color: var(--font-all);
     background: none;
     box-shadow: none;
+
     ::placeholder {
       color: var(--white-shadow);
     }
   }
 }
+
 
 .container-results {
   display: flex;
@@ -82,7 +85,6 @@ main {
     border-radius: 10px;
   }
 
-  img.artists-image,
   img.artist-image {
     --size: 150px;
     width: var(--size);

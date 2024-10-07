@@ -1,30 +1,4 @@
-<!DOCTYPE html>
-<html lang="pt">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Busca Spotify</title>
-</head>
-<body>
-<input type="text" id="search-input" placeholder="Buscar artistas, músicas ou playlists..." />
-
-<div>
-  <h2>Artistas</h2>
-  <div id="lista-artistas"></div>
-</div>
-
-<div>
-  <h2>Músicas</h2>
-  <div id="lista-musicas"></div>
-</div>
-
-<div>
-  <h2>Playlists</h2>
-  <div id="lista-playlists"></div>
-</div>
-<script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
-<script>
-  const searchArtists = async (query) => {
+const searchArtists = async (query) => {
     try {
       const response = await fetch(`/api/spotify/search?query=${encodeURIComponent(query)}`);
       if (!response.ok) {
@@ -50,10 +24,13 @@
     if (data.artists && data.artists.items.length > 0) {
       data.artists.items.forEach(artista => {
         const item = document.createElement('div');
+        item.classList.add("track-item")
         const imagemUrl = artista.images.length > 0 ? artista.images[0].url : 'https://via.placeholder.com/50';
         item.innerHTML = `
-          <img src="${imagemUrl}" alt="${artista.name}" width="50" height="50" />
-          <span>${artista.name}</span>
+            <img src="${imagemUrl}" class="artist-image" alt="${artista.name}" />
+            <div class='track-item-detail'>
+                <h3 class='montserrat-bold artists-result'>${artista.name}</h3>
+            </div>
         `;
         listaArtistas.appendChild(item);
       });
@@ -63,10 +40,14 @@
     if (data.tracks && data.tracks.items.length > 0) {
       data.tracks.items.forEach(musica => {
         const item = document.createElement('div');
+        item.classList.add("track-item")
         const imagemUrl = musica.album.images.length > 0 ? musica.album.images[0].url : 'https://via.placeholder.com/50';
         item.innerHTML = `
-          <img src="${imagemUrl}" alt="${musica.name}" width="50" height="50" />
-          <span>${musica.name}</span>
+            <img src="${imagemUrl}" class="track-image" alt="${musica.name}" />
+            <div class='track-item-detail'>
+                <h3 class='montserrat-bold'>${musica.name}</h3>
+                <p class='montserrat-regular'>${musica.name}</p>
+            </div>
         `;
         listaMusicas.appendChild(item);
       });
@@ -76,10 +57,14 @@
     if (data.playlists && data.playlists.items.length > 0) {
       data.playlists.items.forEach(playlist => {
         const item = document.createElement('div');
+        item.classList.add("track-item")
         const imagemUrl = playlist.images.length > 0 ? playlist.images[0].url : 'https://via.placeholder.com/50';
         item.innerHTML = `
-          <img src="${imagemUrl}" alt="${playlist.name}" width="50" height="50" />
-          <span>${playlist.name}</span>
+            <img src="${imagemUrl}" class="track-image" alt="${playlist.name}" />
+            <div class='track-item-detail'>
+                <h3 class='montserrat-bold'>${playlist.name}</h3>
+                <p class='montserrat-regular'>Criado por: ${playlist.owner.display_name}</p>
+            </div>
         `;
         listaPlaylists.appendChild(item);
       });
@@ -87,12 +72,9 @@
   };
 
   // Listener para a barra de busca
-  document.querySelector('#search-input').addEventListener('input', (event) => {
+  document.querySelector('#search').addEventListener('input', (event) => {
     const query = event.target.value;
     if (query.length > 2) { // Apenas busca se o tamanho for maior que 2
       searchArtists(query);
     }
   });
-</script>
-</body>
-</html>

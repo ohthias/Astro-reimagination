@@ -25,8 +25,8 @@ public class HomeController {
         return "home";
     }
 
-    @GetMapping("/busca")
-    public String busca() {
-        return "busca";
+    @GetMapping("/buscar")
+    public String buscar() {
+        return "buscar";
     }
 }
