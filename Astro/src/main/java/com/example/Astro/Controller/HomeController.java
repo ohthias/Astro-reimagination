@@ -61,7 +61,7 @@ public class HomeController {
     public String album() {return  "album";}
 
     @GetMapping("/single/{id}")
-    public String single() {return  single;}
+    public String single() {return  "single";}
 
     @GetMapping("/artist/{id}")
     public String getArtistDetails(@PathVariable("id") String artistId, Model model) {
