@@ -247,3 +247,41 @@ p {
     opacity: 1;
   }
 }
+
+#login-button {
+  width: 100%;
+  padding: 1rem 0;
+  border: 0;
+  border-radius: 12px;
+  background: var; /* Cor do botão Google */
+  color: white; /* Texto branco */
+  font-size: 21px;
+  cursor: pointer;
+  transition: 500ms;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+}
+
+#login-button:hover {
+  background: #357ae8; /* Cor mais escura ao passar o mouse */
+  box-shadow: 0 0 25px rgba(66, 133, 244, 0.5);
+}
+
+#login-button:focus {
+  outline: none; /* Remove o contorno padrão */
+  box-shadow: 0 0 0 3px rgba(66, 133, 244, 0.5); /* Efeito de foco */
+}
+
+/* Para adicionar um ícone ao botão, se desejar */
+#login-button::before {
+  content: '';
+  background: url('C:\Users\Aluno\Documents\GitHub\Astro-reimagination\Astro\src\main\resources\static\favicon/google.png') no-repeat center; /* Caminho do ícone do Google */
+  background-size: 20px 20px; /* Ajuste o tamanho do ícone */
+  display: inline-block;
+  width: 20px; /* Largura do ícone */
+  height: 20px; /* Altura do ícone */
+  margin-right: 10px; /* Espaçamento entre o ícone e o texto */
+}
+
