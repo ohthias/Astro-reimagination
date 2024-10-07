@@ -1,0 +1,126 @@
+body {
+  background: linear-gradient(
+    45deg,
+    var(--shadow) 0%,
+    var(--background-all) 100%
+  );
+  background-size: cover;
+}
+
+main {
+  padding-right: 2rem;
+  position: relative;
+  width: calc(100% - 90px);
+  left: 90px;
+  top: 0;
+}
+
+.container-search {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  position: relative;
+
+  i {
+    position: absolute;
+    left: 0;
+    color: var(--white);
+  }
+
+  input#searchInput {
+    width: 60%;
+    padding: 8px 2px;
+    padding-left: 32px;
+    border: 0;
+    outline: none;
+    border-bottom: 3px solid var(--white-shadow);
+    color: var(--font-all);
+    background: none;
+    box-shadow: none;
+    ::placeholder {
+      color: var(--white-shadow);
+    }
+  }
+}
+
+.container-results {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  gap: 20px;
+  margin-top: 20px;
+  margin-bottom: 150px;
+
+  .artists-container,
+  .tracks-container,
+  .playlists-container {
+    width: 100%;
+    h2 {
+      color: var(--font-all);
+    }
+    display: flex;
+    flex-direction: column;
+
+    .results-list {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+        justify-content: flex-start;
+    }
+  }
+}
+
+.track-item {
+  padding: 12px 10px;
+  border-radius: 8px;
+
+  img.track-image {
+    --size: 150px;
+    width: var(--size);
+    height: var(--size);
+    border-radius: 10px;
+  }
+
+  img.artists-image,
+  img.artist-image {
+    --size: 150px;
+    width: var(--size);
+    height: var(--size);
+    border-radius: 100%;
+  }
+
+  .track-item-detail {
+    margin-top: 8px;
+    width: 150px;
+    display: flex;
+    flex-direction: column;
+
+    h3,
+    p {
+      display: inline-block;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      color: var(--font-all);
+    }
+
+    h3 {
+      font-size: 16px;
+
+      &.artists-result,
+      .artist-image {
+        text-align: center;
+      }
+    }
+
+    p {
+      font-size: 10px;
+    }
+  }
+
+  &:hover {
+    cursor: pointer;
+    background: var(--black-shadow);
+  }
+}

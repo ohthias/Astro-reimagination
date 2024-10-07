@@ -48,6 +48,7 @@
     <link rel="stylesheet" href="./css/root/font.css" />
     <link rel="stylesheet" href="./css/root/root.css" />
     <link rel="stylesheet" href="./css/root/variables.css" />
+    
     <link rel="stylesheet" href="./css/sidebar.css" />
     <link rel="stylesheet" href="./css/player.css" />
     <link rel="stylesheet" href="./css/home.css" />
@@ -56,56 +57,14 @@
     <nav class="navgation_bar">
       <a href="/home" class="nav-logo bebas-neue-regular">Astro</a>
       <img
-        src="./images/placeholder.png"
+        src="https://fakeimg.pl/40x40/e9e9e9/e9e9e9"
         alt="placeholder"
         class="user-perfil"
       />
     </nav>
-    <div class="sidebar">
-      <ul class="nav-list">
-        <li>
-          <a href="/home">
-            <i class="material-icons">public</i>
-            <span class="links_name bebas-neue-regular">Home</span>
-          </a>
-          <span class="tooltip bebas-neue-regular">Home</span>
-        </li>
-        <li>
-          <a href="#">
-            <i class="material-icons">search</i>
-            <span class="tooltip bebas-neue-regular">Search</span>
-          </a>
-        </li>
-        <hr />
-        <li>
-          <a href="#">
-            <i class="material-icons">folder</i>
-            <span class="links_name bebas-neue-regular">Biblioteca</span>
-          </a>
-          <span class="tooltip bebas-neue-regular">Biblioteca</span>
-        </li>
-        <li>
-          <button id="new_playlist">
-            <i class="material-icons">add</i>
-          </button>
-          <span class="tooltip bebas-neue-regular">Criar</span>
-        </li>
-
-        <div class="exit-container">
-          <li>
-            <hr />
-            <a href="/" class="exit-button">
-              <i class="material-icons">exit_to_app</i>
-              <span class="links_name bebas-neue-regular">Sair</span>
-            </a>
-            <span class="tooltip bebas-neue-regular">Sair</span>
-          </li>
-        </div>
-      </ul>
-    </div>
-
     <div class="container_player">
       <div class="player">
+        <!-- Seção esquerda do player -->
         <div class="side-left">
           <div class="player_image">
             <img
@@ -119,6 +78,8 @@
             <span id="artistName" class="montserrat-regular">Artista</span>
           </div>
         </div>
+
+        <!-- Controles de usuário -->
         <div class="user-prefers">
           <button id="heartMusic">
             <span class="material-symbols-outlined heart">favorite</span>
@@ -138,7 +99,11 @@
             <span class="material-symbols-outlined shuffle">shuffle</span>
           </button>
         </div>
+
+        <!-- Player de áudio -->
         <audio id="player" src=""></audio>
+
+        <!-- Barra de progresso e tempo -->
         <div class="timecode_player">
           <span id="currentTime" class="montserrat-medium">0:00</span>
           <div class="progress-bar" id="progressBar" style="cursor: pointer">
@@ -146,6 +111,8 @@
           </div>
           <span id="duration" class="montserrat-medium">0:00</span>
         </div>
+
+        <!-- Controle de volume -->
         <div class="volume-control">
           <input
             type="range"
@@ -240,8 +207,9 @@
         </section>
       </div>
     </main>
-    <script src="/js/api/apiAcess.js"></script>
-    <script src="/js/driver/driver.js"></script>
-    <script type="module" src="/js/musicPlayer.js"></script>
+    <script src="../static/js/generator/menus.js"></script>
+    <script src="../static/js/api/apiAcess.js"></script>
+    <script src="../static/js/driver/driver.js"></script>
+    <script type="module" src="../static/js/musicPlayer.js"></script>
   </body>
 </html>

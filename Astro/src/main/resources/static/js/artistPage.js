@@ -1,5 +1,7 @@
-const clientId = "8b8a8c66585b4376b70f7362c50fbdf0";
-const clientSecret = "f72310fabe114507b38b88988be9cc73";
+import SPOTIFY_CONFIG from '../api/config.js';
+
+const clientId = SPOTIFY_CONFIG.SPOTIFY_CLIENT_ID;
+const clientSecret = SPOTIFY_CONFIG.SPOTIFY_CLIENT_SECRET;
 let artistName;
 let accessToken;
 
@@ -50,25 +52,8 @@ const fetchArtistData = async (artistId) => {
 
 // Função para buscar as músicas mais populares do artista
 const fetchTopTracks = async (artistId) => {
-  if (!accessToken) {
-    accessToken = await getToken(); // Obter token se não existir
-  }
-
-  const response = await fetch(
-    `https://api.spotify.com/v1/artists/${artistId}/top-tracks?market=US`,
-    {
-      headers: {
-        Authorization: `Bearer ${accessToken}`,
-      },
-    }
-  );
-
-  if (!response.ok) {
-    throw new Error("Erro ao buscar top tracks do artista");
-  }
-
-  const data = await response.json();
-  return data.tracks.slice(0, 5); // Retorna as 5 primeiras músicas
+  const endpoint = `artists/${artistId}/top-tracks?market=US`;
+  return await makeApiRequest(endpoint);
 };
 
 // Função para buscar a biografia do artista na Wikipedia
