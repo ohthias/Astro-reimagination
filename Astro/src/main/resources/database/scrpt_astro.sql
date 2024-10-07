@@ -5,19 +5,19 @@ SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0;
 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION';
 
 -- -----------------------------------------------------
--- Schema astro_database
+-- Schema mydb
 -- -----------------------------------------------------
 
 -- -----------------------------------------------------
--- Schema astro_database
+-- Schema mydb
 -- -----------------------------------------------------
-CREATE SCHEMA IF NOT EXISTS `astro_database` DEFAULT CHARACTER SET utf8 ;
-USE `astro_database` ;
+CREATE SCHEMA IF NOT EXISTS `mydb` DEFAULT CHARACTER SET utf8 ;
+USE `mydb` ;
 
 -- -----------------------------------------------------
--- Table `astro_database`.`cliente`
+-- Table `mydb`.`cliente`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `astro_database`.`cliente` (
+CREATE TABLE IF NOT EXISTS `mydb`.`cliente` (
   `id_cliente` INT NOT NULL AUTO_INCREMENT,
   `cliente_email` VARCHAR(100) NOT NULL,
   `cliente_hashword` VARCHAR(1000) NOT NULL,
@@ -32,9 +32,9 @@ ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `astro_database`.`access_level`
+-- Table `mydb`.`access_level`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `astro_database`.`access_level` (
+CREATE TABLE IF NOT EXISTS `mydb`.`access_level` (
   `id_access_level` INT NOT NULL,
   `id_cliente` INT NOT NULL,
   `acces_leve_admAccess` TINYINT NOT NULL,
@@ -44,16 +44,16 @@ CREATE TABLE IF NOT EXISTS `astro_database`.`access_level` (
   UNIQUE INDEX `id_cliente_UNIQUE` (`id_cliente` ASC) VISIBLE,
   CONSTRAINT `id_user`
     FOREIGN KEY (`id_cliente`)
-    REFERENCES `astro_database`.`cliente` (`id_cliente`)
+    REFERENCES `mydb`.`cliente` (`id_cliente`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `astro_database`.`linking`
+-- Table `mydb`.`linking`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `astro_database`.`linking` (
+CREATE TABLE IF NOT EXISTS `mydb`.`linking` (
   `id_linking` INT NOT NULL,
   `id_cliente` INT NOT NULL,
   `linking_vinculo` TINYINT NOT NULL,
@@ -62,7 +62,7 @@ CREATE TABLE IF NOT EXISTS `astro_database`.`linking` (
   UNIQUE INDEX `id_cliente_UNIQUE` (`id_cliente` ASC) VISIBLE,
   CONSTRAINT `id_user`
     FOREIGN KEY (`id_cliente_linking`)
-    REFERENCES `astro_database`.`cliente` (`id_cliente`)
+    REFERENCES `mydb`.`cliente` (`id_cliente`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;

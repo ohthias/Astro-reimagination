@@ -1,90 +1,98 @@
 <!DOCTYPE html>
-<html lang="pt-br">
-  <head>
-    <head>
-      <!-- settings  -->
-      <meta charset="utf-8" />
-      <meta content="width=device-width, initial-scale=1.0" name="viewport" />
-      <title>Astro</title>
-      <!-- favicon -->
-      <link
-        rel="apple-touch-icon"
-        sizes="180x180"
-        href="/favicon/apple-touch-icon.png"
-      />
-      <link
-        rel="icon"
-        type="image/png"
-        sizes="32x32"
-        href="/favicon/favicon-32x32.png"
-      />
-      <link
-        rel="icon"
-        type="image/png"
-        sizes="16x16"
-        href="/favicon/favicon-16x16.png"
-      />
-      <link rel="manifest" href="/favicon/site.webmanifest" />
-      <!-- External imports -->
-      <link
-        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
-        rel="stylesheet"
-      />
-      <link
-        href="https://fonts.googleapis.com/icon?family=Material+Icons"
-        rel="stylesheet"
-      />
-      <link
-        href="https://fonts.googleapis.com/icon?family=Material+Symbols+Outlined"
-        rel="stylesheet"
-      />
-      <link
-        rel="stylesheet"
-        href="https://unpkg.com/swiper/swiper-bundle.min.css"
-      />
-      <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
-      <script src="https://cdn.jsdelivr.net/npm/driver.js@1.0.1/dist/driver.js.iife.js"></script>
-      <link
-        rel="stylesheet"
-        href="https://cdn.jsdelivr.net/npm/driver.js@1.0.1/dist/driver.css"
-      />
-      <!-- styles page -->
-      <link rel="stylesheet" href="../static/css/api/drive.css" />
-      <link rel="stylesheet" href="../static/css/busca.css" />
-      <!-- styles root -->
-      <link rel="stylesheet" href="../static/css/root/variables.css" />
-      <link rel="stylesheet" href="../static/css/root/font.css" />
-      <link rel="stylesheet" href="../static/css/root/root.css" />
-      <link rel="stylesheet" href="../static/css/sidebar.css" />
-      <link rel="stylesheet" href="../static/css/player.css" />
-    </head>
-  </head>
-  <body>
-    <nav class="navgation_bar">
-      <a href="/home" class="nav-logo bebas-neue-regular">Astro</a>
-      <img
-        src="https://fakeimg.pl/40x40/e9e9e9/e9e9e9"
-        alt="placeholder"
-        class="user-perfil"
-      />
-    </nav>
-    <main>
-      <div class="container-search">
-        <i class="material-icons">search</i>
-        <input
-          class="montserrat-regular
-          type="search"
-          name="busca"
-          id="searchInput"
-          placeholder="Procure por um artista, uma música ou playlist"
-        />
-      </div>
+<html lang="pt">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Busca Spotify</title>
+</head>
+<body>
+<input type="text" id="search-input" placeholder="Buscar artistas, músicas ou playlists..." />
 
-      <div class="container-results" id="results">
-      </div>
-    </main>
-    <script type="module" src="../static/js/search/search.js"></script>
-    <script src="../static/js/generator/menus.js"></script>
-    <script src="../static/js/generator/player.js"></script>
-  </body>
+<div>
+  <h2>Artistas</h2>
+  <div id="lista-artistas"></div>
+</div>
+
+<div>
+  <h2>Músicas</h2>
+  <div id="lista-musicas"></div>
+</div>
+
+<div>
+  <h2>Playlists</h2>
+  <div id="lista-playlists"></div>
+</div>
+<script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+<script>
+  const searchArtists = async (query) => {
+    try {
+      const response = await fetch(`/api/spotify/search?query=${encodeURIComponent(query)}`);
+      if (!response.ok) {
+        throw new Error("Network response was not ok");
+      }
+      const data = await response.json();
+      exibirResultados(data);
+    } catch (error) {
+      console.error("Erro ao buscar dados da API Spotify", error);
+    }
+  };
+
+  const exibirResultados = (data) => {
+    const listaArtistas = document.getElementById("lista-artistas");
+    const listaMusicas = document.getElementById("lista-musicas");
+    const listaPlaylists = document.getElementById("lista-playlists");
+
+    listaArtistas.innerHTML = ""; // Limpa a lista de artistas
+    listaMusicas.innerHTML = "";   // Limpa a lista de músicas
+    listaPlaylists.innerHTML = "";  // Limpa a lista de playlists
+
+    // Exibir artistas
+    if (data.artists && data.artists.items.length > 0) {
+      data.artists.items.forEach(artista => {
+        const item = document.createElement('div');
+        const imagemUrl = artista.images.length > 0 ? artista.images[0].url : 'https://via.placeholder.com/50';
+        item.innerHTML = `
+          <img src="${imagemUrl}" alt="${artista.name}" width="50" height="50" />
+          <span>${artista.name}</span>
+        `;
+        listaArtistas.appendChild(item);
+      });
+    }
+
+    // Exibir músicas
+    if (data.tracks && data.tracks.items.length > 0) {
+      data.tracks.items.forEach(musica => {
+        const item = document.createElement('div');
+        const imagemUrl = musica.album.images.length > 0 ? musica.album.images[0].url : 'https://via.placeholder.com/50';
+        item.innerHTML = `
+          <img src="${imagemUrl}" alt="${musica.name}" width="50" height="50" />
+          <span>${musica.name}</span>
+        `;
+        listaMusicas.appendChild(item);
+      });
+    }
+
+    // Exibir playlists
+    if (data.playlists && data.playlists.items.length > 0) {
+      data.playlists.items.forEach(playlist => {
+        const item = document.createElement('div');
+        const imagemUrl = playlist.images.length > 0 ? playlist.images[0].url : 'https://via.placeholder.com/50';
+        item.innerHTML = `
+          <img src="${imagemUrl}" alt="${playlist.name}" width="50" height="50" />
+          <span>${playlist.name}</span>
+        `;
+        listaPlaylists.appendChild(item);
+      });
+    }
+  };
+
+  // Listener para a barra de busca
+  document.querySelector('#search-input').addEventListener('input', (event) => {
+    const query = event.target.value;
+    if (query.length > 2) { // Apenas busca se o tamanho for maior que 2
+      searchArtists(query);
+    }
+  });
+</script>
+</body>
 </html>

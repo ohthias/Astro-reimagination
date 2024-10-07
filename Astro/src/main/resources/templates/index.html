@@ -1,220 +1,124 @@
 <!DOCTYPE html>
 <html lang="pt-br">
-  <head>
+
+<head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="keywords" content="Astro, music, songs" />
     <meta name="description" content="Astro, o reprodutor de músicas da web" />
-    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
-    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
-    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
-    <link rel="manifest" href="/site.webmanifest" />
-    <link
-      rel="stylesheet"
-      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200"
-    />
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
     <link rel="stylesheet" href="/css/root/font.css" />
     <link rel="stylesheet" href="/css/root/root.css" />
     <link rel="stylesheet" href="/css/root/variables.css" />
     <link rel="stylesheet" href="/css/index.css" />
     <title>Astro</title>
-  </head>
+</head>
 
-  <body>
+<body>
     <main>
-      <section class="module container container1">
-        <nav class="navgation-bar">
-          <label id="logo" class="navgation-bar-logo bebas-neue-regular"
-            >Astro</label
-          >
-          <div class="navgation-bar-menu">
-            <a
-              href="https://github.com/ohthias/Astro-reimagination/wiki"
-              target="_blank"
-              class="menu-button-redirect bebas-neue-regular"
-              >Documentação</a
-            >
-            <a
-              href="https://github.com/ohthias/Astro-reimagination/wiki"
-              target="_blank"
-              class="menu-button-redirect bebas-neue-regular"
-              >About</a
-            >
-            <a href="/login" class="menu-button-redirect bebas-neue-regular"
-              >Entrar</a
-            >
-          </div>
-        </nav>
-
-        <div class="containner-info">
-          <div class="containner-text">
-            <img src="/svg/Astro.svg" alt="logo-image" class="logo-image" />
-            <div class="containner-info-subtitle">
-              <div class="wrapper">
-                <h3 class="montserrat-regular">Escute</h3>
-                <div class="console-container">
-                  <span id="text" class="montserrat-regular"></span>
-                  <div class="console-underscore" id="console">&#95;</div>
+        <section class="module container container1">
+            <nav class="navgation-bar">
+                <label id="logo" class="navgation-bar-logo bebas-neue-regular">Astro</label>
+                <div class="navgation-bar-menu">
+                    <a href="https://github.com/Matheus-Gabriel07/Astro/wiki/Documentação" target="_blank"
+                        class="menu-button-redirect bebas-neue-regular">Documentação</a>
+                    <a href="https://github.com/Matheus-Gabriel07/Astro/wiki" target="_blank"
+                        class="menu-button-redirect bebas-neue-regular">About</a>
+                    <a href="login" class="menu-button-redirect bebas-neue-regular">Entrar</a>
                 </div>
-              </div>
-            </div>
-          </div>
+            </nav>
 
-          <div class="buttons">
-            <button
-              class="button-sign montserrat-semi-bold"
-              id="entrar"
-              onclick="redirect('login')"
-            >
-              Entrar
-            </button>
-            <button
-              class="button-sign montserrat-semi-bold"
-              id="cadastrar"
-              onclick="redirect('sign')"
-            >
-              Cadastrar
-            </button>
-          </div>
-        </div>
-      </section>
-      <section>
+            <div class="containner-info">
+                <div class="containner-text">
+                    <img src="/svg/Astro.svg" alt="logo-image" class="logo-image">
+                    <div class="containner-info-subtitle">
+                        <h2 class="montserrat-regular">Música nas estrelas</h2>
+                        <div class="wrapper">
+                            <h3 class="montserrat-regular">Escute</h3>
+                            <div class='console-container'>
+                                <span id='text' class="montserrat-regular"></span>
+                                <div class='console-underscore' id='console'>&#95;</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
 
-        <section>
-      <div class="container2">
-            <div class="imagens">
-              <div class="imagem-containerRedondas">
-                <img
-                  src="/Astro/src/main/resources/image/astro6.png"
-                  alt="Descrição da Imagem 1"
-                />
-                <h3 class="bebas-neue-regular">Ouça suas favoritas</h3>
-                <p class="montserrat-regular">
-                  Ouça suas músicas favoritas e descubra novas músicas e
-                  podcasts.
-                </p>
-              </div>
-              <div class="imagem-containerRedondas">
-                <img
-                  src="/Astro/src/main/resources/image/astro4.png"
-
-                  alt="Descrição da Imagem 2"
-                />
-                <h3 class="bebas-neue-regular">
-                  Playlists mais fáceis de usar
-                </h3>
-                <p class="montserrat-regular">
-                  Vamos te ajudar a criar playlists perfeitas para você. Ou você
-                  pode curtir playlists criadas por especialistas em música.
-                </p>
-              </div>
-              <div class="imagem-containerRedondas">
-                <img
-                  x
-                  src="/Astro/src/main/resources/image/astro5.png"
-                  alt="Descrição da Imagem 3"
-                />
-                <h3 class="bebas-neue-regular">Do jeitinho que você gosta</h3>
-                <p class="montserrat-regular">
-                  Conte pra gente o que você gosta de ouvir, e nós vamos
-                  recomendar músicas pra você.
-                </p>
-              </div>
-              <div class="imagem-containerRedondas">
-                <img
-                  src="/Astro/src/main/resources/image/astro3.png"
-                  alt="Descrição da Imagem 4"
-                />
-                <h3 class="bebas-neue-regular">Personalize do seu jeito</h3>
-                <p class="montserrat-regular">
-                  Altamente personalizável e intuitivo para experiências únicas.
-                </p>
-              </div>
-            </div>
-          </div>
-        </section>
-
-          <section>
-            <div class="container3">
-              <div class="textocontainer3">
-                <h1 class="bebas-neue-regular">MAIS DE 250 MIL MÚSICAS</h1></div>
-                <div class="imagem-album">
-                    <div class="imagem-container">
-                        <img src="https://i.pinimg.com/236x/56/03/5e/56035ebb562a74e42c5e219ae058b70f.jpg" />
-                    </div>
-                    <div class="imagem-container">
-                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTEwDNDIVs89ny8o_ub3qg88mTY95s_zykvxw&s" />
-                    </div>
-                    <div class="imagem-container central">
-                        <img src="https://i0.wp.com/urbanartsdecor.com/wp-content/uploads/2020/12/the-dark-side-of-the-moon-minimalista.jpg?fit=800%2C800&ssl=1" />
-                      </div>
-                    <div class="imagem-container">
-                        <img src="https://akamai.sscdn.co/tb/letras-blog/wp-content/uploads/2019/10/781160f-11856069_800_800.jpg" />
-                    </div>
-                    <div class="imagem-container">
-                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTJyVHM1-kuAYgSU59U-HybXQ5dUzQeifPXWg&s" />
-                    </div>
+                <div class="buttons">
+                    <button class="button-sign montserrat-semi-bold" id="entrar">Entrar</button>
+                    <button class="button-sign montserrat-semi-bold" id="cadastrar">Cadastrar</button>
                 </div>
             </div>
         </section>
-        
-        <section>
-        <div class="container4">
-          <h1 class="bebas-neue-regular">É GRÁTIS!</h1>
-            <p class="montserrat-regular">Não precisa de cartão de credito</p>
-          </div>
-        </section>
-        <section>
-          <div class="container5">
-            <img src="/Astro/src/main/resources/image/astro7.png" alt="imagem">
-            <div>
-                <h1 class="bebas-neue-regular">Partiu Decolar!</h1>
-                <p class="montserrat-regular">Entre hoje no Astro, e embarque com suas músicas favoritas.</p>
-                <a href="./login.html" class="menu-button-redirect bebas-neue-regular">Entrar</a>
+        <script src="/js/words.js"></script>
+        <script src="/js/redirects.js"></script>
+        <!--
+        <section class="module container container2">
+            <div class="contant-bolls">
+                <div class="bolls">
+                    <div class="circle">
+                        <i class="fi fi-sr-music-alt"></i>
+                    </div>
+                    <div class="bolls-details">
+                        <h4>Ouça suas favoritas</h4>
+                        <p>Ouça suas músicas prediletas e descubra novas músicas e podcasts.</p>
+                    </div>
+                </div>
+
+                <div class="bolls">
+                    <div class="circle">
+                        <i class="fi fi-sr-album-circle-plus"></i>
+                    </div>
+                    <div class="bolls-details">
+                        <h4>Playlists mais fáceis de usar.</h4>
+                        <p>Vamos te ajudar a criar playlists. Ou você pode curtir playlists criadas por especialistas em
+                            música.</p>
+                    </div>
+                </div>
+
+                <div class="bolls">
+                    <div class="circle">
+                        <i class="fi fi-sr-guitar-electric"></i>
+                    </div>
+                    <div class="bolls-details">
+                        <h4>Do jeitinho que você gosta</h4>
+                        <p>Conte pra gente o que você gosta de ouvir, e nós vamos recomendar músicas para você.</p>
+                    </div>
+                </div>
+
+                <div class="bolls">
+                    <div class="circle">
+                        <i class="fi fi-sr-pencil"></i>
+                    </div>
+                    <div class="bolls-details">
+                        <h4>Personalize do seu jeito</h4>
+                        <p>Altamente personalizável e intuitivo para experiências musicais únicas.</p>
+                    </div>
+                </div>
+
             </div>
-        </div>
-        
         </section>
-        <section>
-         
-          <footer>
-            <label id="logo" class="navgation-bar-logo bebas-neue-regular">Astro</label>
-            <div class="footer-section">
-                <h2 class="montserrat-semi-bold">Empresa</h2>
-                <ul class="montserrat-regular">
-                    <p>Sobre</p>
-                    <p>Perguntas frequentes</p>
-                    <p>Contato</p>
-                </ul>
+        <section class="module container container3">
+            <div class="content-image">
+                <img src="/Assets/Images/Index/Astronaut1_index.png" alt="Image1" class="atronaut">
+                <img src="/Assets/Images/Index/GridIndex_2.png" alt="Image2" class="grid">
             </div>
-        
-            <div class="footer-section">
-              <h2 class="montserrat-semi-bold">Comunidade</h2>
-              <ul class="montserrat-regular">
-                    <p>Artistas</p>
-                    <p>Desenvolvedores</p>
-                </ul>
-            </div>
-        
-            <div class="footer-section">
-              <h2 class="montserrat-semi-bold">Contato</h2>
-               <ul class="montserrat-regular">
-                    <p>GitHub</p>
-                    <p>GitHub</p>
-                    <p>GitHub</p>
-                </ul>
-        </footer>
-        <div class="copyright">
-          <ul>
-              <li class="montserrat-regular">Política de privacidade</li>
-              <li class="montserrat-regular">Termos de uso</li>
-              <li class="montserrat-regular">Português (Brasil)</li>
-              <li class="montserrat-regular">© 2024 Astro</li>
-          </ul>
         </section>
-      </section>
-      <script src="/js/other/words.js"></script>
-      <script src="/js/other/redirects.js"></script>
+        <section class="module container container4">
+            <h2>É grátis!</h2>
+            <p>Não precisa de cartão de crédito.</p>
+        </section>
+        <section class="module container container5">
+            <div class="content">
+                <img src="/Assets/Images/Astronaut/Astro2.png" alt="astronaut">
+                <h2>Gostou? Então aperte o play.</h2>
+                <button id="cadastrar">Entrar</button>
+            </div>
+        </section>
     </main>
-  </body>
+    <footer>
+
+    </footer>--->
+</body>
+
 </html>
