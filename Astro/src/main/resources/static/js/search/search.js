@@ -8,7 +8,6 @@ import SPOTIFY_CONFIG from '../api/config.js';
 const clientId = SPOTIFY_CONFIG.SPOTIFY_CLIENT_ID;
 const clientSecret = SPOTIFY_CONFIG.SPOTIFY_CLIENT_SECRET;
 
-// Obtém o token de acesso
 const getToken = async () => {
   const result = await fetch('https://accounts.spotify.com/api/token', {
     method: 'POST',
@@ -22,7 +21,6 @@ const getToken = async () => {
   return data.access_token;
 };
 
-// Função de busca no Spotify
 const searchSpotify = async (query, type = 'track', token) => {
   const result = await fetch(`https://api.spotify.com/v1/search?q=${query}&type=${type}`, {
     method: 'GET',
@@ -35,7 +33,7 @@ const searchSpotify = async (query, type = 'track', token) => {
 
 // Função para obter playlists por gênero
 const getPlaylistsByGenre = async (token) => {
-  const genres = ['pop', 'rock', 'hip-hop', 'jazz', 'classical'];
+  const genres = ['pop', 'rock', 'hip-hop', 'k-pop', 'indie'];
   const playlists = await Promise.all(genres.map(async genre => {
     const result = await fetch(`https://api.spotify.com/v1/search?q=genre:"${genre}"&type=playlist`, {
       method: 'GET',
@@ -49,9 +47,8 @@ const getPlaylistsByGenre = async (token) => {
   return playlists.flat();
 };
 
-// Função para obter faixas populares por gênero
 const getPopularTracksByGenre = async (token) => {
-  const genres = ['pop', 'rock', 'hip-hop', 'jazz', 'classical'];
+  const genres = ['pop', 'rock', 'hip-hop', 'k-pop', 'indie'];
   const popularTracks = await Promise.all(genres.map(async genre => {
     const result = await fetch(`https://api.spotify.com/v1/search?q=genre:"${genre}"&type=track`, {
       method: 'GET',
@@ -68,7 +65,7 @@ const getPopularTracksByGenre = async (token) => {
 // Função para exibir os resultados
 const displayResults = (data) => {
   const resultsDiv = document.getElementById('results');
-  resultsDiv.innerHTML = ''; // Limpa os resultados anteriores
+  resultsDiv.innerHTML = '';
 
   const fragment = document.createDocumentFragment();
 
@@ -193,7 +190,6 @@ const handleSearch = debounce(async (event) => {
   const query = event.target.value;
   const token = await getToken();
 
-  // Atualiza a URL sem recarregar a página
   if (query) {
     window.history.pushState(null, '', `?search=${encodeURIComponent(query)}`);
   } else {
@@ -201,18 +197,15 @@ const handleSearch = debounce(async (event) => {
   }
 
   if (query) {
-    // Pesquisar por faixas, artistas e playlists
     const [trackData, artistData, playlistData] = await Promise.all([
       searchSpotify(query, 'track', token),
       searchSpotify(query, 'artist', token),
       searchSpotify(query, 'playlist', token)
     ]);
 
-    // Identificar uma música popular
     const popularTrack = trackData.tracks.items.length > 0 ? trackData.tracks.items[0] : null;
     const popularArtist = popularTrack ? popularTrack.artists[0] : null;
 
-    // Combinar os dados
     const combinedData = {
       popularTrack: popularTrack ? { track: popularTrack, artist: popularArtist } : null,
       tracks: trackData.tracks.items,
@@ -222,7 +215,6 @@ const handleSearch = debounce(async (event) => {
 
     displayResults(combinedData);
   } else {
-    // Quando não há pesquisa, exibe playlists e faixas populares por gênero
     const [genrePlaylists, popularTracks] = await Promise.all([
       getPlaylistsByGenre(token),
       getPopularTracksByGenre(token)
@@ -230,7 +222,6 @@ const handleSearch = debounce(async (event) => {
     const combinedData = { playlists: genrePlaylists, tracks: popularTracks, artists: [] }; // Não estamos exibindo artistas aqui
     displayResults(combinedData);
   }
-}, 500); // Ajuste o delay do debounce conforme necessário
+}, 500);
 
-// Adiciona um evento para capturar a digitação no input de busca
 document.getElementById('searchInput').addEventListener('input', handleSearch);

@@ -1,4 +1,4 @@
-import localSongs from "./localSongs.mjs";
+import localSongs from "./local-tracks/localSongs.mjs";
 
 let currentSongIndex = 0;
 const player = document.getElementById("player");
