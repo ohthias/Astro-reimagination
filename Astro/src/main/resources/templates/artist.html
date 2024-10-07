@@ -35,48 +35,6 @@
         class="user-perfil"
       />
     </nav>
-    <div class="sidebar">
-      <ul class="nav-list">
-        <li>
-          <a href="/home">
-            <i class="material-icons">public</i>
-            <span class="links_name bebas-neue-regular">Home</span>
-          </a>
-          <span class="tooltip bebas-neue-regular">Home</span>
-        </li>
-        <li>
-          <a href="#">
-            <i class="material-icons">search</i>
-            <span class="tooltip bebas-neue-regular">Search</span>
-          </a>
-        </li>
-        <hr />
-        <li>
-          <a href="#">
-            <i class="material-icons">folder</i>
-            <span class="links_name bebas-neue-regular">Biblioteca</span>
-          </a>
-          <span class="tooltip bebas-neue-regular">Biblioteca</span>
-        </li>
-        <li>
-          <button id="new_playlist">
-            <i class="material-icons">add</i>
-          </button>
-          <span class="tooltip bebas-neue-regular">Criar</span>
-        </li>
-
-        <div class="exit-container">
-          <li>
-            <hr />
-            <a href="/" class="exit-button">
-              <i class="material-icons">exit_to_app</i>
-              <span class="links_name bebas-neue-regular">Sair</span>
-            </a>
-            <span class="tooltip bebas-neue-regular">Sair</span>
-          </li>
-        </div>
-      </ul>
-    </div>
     <div class="container_player">
       <div class="player">
         <div class="side-left">
@@ -126,7 +84,7 @@
       <div class="banner-artist">
         <img
           crossorigin="anonymous"
-          id="image"
+          id="imageArtist"
           class="artist-image"
           alt="Artista"
           src="https://placehold.co/1000x500"
@@ -168,7 +126,8 @@
       </section>
     </main>
     <script type="module" src="/js/musicPlayer.js"></script>
-    <script src="/js/artistPage.js"></script>
+    <script src="/js/generator/menus.js"></script>
+    <script type="module"  src="/js/artistPage.js"></script>
     <script src="/js/background-color.js"></script>
   </body>
 </html>
