@@ -2,60 +2,92 @@ package com.example.Astro.Model;
 
 import jakarta.persistence.*;
 
+import java.util.Date;
+
 @Entity
-@Table(name = "cliente")
+@Table(name = "User_Details")
 public class User {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id_cliente")
-    private Long id;
+    @Column(name = "idUser_Details") // Nome exato da coluna no banco de dados
+    private Long idUserDetails;
 
-    @Column (name = "cliente_email")
-    private String clienteEmail;
-    @Column (name = "cliente_hashword")
-    private String clienteHashWord;
-    @Column (name = "cliente_username")
+    @Column(name = "Email")
+    private String email;
+
+    @Column(name = "Password")
+    private String password;
+
+    @Column(name = "Username")
     private String username;
 
-    public User(){
+    @Column(name = "token")
+    private String token;
+
+    @Column(name = "last_access")
+    private Date last_access;
+
+    public User() {
         super();
     }
 
-    public User(Long idCliente, String clienteEmail, String clienteHashWord, String username) {
+    public User(Long idUserDetails, String email, String password, String username, String token) {
         super();
-        this.id = idCliente;
-        this.clienteEmail = clienteEmail;
-        this.clienteHashWord = clienteHashWord;
+        this.idUserDetails = idUserDetails;
+        this.email = email;
+        this.password = password;
         this.username = username;
+        this.token = token;
     }
 
+    // Getters e Setters
 
-    public String getClienteEmail() {
-        return clienteEmail;
+    public Long getIdUserDetails() {
+        return idUserDetails;
     }
 
-    public void setClienteEmail(String clienteEmail) {
-        this.clienteEmail = clienteEmail;
+    public void setIdUserDetails(Long idUserDetails) {
+        this.idUserDetails = idUserDetails;
     }
 
-    public String getClienteHashWord() {
-        return clienteHashWord;
+    public String getEmail() {
+        return email;
     }
 
-    public void setClienteHashWord(String clienteHashWord) {
-        this.clienteHashWord = clienteHashWord;
+    public void setEmail(String email) {
+        this.email = email;
     }
 
-    public String getClienteUsername() {
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public String getUsername() {
         return username;
     }
 
-    public void setClienteUsername(String clienteUsername) {
-        this.username = clienteUsername;
+    public void setUsername(String username) {
+        this.username = username;
     }
 
-    public Long getId() {return id;}
+    public String getToken() {
+        return token;
+    }
 
-    public void setId(Long id) {this.id = id;}
+    public void setToken(String token) {
+        this.token = token;
+    }
+
+    public Date getLast_access() {
+        return last_access;
+    }
+
+    public void setLast_access(Date last_access) {
+        this.last_access = last_access;
+    }
 }

@@ -13,17 +13,22 @@ import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.ResponseEntity;
+import com.example.Astro.service.TokenService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.client.RestTemplate;
 
+import java.util.Date;
+
 @Controller
 public class HomeController {
     @Autowired
     UserRepository repository;
     User user = new User();
+    @Autowired
+    TokenService tokenService;
 
     @GetMapping("/")
     public String index() {
@@ -88,17 +93,20 @@ public class HomeController {
     @PostMapping("/register")
     public String insertUser(@RequestParam String username,
                              @RequestParam String email,
-                             @RequestParam String hashWord) {
+                             @RequestParam String password) {
 
         BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
-        String cliente_hashword = encoder.encode(hashWord);
+        String cliente_hashword = encoder.encode(password);
+        String token = tokenService.generateToken(username, email);
 
-        User usuario = new User(null, email, cliente_hashword, username);
+        User usuario = new User(null, email, cliente_hashword, username, token);
 
         System.out.println("Username = " + username);
         System.out.println("Email = " + email);
         System.out.println("HashWord = " + cliente_hashword);
+        System.out.println("token = " + token);
 
+        usuario.setLast_access(new Date());
         repository.save(usuario);
         return "home";
 
@@ -118,7 +126,7 @@ public class HomeController {
                 return "login"; // Redireciona para a tela de login com mensagem de erro
             }
 
-            boolean passwordMatch = passwordEncoder.matches(hashWord, user.getClienteHashWord());
+            boolean passwordMatch = passwordEncoder.matches(hashWord, user.getPassword());
 
             if (!passwordMatch) {
                 System.out.println("Senha Incorreta");
@@ -126,6 +134,8 @@ public class HomeController {
                 return "login"; // Redireciona para a tela de login com mensagem de erro
             }
 
+            user.setLast_access(new Date());
+            repository.save(user);
             return "home"; // Redireciona para a tela principal
         } catch (Exception e) {
             e.printStackTrace();
