@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="en">
   <head>
     <!-- settings  -->
     <meta charset="utf-8" />
@@ -48,14 +48,14 @@
       href="https://cdn.jsdelivr.net/npm/driver.js@1.0.1/dist/driver.css"
     />
     <!-- styles page -->
-    <link rel="stylesheet" href="/css/api/drive.css" />
-    <link rel="stylesheet" href="/css/busca.css" />
+    <link rel="stylesheet" href="./css/api/drive.css" />
+    <link rel="stylesheet" href="./css/home.css" />
     <!-- styles root -->
-    <link rel="stylesheet" href="/css/root/variables.css" />
-    <link rel="stylesheet" href="/css/root/font.css" />
-    <link rel="stylesheet" href="/css/root/root.css" />
-    <link rel="stylesheet" href="/css/sidebar.css" />
-    <link rel="stylesheet" href="/css/player.css" />
+    <link rel="stylesheet" href="./css/root/variables.css" />
+    <link rel="stylesheet" href="./css/root/font.css" />
+    <link rel="stylesheet" href="./css/root/root.css" />
+    <link rel="stylesheet" href="./css/sidebar.css" />
+    <link rel="stylesheet" href="./css/player.css" />
   </head>
   <body>
     <div class="container_player">
@@ -130,35 +130,5 @@
         class="user-perfil"
       />
     </nav>
-    <main>
-      <div class="container-search">
-        <i class="material-icons">search</i>
-        <input
-          class="montserrat-regular"
-          type="text"
-          name="busca"
-          id="search"
-          placeholder="Procure por um artista, uma música ou playlist"
-        />
-      </div>
-
-      <div class="container-results" id="results">
-        <div class="tracks-container">
-          <h2 class="bebas-neue-regular">Músicas</h2>
-          <div id="lista-musicas" class="results-list"></div>
-        </div>
-        <div class="artists-container">
-          <h2 class="bebas-neue-regular">Artistas</h2>
-          <div id="lista-artistas" class="results-list"></div>
-        </div>
-        <div class="playlists-container">
-          <h2 class="bebas-neue-regular">Playlists</h2>
-          <div id="lista-playlists" class="results-list"></div>
-        </div>
-      </div>
-    </main>
-    <script type="module" src="/js/search/search.js"></script>
-    <script src="/js/generator/menus.js"></script>
-    <script type="module" src="/js/musicPlayer.js"></script>
   </body>
 </html>

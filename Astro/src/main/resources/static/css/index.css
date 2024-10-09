@@ -628,6 +628,12 @@ footer {
   .buttons {
     margin-left: 2rem;
   }
+
+  .wrapper-track {
+    flex-direction: column;
+    justify-content: center;
+    gap: 2rem;
+  }
 }
 
 /* Animations */
