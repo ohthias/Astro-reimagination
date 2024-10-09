@@ -1,3 +1,7 @@
+body {
+  overflow-x: hidden;
+}
+
 main {
   background: var(--shadow);
   color: var(--font-all);
@@ -117,6 +121,35 @@ a.menu-button-redirect:last-child:hover {
   transform: translateY(-15%);
   -webkit-animation: fadeIn 1s;
   animation: fadeIn 1s;
+}
+
+.star {
+  rotate: -45deg;
+  height: 50px;
+  width: 50px;
+  position: absolute;
+  animation: rainStar 10s infinite linear;
+  overflow: hidden;
+
+  &.star1 {
+    left: 50%;
+    top: -69%;
+  }
+
+  &.star2 {
+    left: 80%;
+    top: -85%;
+  }
+
+  &.star3 {
+    left: 75%;
+    top: -70%;
+  }
+
+  &.star4 {
+    left: 30%;
+    top: -75%;
+  }
 }
 
 img.logo-image {
@@ -259,6 +292,8 @@ section.music-section {
     height: 450px;
     position: relative;
     z-index: 1;
+    background: var(--shadow);
+    border-radius: 12px;
 
     &::before {
       content: " ";
@@ -455,7 +490,7 @@ section.container4 {
 
 footer {
   width: 100%;
-  padding: 2rem 0;
+  padding: 4rem 0;
   padding-inline: 2rem;
   background: var(--background-all);
 
@@ -467,6 +502,13 @@ footer {
     .footer-container-item {
       display: flex;
       flex-direction: column;
+
+      img {
+        margin-top: -25px;
+        width: 150px;
+        height: auto;
+        margin-bottom: 1rem;
+      }
 
       h3 {
         font-size: 20px;
@@ -498,12 +540,12 @@ footer {
   }
 
   .others-informations {
-    margin-top: 2rem;
+    margin-top: 4rem;
     width: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
-    gap: 1rem;
+    gap: 4rem;
     cursor: default;
     p {
       font-size: 16px;
@@ -662,4 +704,14 @@ footer {
     transform: rotate(360deg);
   }
 }
-/*# sourceMappingURL=index.css.map */
+
+@keyframes rainStar {
+  0% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(50vh);
+    opacity: 0;
+  }
+}
