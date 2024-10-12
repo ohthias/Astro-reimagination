@@ -1,11 +1,23 @@
+/*
+  * Home Page Style
+  * Last Update: 12/10/2024
+  * Author: @ohthias
+*/
+
 body {
   background: var(--shadow);
   color: var(--font-all);
 }
 
+/* main */
 main {
   display: flex;
   flex-direction: column;
+  background: linear-gradient(
+    to top,
+    var(--primary-shadow) 0%,
+    var(--shadow) 10%
+  );
 }
 
 main .wrapper {
@@ -161,6 +173,7 @@ main .wrapper {
   overflow: hidden;
 }
 
+
 h2.categoria-name {
   margin-bottom: 1.5rem;
   letter-spacing: 1px;
@@ -233,25 +246,34 @@ a.artist-link {
   }
 }
 
-.track-item {
-  padding: 12px 16px;
+
+/* Sections */
+
+.track-item, a.album-item  {
+  width: max-content;
+  padding-top: 8px;
+  padding-bottom: 12px;
+  padding-left: 8px;
+  padding-right: 8px;
   border-radius: 8px;
   display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: column;
   gap: 1rem;
+  text-decoration: none;
+  color: var(--font-all);
 
-  img.track-image {
-    --size: 125px;
+  img.track-image, img.album-image {
+    --size: 150px;
     width: var(--size);
     height: var(--size);
     border-radius: 8px;
     filter: grayscale(0.5);
   }
 
-  .track-item-detail {
-    width: 125px;
+  .track-item-detail, .album-item-detail {
+    width: 150px;
     display: flex;
     flex-direction: column;
 
@@ -261,8 +283,10 @@ a.artist-link {
       white-space: nowrap;
       overflow: hidden;
       text-overflow: ellipsis;
+      color: var(--font-all);
+      text-decoration: none;
     }
-
+    
     h5 {
       font-size: 16px;
     }
@@ -271,6 +295,7 @@ a.artist-link {
       font-size: 10px;
     }
   }
+
   opacity: 0.7;
   &:hover {
     img {

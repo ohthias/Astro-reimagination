@@ -14,7 +14,7 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  background: var(--shadow-shadow);
+  background: var(--black-shadow);
   -webkit-backdrop-filter: blur(20px);
   backdrop-filter: blur(20px);
 }

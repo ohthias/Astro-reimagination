@@ -1,18 +1,24 @@
-.navgation_bar {
+.navgation-bar {
   height: 60px;
   padding: 15px 10px;
-  position: relative;
-  left: 80px;
-  width: calc(100% - 80px);
+  padding-left: 90px;
+  position: fixed;
+  width: 100%;
   display: flex;
   align-items: center;
   justify-content: space-between;
   pointer-events: all;
   transition: all 0.5s ease;
   z-index: 20;
+
+  &.scrolled {
+    background: var(--shadow-shadow);
+    backdrop-filter: blur(10px);
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.3);
+  }
 }
 
-.navgation_bar a.nav-logo {
+.navgation-bar a.nav-logo {
   display: inline-block;
   font-size: 21px;
   letter-spacing: 2px;
@@ -65,7 +71,8 @@ img.user-perfil {
   height: 39vw;
   background: var(--black-shadow);
   backdrop-filter: blur(10px);
-  z-index: 10;
+  z-index: 21;
+
 }
 
 .sidebar i {

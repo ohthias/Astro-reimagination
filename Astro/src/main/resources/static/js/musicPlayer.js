@@ -20,8 +20,6 @@ const swiper = new Swiper(".swiper-container", {
     nextEl: ".swiper-button-next",
     prevEl: ".swiper-button-prev",
   },
-  slidesPerView: 3, // Número de slides por visualização
-  spaceBetween: 10, // Espaço entre os slides
 });
 
 // Função para carregar e exibir as faixas no slider
