@@ -2,6 +2,11 @@ body {
   overflow-x: hidden;
 }
 
+:root {
+  --primary-shadow-light: #ff6347; /* Cor inicial, por exemplo */
+  --secondary-shadow-light: #4682b4; /* Cor inicial, por exemplo */
+}
+
 main {
   background: var(--shadow);
   color: var(--font-all);
@@ -26,11 +31,12 @@ section.module.container1 {
 }
 
 nav.navgation-bar {
+  z-index: 999;
   margin: 0 auto;
   max-height: 80px;
   padding: 2rem 0;
   padding-inline: 2rem;
-  position: relative;
+  position: fixed;
   width: 100%;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -43,6 +49,14 @@ nav.navgation-bar {
   align-items: center;
   -webkit-animation: fadeIn 1s;
   animation: fadeIn 1s;
+  transition: backdrop-filter 1s ease;
+  transition: all 500ms;
+}
+
+nav.navgation-bar.scrolled {
+  background: var(--shadow-shadow);
+  backdrop-filter: blur(10px);
+  transition: 500ms;
 }
 
 nav.navgation-bar label.navgation-bar-logo {
@@ -116,9 +130,9 @@ a.menu-button-redirect:last-child:hover {
 .containner-info {
   margin-left: 2rem;
   position: relative;
-  top: 15%;
-  -webkit-transform: translateY(-15%);
-  transform: translateY(-15%);
+  top: 35%;
+  -webkit-transform: translateY(-35%);
+  transform: translateY(-35%);
   -webkit-animation: fadeIn 1s;
   animation: fadeIn 1s;
 }
@@ -481,6 +495,11 @@ section.container4 {
         -webkit-transition: 350ms;
         transition: 350ms;
         text-decoration: none;
+
+        &:hover {
+          background: var(--white);
+          color: var(--secondary);
+        }
       }
     }
   }
@@ -720,4 +739,11 @@ footer {
     transform: translateY(50vh);
     opacity: 0;
   }
+}
+
+/* Animation-timeline */
+.leFadeIn span { animation-name: leFadeIn }
+@keyframes leFadeIn {
+    from { opacity: 0 }
+    to { opacity: 1 }
 }
