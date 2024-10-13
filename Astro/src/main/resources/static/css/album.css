@@ -1,0 +1,12 @@
+body {
+    background: var(--shadow);
+    color: var(--font-all);
+    overflow-x: hidden;
+  }
+  
+  main {
+    position: relative;
+    width: calc(100%-100px);
+    top: 80px;
+    left: 90px;
+  }

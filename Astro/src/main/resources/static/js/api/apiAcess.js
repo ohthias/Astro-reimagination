@@ -35,7 +35,9 @@ class ApiAccess {
     this.token = data.access_token;
 
     // Token expira em 1 hora, ajusta tempo de expiração
-    this.tokenExpiresAt = new Date(new Date().getTime() + data.expires_in * 1000);
+    this.tokenExpiresAt = new Date(
+      new Date().getTime() + data.expires_in * 1000
+    );
   }
 
   async fetchArtistas(genero) {
@@ -44,7 +46,9 @@ class ApiAccess {
 
     try {
       const response = await fetch(
-        `https://api.spotify.com/v1/search?q=genre:${encodeURIComponent(genero)}&type=artist`,
+        `https://api.spotify.com/v1/search?q=genre:${encodeURIComponent(
+          genero
+        )}&type=artist`,
         {
           headers: {
             Authorization: `Bearer ${this.token}`,
@@ -70,7 +74,9 @@ class ApiAccess {
 
     try {
       const response = await fetch(
-        `https://api.spotify.com/v1/search?q=genre:${encodeURIComponent(genero)}&type=track`,
+        `https://api.spotify.com/v1/search?q=genre:${encodeURIComponent(
+          genero
+        )}&type=track`,
         {
           headers: {
             Authorization: `Bearer ${this.token}`,
@@ -90,13 +96,12 @@ class ApiAccess {
     }
   }
 
-  async fetchAlbums(genero) {
-    if (!genero) throw new Error("Gênero não informado.");
+  async fetchTopAlbums(market = "US") {
     await this.authenticate();
 
     try {
       const response = await fetch(
-        `https://api.spotify.com/v1/search?q=genre:${encodeURIComponent(genero)}&type=album`,
+        `https://api.spotify.com/v1/browse/new-releases?market=${market}&limit=50`, // Endpoint de novos lançamentos, filtrado por localidade
         {
           headers: {
             Authorization: `Bearer ${this.token}`,
@@ -109,7 +114,14 @@ class ApiAccess {
       }
 
       const data = await response.json();
-      return data.albums?.items || [];
+      const albums = data.albums?.items || [];
+
+      // Ordena os álbuns por popularidade (se disponível)
+      const topAlbums = albums.sort(
+        (a, b) => (b.popularity || 0) - (a.popularity || 0)
+      );
+
+      return topAlbums;
     } catch (error) {
       console.error("Erro ao buscar dados da API Spotify", error);
       return [];
@@ -132,7 +144,8 @@ const buscarArtistas = async () => {
     exibirArtistas(artistas);
   } catch (error) {
     console.error("Erro ao buscar artistas:", error);
-    listaArtistas.innerHTML = "<li>Erro ao buscar artistas. Tente novamente.</li>";
+    listaArtistas.innerHTML =
+      "<li>Erro ao buscar artistas. Tente novamente.</li>";
   }
 };
 
@@ -146,23 +159,25 @@ const buscarMusicas = async (genero) => {
     exibirTopTracks(musicas);
   } catch (error) {
     console.error("Erro ao buscar músicas:", error);
-    listaMusicas.innerHTML = "<li>Erro ao buscar músicas. Tente novamente.</li>";
+    listaMusicas.innerHTML =
+      "<li>Erro ao buscar músicas. Tente novamente.</li>";
   }
 };
 
 const buscarAlbums = async (genero) => {
   const apiAccess = new ApiAccess(SPOTIFY_CLIENT_ID, SPOTIFY_CLIENT_SECRET);
   const listaAlbums = document.getElementById("lista-albums");
-  listaAlbums.innerHTML = "";
+  listaAlbums.innerHTML = ""; // Limpa a lista antes da nova busca
 
   try {
-    const albums = await apiAccess.fetchAlbums(genero);
-    exibirAlbums(albums);
+    const albums = await apiAccess.fetchTopAlbums(); // Chamando a função para buscar os top álbuns sem filtrar por gênero
+    exibirAlbums(albums); // Exibe os álbuns retornados
   } catch (error) {
     console.error("Erro ao buscar álbuns:", error);
-    listaAlbums.innerHTML = "<li>Erro ao buscar álbuns. Tente novamente.</li>";
+    listaAlbums.innerHTML = "<li>Erro ao buscar álbuns. Tente novamente.</li>"; // Mensagem de erro na UI
   }
 };
+
 
 // Funções de exibição dos resultados
 const exibirArtistas = (artistas) => {
@@ -212,14 +227,17 @@ const exibirTopTracks = (tracks) => {
     const slide = document.createElement("div");
     slide.classList.add("swiper-slide");
 
-    const imgUrl = track.album.images.length > 0 ? track.album.images[0].url : "";
+    const imgUrl =
+      track.album.images.length > 0 ? track.album.images[0].url : "";
 
     slide.innerHTML = `
       <div class="track-item">
         <img src="${imgUrl}" class="track-image" alt="${track.name}" />
         <div class="track-item-detail">
           <h5 class="montserrat-bold">${track.name}</h5>
-          <p class="montserrat-regular">${track.artists.map((artist) => artist.name).join(", ")}</p>
+          <p class="montserrat-regular">${track.artists
+            .map((artist) => artist.name)
+            .join(", ")}</p>
         </div>
       </div>
     `;
@@ -238,10 +256,10 @@ const exibirTopTracks = (tracks) => {
 
 const exibirAlbums = (albums) => {
   const listaAlbums = document.getElementById("lista-albums");
-  listaAlbums.innerHTML = "";
+  listaAlbums.innerHTML = ""; // Limpa o conteúdo anterior
 
   if (albums.length === 0) {
-    listaAlbums.innerHTML = "<li>Nenhum álbum encontrado.</li>";
+    listaAlbums.innerHTML = "<li>Nenhum álbum encontrado.</li>"; // Exibe mensagem se não houver álbuns
     return;
   }
 
@@ -249,18 +267,27 @@ const exibirAlbums = (albums) => {
     const slide = document.createElement("div");
     slide.classList.add("swiper-slide");
 
-    const imgUrl = album.images.length > 0 ? album.images[0].url : "";
+    const imgUrl =
+      album.images && album.images.length > 0
+        ? album.images[0].url
+        : "default-image-url.jpg"; // Verifica se há imagem, senão usa uma imagem padrão
+    const albumName = album.name || "Álbum desconhecido"; // Nome do álbum, com fallback
+    const artistNames =
+      album.artists && album.artists.length > 0
+        ? album.artists.map((artist) => artist.name).join(", ")
+        : "Artista desconhecido"; // Lista de artistas, com fallback
 
     slide.innerHTML = `
-      <a href="./album?id=${album.id}" class="album-item">
-        <img src="${imgUrl}" class="album-image" alt="${album.name}" />
+      <a href="./album.html?id=${album.id}" class="album-item">
+        <img src="${imgUrl}" class="album-image" alt="${albumName}" />
         <div class="album-item-detail">
-          <h5 class="montserrat-bold">${album.name}</h5>
-          <p class="montserrat-regular">${album.artists.map((artist) => artist.name).join(", ")}</p>
+          <h5 class="montserrat-bold">${albumName}</h5>
+          <p class="montserrat-regular">${artistNames}</p>
         </div>
       </a>
     `;
-    listaAlbums.appendChild(slide);
+
+    listaAlbums.appendChild(slide); // Adiciona o slide à lista de álbuns
   });
 };
 
@@ -268,5 +295,5 @@ const exibirAlbums = (albums) => {
 document.addEventListener("DOMContentLoaded", async () => {
   await buscarArtistas();
   await buscarMusicas("rock");
-  await buscarAlbums("pop");
+  await buscarAlbums();
 });
