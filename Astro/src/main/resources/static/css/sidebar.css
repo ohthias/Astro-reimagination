@@ -16,6 +16,26 @@
     backdrop-filter: blur(10px);
     box-shadow: 0 5px 10px rgba(0, 0, 0, 0.3);
   }
+
+  .navgation-bar-left {
+    width: 50%;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 1rem;
+    transition: all 500ms ease;
+
+    h6#albumTitleNav {
+      width: 100%;
+      font-size: 18px;
+      color: var(--font-all);
+      letter-spacing: 1px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+  }
+  
 }
 
 .navgation-bar a.nav-logo {
@@ -46,6 +66,50 @@
     transition: 0.3s;
   }
 }
+
+a.nav-logo.near-white {
+  color: var(--shadow);
+}
+
+.navgation-bar.scrolled a.nav-logo {
+  color: var(--font-all);
+}
+
+section.nav-menu {
+  display: flex;
+  justify-content: flex-start;
+  gap: 1rem;  
+
+  .controller-buttons {
+    width: max-content;
+    display: flex;
+    gap: 0.5rem;
+    
+    .controller-button {
+      --size: 40px;
+      width: var(--size);
+      height: var(--size);
+      padding: 0.5rem;
+      background: none;
+      border: 0;
+      outline: none;
+      color: var(--font-all);
+      font-size: 24px;
+      place-items: center;
+      cursor: pointer;
+      transition: 250ms;
+      border-radius: 50%;
+
+      &:hover {
+        color: var(--secondary);
+        background: var(--shadow-shadow);
+        box-shadow: 0 0 10px var(--secondary-shadow);
+      }
+    }
+  }
+}
+
+
 
 img.user-perfil {
   max-width: 40px;
