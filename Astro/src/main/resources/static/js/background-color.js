@@ -68,7 +68,7 @@ document.addEventListener("DOMContentLoaded", () => {
       gradientDiv.style.background = gradient;
 
       // Verifica se a cor predominante está próxima de branco
-      const isNearWhite = (r > 220 && g > 220 && b > 220); // Ajuste os limites conforme necessário
+      const isNearWhite = (r >= 215 && g >= 215 && b >= 215); // Ajuste os limites conforme necessário
       if (isNearWhite && navLogo) {
         navLogo.classList.add("near-white");
         console.log("Nav logo color changed to var(--shadow) due to near white background.");

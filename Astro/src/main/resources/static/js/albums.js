@@ -83,57 +83,64 @@ const displayAlbumData = (albumData) => {
     const trackItem = document.createElement("li");
     trackItem.classList.add("track-item");
     trackItem.dataset.trackSong = track.name;
-  
+
     const trackDetails = document.createElement("div");
     trackDetails.classList.add("track-details");
-  
+
     const trackNumber = document.createElement("span");
     trackNumber.classList.add("track-number", "montserrat-regular");
     trackNumber.textContent = `#${track.track_number}`;
     trackNumber.dataset.trackNumber = track.track_number;
-  
+
     const trackPicture = document.createElement("picture");
     const largeSourceTrack = document.createElement("source");
     const mediumSourceTrack = document.createElement("source");
     const smallSourceTrack = document.createElement("source");
     const trackImage = document.createElement("img");
-  
+
     // Definir srcset para diferentes tamanhos de imagem
     largeSourceTrack.srcset = albumData.images[0].url;
     mediumSourceTrack.srcset = albumData.images[1].url;
     smallSourceTrack.srcset = albumData.images[2].url;
-  
+
     // Definir fallback para <img>
     trackImage.src = albumData.images[1].url;
     trackImage.alt = track.name;
     trackImage.classList.add("track-image");
-  
+
     trackPicture.appendChild(largeSourceTrack);
     trackPicture.appendChild(mediumSourceTrack);
     trackPicture.appendChild(smallSourceTrack);
     trackPicture.appendChild(trackImage);
-  
+
     const trackInfo = document.createElement("div");
     trackInfo.classList.add("track-info");
-  
+
     const trackTitle = document.createElement("h3");
     trackTitle.classList.add("montserrat-bold");
     trackTitle.textContent = track.name;
     trackTitle.dataset.trackTitle = track.name;
-  
+
     const trackArtists = document.createElement("h4");
     trackArtists.classList.add("montserrat-regular");
-    trackArtists.textContent = track.artists[0].name;
+    let artistNames = track.artists[0].name;
+    if (track.artists.length > 1) {
+      for (let i = 1; i < track.artists.length; i++) {
+        artistNames += ", " + track.artists[i].name; // Concatena os nomes com uma vírgula
+      }
+    }
+
+    trackArtists.textContent = artistNames;
     trackArtists.dataset.trackArtist = track.artists[0].name;
-  
+
     trackInfo.appendChild(trackTitle);
     trackInfo.appendChild(trackArtists);
-  
+
     const trackDuration = document.createElement("span");
     trackDuration.classList.add("montserrat-regular");
     trackDuration.textContent = formatDuration(track.duration_ms);
     trackDuration.dataset.trackDuration = formatDuration(track.duration_ms);
-  
+
     trackDetails.appendChild(trackNumber);
     trackDetails.appendChild(trackPicture);
     trackDetails.appendChild(trackInfo);
@@ -141,7 +148,7 @@ const displayAlbumData = (albumData) => {
     trackItem.appendChild(trackDuration);
     trackList.appendChild(trackItem);
   });
-  
+
   albumContainer.appendChild(trackList);
 };
 

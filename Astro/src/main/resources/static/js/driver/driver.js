@@ -1,54 +1,92 @@
 const driver = window.driver.js.driver;
 
-// Verifique se o tour já foi executado antes
-if (!localStorage.getItem('tourCompleted')) {
-  const driverObj = driver({
-    nextBtnText: "—›",
-    prevBtnText: "‹—",
-    doneBtnText: "Pronto",
-    popoverClass: 'driverjs-theme',
-    showProgress: true,
-    steps: [
-      {
-        element: ".user-perfil",
-        popover: {
-          title: "Seu perfil",
-          description:
-            "Aqui você pode acessar todas suas informações e configurações",
-        },
-      },
-      {
-        element: ".sidebar",
-        popover: {
-          title: "Navegue entre os planetas",
-          description:
-            "Aqui você pode acessar facilmente buscar novas músicas e suas playlists favoritas",
-        },
-      },
-      {
-        element: ".player",
-        popover: {
-          title: "Aumente o som!",
-          description: "Escute e controle todas sua faixa do momento",
-        },
-      },
-      {
-        element: ".content-section",
-        popover: {
-          title: "Explore os planetas!",
-          description: "Busque e conheça novos artistas pelas constelações",
-        },
-      },
-    ],
+// Função para lançar partículas (confetti)
+function launchConfetti() {
+  var duration = 3 * 1000; // Duração do confetti em milissegundos
+  var animationEnd = Date.now() + duration;
+  var defaults = { startVelocity: 30, spread: 5000, ticks: 60, zIndex: 9999 };
 
-    onDestroyStarted: () => {
-      if (!driverObj.hasNextStep() || confirm("Deseja sair do Tour?")) {
-        driverObj.destroy();
-        // Marque o tour como concluído
-        localStorage.setItem('tourCompleted', 'true');
-      }
-    },
-  });
+  function randomInRange(min, max) {
+    return Math.random() * (max - min) + min;
+  }
 
-  driverObj.drive();
+  var interval = setInterval(function () {
+    var timeLeft = animationEnd - Date.now();
+
+    if (timeLeft <= 0) {
+      return clearInterval(interval);
+    }
+
+    var particleCount = 50 * (timeLeft / duration);
+    // Confetti saindo das laterais
+    confetti(
+      Object.assign({}, defaults, {
+        particleCount,
+        origin: { x: randomInRange(0.1, 0.3), y: Math.random() - 0.2 },
+      })
+    );
+    confetti(
+      Object.assign({}, defaults, {
+        particleCount,
+        origin: { x: randomInRange(0.7, 0.9), y: Math.random() - 0.2 },
+      })
+    );
+  }, 250);
 }
+
+// Configuração do Driver.js
+const driverObj = driver({
+  nextBtnText: "—›",
+  prevBtnText: "‹—",
+  doneBtnText: "Pronto",
+  popoverClass: "driverjs-theme",
+  overlayColor: "#05061e76",
+  steps: [
+    {
+      element: ".user-perfil",
+      popover: {
+        title: "Seu Perfil",
+        description:
+          "Aqui você pode acessar todas as suas informações e configurações pessoais, centralizando o controle da sua conta.",
+      },
+    },
+    {
+      element: ".sidebar",
+      popover: {
+        title: "Navegue Entre os Planetas",
+        description:
+          "Acesse facilmente novas músicas e suas playlists favoritas. A sidebar é o seu portal para a exploração musical!",
+      },
+    },
+    {
+      element: ".player",
+      popover: {
+        title: "Aumente o Som!",
+        description:
+          "Ouça suas faixas favoritas e controle a reprodução com facilidade. O player coloca a música em suas mãos.",
+      },
+    },
+    {
+      element: ".content-section",
+      popover: {
+        title: "Explore os Planetas!",
+        description:
+          "Descubra e conheça novos artistas ao navegar pelas constelações musicais. Uma nova jornada sonora espera por você!",
+      },
+    },
+  ],
+  // Quando o tour for finalizado
+  onDestroyStarted: () => {
+    if (!driverObj.hasNextStep() || confirm("Deseja sair do Tour?")) {
+      window.scrollTo({
+        top: 0,
+        behavior: "smooth",
+      });
+      driverObj.destroy();
+      launchConfetti(); // Lança o confetti quando o tour termina
+    }
+  },
+});
+
+// Inicia o tour
+driverObj.drive();

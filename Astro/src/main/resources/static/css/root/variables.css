@@ -1,5 +1,4 @@
 :root {
-  --background-all: #0b1215;
   --font-all: #f3f3f3;
 
   --primary: #4b0072;
@@ -7,8 +6,7 @@
   --tertiary: hsl(129, 89%, 55%);
   --shadow: #05061e;
   --white: #f3f3f3;
-  --black-shadow:  #00000076;
-
+  --black-shadow: #00000076;
 
   --white-shadow: #f3f3f376;
   --shadow-shadow: #05061e76;
@@ -17,7 +15,7 @@
   --primary-shadow-light: #4a0072b4;
   --secondary-shadow-light: #ff3d20b4;
   --tertiary-shadow-light: #29f24772;
-  
+
   --primary-shadow: #4b007276;
   --secondary-shadow: #ff3d2076;
   --tertiary-shadow: #29f24749;
