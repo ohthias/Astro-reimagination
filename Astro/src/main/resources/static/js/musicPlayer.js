@@ -14,14 +14,6 @@ const progressBar = document.querySelector(".progress");
 const progressBarContainer = document.getElementById("progressBar");
 const volumeSlider = document.getElementById("volumeSlider");
 
-// Inicialização do Swiper
-const swiper = new Swiper(".swiper-container", {
-  navigation: {
-    nextEl: ".swiper-button-next",
-    prevEl: ".swiper-button-prev",
-  },
-});
-
 // Função para carregar e exibir as faixas no slider
 function loadTrackSlider() {
   const trackSlider = document.getElementById("lista-local-songs");
@@ -51,8 +43,6 @@ function loadTrackSlider() {
 
     trackSlider.appendChild(slide); // Adiciona o slide ao contêiner
   });
-
-  swiper.update(); // Atualiza o Swiper para reconhecer os novos slides
 }
 
 // !TODO - Corrigir a função de volume do player
