@@ -203,16 +203,7 @@ const exibirArtistas = (artistas) => {
     `;
     listaArtistas.appendChild(slide);
   });
-
-  const swiper = new Swiper(".swiper-container-artistas", {
-    slidesPerView: 7,
-    spaceBetween: 16,
-    navigation: {
-      nextEl: ".swiper-button-next-artistas",
-      prevEl: ".swiper-button-prev-artistas",
-    },
-  });
-};
+}
 
 const exibirTopTracks = (tracks) => {
   const listaMusicas = document.getElementById("lista-musicas");

@@ -3,9 +3,8 @@ document.addEventListener("DOMContentLoaded", () => {
   const imgAlbum = document.querySelector("#albumImage");
   const gradientDiv = document.getElementById("backParallax");
   const defaultColor = "#05061e";
-  const navLogo = document.querySelector(".nav-logo"); // Seletor do logo de navegação
+  const navLogo = document.querySelector(".nav-logo");
 
-  // Função para adicionar event listeners
   function adicionaListenerImagem(img) {
     if (img) {
       console.log("Image element found:", img);
@@ -21,7 +20,6 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   }
 
-  // Adiciona event listeners para ambas as imagens
   adicionaListenerImagem(imgArtist);
   adicionaListenerImagem(imgAlbum);
   console.log("Background color script loaded.");
@@ -58,17 +56,22 @@ document.addEventListener("DOMContentLoaded", () => {
         contaCor[a] > contaCor[b] ? a : b
       );
 
-      const [r, g, b] = predominanteCor.match(/\d+/g).map(Number);
-      const [darkenedColor, saturatedColor] = adjustColor(r, g, b);
+      const rgbMatch = predominanteCor.match(/\d+/g);
+      if (!rgbMatch || rgbMatch.length !== 3) {
+        throw new Error("Failed to extract RGB values from the predominant color.");
+      }
+
+      const [r, g, b] = rgbMatch.map(Number);
+      const [darkenedColor] = adjustColor(r, g, b);
 
       const rgbaPredominanteCor = `rgba(${darkenedColor[0]}, ${darkenedColor[1]}, ${darkenedColor[2]}, 2)`;
       gradientDiv.style.backgroundColor = rgbaPredominanteCor;
 
-      const gradient = `linear-gradient(to bottom, ${rgbaPredominanteCor} 0%, ${defaultColor} 300px)`;
+      const gradient = `linear-gradient(to bottom, ${rgbaPredominanteCor} 0%, ${defaultColor} 300px, var(--primary-shadow) 100%), var(--shadow)`;
       gradientDiv.style.background = gradient;
+      console.log(gradient);
 
-      // Verifica se a cor predominante está próxima de branco
-      const isNearWhite = (r >= 215 && g >= 215 && b >= 215); // Ajuste os limites conforme necessário
+      const isNearWhite = (r >= 215 && g >= 215 && b >= 215);
       if (isNearWhite && navLogo) {
         navLogo.classList.add("near-white");
         console.log("Nav logo color changed to var(--shadow) due to near white background.");
@@ -87,8 +90,11 @@ document.addEventListener("DOMContentLoaded", () => {
     ];
 
     const max = Math.max(darkenedColor[0], darkenedColor[1], darkenedColor[2]);
-    const saturationFactor = 1.2;
+    if (max === 0) {
+      return [darkenedColor, darkenedColor]; // Evitar divisão por zero
+    }
 
+    const saturationFactor = 1.2;
     const normColor = darkenedColor.map((c) => c / max);
     const saturatedColor = normColor
       .map((c) => Math.min(1, c * saturationFactor))

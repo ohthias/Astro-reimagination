@@ -3,7 +3,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
   swipers.forEach((swiperContainer) => {
     const swiper = new Swiper(swiperContainer, {
-      slidesPerView: 8,
+      slidesPerView: 7,
       spaceBetween: 10,
       navigation: {
         nextEl: swiperContainer.querySelector(".swiper-button-next"),
