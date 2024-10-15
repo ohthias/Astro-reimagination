@@ -76,6 +76,7 @@ const displayAlbumData = (albumData) => {
   albumTitle.textContent = albumData.name;
   const albumArtist = document.getElementById("albumArtistElement");
   albumArtist.textContent = albumData.artists[0].name;
+  albumArtist.href = `artist.html?id=${albumData.artists[0].id}`;
 
   // Criar a lista de faixas
   const trackList = document.createElement("ul");
@@ -121,8 +122,9 @@ const displayAlbumData = (albumData) => {
     trackTitle.textContent = track.name;
     trackTitle.dataset.trackTitle = track.name;
 
-    const trackArtists = document.createElement("h4");
+    const trackArtists = document.createElement("a");
     trackArtists.classList.add("montserrat-regular");
+    trackArtists.href = `artist.html?id=${track.artists[0].id}`;
     let artistNames = track.artists[0].name;
     if (track.artists.length > 1) {
       for (let i = 1; i < track.artists.length; i++) {

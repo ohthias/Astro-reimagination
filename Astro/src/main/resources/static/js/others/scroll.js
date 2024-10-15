@@ -6,21 +6,16 @@ document.addEventListener("DOMContentLoaded", function () {
 
   const originalNavLogoColor = getComputedStyle(navLogo).color;
   console.log(originalNavLogoColor);
-  window.addEventListener("scroll", function () {
-    if (window.scrollY > 250) {
-      nav.classList.add("scrolled");
 
-      if (controllerNav) {
-        albumTitleNav.style.display = "block";
-        controllerNav.style.display = "block"; // Define o display como "block" se o elemento existir
-      }
+  const main = document.getElementById("mainScroll");
+  main.addEventListener("scroll", function () {
+    console.log(main.scrollTop); // Use scrollTop ao invés de scrollY
+    if (main.scrollTop > 50) {
+      albumTitleNav.style.display = "block";
+      controllerNav.style.display = "block";
     } else {
-      nav.classList.remove("scrolled");
-
-      if (controllerNav) {
-        albumTitleNav.style.display = "none";
-        controllerNav.style.display = "none"; // Volta para "none" se necessário
-      }
+      albumTitleNav.style.display = "none";
+      controllerNav.style.display = "none";
     }
   });
 });

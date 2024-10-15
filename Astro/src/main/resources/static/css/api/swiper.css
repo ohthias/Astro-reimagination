@@ -1,0 +1,30 @@
+.swiper-button-next,
+.swiper-button-prev {
+  border: 0;
+  border-radius: 50%;
+
+  --size: 50px;
+  width: var(--size);
+  height: var(--size);
+  background: var(--black-shadow);
+  backdrop-filter: blur(10px);
+
+  z-index: 20;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: 500ms;
+
+  &::after {
+    font-size: 16px;
+    color: var(--tertiary);
+  }
+
+  &:hover {
+    background: var(--white);
+  }
+}
+
+.swiper-wrapper {
+  user-select: none;
+}

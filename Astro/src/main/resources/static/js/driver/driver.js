@@ -67,7 +67,7 @@ const driverObj = driver({
       },
     },
     {
-      element: ".content-section",
+      element: ".local-tracks",
       popover: {
         title: "Explore os Planetas!",
         description:
@@ -78,7 +78,8 @@ const driverObj = driver({
   // Quando o tour for finalizado
   onDestroyStarted: () => {
     if (!driverObj.hasNextStep() || confirm("Deseja sair do Tour?")) {
-      window.scrollTo({
+      const main = document.querySelector("main");
+      main.scrollTo({
         top: 0,
         behavior: "smooth",
       });
