@@ -67,6 +67,14 @@ const driverObj = driver({
       },
     },
     {
+      element: ".btn-shine",
+      popover: {
+        title: "Seja premium!",
+        description:
+          "Desbloqueie recursos exclusivos e tenha uma experiência musical ainda mais incrível. Seja um astro premium!",
+      },
+    },
+    {
       element: ".local-tracks",
       popover: {
         title: "Explore os Planetas!",

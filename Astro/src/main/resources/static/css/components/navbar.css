@@ -7,6 +7,7 @@ nav.navgation-bar {
   align-items: center;
   animation: fadeInDown 1s ease;
   z-index: 10;
+  width: 100%;
 }
 
 .navgation-bar a.nav-logo {
@@ -98,20 +99,45 @@ section.nav-menu {
 }
 
 .side-right {
+  margin-right: 0;
   display: flex;
   align-items: center;
+  justify-content: flex-end;
+  gap: 1rem;
+
+  .btn-config {
+    color: var(--font-all);
+    padding: 0.5rem;
+    background: none;
+    border: 0;
+    outline: none;
+    font-size: 26px;
+    place-items: center;
+    cursor: pointer;
+    transition: 250ms;
+    border-radius: 50%;
+
+    &:hover {
+      color: var(--tertiary);
+      text-shadow: 0 0 10px var(--tertiary-shadow);
+    }
+  }
 }
 
-img.user-perfil {
-  max-width: 40px;
-  height: auto;
-  border-radius: 50%;
-  box-shadow: 0 0 10px var(--shadow-shadow);
-  cursor: pointer;
-  transition: 500ms;
+a.btn-user {
+  width: 50px;
+  
+  img.user-perfil {
+    width: 100%;
+    height: auto;
+    border-radius: 50%;
+    box-shadow: 0 0 10px var(--shadow-shadow);
+    cursor: pointer;
+    transition: 500ms;
 
-  &:hover {
-    box-shadow: 0 0 15px var(--tertiary-shadow);
+    &:hover {
+      box-shadow: 0 0 15px var(--tertiary-shadow);
+    }
   }
 }
 

@@ -35,18 +35,20 @@
     <link rel="stylesheet" href="../static/css/components/sidebar.css" />
     <link rel="stylesheet" href="../static/css/components/navbar.css" />
 
-    <link rel="stylesheet" href="/css/artists-copy.css" />
+    <link rel="stylesheet" href="../static/css/screen/artists.css" />
   </head>
   <body id="backParallax">
     <nav class="navgation-bar">
       <a href="/home" class="nav-logo bebas-neue-regular">Astro</a>
       <div class="side-right">
         <a href="#" class="btn-shine montserrat-bold">Seja <i>premium</i></a>
-        <img
-          src="https://fakeimg.pl/40x40/e9e9e9/e9e9e9"
-          alt="placeholder"
-          class="user-perfil"
-        />
+        <a href="./user.html" class="btn-user">
+          <img
+            src="https://fakeimg.pl/40x40/e9e9e9/e9e9e9"
+            alt="placeholder"
+            class="user-perfil"
+          />
+        </a>
       </div>
     </nav>
     <div class="container_player">
@@ -154,8 +156,7 @@
             <h2 class="montserrat-bold">Musicas em alta</h2>
             <ul class="container-songs"></ul>
           </div>
-          <div class="player-musicas">
-          </div>
+          <div class="player-musicas"></div>
         </section>
 
         <section class="swiper">
@@ -192,7 +193,6 @@
     <script type="module" src="../static/js/swipe.js"></script>
     <script src="../static/js/generator/menus.js"></script>
     <script type="module" src="../static/js/artistPage.js"></script>
-    <script type="module" src="../static/js/artistMusics.js"></script>
     <script src="../static/js/background-color.js"></script>
   </body>
 </html>
