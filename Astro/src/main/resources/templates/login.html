@@ -64,6 +64,10 @@
           value="Cadastrar"
         />
       </form>
+      <button id="login-button"></button>
+      <button id="logout-button" style="display:none;">Sair</button>
+      <div id="user-info" style="display:none;"></div>
+      <div id="error-message" style="color:red;"></div>
     </main>
     <script th:inline="javascript">
       /*<![CDATA[*/
@@ -76,5 +80,6 @@
 
     <script src="/js/others/togglePassword.js"></script>
     <script src="/js/others/redirects.js"></script>
+  <script type="module" src="/js/google.js"></script>
   </body>
 </html>
