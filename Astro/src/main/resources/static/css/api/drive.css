@@ -1,3 +1,13 @@
+/* 
+  Arquivo: drive.css
+  Descrição: Este arquivo contém os estilos da api de tour do Astro.
+
+  Seções principais:
+  1. Estilos do popover do driver.js
+
+  Data: 20 de Outubro de 2024
+*/
+
 .driver-popover.driverjs-theme {
   background-color: var(--primary);
   border-radius: 8px;

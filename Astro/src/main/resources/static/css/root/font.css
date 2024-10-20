@@ -1,3 +1,14 @@
+/* 
+  Arquivo: fonts.css
+  Descrição: Este arquivo contém os estilos de fontes do Astro.
+    
+  Seções principais:
+  1. Estilos da fonte Bebas Neue
+  2. Estilos da fonte Montserrat
+    
+  Data: 20 de Outubro de 2024
+*/
+
 .bebas-neue-regular {
   font-family: "Bebas Neue", Arial;
   font-weight: 700;

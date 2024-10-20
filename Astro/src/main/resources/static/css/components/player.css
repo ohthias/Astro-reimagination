@@ -1,3 +1,17 @@
+/* 
+  Arquivo: player.css
+  Descrição: Este arquivo contém os estilos do player de música.
+
+  Seções principais:
+  1. Estilos do player
+  2. Estilos do lado esquerdo do player
+  3. Estilos do lado direito do player
+  4. Trackbar do player
+  5. Botão de volume do player
+
+  Data: 20 de Outubro de 2024
+*/
+
 /* Player */
 .container_player {
   z-index: 10;

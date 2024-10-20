@@ -1,3 +1,13 @@
+/* 
+  Arquivo: swiper.css
+  Descrição: Este arquivo contém os estilos da api de swiper do Astro, que serve para criar carrosséis.
+
+  Seções principais:
+  1. Estilos dos botões de navegação do swiper
+
+  Data: 20 de Outubro de 2024
+*/
+
 .swiper-button-next,
 .swiper-button-prev {
   border: 0;

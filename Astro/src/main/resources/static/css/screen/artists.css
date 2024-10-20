@@ -1,3 +1,15 @@
+/* 
+  Arquivo: artist.css
+  Descrição: Este arquivo contém os estilos da página do artista do Astro.
+    
+  Seções principais:
+  1. Estilos da seção display-artist
+  2. Estilos da seção artistTracks
+  3. Estilos da seção artistAlbums
+    
+  Data: 20 de Outubro de 2024
+*/
+
 body {
   padding: 1rem;
   width: 100%;

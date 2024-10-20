@@ -178,96 +178,7 @@ const displayArtist = async () => {
 
   try {
     const artistData = await fetchArtistData(artistId);
-    const playerMusicas = document.querySelector(".player-musicas");
-
-    // Filtra as músicas do artista específico
-    const artistSongs = localSongs.filter(
-      (song) => song.artist === artistData.name
-    );
-
-    // Verifica se o artista tem músicas na lista local
-    if (artistSongs.length > 0) {
-      console.log("This artist is in the local songs list");
-      playerMusicas.style.display = "block";
-      playerMusicas.innerHTML = "";
-
-      /*artistSongs.forEach((song) => {
-        const musicCard = document.createElement("div");
-        musicCard.className = "music-card";
-
-        musicCard.innerHTML = `
-          <div class="card-header">
-            <div class="card-track-info">
-              <svg
-                class="track-icon"
-                fill="none"
-                height="24"
-                stroke="currentColor"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                stroke-width="2"
-                viewBox="0 0 24 24"
-                width="24"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <path d="M9 18V5l12-2v13"></path>
-                <circle cx="6" cy="18" r="3"></circle>
-                <circle cx="18" cy="16" r="3"></circle>
-              </svg>
-              <div class="track-details">
-                <span class="card-track-title">${song.name}</span>
-                <p class="card-track-artist">${song.artist}</p>
-              </div>
-            </div>
-            <div class="card-icons">
-              <svg
-                class="icon-heart"
-                fill="none"
-                height="24"
-                stroke="currentColor"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                stroke-width="2"
-                viewBox="0 0 24 24"
-                width="24"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <path
-                  d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"
-                ></path>
-              </svg>
-              <svg
-                class="icon-star"
-                fill="none"
-                height="24"
-                stroke="currentColor"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                stroke-width="2"
-                viewBox="0 0 24 24"
-                width="24"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <polygon
-                  points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"
-                ></polygon>
-              </svg>
-            </div>
-          </div>
-          <div class="card-progress-container">
-            <div class="card-progress-bar"></div>
-          </div>
-          <div class="card-progress-time">
-            <span>00:00</span><span>${formatDuration(song)}</span>
-          </div>
-        `;
-        playerMusicas.appendChild(musicCard);
-      });*/
-    } else {
-      console.log("This artist is not in the local songs list");
-      playerMusicas.style.display = "none";
-    }
-
+    
     const artistGenres =
       artistData.genres.join(", ") ||
       "<img src='../static/images/astro7.png' alt='Erro' class='genres-image'>";
@@ -328,13 +239,13 @@ const displayArtist = async () => {
     // Buscar e exibir discografia
     const discography = await fetchDiscography(artistId);
     const containerDiscography = document.querySelector(
-      ".container-discography"
+      "#container-discography"
     );
     containerDiscography.innerHTML = ""; // Limpa a lista anterior, se houver
 
     discography.forEach((album) => {
       const albumHtml = `
-        <a href="album.html?id=${album.id}" class="album-item">
+        <a href="album.html?id=${album.id}" class="album-item swiper-slide">
           <img
             class="album-image"
             alt="${album.name}"
@@ -355,7 +266,7 @@ const displayArtist = async () => {
 
     playlists.forEach((playlist) => {
       const playlistHtml = `
-        <a href="./playlist.html?id=${playlist.id}" class="playlist-item">
+        <a href="./playlist.html?id=${playlist.id}" class="playlist-item swiper-slide">
           <img
             class="playlist-image"
             alt="${playlist.name}"
@@ -376,7 +287,7 @@ const displayArtist = async () => {
 
     relatedArtists.forEach((artist) => {
       const artistHtml = `
-        <a href="./artist.html?id=${artist.id}" class="related-artist-item">
+        <a href="./artist.html?id=${artist.id}" class="related-artist-item swiper-slide">
           <img
             class="related-artist-image"
             alt="${artist.name}"

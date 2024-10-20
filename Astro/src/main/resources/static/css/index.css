@@ -1,17 +1,17 @@
-/*
-  * Index Style
-  * Last Update: 12/10/2024
-  * Author: @ohthias
+/* 
+  Arquivo: eroor.css
+  Descrição: Este arquivo contém os estilos da página index do Astro.
+    
+  Data: 20 de Outubro de 2024
 */
-
 
 body {
   overflow-x: hidden;
 }
 
 :root {
-  --primary-shadow-light: #ff6347; /* Cor inicial, por exemplo */
-  --secondary-shadow-light: #4682b4; /* Cor inicial, por exemplo */
+  --primary-shadow-light: var(--primary);
+  --secondary-shadow-light: var(--secondary);
 }
 
 main {

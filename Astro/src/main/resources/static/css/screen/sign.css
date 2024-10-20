@@ -1,8 +1,16 @@
-/*
-  * Sign Page Style
-  * Last Update: 12/10/2024
-  * Author: @ohthias
+/* 
+  Arquivo: sign.css
+  Descrição: Este arquivo contém os estilos da página de  login e cadastro do Astro.
+    
+  Seções principais:
+  1. Estilos da página de login
+  2. Estilos da página de cadastro
+  3. Estilos dos elementos da página
+  4. Estilos do botão de login com Google
+    
+  Data: 20 de Outubro de 2024
 */
+
 
 body.sign {
   width: 100%;

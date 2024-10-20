@@ -1,3 +1,17 @@
+/* 
+  Arquivo: variables.css
+  Descrição: Este arquivo contém as variáveis do Astro e os temas.
+    
+  Seções principais:
+  1. Tema padrão
+  2. Tema claro
+  3. Tema escuro
+  4. Tema oceano
+  5. Tema fogo
+    
+  Data: 20 de Outubro de 2024
+*/
+
 :root {
   --font-all: #f3f3f3;
   --background-all: #121212;;

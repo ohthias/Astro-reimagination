@@ -1,3 +1,16 @@
+/* 
+  Arquivo: root.css
+  Descrição: Este arquivo contém os estilos base do Astro.
+    
+  Seções principais:
+  1. Estilos base
+  2. Estilos de seleção
+  3. Estilos de preenchimento automático
+  4. Estilos de barra de rolagem
+    
+  Data: 20 de Outubro de 2024
+*/
+
 @import url("https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap");
 @import url("https://cdn-uicons.flaticon.com/2.6.0/uicons-brands/css/uicons-brands.css");
 @import url("https://cdn-uicons.flaticon.com/2.6.0/uicons-solid-straight/css/uicons-solid-straight.css");

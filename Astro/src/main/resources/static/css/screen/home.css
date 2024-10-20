@@ -1,3 +1,17 @@
+/* 
+  Arquivo: home.css
+  Descrição: Este arquivo contém os estilos da página principal do Astro.
+    
+  Seções principais:
+  1. Estilos da seção principal
+  2. Estilos da seção de músicas locais
+  3. Estilos da seção de artistas
+  4. Estilos da seção de músicas
+  5. Estilos da seção de álbuns
+    
+  Data: 20 de Outubro de 2024
+*/
+
 body {
   padding: 1rem;
   width: 100%;

@@ -32,11 +32,14 @@ const fetchPlaylistData = async (playlistId) => {
     accessToken = await getToken(); // Obter token se não existir
   }
 
-  const response = await fetch(`https://api.spotify.com/v1/playlists/${playlistId}`, {
-    headers: {
-      Authorization: `Bearer ${accessToken}`,
-    },
-  });
+  const response = await fetch(
+    `https://api.spotify.com/v1/playlists/${playlistId}`,
+    {
+      headers: {
+        Authorization: `Bearer ${accessToken}`,
+      },
+    }
+  );
 
   if (!response.ok) {
     throw new Error("Erro ao buscar dados da playlist");
@@ -76,11 +79,12 @@ const displayPlaylistData = (playlistData) => {
   playlistTitle.textContent = playlistData.name;
   const playlistOwner = document.getElementById("albumArtistElement");
   playlistOwner.textContent = playlistData.owner.display_name;
-  playlistOwner.href = `user.html?id=${playlistData.owner.id}`;
+  playlistOwner.href = `user.html?username=${playlistData.name}`;
 
   // Criar a lista de faixas
   const trackList = document.createElement("ul");
-  playlistData.tracks.items.forEach((trackItemData, index) => { // Adicionamos "index" para usar o número da faixa
+  playlistData.tracks.items.forEach((trackItemData, index) => {
+    // Adicionamos "index" para usar o número da faixa
     const track = trackItemData.track;
 
     const trackItem = document.createElement("li");
@@ -107,7 +111,6 @@ const displayPlaylistData = (playlistData) => {
       mediumSourceTrack.srcset = track.album.images[1].url; // Imagem média do álbum
       smallSourceTrack.srcset = track.album.images[2].url; // Imagem pequena do álbum
 
-      // Definir fallback para <img>
       trackImage.src = track.album.images[1].url; // Usar imagem média como fallback
     }
 

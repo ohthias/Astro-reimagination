@@ -1,3 +1,14 @@
+/* 
+  Arquivo: user.css
+  Descrição: Este arquivo contém os estilos da página do usuário do Astro.
+    
+  Seções principais:
+  1. Estilos da seção user-banner
+  2. Estilos da seção user-playlists
+    
+  Data: 20 de Outubro de 2024
+*/
+
 body {
   padding: 1rem;
   width: 100%;
@@ -158,5 +169,34 @@ h2.categoria-name {
     cursor: pointer;
     background: var(--black-shadow);
     opacity: 1;
+  }
+}
+
+/* erro */
+.error-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: var(--font-all);
+
+  img.error-image {
+    animation: upDown 10s ease-in-out infinite;
+  }
+
+  .error-message {
+    width: 450px;
+  }
+
+  h1 {
+    font-size: 2.5em;
+    color: var(--tertiary);
+  }
+  h3 {
+    font-size: 1.8em;
+  }
+
+  p {
+    font-size: 1.25em;
+    font-style: italic;
   }
 }

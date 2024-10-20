@@ -1,4 +1,16 @@
-/* Navgation-bar */
+/* 
+  Arquivo: navbar.css
+  Descrição: Este arquivo contém os estilos da navbar.
+
+  Seções principais:
+  1. Estilos da barra de navegação
+  2. Estilos do lado esquerdo da barra de navegação
+  3. Estilos do lado direito da barra de navegação
+  4. Estilos do botão de brilho
+
+  Data: 20 de Outubro de 2024
+*/
+
 nav.navigation-bar {
   height: 50px;
   grid-area: 1 / 2 / 2 / 6;

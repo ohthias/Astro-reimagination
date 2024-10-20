@@ -1,4 +1,29 @@
+/*
+    Arquivo: spotify-api.js
+    Descrição: Este arquivo contém a implementação de uma classe que gerencia o acesso à API do Spotify, além de funções auxiliares para buscar artistas, músicas e álbuns, e exibi-los na interface.
+
+    Principais componentes:
+    1. Classe ApiAccess - Realiza autenticação e requisições à API do Spotify para buscar dados de artistas, músicas e álbuns.
+    2. Funções buscarArtistas, buscarMusicas, buscarAlbums - Funções que chamam a API e manipulam os resultados para exibição na interface.
+    3. Funções de exibição - exibirArtistas, exibirTopTracks, exibirAlbums - Funções responsáveis por renderizar os dados na interface.
+
+    Data: 20 de Outubro de 2024
+*/
+
 class ApiAccess {
+  /*
+    Classe: ApiAccess
+    Descrição: Esta classe é responsável por autenticar na API do Spotify e realizar requisições para buscar artistas, músicas e álbuns.
+    Métodos:
+    - constructor(clientId, clientSecret): Inicializa a classe com as credenciais da API e define o token de autenticação.
+    - isTokenExpired(): Verifica se o token de acesso expirou.
+    - authenticate(): Realiza a autenticação na API do Spotify e obtém o token de acesso.
+    - fetchArtistas(genero): Busca artistas de um determinado gênero musical na API do Spotify.
+    - fetchTopTracks(genero): Busca as principais músicas de um determinado gênero musical.
+    - fetchTopAlbums(market): Busca os álbuns mais populares em uma determinada localidade.
+
+    Dependências: Utiliza o `fetch` para realizar requisições à API do Spotify.
+*/
   constructor(clientId, clientSecret) {
     this.clientId = clientId;
     this.clientSecret = clientSecret;
@@ -101,7 +126,7 @@ class ApiAccess {
 
     try {
       const response = await fetch(
-        `https://api.spotify.com/v1/browse/new-releases?market=${market}&limit=50`, // Endpoint de novos lançamentos, filtrado por localidade
+        `https://api.spotify.com/v1/browse/new-releases?market=${market}&limit=15`, // Endpoint de novos lançamentos, filtrado por localidade
         {
           headers: {
             Authorization: `Bearer ${this.token}`,
@@ -130,16 +155,25 @@ class ApiAccess {
 }
 
 const SPOTIFY_CLIENT_ID = "8b8a8c66585b4376b70f7362c50fbdf0";
-const SPOTIFY_CLIENT_SECRET = "f72310fabe114507b38b88988be9cc73";
+const SPOTIFY_CLIENT_SECRET = "e856e53832ad4651a0dc1ab0ba1d33fc";
 
-// Funções de busca de artistas, músicas e álbuns
+/*
+    Função: buscarArtistas
+    Descrição: Função que busca e exibe uma lista de artistas de um gênero musical pré-definido.
+    Parâmetros:
+    - Nenhum. O gênero está definido dentro da função como "pop".
+    Retorno:
+    - Atualiza a lista de artistas na interface.
+
+    Dependências: ApiAccess, exibirArtistas.
+*/
 const buscarArtistas = async () => {
   const apiAccess = new ApiAccess(SPOTIFY_CLIENT_ID, SPOTIFY_CLIENT_SECRET);
   const listaArtistas = document.getElementById("lista-artistas");
   listaArtistas.innerHTML = "";
 
   try {
-    const genero = "pop"; // Defina o gênero desejado
+    const genero = "pop";
     const artistas = await apiAccess.fetchArtistas(genero);
     exibirArtistas(artistas);
   } catch (error) {
@@ -149,6 +183,16 @@ const buscarArtistas = async () => {
   }
 };
 
+/*
+    Função: buscarMusicas
+    Descrição: Função que busca as principais músicas de um gênero musical passado como parâmetro e as exibe na interface.
+    Parâmetros:
+    - genero (string): O gênero musical a ser buscado.
+    Retorno:
+    - Atualiza a lista de músicas na interface.
+
+    Dependências: ApiAccess, exibirTopTracks.
+*/
 const buscarMusicas = async (genero) => {
   const apiAccess = new ApiAccess(SPOTIFY_CLIENT_ID, SPOTIFY_CLIENT_SECRET);
   const listaMusicas = document.getElementById("lista-musicas");
@@ -164,22 +208,40 @@ const buscarMusicas = async (genero) => {
   }
 };
 
+/*
+    Função: buscarAlbums
+    Descrição: Função que busca os álbuns mais recentes e populares de uma localidade e os exibe na interface.
+    Parâmetros:
+    - Nenhum. O mercado está definido como "US" por padrão.
+    Retorno:
+    - Atualiza a lista de álbuns na interface.
+
+    Dependências: ApiAccess, exibirAlbums.
+*/
 const buscarAlbums = async (genero) => {
   const apiAccess = new ApiAccess(SPOTIFY_CLIENT_ID, SPOTIFY_CLIENT_SECRET);
   const listaAlbums = document.getElementById("lista-albums");
-  listaAlbums.innerHTML = ""; // Limpa a lista antes da nova busca
+  listaAlbums.innerHTML = "";
 
   try {
-    const albums = await apiAccess.fetchTopAlbums(); // Chamando a função para buscar os top álbuns sem filtrar por gênero
-    exibirAlbums(albums); // Exibe os álbuns retornados
+    const albums = await apiAccess.fetchTopAlbums();
+    exibirAlbums(albums);
   } catch (error) {
     console.error("Erro ao buscar álbuns:", error);
-    listaAlbums.innerHTML = "<li>Erro ao buscar álbuns. Tente novamente.</li>"; // Mensagem de erro na UI
+    listaAlbums.innerHTML = "<li>Erro ao buscar álbuns. Tente novamente.</li>";
   }
 };
 
+/*
+    Função: exibirArtistas
+    Descrição: Função responsável por renderizar a lista de artistas na interface com base nos dados fornecidos.
+    Parâmetros:
+    - artistas (array): Lista de artistas retornados da API do Spotify.
+    Retorno:
+    - Atualiza o elemento HTML com os dados dos artistas.
 
-// Funções de exibição dos resultados
+    Dependências: Manipulação do DOM.
+*/
 const exibirArtistas = (artistas) => {
   const listaArtistas = document.getElementById("lista-artistas");
   listaArtistas.innerHTML = "";
@@ -203,8 +265,18 @@ const exibirArtistas = (artistas) => {
     `;
     listaArtistas.appendChild(slide);
   });
-}
+};
 
+/*
+    Função: exibirTopTracks
+    Descrição: Função responsável por renderizar a lista de músicas na interface com base nos dados fornecidos.
+    Parâmetros:
+    - tracks (array): Lista de músicas retornadas da API do Spotify.
+    Retorno:
+    - Atualiza o elemento HTML com os dados das músicas.
+
+    Dependências: Manipulação do DOM.
+*/
 const exibirTopTracks = (tracks) => {
   const listaMusicas = document.getElementById("lista-musicas");
   listaMusicas.innerHTML = "";
@@ -245,12 +317,22 @@ const exibirTopTracks = (tracks) => {
   });
 };
 
+/*
+    Função: exibirAlbums
+    Descrição: Função responsável por renderizar a lista de álbuns na interface com base nos dados fornecidos.
+    Parâmetros:
+    - albums (array): Lista de álbuns retornados da API do Spotify.
+    Retorno:
+    - Atualiza o elemento HTML com os dados dos álbuns.
+
+    Dependências: Manipulação do DOM.
+*/
 const exibirAlbums = (albums) => {
   const listaAlbums = document.getElementById("lista-albums");
-  listaAlbums.innerHTML = ""; // Limpa o conteúdo anterior
+  listaAlbums.innerHTML = "";
 
   if (albums.length === 0) {
-    listaAlbums.innerHTML = "<li>Nenhum álbum encontrado.</li>"; // Exibe mensagem se não houver álbuns
+    listaAlbums.innerHTML = "<li>Nenhum álbum encontrado.</li>"; 
     return;
   }
 
@@ -261,12 +343,12 @@ const exibirAlbums = (albums) => {
     const imgUrl =
       album.images && album.images.length > 0
         ? album.images[0].url
-        : "default-image-url.jpg"; // Verifica se há imagem, senão usa uma imagem padrão
-    const albumName = album.name || "Álbum desconhecido"; // Nome do álbum, com fallback
+        : "default-image-url.jpg";
+    const albumName = album.name || "Álbum desconhecido";
     const artistNames =
       album.artists && album.artists.length > 0
         ? album.artists.map((artist) => artist.name).join(", ")
-        : "Artista desconhecido"; // Lista de artistas, com fallback
+        : "Artista desconhecido";
 
     slide.innerHTML = `
       <a href="./album.html?id=${album.id}" class="album-item">
@@ -278,7 +360,7 @@ const exibirAlbums = (albums) => {
       </a>
     `;
 
-    listaAlbums.appendChild(slide); // Adiciona o slide à lista de álbuns
+    listaAlbums.appendChild(slide);
   });
 };
 
