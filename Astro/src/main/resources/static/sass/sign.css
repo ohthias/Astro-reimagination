@@ -1,0 +1,194 @@
+body.sign {
+  width: 100%;
+  height: 100vh;
+  background: linear-gradient(to left, var(--shadow) 65%, var(--primary-shadow-light) 100%), var(--shadow);
+  color: var(--font-all);
+}
+
+body.login {
+  width: 100%;
+  height: 100vh;
+  background: linear-gradient(to right, var(--shadow) 50%, var(--tertiary-shadow) 85%, var(--tertiary-shadow-light) 100%), var(--shadow);
+  color: var(--font-all);
+}
+
+label.logo-title {
+  position: absolute;
+  top: 24px;
+  left: 32px;
+  font-size: 26px;
+  cursor: pointer;
+  z-index: 10;
+  animation: fadeIn 2s;
+}
+
+main.container {
+  height: 100%;
+  position: absolute;
+  max-width: 550px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  flex-direction: column;
+  animation: fadeIn 2s;
+}
+main.container .title-container {
+  text-align: center;
+}
+main.container h1 {
+  font-size: 56px;
+  letter-spacing: 5px;
+  cursor: default;
+}
+main.container a {
+  font-size: 21px;
+  text-align: center;
+  color: var(--tertiary);
+}
+
+.form-container {
+  margin: 1rem 0;
+  width: 520px;
+}
+.form-container:first-child {
+  margin-top: 0;
+}
+.form-container label {
+  color: var(--white-shadow);
+  transition: 500ms;
+  top: -68px;
+  position: relative;
+  cursor: default;
+}
+
+.form-container input {
+  margin: 0.5rem 0;
+  padding: 0.8rem 0.5rem;
+  width: 100%;
+  background: none;
+  border: 0;
+  border-bottom: 2px solid var(--white-shadow);
+  color: var(--white-shadow);
+  outline: none;
+  font-size: 16px;
+  transition: 500ms;
+}
+.form-container input::-moz-placeholder {
+  color: var(--white-shadow);
+}
+.form-container input::placeholder {
+  color: var(--white-shadow);
+}
+.form-container input:focus {
+  color: var(--white);
+  border-color: var(--white);
+}
+
+.form-container input:focus ~ label {
+  color: var(--white);
+}
+
+.password-input {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+input[type=submit].button-submit {
+  width: 100%;
+  padding: 1rem 0;
+  border: 0;
+  border-radius: 12px;
+  background: var(--tertiary);
+  cursor: pointer;
+  font-size: 21px;
+  transition: 500ms;
+}
+input[type=submit].button-submit:hover {
+  box-shadow: 0 0 25px var(--tertiary-shadow-light);
+}
+
+span.material-symbols-outlined {
+  position: absolute;
+  right: 16px;
+  color: var(--white-shadow);
+  transition: 250ms;
+  cursor: pointer;
+}
+span.material-symbols-outlined:hover, span.material-symbols-outlined:focus {
+  color: var(--white);
+}
+
+span.material-symbols-outlined.visible {
+  color: var(--white);
+}
+
+span.material-symbols-outlined.hidden {
+  color: var(--white-shadow);
+}
+
+p {
+  text-align: center;
+  margin: 1rem 0;
+  font-size: 21px;
+  color: var(--tertiary);
+  cursor: pointer;
+}
+
+@media screen and (max-width: 850px) {
+  main.container h1 {
+    font-size: 42px;
+  }
+  a {
+    font-size: 18px;
+  }
+  .form-container input {
+    font-size: 14px;
+  }
+}
+@media screen and (max-width: 550px) {
+  label.logo-title {
+    top: 12px;
+    left: 12px;
+  }
+  label.logo-title,
+  a {
+    font-size: 14px;
+  }
+  main.container {
+    width: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+  main.container h1 {
+    font-size: 32px;
+  }
+  main.container a {
+    font-size: 14px;
+  }
+  .form-container {
+    margin-top: 8px;
+    width: 100%;
+    font-size: 12px;
+  }
+  input[type=submit].button-submit {
+    font-size: 18px;
+    padding: 0.5rem;
+  }
+  p {
+    font-size: 12px;
+  }
+  p a.bebas-neue-regular {
+    font-size: 12px;
+  }
+}
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}/*# sourceMappingURL=sign.css.map */

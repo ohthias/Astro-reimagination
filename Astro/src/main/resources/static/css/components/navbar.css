@@ -1,5 +1,5 @@
 /* Navgation-bar */
-nav.navgation-bar {
+nav.navigation-bar {
   height: 50px;
   grid-area: 1 / 2 / 2 / 6;
   display: flex;
@@ -10,7 +10,7 @@ nav.navgation-bar {
   width: 100%;
 }
 
-.navgation-bar a.nav-logo {
+.navigation-bar a.nav-logo {
   display: inline-block;
   font-size: 21px;
   letter-spacing: 2px;

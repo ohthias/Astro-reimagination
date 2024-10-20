@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Astro</title>
+    <link
+      rel="apple-touch-icon"
+      sizes="180x180"
+      href="/favicon/apple-touch-icon.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="32x32"
+      href="/favicon/favicon-32x32.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="16x16"
+      href="/favicon/favicon-16x16.png"
+    />
+    <link rel="manifest" href="/favicon/site.webmanifest" />
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/icon?family=Material+Symbols+Outlined"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/swiper/swiper-bundle.min.css"
+    />
+    <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1/dist/confetti.browser.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/driver.js@1.0.1/dist/driver.js.iife.js"></script>
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/driver.js@1.0.1/dist/driver.css"
+    />
+    <link rel="stylesheet" href="../static/css/root/font.css" />
+    <link rel="stylesheet" href="../static/css/root/root.css" />
+    <link rel="stylesheet" href="../static/css/root/variables.css" />
+
+    <link rel="stylesheet" href="../static/sass/planos.css" />
+  </head>
+  <body>
+    <main>
+      <nav class="navgation-bar">
+        <img
+          src="../static/svg/Astro.svg"
+          alt="logo-svg"
+          class="navgation-bar-logo"
+          onclick="redirectIndex()"
+        />
+        <div class="navgation-bar-menu">
+          <a
+            href="https://github.com/ohthias/Astro-reimagination/wiki"
+            target="_blank"
+            class="menu-button-redirect montserrat-bold"
+            >Documentação</a
+          >
+          <a
+            href="https://github.com/ohthias/Astro-reimagination/wiki"
+            target="_blank"
+            class="menu-button-redirect montserrat-bold"
+            >About</a
+          >
+          <a href="/login" class="menu-button-redirect montserrat-bold"
+            >Entrar</a
+          >
+        </div>
+      </nav>
+      <h1 class="montserrat-bold">
+        Escolha o plano perfeito para a sua trilha sonora
+      </h1>
+      <section class="plans">
+        <div class="plan-card">
+          <h2 class="plan-title montserrat-bold">Astro Free</h2>
+          <p class="plan-subtitle montserrat-semi-bold">
+            Curta suas músicas, sem complicações!
+          </p>
+          <div class="plan-price">
+            <p class="currency montserrat-semi-bold">R$</p>
+            <h3 class="amount montserrat-bold">0,00</h3>
+            <p class="duration montserrat-regular">/mês</p>
+          </div>
+          <ul role="list" class="plan-features montserrat-regular">
+            <li>Acesso ao catálogo de músicas com anúncios</li>
+            <li>Criação e edição de playlists</li>
+            <li>Personalização limitada</li>
+            <li>Limite de 6 pulos por hora</li>
+          </ul>
+          <button class="btn btn-primary montserrat-semi-bold">Entrar</button>
+        </div>
+        <div class="plan-card">
+          <h2 class="plan-title montserrat-bold">Astro Premium</h2>
+          <p class="plan-subtitle montserrat-semi-bold">
+            Liberdade para ouvir, com mais qualidade!
+          </p>
+          <div class="plan-price">
+            <p class="currency montserrat-semi-bold">R$</p>
+            <h3 class="amount montserrat-bold">9,90</h3>
+            <p class="duration montserrat-regular">/mês</p>
+          </div>
+          <ul role="list" class="plan-features montserrat-regular">
+            <li>Sem anúncios</li>
+            <li>Pulos ilimitados</li>
+            <li>Baixe músicas para ouvir offline</li>
+            <li>Personalização ilimitada</li>
+            <li>Atendimento prioritário</li>
+          </ul>
+          <button class="btn btn-secondary montserrat-semi-bold">
+            Assinar
+          </button>
+        </div>
+      </section>
+    </main>
+    <script src="../static/js/pagamento.js"></script>
+    <script src="../static/js/others/redirects.js"></script>
+  </body>
+</html>

@@ -24,8 +24,8 @@
   <body>
     <main>
       <section class="module container container1">
-        <nav class="navgation-bar">
-          <label id="logo" class="navgation-bar-logo bebas-neue-regular cssanimation leFadeIn sequence"
+        <nav class="navigation-bar">
+          <label id="logo" class="navgation-bar-logo nav-logo bebas-neue-regular cssanimation leFadeIn sequence"
             >Astro</label
           >
           <div class="navgation-bar-menu">
@@ -142,6 +142,7 @@
         <div class="circle circle2"></div>
         <h1 class="bebas-neue-regular">É GRÁTIS!</h1>
         <p class="montserrat-regular">Não precisa de cartão de crédito</p>
+        <a href="./planos.html" class="montserrat-regular">Consultar planos</a>
       </section>
       <section class="container4">
         <h1 class="bebas-neue-regular">O que você está esperando?</h1>
@@ -193,6 +194,16 @@
     <script src="../static/js/others/redirects.js"></script>
     <script src="../static/js/others/background.js"></script>
     <script src="../static/js/others/albumImages.js"></script>
-    <script src="../static/js/others/scroll.js"></script>
+    <script>
+  const nav = document.querySelector(".navigation-bar");
+  document.addEventListener("scroll", () => {
+    console.log(window.scrollY)
+      if(window.scrollY > 80) {
+        nav.classList.add("scrolled")
+      } else {
+        nav.classList.remove("scrolled")
+      }
+    })
+    </script>
   </body>
 </html>
