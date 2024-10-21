@@ -61,7 +61,6 @@ document.addEventListener("DOMContentLoaded", function () {
       }, 500); // Tempo do fade
     }, 5000); // Tempo antes de iniciar o fade
   }
-
   // Criação da sidebar
   const sidebar = document.createElement("div");
   sidebar.classList.add("sidebar");
