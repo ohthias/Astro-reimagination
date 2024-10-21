@@ -1,6 +1,8 @@
 package com.example.Astro.Model;
 
 import jakarta.persistence.*;
+
+import java.time.LocalDate;
 import java.util.Date;
 
 @Entity
@@ -25,19 +27,21 @@ public class User {
     private String token;
 
     @Column(name = "last_access")
-    private Date lastAccess;
+    private LocalDate lastAccess;
 
     public User() {
         super();
     }
 
-    public User(Long idUserDetails, String email, String password, String username, String token) {
+    public User(Long idUserDetails, String email, String password, String username, LocalDate lastAccess, String token) {
         super();
         this.idUserDetails = idUserDetails;
         this.email = email;
         this.password = password;
         this.username = username;
+        this.lastAccess = lastAccess;
         this.token = token;
+
     }
 
     // Getters e Setters
@@ -81,11 +85,11 @@ public class User {
         this.token = token;
     }
 
-    public Date getLastAccess() {
+    public LocalDate getLastAccess() {
         return lastAccess;
     }
 
-    public void setLastAccess(Date lastAccess) {
+    public void setLastAccess(LocalDate lastAccess) {
         this.lastAccess = lastAccess;
     }
 }

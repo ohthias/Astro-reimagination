@@ -196,5 +196,13 @@
     <script src="/js/home.js"></script>
     <script type="module" src="/js/musicPlayer.js"></script>
     <script type="module" src="/js/api/apiAcess.js"></script>
+  <script>
+    // Pegue o token do modelo e armazene no localStorage
+    const token = /*[[${token}]]*/ ''; // O token é injetado no modelo pelo Spring
+    if (token) {
+        localStorage.setItem('authToken', token); // Armazena o token no localStorage
+    }
+  </script>
+
   </body>
 </html>

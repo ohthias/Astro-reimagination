@@ -18,8 +18,10 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.client.RestTemplate;
+import java.util.Optional;
 
 import java.security.Principal;
+import java.time.LocalDate;
 
 @Controller
 public class HomeController {
@@ -73,19 +75,22 @@ public class HomeController {
             String username = claims.getSubject();
             User user = repository.findByUsername(username);
 
-            if (user != null) {
-                model.addAttribute("user", user);
-                return "user"; // Retorna a página user.html
-            } else {
+            // Verificar se o usuário é nulo
+            if (user == null) {
                 model.addAttribute("errorMessage", "Usuário não encontrado");
                 return "error"; // Retorna uma página de erro
             }
+
+            // Se o usuário for encontrado, adiciona-o ao modelo
+            model.addAttribute("user", user);
+            return "user"; // Retorna a página user.html
         } catch (Exception e) {
             e.printStackTrace();
             model.addAttribute("errorMessage", "Erro ao processar o perfil do usuário");
             return "error"; // Retorna uma página de erro
         }
     }
+
 
     @GetMapping("/playlist/{id}")
     public String playlist(@PathVariable("id") String id, @RequestParam("token") String token, Model model) {
@@ -141,9 +146,11 @@ public class HomeController {
         String clienteHashword = encoder.encode(hashWord);
         String token = tokenService.generateToken(username, email);
 
-        User usuario = new User(null,email, clienteHashword,username,token);
+        LocalDate currentDate = LocalDate.now();
+
+        User usuario = new User(null, email, clienteHashword, username, currentDate, token);
         repository.save(usuario);
-        return "home";
+        return "redirect:/home?token=" + token;
     }
 
     @PostMapping("/login-user")
@@ -166,8 +173,12 @@ public class HomeController {
                 return "login";
             }
 
+            user.setLastAccess(LocalDate.now());
+            repository.save(user);
+
             // Gerar token e redirecionar com o token na URL
             String token = tokenService.generateToken(username, user.getEmail());
+
             return "redirect:/home?token=" + token;
         } catch (Exception e) {
             e.printStackTrace();
@@ -182,4 +193,5 @@ public class HomeController {
         // O token é removido no frontend (no JavaScript), aqui só redirecionamos para a tela de login.
         return "redirect:/login";
     }
+
 }
