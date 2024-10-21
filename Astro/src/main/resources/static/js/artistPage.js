@@ -1,5 +1,4 @@
 import SPOTIFY_CONFIG from "./api/config.js";
-import localSongs from "./local-tracks/localSongs.mjs";
 
 const clientId = SPOTIFY_CONFIG.SPOTIFY_CLIENT_ID;
 const clientSecret = SPOTIFY_CONFIG.SPOTIFY_CLIENT_SECRET;
@@ -77,7 +76,7 @@ const fetchTopTracks = async (artistId) => {
 // Função para buscar a biografia do artista na Wikipedia
 const fetchBiography = async (artistName) => {
   const response = await fetch(
-    `https://en.wikipedia.org/api/rest_v1/page/summary/${encodeURIComponent(
+    `https://pt.wikipedia.org/api/rest_v1/page/summary/${encodeURIComponent(
       artistName
     )}`
   );
@@ -181,11 +180,11 @@ const displayArtist = async () => {
     
     const artistGenres =
       artistData.genres.join(", ") ||
-      "<img src='../static/images/astro7.png' alt='Erro' class='genres-image'>";
+      "<img src='/images/astro7.png' alt='Erro' class='genres-image'>";
     const artistPopularity = 101 - artistData.popularity;
     const artistCountry =
       artistData.origin_country ||
-      "<img src='../static/images/astro5.png' alt='Erro' class='country-image'>";
+      "<img src='/images/astro5.png' alt='Erro' class='country-image'>";
     artistName = artistData.name;
 
     console.log("Artista: " + artistName);
@@ -194,7 +193,7 @@ const displayArtist = async () => {
       "ouvintes"
     ).textContent = `${artistData.followers.total.toLocaleString()} ouvintes`;
     document.getElementById("imageArtist").src =
-      artistData.images[0]?.url || "https://placehold.co/1000x550"; // Imagem padrão se não houver
+      artistData.images[0]?.url || "https://placehold.co/1000x550";
     document.title = `Astro - ${artistName}`;
 
     // Atualizando os dois novos cards de região, popularidade e gênero
@@ -223,8 +222,9 @@ const displayArtist = async () => {
               class="track-song-image"
               alt="${track.name}"
               src="${
-                track.album.images[0]?.url || "https://placehold.co/50x50"
+                track.album.images[0]?.url || "https://placehold.co/60x60"
               }"
+              onerror="this.onerror=null; this.src='https://placehold.co/100x100';"
             />
             <p class="name-song montserrat-regular">${track.name}</p>
           </div>
@@ -245,11 +245,12 @@ const displayArtist = async () => {
 
     discography.forEach((album) => {
       const albumHtml = `
-        <a href="album.html?id=${album.id}" class="album-item swiper-slide">
+        <a href="/album?id=${album.id}" class="album-item swiper-slide">
           <img
             class="album-image"
             alt="${album.name}"
             src="${album.images[0]?.url || "https://placehold.co/100x100"}"
+            onerror="this.onerror=null; this.src='https://placehold.co/100x100';"
           />
           <p class="album-name montserrat-regular">${album.name} (${new Date(
         album.release_date
@@ -266,11 +267,12 @@ const displayArtist = async () => {
 
     playlists.forEach((playlist) => {
       const playlistHtml = `
-        <a href="./playlist.html?id=${playlist.id}" class="playlist-item swiper-slide">
+        <a href="/playlist?id=${playlist.id}" class="playlist-item swiper-slide">
           <img
             class="playlist-image"
             alt="${playlist.name}"
             src="${playlist.images[0]?.url || "https://placehold.co/100x100"}"
+            onerror="this.onerror=null; this.src='https://placehold.co/100x100';"
           />
           <p class="playlist-name montserrat-regular">${playlist.name}</p>
         </a>
@@ -287,11 +289,12 @@ const displayArtist = async () => {
 
     relatedArtists.forEach((artist) => {
       const artistHtml = `
-        <a href="./artist.html?id=${artist.id}" class="related-artist-item swiper-slide">
+        <a href="/artist?id=${artist.id}" class="related-artist-item swiper-slide">
           <img
             class="related-artist-image"
             alt="${artist.name}"
             src="${artist.images[0]?.url || "https://placehold.co/100x100"}"
+            onerror="this.onerror=null; this.src='https://placehold.co/100x100';"
           />
           <p class="related-artist-name montserrat-bold">${artist.name}</p>
         </a>
@@ -302,7 +305,7 @@ const displayArtist = async () => {
     const module2 = document.querySelector(".container2");
     module2.innerHTML = `
       <div class='error-container'>
-        <img src='../static/images/astro4.png' alt='Erro' class='error-image'>
+        <img src='/images/astro4.png' alt='Erro' class='error-image'>
         <div class='error-message'>
         <h1 class='montserrat-bold'>Galáxia perdida!</h1>
         <h3 class='montserrat-semi-bold'>Erro ao carregar os dados do artista</h3>
