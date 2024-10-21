@@ -3,5 +3,5 @@ const redirect = (page) => {
 }
 
 const redirectIndex = () => {
-    window.location.href = `./index.html`
+    window.location.href = `/`
 }

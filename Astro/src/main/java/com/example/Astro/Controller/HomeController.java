@@ -5,25 +5,31 @@ package com.example.Astro.Controller;
     Projeto: Astro
     Data: 24.09.2024
  */
+
 import com.example.Astro.Model.User;
 import com.example.Astro.Repository.UserRepository;
+import com.example.Astro.service.TokenService;
+import com.example.Astro.service.UserService;
+import io.jsonwebtoken.Claims;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.autoconfigure.batch.BatchTransactionManager;
-import org.springframework.http.HttpEntity;
-import org.springframework.http.HttpHeaders;
-import org.springframework.http.HttpMethod;
-import org.springframework.http.ResponseEntity;
+import org.springframework.http.*;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.client.RestTemplate;
 
+import java.security.Principal;
+
 @Controller
 public class HomeController {
     @Autowired
     UserRepository repository;
     User user = new User();
+    @Autowired
+    TokenService tokenService;
+    @Autowired
+    UserService userService;
 
     @GetMapping("/")
     public String index() {
@@ -41,8 +47,17 @@ public class HomeController {
     }
 
     @GetMapping("/home")
-    public String homePage(){
-        return "home";
+    public String home(@RequestParam("token") String token, Model model) {
+        // Busca o usuário usando o token
+        User user = userService.getUserByToken(token);
+
+        if (user != null) {
+            model.addAttribute("username", user.getUsername()); // Adiciona o nome do usuário ao modelo
+        } else {
+            model.addAttribute("error", "Usuário não encontrado");
+        }
+
+        return "home"; // Nome da página HTML que será exibida
     }
 
     @GetMapping("/artist")
@@ -51,25 +66,49 @@ public class HomeController {
     @GetMapping("/busca")
     public  String busca() {return "busca";}
 
-    @GetMapping("/user/{token}")
-    public String userProfile() {return "user";}
+    @GetMapping("/user")
+    public String userProfile(@RequestParam("token") String token, Model model) {
+        try {
+            Claims claims = tokenService.validateToken(token);
+            String username = claims.getSubject();
+            User user = repository.findByUsername(username);
+
+            if (user != null) {
+                model.addAttribute("user", user);
+                return "user"; // Retorna a página user.html
+            } else {
+                model.addAttribute("errorMessage", "Usuário não encontrado");
+                return "error"; // Retorna uma página de erro
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            model.addAttribute("errorMessage", "Erro ao processar o perfil do usuário");
+            return "error"; // Retorna uma página de erro
+        }
+    }
 
     @GetMapping("/playlist/{id}")
-    public String playlist() {return  "playlist";}
+    public String playlist(@PathVariable("id") String id, @RequestParam("token") String token, Model model) {
+        model.addAttribute("token", token);
+        return "playlist";
+    }
 
     @GetMapping("/album/{id}")
-    public String album() {return  "album";}
+    public String album(@PathVariable("id") String id, @RequestParam("token") String token, Model model) {
+        model.addAttribute("token", token);
+        return "album";
+    }
 
     @GetMapping("/single/{id}")
-    public String single() {return  "single";}
+    public String single(@PathVariable("id") String id, @RequestParam("token") String token, Model model) {
+        model.addAttribute("token", token);
+        return "single";
+    }
 
     @GetMapping("/artist/{id}")
-    public String getArtistDetails(@PathVariable("id") String artistId, Model model) {
+    public String getArtistDetails(@PathVariable("id") String artistId, @RequestParam("token") String token, Model model) {
         String spotifyApiUrl = "https://api.spotify.com/v1/artists/" + artistId;
         RestTemplate restTemplate = new RestTemplate();
-
-        // Aqui você precisa autenticar e obter o token do Spotify.
-        String token = "SEU_TOKEN_DE_ACESSO_AQUI";
 
         HttpHeaders headers = new HttpHeaders();
         headers.set("Authorization", "Bearer " + token);
@@ -79,21 +118,17 @@ public class HomeController {
             ResponseEntity<String> response = restTemplate.exchange(spotifyApiUrl, HttpMethod.GET, entity, String.class);
 
             if (response.getStatusCode().is2xxSuccessful()) {
-                // Parsear a resposta JSON para pegar os detalhes do artista
                 String artistDetailsJson = response.getBody();
-
-                // Adicione os detalhes à model para serem exibidos na página
                 model.addAttribute("artistDetails", artistDetailsJson);
-
-                return "artist"; // Nome da view (HTML) para exibir os detalhes do artista
+                return "artist";
             } else {
                 model.addAttribute("errorMessage", "Não foi possível buscar os detalhes do artista");
-                return "error"; // Página de erro
+                return "error";
             }
         } catch (Exception e) {
             e.printStackTrace();
             model.addAttribute("errorMessage", "Erro ao buscar os detalhes do artista");
-            return "error"; // Página de erro
+            return "error";
         }
     }
 
@@ -103,17 +138,12 @@ public class HomeController {
                              @RequestParam String hashWord) {
 
         BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
-        String cliente_hashword = encoder.encode(hashWord);
+        String clienteHashword = encoder.encode(hashWord);
+        String token = tokenService.generateToken(username, email);
 
-        User usuario = new User(null, email, cliente_hashword, username);
-
-        System.out.println("Username = " + username);
-        System.out.println("Email = " + email);
-        System.out.println("HashWord = " + cliente_hashword);
-
+        User usuario = new User(null,email, clienteHashword,username,token);
         repository.save(usuario);
         return "home";
-
     }
 
     @PostMapping("/login-user")
@@ -125,24 +155,31 @@ public class HomeController {
             BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
 
             if (user == null) {
-                System.out.println("Cliente não encontrado");
                 model.addAttribute("errorMessage", "Cliente não encontrado");
-                return "login"; // Redireciona para a tela de login com mensagem de erro
+                return "login";
             }
 
-            boolean passwordMatch = passwordEncoder.matches(hashWord, user.getClienteHashWord());
+            boolean passwordMatch = passwordEncoder.matches(hashWord, user.getPassword());
 
             if (!passwordMatch) {
-                System.out.println("Senha Incorreta");
                 model.addAttribute("errorMessage", "Senha incorreta");
-                return "login"; // Redireciona para a tela de login com mensagem de erro
+                return "login";
             }
 
-            return "home"; // Redireciona para a tela principal
+            // Gerar token e redirecionar com o token na URL
+            String token = tokenService.generateToken(username, user.getEmail());
+            return "redirect:/home?token=" + token;
         } catch (Exception e) {
             e.printStackTrace();
             model.addAttribute("errorMessage", "Erro ao processar o login");
-            return "login"; // Em caso de erro, redireciona para a tela de login com mensagem de erro
+            return "login";
         }
+    }
+
+    // Endpoint para logout (remove o token e redireciona)
+    @GetMapping("/logout")
+    public String logout() {
+        // O token é removido no frontend (no JavaScript), aqui só redirecionamos para a tela de login.
+        return "redirect:/login";
     }
 }

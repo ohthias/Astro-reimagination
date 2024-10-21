@@ -55,8 +55,8 @@ document.addEventListener("DOMContentLoaded", function () {
 
     const exitItem = document.createElement("li");
     const exitSeparator = document.createElement("hr");
-    const exitLink = document.createElement("a");
-    exitLink.href = "/";
+    const exitLink = document.createElement("button");
+    exitLink.id = "logoutBtn"
     exitLink.classList.add("exit-button");
     exitLink.innerHTML = '<i class="material-icons">exit_to_app</i><span class="links_name bebas-neue-regular">Sair</span>';
     const exitTooltip = document.createElement("span");

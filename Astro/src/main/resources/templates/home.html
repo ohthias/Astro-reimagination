@@ -60,13 +60,14 @@
     <link rel="stylesheet" href="/css/screen/home.css" />
   </head>
   <body>
+  <button id="logoutBtn">SAIR</button>
     <nav class="navigation-bar">
       <div class="side-left">
         <a href="/home" class="nav-logo bebas-neue-regular">Astro</a>
       </div>
       <div class="side-right">
         <a href="./planos.html" class="btn-shine montserrat-bold">Seja <i>premium</i></a>
-        <a href="./user.html" class="btn-user">
+        <a href="/user" class="btn-user">
           <img
             src="https://fakeimg.pl/40x40/e9e9e9/e9e9e9"
             alt="placeholder"
@@ -144,7 +145,7 @@
     </div>
     <main>
       <div class="wrapper first-acess">
-        <span class="montserrat-bold" id="userNameAcess">Matheus</span>
+        <span class="montserrat-bold" id="userNameAcess"></span>
         <h1 class="bebas-neue-regular first-acess-title">
           Seja bem-vindo ao Astro
         </h1>
@@ -191,6 +192,8 @@
     <script src="/js/generator/menus.js"></script>
     <script src="/js/driver/driver.js"></script>
     <script src="/js/swipe.js"></script>
+    <script src="/js/token.js"></script>
+    <script src="/js/home.js"></script>
     <script type="module" src="/js/musicPlayer.js"></script>
     <script type="module" src="/js/api/apiAcess.js"></script>
   </body>

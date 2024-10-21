@@ -181,11 +181,11 @@ const displayArtist = async () => {
     
     const artistGenres =
       artistData.genres.join(", ") ||
-      "<img src='../static/images/astro7.png' alt='Erro' class='genres-image'>";
+      "<img src='/images/astro7.png' alt='Erro' class='genres-image'>";
     const artistPopularity = 101 - artistData.popularity;
     const artistCountry =
       artistData.origin_country ||
-      "<img src='../static/images/astro5.png' alt='Erro' class='country-image'>";
+      "<img src='/images/astro5.png' alt='Erro' class='country-image'>";
     artistName = artistData.name;
 
     console.log("Artista: " + artistName);
@@ -302,7 +302,7 @@ const displayArtist = async () => {
     const module2 = document.querySelector(".container2");
     module2.innerHTML = `
       <div class='error-container'>
-        <img src='../static/images/astro4.png' alt='Erro' class='error-image'>
+        <img src='/images/astro4.png' alt='Erro' class='error-image'>
         <div class='error-message'>
         <h1 class='montserrat-bold'>Galáxia perdida!</h1>
         <h3 class='montserrat-semi-bold'>Erro ao carregar os dados do artista</h3>
