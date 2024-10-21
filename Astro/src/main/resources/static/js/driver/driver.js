@@ -1,4 +1,5 @@
 const driver = window.driver.js.driver;
+let driveInicialize = localStorage.getItem("driveInitialized") === "true"; // Check localStorage
 
 // Função para lançar partículas (confetti)
 function launchConfetti() {
@@ -14,7 +15,8 @@ function launchConfetti() {
     var timeLeft = animationEnd - Date.now();
 
     if (timeLeft <= 0) {
-      return clearInterval(interval);
+      clearInterval(interval);
+      return;
     }
 
     var particleCount = 50 * (timeLeft / duration);
@@ -92,10 +94,13 @@ const driverObj = driver({
         behavior: "smooth",
       });
       driverObj.destroy();
+      driveInicialize = true;
+      localStorage.setItem("driveInitialized", "true"); // Save to localStorage
       launchConfetti(); // Lança o confetti quando o tour termina
     }
   },
 });
 
-// Inicia o tour
-driverObj.drive();
+if (!driveInicialize) {
+  driverObj.drive();
+}

@@ -57,7 +57,8 @@ const searchArtists = async (query) => {
     // Exibir playlists
     if (data.playlists && data.playlists.items.length > 0) {
       data.playlists.items.forEach(playlist => {
-        const item = document.createElement('div');
+        const item = document.createElement('a');
+        item.href = `/playlist?id=${playlist.id}`
         item.classList.add("track-item")
         const imagemUrl = playlist.images.length > 0 ? playlist.images[0].url : 'https://via.placeholder.com/50';
         item.innerHTML = `

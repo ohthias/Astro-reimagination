@@ -249,6 +249,11 @@ button:is(#prevButton, #playPauseButton, #nextButton) {
 .volume-control span {
   color: var(--white);
   cursor: pointer;
+
+}
+
+span.volume_off {
+  color: var(--secondary);
 }
 
 .volume-control span:hover {
@@ -259,7 +264,7 @@ button:is(#prevButton, #playPauseButton, #nextButton) {
   padding: 1rem;
   position: absolute;
   top: -85px;
-  rotate: 90deg;
+  rotate: -90deg;
   display: none;
   z-index: 99;
   transition: opacity 0.3s ease; /* Para suavizar a transição */
