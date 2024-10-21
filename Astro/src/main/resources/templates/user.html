@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta property="og:title" content="Usuário" />
+    <meta
+      property="og:description"
+      content="Página do usuário"
+    />
+    <meta property="og:image" content="https://i.pinimg.com/736x/ea/21/05/ea21052f12b135e2f343b0c5ca8aeabc.jpg" />
+    <meta property="og:type" content="website" />
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Astro - username</title>
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+    <link rel="manifest" href="/site.webmanifest" />
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/icon?family=Material+Symbols+Outlined"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"
+    />
+
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+    <link rel="stylesheet" href="/css/api/swiper.css" />
+
+    <link rel="stylesheet" href="/css/root/font.css" />
+    <link rel="stylesheet" href="/css/root/root.css" />
+    <link rel="stylesheet" href="/css/root/variables.css" />
+
+    <link rel="stylesheet" href="/css/components/player.css" />
+    <link rel="stylesheet" href="/css/components/sidebar.css" />
+    <link rel="stylesheet" href="/css/components/navbar.css" />
+
+    <link rel="stylesheet" href="/css/screen/user.css" />
+  </head>
+  <body id="backParallax">
+    <nav class="navigation-bar">
+      <div class="side-left">
+        <a href="/home" class="nav-logo bebas-neue-regular">Astro</a>
+      </div>
+      <div class="side-right">
+        <a href="#" class="btn-shine montserrat-bold">Seja <i>premium</i></a>
+        <a href="#" class="btn-config montserrat-bold"
+          ><span class="material-symbols-outlined">settings</span></a
+        >
+        <a href="/user" class="btn-user">
+          <img
+            src="https://fakeimg.pl/40x40/e9e9e9/e9e9e9"
+            alt="placeholder"
+            class="user-perfil"
+          />
+        </a>
+      </div>
+    </nav>
+    <div class="container_player">
+      <div class="player">
+        <!-- Seção esquerda do player -->
+        <div class="side-left">
+          <div class="player_image">
+            <img
+              id="imgSong"
+              src="https://fakeimg.pl/210x210/e9e9e9/e9e9e9"
+              alt="Song_Image"
+            />
+          </div>
+          <div class="player_infoMusic">
+            <span id="musicName" class="montserrat-bold">Título da Música</span>
+            <span id="artistName" class="montserrat-regular">Artista</span>
+          </div>
+        </div>
+
+        <!-- Controles de usuário -->
+        <div class="user-prefers">
+          <button id="heartMusic">
+            <span class="material-symbols-outlined heart">favorite</span>
+          </button>
+          <button id="prevButton">
+            <span class="material-symbols-outlined skip_previous"
+              >skip_previous</span
+            >
+          </button>
+          <button id="playPauseButton">
+            <span class="material-symbols-outlined play_arrow">play_arrow</span>
+          </button>
+          <button id="nextButton">
+            <span class="material-symbols-outlined skip_next">skip_next</span>
+          </button>
+          <button id="randomPlayerMusic">
+            <span class="material-symbols-outlined shuffle">shuffle</span>
+          </button>
+        </div>
+
+        <!-- Player de áudio -->
+        <audio id="player" src=""></audio>
+
+        <!-- Barra de progresso e tempo -->
+        <div class="timecode_player">
+          <span id="currentTime" class="montserrat-medium">0:00</span>
+          <div class="progress-bar" id="progressBar" style="cursor: pointer">
+            <div class="progress"></div>
+          </div>
+          <span id="duration" class="montserrat-medium">0:00</span>
+        </div>
+
+        <!-- Controle de volume -->
+        <div class="volume-control">
+          <span class="material-symbols-outlined volume_up">volume_up</span>
+          <div class="volume-toolkit">
+            <input
+              type="range"
+              id="volumeSlider"
+              min="0"
+              max="1"
+              step="0.01"
+              value="1"
+            />
+          </div>
+        </div>
+      </div>
+    </div>
+    <main>
+      <section class="user-banner">
+        <div class="user-banner-details">
+          <h1 class="montserrat-bold" id="userNameAcess"></h1>
+          <div class="details-side-right">
+            <div class="followers-container">
+              <span class="seguidores montserrat-regular">000</span>
+              <div class="circle"></div>
+              <span class="seguindo montserrat-regular">000</span>
+            </div>
+            <button id="seguir" class="btn-seguir bebas-neue-regular">
+              Seguir
+            </button>
+          </div>
+        </div>
+        <div class="user-banner-image">
+          <img
+            id="userImage"
+            class="user-image"
+            alt="User_Image"
+            src="https://placehold.co/250x250"
+          />
+        </div>
+      </section>
+
+      <section class="user-playlists swiper">
+        <h2 class="montserrat-bold categoria-name">Playlists</h2>
+        <div class="swiper-container">
+          <div class="swiper-wrapper"></div>
+          <button class="swiper-button-prev"></button>
+          <button class="swiper-button-next"></button>
+        </div>
+      </section>
+    </main>
+    <script src="/js/generator/menus.js"></script>
+    <script src="/js/background-color.js"></script>
+    <script type="module" src="/js/musicPlayer.js"></script>
+    <script type="module" src="/js/user.js"></script>
+    <script type="module" src="/js/swipe.js"></script>
+    <script src="/js/token.js"></script>
+    <script src="/js/home.js"></script>
+
+
+  </body>
+</html>

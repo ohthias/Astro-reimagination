@@ -1,0 +1,229 @@
+/* 
+  Arquivo: album.css
+  Descrição: Este arquivo contém os estilos da página de álbum do Astro.
+    
+  Seções principais:
+  1. Estilos da seção display-album
+  2. Estilos da seção albumTracks
+    
+  Data: 20 de Outubro de 2024
+*/
+
+
+body {
+  padding: 1rem;
+  width: 100%;
+  height: 100vh !important;
+  display: grid;
+  grid-template-columns: 80px 1fr 1fr 1fr 1fr;
+  grid-template-rows: auto 1fr auto;
+  grid-column-gap: 16px;
+  grid-row-gap: 16px;
+
+  background: linear-gradient(
+      to top,
+      var(--primary-shadow) 0%,
+      var(--shadow) 10%
+    ),
+    var(--shadow);
+  behavior: smooth;
+}
+
+main {
+  grid-area: 2 / 2 / 3 / 6;
+  overflow-x: hidden;
+  position: relative;
+  color: var(--font-all);
+}
+
+/* section display-album */
+section.display-album {
+  position: relative;
+  left: 50%;
+  transform: translateX(-50%);
+  max-width: 650px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 2rem;
+
+  img#albumImage {
+    border-radius: 24px;
+    width: 350px;
+    height: 350px;
+    object-fit: cover;
+  }
+
+  .display-album-details {
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+
+    h1,
+    a {
+      white-space: nowrap;
+      overflow: hidden;
+      margin-bottom: 0.5rem;
+      text-overflow: ellipsis;
+      cursor: default;
+    }
+
+    h1 {
+      font-size: 48px;
+      width: 100%;
+      color: var(--font-all);
+      letter-spacing: 1px;
+    }
+
+    a {
+      font-size: 21px;
+      color: var(--font-all);
+      cursor: pointer;
+    }
+
+    section.controller {
+      position: absolute;
+      bottom: 10%;
+      display: flex;
+      gap: 1rem;
+      justify-content: flex-start;
+
+      button.controller-button {
+        --size: 50px;
+        width: var(--size);
+        height: var(--size);
+        line-height: 0;
+        font-size: 24px;
+        border-radius: 50%;
+        cursor: pointer;
+        border: 1px solid var(--white);
+        background: var(--white);
+        color: var(--secondary);
+        transition: all 250ms ease;
+
+        &:hover {
+          border-color: var(--secondary);
+          background: var(--secondary);
+          color: var(--white);
+        }
+
+        &:nth-child(1) {
+          border-color: var(--secondary);
+          background: var(--secondary);
+          color: var(--white);
+
+          &:hover {
+            box-shadow: 0 0 25px var(--secondary-shadow);
+          }
+        }
+      }
+    }
+  }
+}
+
+/* section albumTracks */
+section#albumTracks {
+  margin-top: 5rem;
+
+  ul {
+    margin: 0 1rem;
+    border-radius: 24px;
+    padding: 1rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    background: var(--black-shadow);
+
+    li.track-item {
+      position: relative;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 1rem;
+      padding: 0.5rem 0.8rem;
+      transition: all 250ms ease;
+      border-radius: 18px;
+
+      &::after {
+        --size: 50px;
+        width: var(--size);
+        height: var(--size);
+        border-radius: 8px;
+        content: "play_arrow";
+        font-family: "Material Symbols Outlined";
+        font-size: 40px;
+        color: white;
+        position: absolute;
+        top: 50%;
+        left: 3.5%;
+        transform: translate(-3.5%, -50%);
+        display: none;
+        pointer-events: none;
+        background: var(--black-shadow);
+      }
+
+      &:hover::after {
+        display: block; /* Mostra o ícone quando hover */
+      }
+
+      .track-details {
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+        gap: 1rem;
+        width: 100%;
+
+        span.track-number {
+          font-size: 16px;
+          font-weight: 300;
+          font-style: italic;
+        }
+
+        picture {
+          --size: 50px;
+          width: var(--size);
+          height: var(--size);
+        }
+
+        img.track-image {
+          --size: 50px;
+          width: var(--size);
+          height: var(--size);
+          border-radius: 8px;
+        }
+
+        .track-info {
+          display: flex;
+          flex-direction: column;
+          gap: 0.5rem;
+
+          h3,
+          a {
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            cursor: default;
+            color: var(--font-all);
+          }
+
+          h3 {
+            font-size: 18px;
+            font-weight: 400;
+            width: 100%;
+          }
+
+          a {
+            font-size: 14px;
+            font-weight: 300;
+            cursor: pointer;
+          }
+        }
+      }
+
+      &:hover {
+        background: var(--shadow-shadow);
+        cursor: pointer;
+      }
+    }
+  }
+}

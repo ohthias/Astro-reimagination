@@ -1,7 +1,6 @@
 body.sign {
   width: 100%;
   height: 100vh;
-  background: -webkit-gradient(linear, right top, left top, color-stop(65%, var(--shadow)), to(var(--primary-shadow-light))), var(--shadow);
   background: linear-gradient(to left, var(--shadow) 65%, var(--primary-shadow-light) 100%), var(--shadow);
   color: var(--font-all);
 }
@@ -9,7 +8,6 @@ body.sign {
 body.login {
   width: 100%;
   height: 100vh;
-  background: -webkit-gradient(linear, left top, right top, color-stop(50%, var(--shadow)), color-stop(85%, var(--tertiary-shadow)), to(var(--tertiary-shadow-light))), var(--shadow);
   background: linear-gradient(to right, var(--shadow) 50%, var(--tertiary-shadow) 85%, var(--tertiary-shadow-light) 100%), var(--shadow);
   color: var(--font-all);
 }
@@ -21,8 +19,7 @@ label.logo-title {
   font-size: 26px;
   cursor: pointer;
   z-index: 10;
-  -webkit-animation: fadeIn 2s;
-          animation: fadeIn 2s;
+  animation: fadeIn 2s;
 }
 
 main.container {
@@ -30,35 +27,21 @@ main.container {
   position: absolute;
   max-width: 550px;
   left: 50%;
-  -webkit-transform: translateX(-50%);
-          transform: translateX(-50%);
-  display: -webkit-box;
-  display: -ms-flexbox;
+  transform: translateX(-50%);
   display: flex;
-  -webkit-box-pack: space-evenly;
-      -ms-flex-pack: space-evenly;
-          justify-content: space-evenly;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
-  -webkit-animation: fadeIn 2s;
-          animation: fadeIn 2s;
+  justify-content: space-evenly;
+  align-items: center;
+  flex-direction: column;
+  animation: fadeIn 2s;
 }
-
 main.container .title-container {
   text-align: center;
 }
-
 main.container h1 {
   font-size: 56px;
   letter-spacing: 5px;
   cursor: default;
 }
-
 main.container a {
   font-size: 21px;
   text-align: center;
@@ -69,14 +52,11 @@ main.container a {
   margin: 1rem 0;
   width: 520px;
 }
-
 .form-container:first-child {
   margin-top: 0;
 }
-
 .form-container label {
   color: var(--white-shadow);
-  -webkit-transition: 500ms;
   transition: 500ms;
   top: -68px;
   position: relative;
@@ -93,26 +73,14 @@ main.container a {
   color: var(--white-shadow);
   outline: none;
   font-size: 16px;
-  -webkit-transition: 500ms;
   transition: 500ms;
 }
-
-.form-container input::-webkit-input-placeholder {
+.form-container input::-moz-placeholder {
   color: var(--white-shadow);
 }
-
-.form-container input:-ms-input-placeholder {
-  color: var(--white-shadow);
-}
-
-.form-container input::-ms-input-placeholder {
-  color: var(--white-shadow);
-}
-
 .form-container input::placeholder {
   color: var(--white-shadow);
 }
-
 .form-container input:focus {
   color: var(--white);
   border-color: var(--white);
@@ -123,18 +91,12 @@ main.container a {
 }
 
 .password-input {
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-pack: justify;
-      -ms-flex-pack: justify;
-          justify-content: space-between;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
+  justify-content: space-between;
+  align-items: center;
 }
 
-input[type="submit"].button-submit {
+input[type=submit].button-submit {
   width: 100%;
   padding: 1rem 0;
   border: 0;
@@ -142,24 +104,19 @@ input[type="submit"].button-submit {
   background: var(--tertiary);
   cursor: pointer;
   font-size: 21px;
-  -webkit-transition: 500ms;
   transition: 500ms;
 }
-
-input[type="submit"].button-submit:hover {
-  -webkit-box-shadow: 0 0 25px var(--tertiary-shadow-light);
-          box-shadow: 0 0 25px var(--tertiary-shadow-light);
+input[type=submit].button-submit:hover {
+  box-shadow: 0 0 25px var(--tertiary-shadow-light);
 }
 
 span.material-symbols-outlined {
   position: absolute;
   right: 16px;
   color: var(--white-shadow);
-  -webkit-transition: 250ms;
   transition: 250ms;
   cursor: pointer;
 }
-
 span.material-symbols-outlined:hover, span.material-symbols-outlined:focus {
   color: var(--white);
 }
@@ -191,7 +148,6 @@ p {
     font-size: 14px;
   }
 }
-
 @media screen and (max-width: 550px) {
   label.logo-title {
     top: 12px;
@@ -204,8 +160,7 @@ p {
   main.container {
     width: 100%;
     left: 50%;
-    -webkit-transform: translateX(-50%);
-            transform: translateX(-50%);
+    transform: translateX(-50%);
   }
   main.container h1 {
     font-size: 32px;
@@ -218,7 +173,7 @@ p {
     width: 100%;
     font-size: 12px;
   }
-  input[type="submit"].button-submit {
+  input[type=submit].button-submit {
     font-size: 18px;
     padding: 0.5rem;
   }
@@ -229,16 +184,6 @@ p {
     font-size: 12px;
   }
 }
-
-@-webkit-keyframes fadeIn {
-  0% {
-    opacity: 0;
-  }
-  100% {
-    opacity: 1;
-  }
-}
-
 @keyframes fadeIn {
   0% {
     opacity: 0;
@@ -246,5 +191,4 @@ p {
   100% {
     opacity: 1;
   }
-}
-/*# sourceMappingURL=sign.css.map */
+}/*# sourceMappingURL=sign.css.map */

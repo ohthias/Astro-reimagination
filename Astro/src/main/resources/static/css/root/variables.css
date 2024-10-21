@@ -1,24 +1,133 @@
+/* 
+  Arquivo: variables.css
+  Descrição: Este arquivo contém as variáveis do Astro e os temas.
+    
+  Seções principais:
+  1. Tema padrão
+  2. Tema claro
+  3. Tema escuro
+  4. Tema oceano
+  5. Tema fogo
+    
+  Data: 20 de Outubro de 2024
+*/
+
 :root {
-  --background-all: #0b1215;
   --font-all: #f3f3f3;
+  --background-all: #121212;;
 
   --primary: #4b0072;
   --secondary: #ff3d20;
   --tertiary: hsl(129, 89%, 55%);
   --shadow: #05061e;
   --white: #f3f3f3;
-  --black-shadow:  #00000076;
-
+  --black-shadow: #00000076;
 
   --white-shadow: #f3f3f376;
   --shadow-shadow: #05061e76;
-  --black-shadow: #01010176;
+  --black-shadow-shadow: #01010176;
 
   --primary-shadow-light: #4a0072b4;
   --secondary-shadow-light: #ff3d20b4;
   --tertiary-shadow-light: #29f24772;
-  
+
   --primary-shadow: #4b007276;
   --secondary-shadow: #ff3d2076;
   --tertiary-shadow: #29f24749;
+}
+
+:root.light {
+  --font-all: #121212; /* Cor do texto */
+  --background-all: #f3f3f3; /* Cor de fundo */
+
+  --primary: #4b0072; /* Cor primária */
+  --secondary: #ff3d20; /* Cor secundária */
+  --tertiary: hsl(129, 89%, 35%); /* Cor terciária */
+  --shadow: #e0e0e0; /* Cor da sombra */
+  --white: #121212; /* Cor branca alterada para texto escuro */
+  --black-shadow: rgba(0, 0, 0, 0.1); /* Sombra clara para o fundo */
+
+  --white-shadow: rgba(243, 243, 243, 0.5); /* Sombra branca */
+  --shadow-shadow: rgba(0, 0, 0, 0.1); /* Sombra suave */
+  --black-shadow: rgba(0, 0, 0, 0.1); /* Sombra leve */
+
+  --primary-shadow-light: rgba(75, 0, 114, 0.5); /* Sombra leve da cor primária */
+  --secondary-shadow-light: rgba(255, 61, 32, 0.5); /* Sombra leve da cor secundária */
+  --tertiary-shadow-light: rgba(41, 242, 71, 0.5); /* Sombra leve da cor terciária */
+
+  --primary-shadow: rgba(75, 0, 114, 0.3); /* Sombra da cor primária */
+  --secondary-shadow: rgba(255, 61, 32, 0.3); /* Sombra da cor secundária */
+  --tertiary-shadow: rgba(41, 242, 71, 0.3); /* Sombra da cor terciária */
+}
+
+:root.dark {
+   --font-all: #ffffff; /* Cor do texto em branco para contraste */
+  --background-all: #121212; /* Cor de fundo preta */
+
+  --primary: #cccccc; /* Cor primária - cinza claro */
+  --secondary: #999999; /* Cor secundária - cinza médio */
+  --tertiary: #666666; /* Cor terciária - cinza escuro */
+  --shadow: #121212; /* Sombra preta */
+  --white: #ffffff; /* Cor branca para texto */
+  --black-shadow: rgba(0, 0, 0, 0.5); /* Sombra negra com transparência */
+
+  --white-shadow: rgba(255, 255, 255, 0.1); /* Sombra branca leve */
+  --shadow-shadow: rgba(0, 0, 0, 0.7); /* Sombra escura */
+  --black-shadow: rgba(0, 0, 0, 0.3); /* Sombra leve preta */
+
+  --primary-shadow-light: rgba(204, 204, 204, 0.5); /* Sombra leve da cor primária */
+  --secondary-shadow-light: rgba(153, 153, 153, 0.5); /* Sombra leve da cor secundária */
+  --tertiary-shadow-light: rgba(102, 102, 102, 0.5); /* Sombra leve da cor terciária */
+
+  --primary-shadow: rgba(204, 204, 204, 0.3); /* Sombra da cor primária */
+  --secondary-shadow: rgba(153, 153, 153, 0.3); /* Sombra da cor secundária */
+  --tertiary-shadow: rgba(102, 102, 102, 0.3); /* Sombra da cor terciária */
+}
+
+:root.ocean {
+  --font-all: #ffffff; /* Cor do texto em branco para contraste */
+  --background-all: #121212; /* Cor de fundo preta */
+
+  --primary: #a8e6cf; /* Cor primária - verde claro */
+  --secondary: #61c0bf; /* Cor secundária - verde médio */
+  --tertiary: #26a69a; /* Cor terciária - verde escuro */
+  --shadow: #092d29; /* Sombra preta */
+  --white: #ffffff; /* Cor branca para texto */
+  --black-shadow: rgba(0, 0, 0, 0.5); /* Sombra negra com transparência */
+
+  --white-shadow: rgba(255, 255, 255, 0.1); /* Sombra branca leve */
+  --shadow-shadow: rgba(0, 0, 0, 0.7); /* Sombra escura */
+  --black-shadow: rgba(0, 0, 0, 0.3); /* Sombra leve preta */
+
+  --primary-shadow-light: rgba(168, 230, 207, 0.5); /* Sombra leve da cor primária */
+  --secondary-shadow-light: rgba(97, 192, 191, 0.5); /* Sombra leve da cor secundária */
+  --tertiary-shadow-light: rgba(38, 166, 154, 0.5); /* Sombra leve da cor terciária */
+
+  --primary-shadow: rgba(168, 230, 207, 0.3); /* Sombra da cor primária */
+  --secondary-shadow: rgba(97, 192, 191, 0.3); /* Sombra da cor secundária */
+  --tertiary-shadow: rgba(38, 166, 154, 0.3); /* Sombra da cor terciária */
+}
+
+:root.fire {
+  --font-all: #ffffff; /* Cor do texto em branco para contraste */
+  --background-all: #ff4c4c; /* Cor de fundo preta */
+
+  --primary: #e22926; /* Cor primária - vermelho claro */
+  --secondary: #820808; /* Cor secundária - vermelho médio */
+  --tertiary: #c62323; /* Cor terciária - vermelho escuro */
+  --shadow: #581515; /* Sombra preta */
+  --white: #ffffff; /* Cor branca para texto */
+  --black-shadow: rgba(0, 0, 0, 0.5); /* Sombra negra com transparência */
+
+  --white-shadow: rgba(255, 255, 255, 0.1); /* Sombra branca leve */
+  --shadow-shadow: rgba(0, 0, 0, 0.7); /* Sombra escura */
+  --black-shadow: rgba(0, 0, 0, 0.3); /* Sombra leve preta */
+
+  --primary-shadow-light: rgba(255, 204, 203, 0.5); /* Sombra leve da cor primária */
+  --secondary-shadow-light: rgba(255, 127, 127, 0.5); /* Sombra leve da cor secundária */
+  --tertiary-shadow-light: rgba(255, 76, 76, 0.5); /* Sombra leve da cor terciária */
+
+  --primary-shadow: rgba(255, 204, 203, 0.3); /* Sombra da cor primária */
+  --secondary-shadow: rgba(255, 127, 127, 0.3); /* Sombra da cor secundária */
+  --tertiary-shadow: rgba(255, 76, 76, 0.3); /* Sombra da cor terciária */
 }

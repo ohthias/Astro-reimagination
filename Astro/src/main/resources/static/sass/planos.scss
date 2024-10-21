@@ -1,0 +1,165 @@
+body {
+  background: linear-gradient(to top, var(--shadow) 0%, var(--primary) 100%)
+    no-repeat fixed;
+
+  h1 {
+    color: var(--font-all);
+    text-align: center;
+    width: 35%;
+    margin: 2rem auto;
+  }
+}
+
+nav.navgation-bar {
+  margin: 0 auto;
+  max-height: 80px;
+  padding: 2rem 0;
+  padding-inline: 2rem;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+nav.navgation-bar img.navgation-bar-logo {
+    width: 100px;
+    cursor: pointer;
+}
+
+nav.navgation-bar .navgation-bar-menu {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+}
+
+a.menu-button-redirect {
+  padding: 0.5rem 1rem;
+  color: var(--font-all);
+  text-decoration: none;
+  background: linear-gradient(
+      to right,
+      rgba(255, 255, 255, 0),
+      rgba(100, 200, 200, 0)
+    ),
+    linear-gradient(to right, var(--tertiary), var(--tertiary));
+  background-size: 100% 0.1em, 0 0.1em;
+  background-position: 100% 70%, 0 100%;
+  background-repeat: no-repeat;
+  transition: 0.5s;
+}
+
+a.menu-button-redirect:focus,
+a.menu-button-redirect:hover {
+  color: var(--tertiary);
+  background-size: 0 0.1em, 100% 0.1em;
+  transition: 0.3s;
+}
+
+a.menu-button-redirect:last-child {
+  background: none;
+  border: 2px solid var(--white);
+  border-radius: 50px;
+}
+
+a.menu-button-redirect:last-child:focus,
+a.menu-button-redirect:last-child:hover {
+  color: var(--tertiary);
+  background: var(--white);
+  transition: 0.3s;
+}
+
+section.plans {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: stretch;
+
+  .plan-card {
+    background: var(--black-shadow);
+    color: var(--white);
+    padding: 1.5rem 1.25rem;
+    border-radius: 0.5rem;
+    width: 450px;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    flex-direction: column;
+
+    .plan-title {
+      font-size: 1.5em;
+      margin-bottom: 0.2rem;
+    }
+
+    .plan-subtitle {
+      font-size: 0.8em;
+      margin-bottom: 0.5rem;
+    }
+
+    .plan-price {
+      margin: 1rem 0;
+      display: flex;
+      justify-content: center;
+      align-self: flex-start;
+      gap: 0.25rem;
+
+      .currency {
+        font-size: 0.8em;
+        align-self: baseline;
+      }
+
+      .amount {
+        font-size: 2.5em;
+        align-self: center;
+      }
+
+      .duration {
+        font-size: 0.8em;
+        align-self: flex-end;
+      }
+    }
+
+    ul.plan-features {
+      list-style: circle;
+      margin: 1rem 0;
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+
+      li {
+        font-size: 0.8em;
+        gap: 0.5rem;
+      }
+    }
+
+    button.btn {
+      margin: 2rem 0;
+      width: 100%;
+      text-align: center;
+      padding: 0.5rem 1rem;
+      font-size: 1em;
+      background: transparent;
+      border: 1px solid var(--white);
+      color: var(--font-all);
+      border-radius: 8px;
+      cursor: pointer;
+      transition: all 300ms;
+
+      &.btn-secondary {
+        background: var(--white);
+        color: var(--secondary);
+
+        &:hover {
+          background: var(--secondary);
+          color: var(--white);
+          box-shadow: 0 0 25px var(--secondary);
+          border-color: var(--secondary);
+        }
+      }
+
+      &:hover {
+        background: var(--white);
+        color: var(--primary);
+        box-shadow: 0 0 25px var(--primary);
+      }
+    }
+  }
+}

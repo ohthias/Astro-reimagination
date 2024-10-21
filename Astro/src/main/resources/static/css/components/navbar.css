@@ -1,0 +1,216 @@
+/* 
+  Arquivo: navbar.css
+  Descrição: Este arquivo contém os estilos da navbar.
+
+  Seções principais:
+  1. Estilos da barra de navegação
+  2. Estilos do lado esquerdo da barra de navegação
+  3. Estilos do lado direito da barra de navegação
+  4. Estilos do botão de brilho
+
+  Data: 20 de Outubro de 2024
+*/
+
+nav.navigation-bar {
+  height: 50px;
+  grid-area: 1 / 2 / 2 / 6;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  animation: fadeInDown 1s ease;
+  z-index: 10;
+  width: 100%;
+}
+
+.navigation-bar a.nav-logo {
+  display: inline-block;
+  font-size: 21px;
+  letter-spacing: 2px;
+  color: var(--font-all);
+  transition: 0.8s;
+  cursor: pointer;
+  text-decoration: none;
+  background: linear-gradient(
+      to right,
+      rgba(255, 255, 255, 0),
+      rgba(100, 200, 200, 0)
+    ),
+    linear-gradient(to right, var(--tertiary), var(--tertiary));
+  background-size: 100% 0.1em, 0 0.1em;
+  background-position: 100% 70%, 0 100%;
+  background-repeat: no-repeat;
+  transition: background-size 400ms;
+  animation: fadeIn 1s ease;
+  transition: 0.5s;
+
+  &:hover,
+  &:focus {
+    color: var(--tertiary);
+    background-size: 0 0.1em, 100% 0.1em;
+    transition: 0.3s;
+  }
+}
+
+.side-left {
+  width: 50%;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 1rem;
+  transition: all 500ms ease;
+
+  h6#albumTitleNav {
+    width: 100%;
+    font-size: 18px;
+    letter-spacing: 1px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+}
+
+a.nav-logo.near-white {
+  color: var(--shadow);
+}
+
+.navgation-bar.scrolled a.nav-logo {
+  color: var(--font-all);
+}
+
+section.nav-menu {
+  display: flex;
+  justify-content: flex-start;
+  gap: 1rem;
+
+  .controller-buttons {
+    width: max-content;
+    display: flex;
+    gap: 1rem;
+
+    .controller-button {
+      --size: 40px;
+      width: var(--size);
+      height: var(--size);
+      padding: 0.5rem;
+      background: none;
+      border: 0;
+      outline: none;
+      font-size: 24px;
+      place-items: center;
+      cursor: pointer;
+      transition: 250ms;
+      border-radius: 50%;
+
+      &:hover {
+        color: var(--secondary);
+        background: var(--shadow-shadow);
+        box-shadow: 0 0 10px var(--secondary-shadow);
+      }
+    }
+  }
+}
+
+.side-right {
+  margin-right: 0;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 1rem;
+
+  .btn-config {
+    color: var(--font-all);
+    padding: 0.5rem;
+    background: none;
+    border: 0;
+    outline: none;
+    font-size: 26px;
+    place-items: center;
+    cursor: pointer;
+    transition: 250ms;
+    border-radius: 50%;
+
+    &:hover {
+      color: var(--tertiary);
+      text-shadow: 0 0 10px var(--tertiary-shadow);
+    }
+  }
+}
+
+a.btn-user {
+  width: 50px;
+  
+  img.user-perfil {
+    width: 100%;
+    height: auto;
+    border-radius: 50%;
+    box-shadow: 0 0 10px var(--shadow-shadow);
+    cursor: pointer;
+    transition: 500ms;
+
+    &:hover {
+      box-shadow: 0 0 15px var(--tertiary-shadow);
+    }
+  }
+}
+
+.btn-shine {
+  padding: 12px 48px;
+  color: #fff;
+  background: linear-gradient(to right, #9f9f9f 0, #fff 10%, #868686 20%);
+  background-position: 0;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: shine 3s infinite linear;
+  animation-fill-mode: forwards;
+  -webkit-text-size-adjust: none;
+  font-weight: 600;
+  font-size: 16px;
+  text-decoration: none;
+  white-space: nowrap;
+  font-family: "Poppins", sans-serif;
+}
+
+@-moz-keyframes shine {
+  0% {
+    background-position: 0;
+  }
+  60% {
+    background-position: 180px;
+  }
+  100% {
+    background-position: 180px;
+  }
+}
+@-webkit-keyframes shine {
+  0% {
+    background-position: 0;
+  }
+  60% {
+    background-position: 180px;
+  }
+  100% {
+    background-position: 180px;
+  }
+}
+@-o-keyframes shine {
+  0% {
+    background-position: 0;
+  }
+  60% {
+    background-position: 180px;
+  }
+  100% {
+    background-position: 180px;
+  }
+}
+@keyframes shine {
+  0% {
+    background-position: 0;
+  }
+  60% {
+    background-position: 180px;
+  }
+  100% {
+    background-position: 180px;
+  }
+}

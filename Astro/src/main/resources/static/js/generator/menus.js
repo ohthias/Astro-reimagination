@@ -1,83 +1,136 @@
 document.addEventListener("DOMContentLoaded", function () {
-    // Criação da sidebar
-    const sidebar = document.createElement("div");
-    sidebar.classList.add("sidebar");
+  // Criar um contêiner para as notificações
+  const notificationsList = document.createElement("div");
+  notificationsList.classList.add("notifications-list");
+  document.body.appendChild(notificationsList);
 
-    const navList = document.createElement("ul");
-    navList.classList.add("nav-list");
+  // Função para criar um item de menu
+  function createMenuItem(
+    content,
+    tooltip,
+    link,
+    isButton = false,
+    onClick = null
+  ) {
+    const item = document.createElement("li");
+    const element = isButton
+      ? document.createElement("button")
+      : document.createElement("a");
+    element.innerHTML = content;
+    if (link) element.href = link;
+    if (isButton && onClick) element.onclick = onClick;
 
-    // Home item
-    const homeItem = document.createElement("li");
-    const homeLink = document.createElement("a");
-    homeLink.href = "home";
-    homeLink.innerHTML = '<i class="material-icons">public</i><span class="links_name bebas-neue-regular">Home</span>';
-    const homeTooltip = document.createElement("span");
-    homeTooltip.classList.add("tooltip", "bebas-neue-regular");
-    homeTooltip.textContent = "Home";
-    homeItem.appendChild(homeLink);
-    homeItem.appendChild(homeTooltip);
+    const tooltipElement = document.createElement("span");
+    tooltipElement.classList.add("tooltip", "bebas-neue-regular");
+    tooltipElement.textContent = tooltip;
 
-    // Search item
-    const searchItem = document.createElement("li");
-    const searchLink = document.createElement("a");
-    searchLink.href = "busca";
-    searchLink.innerHTML = '<i class="material-icons">search</i><span class="tooltip bebas-neue-regular">Search</span>';
-    searchItem.appendChild(searchLink);
+    item.appendChild(element);
+    item.appendChild(tooltipElement);
+    return item;
+  }
 
-    // Separator
-    const separator = document.createElement("hr");
+  // Função para criar e mostrar notificações
+  function showNotification(message) {
+    const notificationItem = document.createElement("div");
+    notificationItem.classList.add("notification-item");
 
-    // Biblioteca item
-    const bibliotecaItem = document.createElement("li");
-    const bibliotecaLink = document.createElement("a");
-    bibliotecaLink.href = "#";
-    bibliotecaLink.innerHTML = '<i class="material-icons">folder</i><span class="links_name bebas-neue-regular">Biblioteca</span>';
-    const bibliotecaTooltip = document.createElement("span");
-    bibliotecaTooltip.classList.add("tooltip", "bebas-neue-regular");
-    bibliotecaTooltip.textContent = "Biblioteca";
-    bibliotecaItem.appendChild(bibliotecaLink);
-    bibliotecaItem.appendChild(bibliotecaTooltip);
+    notificationItem.innerHTML = `
+        <div class="alert">
+          <div class="flex">
+            <div class="flex-shrink-0">
+              <svg aria-hidden="true" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 alert-svg">
+                <path clip-rule="evenodd" d="M8.257 3.099c.765-1.36 2.722-1.36 3.486 0l5.58 9.92c.75 1.334-.213 2.98-1.742 2.98H4.42c-1.53 0-2.493-1.646-1.743-2.98l5.58-9.92zM11 13a1 1 0 11-2 0 1 1 0 012 0zm-1-8a1 1 0 00-1 1v3a1 1 0 002 0V6a1 1 0 00-1-1z" fill-rule="evenodd"></path>
+              </svg>
+            </div>
+            <div class="alert-prompt-wrap">
+              <p class="text-sm text-yellow-700 montserrat-regular">${message}</p>
+            </div>
+          </div>
+        </div>
+      `;
 
-    // Criar playlist item
-    const createPlaylistItem = document.createElement("li");
-    const createPlaylistButton = document.createElement("button");
-    createPlaylistButton.id = "new_playlist";
-    createPlaylistButton.innerHTML = '<i class="material-icons">add</i>';
-    const createPlaylistTooltip = document.createElement("span");
-    createPlaylistTooltip.classList.add("tooltip", "bebas-neue-regular");
-    createPlaylistTooltip.textContent = "Criar";
-    createPlaylistItem.appendChild(createPlaylistButton);
-    createPlaylistItem.appendChild(createPlaylistTooltip);
+    // Adiciona a notificação à lista
+    notificationsList.appendChild(notificationItem);
 
-    // Exit section
-    const exitContainer = document.createElement("div");
-    exitContainer.classList.add("exit-container");
+    // Remover a notificação após um tempo
+    setTimeout(() => {
+      notificationItem.classList.add("notification-fade"); // Adiciona a classe de fade
+      // Espera a animação de fade terminar e depois remove
+      setTimeout(() => {
+        notificationItem.remove();
+      }, 500); // Tempo do fade
+    }, 5000); // Tempo antes de iniciar o fade
+  }
+  // Criação da sidebar
+  const sidebar = document.createElement("div");
+  sidebar.classList.add("sidebar");
 
-    const exitItem = document.createElement("li");
-    const exitSeparator = document.createElement("hr");
-    const exitLink = document.createElement("a");
-    exitLink.href = "/";
-    exitLink.classList.add("exit-button");
-    exitLink.innerHTML = '<i class="material-icons">exit_to_app</i><span class="links_name bebas-neue-regular">Sair</span>';
-    const exitTooltip = document.createElement("span");
-    exitTooltip.classList.add("tooltip", "bebas-neue-regular");
-    exitTooltip.textContent = "Sair";
+  const navList = document.createElement("ul");
+  navList.classList.add("nav-list");
 
-    exitItem.appendChild(exitSeparator);
-    exitItem.appendChild(exitLink);
-    exitItem.appendChild(exitTooltip);
-    exitContainer.appendChild(exitItem);
+  // Adicionando itens à lista
+  navList.appendChild(
+    createMenuItem(
+      '<i class="material-icons">public</i><span class="links_name bebas-neue-regular">Home</span>',
+      "Home",
+      "home"
+    )
+  );
+  navList.appendChild(
+    createMenuItem(
+      '<i class="material-icons">search</i><span class="tooltip bebas-neue-regular">Search</span>',
+      "Search",
+      "busca"
+    )
+  );
+  navList.appendChild(document.createElement("hr")); // Separator
+  navList.appendChild(
+    createMenuItem(
+      '<i class="material-icons">folder</i><span class="links_name bebas-neue-regular">Biblioteca</span>',
+      "Biblioteca",
+      null,
+      true,
+      () =>
+        showNotification(
+          "Essa função não está disponível nesta versão do Astro&copy, aguarde!"
+        )
+    )
+  );
+  navList.appendChild(
+    createMenuItem(
+      '<i class="material-icons">add</i><span class="tooltip bebas-neue-regular">Criar</span>',
+      "Criar",
+      null,
+      true,
+      () =>
+        showNotification(
+          "Essa função não está disponível nesta versão do Astro&copy, aguarde!"
+        )
+    )
+  );
 
-    // Montagem da lista
-    navList.appendChild(homeItem);
-    navList.appendChild(searchItem);
-    navList.appendChild(separator);
-    navList.appendChild(bibliotecaItem);
-    navList.appendChild(createPlaylistItem);
-    navList.appendChild(exitContainer);
+  // Exit section
+  const exitContainer = document.createElement("div");
+  exitContainer.classList.add("exit-container");
 
-    sidebar.appendChild(navList);
+  const exitItem = createMenuItem(
+    '<i class="material-icons">exit_to_app</i><span class="links_name bebas-neue-regular">Sair</span>',
+    "Sair",
+    "/",
+    true, // Define como um botão
+    () => {
+      // Aqui você pode adicionar a lógica de logout se necessário
+      window.location.href = "/"; // Redireciona para a página inicial
+    }
+  );
 
-    // Adiciona navbar e sidebar à página
-    document.body.appendChild(sidebar);
+  // Adiciona a classe logoutBtn ao botão
+  exitItem.firstChild.classList.add("logoutBtn");
+
+  exitContainer.appendChild(exitItem);
+  navList.appendChild(exitContainer);
+
+  // Montagem da lista e sidebar
+  sidebar.appendChild(navList);
+  document.body.appendChild(sidebar);
 });

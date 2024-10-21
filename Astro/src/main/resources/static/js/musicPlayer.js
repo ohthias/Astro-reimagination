@@ -14,15 +14,11 @@ const progressBar = document.querySelector(".progress");
 const progressBarContainer = document.getElementById("progressBar");
 const volumeSlider = document.getElementById("volumeSlider");
 
-// Inicialização do Swiper
-const swiper = new Swiper(".swiper-container", {
-  navigation: {
-    nextEl: ".swiper-button-next",
-    prevEl: ".swiper-button-prev",
-  },
-  slidesPerView: 3, // Número de slides por visualização
-  spaceBetween: 10, // Espaço entre os slides
-});
+let jumpCount = 0;
+let lastJumpTime = Date.now();
+
+const MAX_JUMPS_PER_HOUR = 6;
+const HOUR_IN_MS = 3600000;
 
 // Função para carregar e exibir as faixas no slider
 function loadTrackSlider() {
@@ -43,23 +39,19 @@ function loadTrackSlider() {
       </div>
     `;
 
-    // Adiciona um evento de clique para cada slide
     slide.querySelector(".track-item").addEventListener("click", () => {
-      currentSongIndex = index; // Atualiza o índice da música atual
-      localStorage.setItem("currentSongIndex", currentSongIndex); // Salva o índice
-      loadSong(track); // Carrega a música clicada
-      playSong(); // Inicia a reprodução
+      currentSongIndex = index;
+      localStorage.setItem("currentSongIndex", currentSongIndex);
+      loadSong(track);
+      playSong();
     });
 
     trackSlider.appendChild(slide); // Adiciona o slide ao contêiner
   });
-
-  swiper.update(); // Atualiza o Swiper para reconhecer os novos slides
 }
 
-// !TODO - Corrigir a função de volume do player
 // Configurar o volume inicial do player
-//player.volume = volumeSlider.value;
+player.volume = volumeSlider.value;
 
 // Função para carregar o estado salvo
 function loadSavedState() {
@@ -115,19 +107,45 @@ function pauseSong() {
   localStorage.setItem("isPlaying", "false");
 }
 
+function canJump() {
+  const currentTime = Date.now();
+  
+  // Reseta o contador se uma hora se passou
+  if (currentTime - lastJumpTime > HOUR_IN_MS) {
+    jumpCount = 0;
+    lastJumpTime = currentTime;
+  }
+
+  return jumpCount < MAX_JUMPS_PER_HOUR;
+}
+
 function nextSong() {
+  if (!canJump()) {
+    alert("Você atingiu o limite de pulos! Tente novamente mais tarde.");
+    return;
+  }
+
   currentSongIndex = (currentSongIndex + 1) % localSongs.length;
   localStorage.setItem("currentSongIndex", currentSongIndex);
   loadSong(localSongs[currentSongIndex]);
   playSong();
+
+  jumpCount++;
 }
 
 function prevSong() {
+  if (!canJump()) {
+    alert("Você atingiu o limite de pulos! Tente novamente mais tarde.");
+    return;
+  }
+
   currentSongIndex =
     (currentSongIndex - 1 + localSongs.length) % localSongs.length;
   localStorage.setItem("currentSongIndex", currentSongIndex);
   loadSong(localSongs[currentSongIndex]);
   playSong();
+
+  jumpCount++;
 }
 
 // Atualiza a barra de progresso
@@ -145,13 +163,47 @@ function formatTime(seconds) {
   return `${minutes}:${secondsDisplay < 10 ? "0" : ""}${secondsDisplay}`;
 }
 
-// !TODO - Corrigir a função de volume do player
 // Atualiza o volume do player quando o slider é movido
-/*volumeSlider.addEventListener("input", () => {
+const volumeIcon = document.querySelector("span.volume_up");
+let isMuted = false;
+
+const savedVolume = localStorage.getItem("currentVolume");
+if (savedVolume !== null) {
+  player.volume = parseFloat(savedVolume);
+  volumeSlider.value = player.volume;
+  updateVolumeIcon();
+}
+
+function updateVolumeIcon() {
+  if (player.volume === 0) {
+    volumeIcon.innerHTML = "volume_off";
+    volumeIcon.classList.add("volume_off");
+    isMuted = true;
+  } else {
+    volumeIcon.innerHTML = "volume_up";
+    volumeIcon.classList.remove("volume_off");
+    isMuted = false;
+  }
+}
+
+// Evento para mudar o volume com o slider
+volumeSlider.addEventListener("input", () => {
   player.volume = volumeSlider.value;
   localStorage.setItem("currentVolume", player.volume); // Salva o volume atual
-});*/
+  updateVolumeIcon();
+});
 
+// Evento para alternar entre mute e unmute
+volumeIcon.addEventListener("click", () => {
+  if (isMuted) {
+    player.volume = parseFloat(localStorage.getItem("currentVolume")) || 1;
+    updateVolumeIcon();
+  } else {
+    localStorage.setItem("currentVolume", player.volume);
+    player.volume = 0;
+    updateVolumeIcon();
+  }
+});
 
 // Salvar tempo atual antes de mudar de faixa
 player.addEventListener("pause", () => {
@@ -180,6 +232,30 @@ progressBarContainer.addEventListener("click", (event) => {
   player.currentTime = newTime;
 });
 
+let isPlay = false;
+document.addEventListener("keydown", function (event) {
+  if (event.key === "ArrowRight") {
+    nextSong();
+  } else if (event.key === "ArrowLeft") {
+    prevSong();
+  } else if (event.key === " ") {
+    if (isPlay) {
+      pauseSong();
+    } else {
+      playSong();
+    }
+    isPlay = !isPlay; // Inverte o estado de reprodução
+  } else if (event.key === "m") {
+    if (player.volume === 0) {
+      const currentVolume = localStorage.getItem("currentVolume");
+      player.volume = currentVolume !== null ? parseFloat(currentVolume) : 1; // Define um volume padrão
+    } else {
+      localStorage.setItem("currentVolume", player.volume);
+      player.volume = 0;
+    }
+  }
+});
+
 // Carregar estado ao iniciar
 loadSavedState();
-loadTrackSlider(); // Carrega o slider ao iniciar
+loadTrackSlider();

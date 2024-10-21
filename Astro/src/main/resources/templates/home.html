@@ -39,29 +39,44 @@
       href="https://unpkg.com/swiper/swiper-bundle.min.css"
     />
     <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1/dist/confetti.browser.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/driver.js@1.0.1/dist/driver.js.iife.js"></script>
     <link
       rel="stylesheet"
       href="https://cdn.jsdelivr.net/npm/driver.js@1.0.1/dist/driver.css"
     />
+    
     <link rel="stylesheet" href="/css/api/drive.css" />
+    <link rel="stylesheet" href="/css/api/swiper.css" />
+
     <link rel="stylesheet" href="/css/root/font.css" />
     <link rel="stylesheet" href="/css/root/root.css" />
     <link rel="stylesheet" href="/css/root/variables.css" />
-    
-    <link rel="stylesheet" href="/css/sidebar.css" />
-    <link rel="stylesheet" href="/css/player.css" />
-    <link rel="stylesheet" href="/css/home.css" />
+
+    <link rel="stylesheet" href="/css/components/player.css" />
+    <link rel="stylesheet" href="/css/components/sidebar.css" />
+    <link rel="stylesheet" href="/css/components/navbar.css" />
+
+    <link rel="stylesheet" href="/css/screen/home.css" />
   </head>
   <body>
-    <nav class="navgation_bar">
-      <a href="/home" class="nav-logo bebas-neue-regular">Astro</a>
-      <img
-        src="https://fakeimg.pl/40x40/e9e9e9/e9e9e9"
-        alt="placeholder"
-        class="user-perfil"
-      />
+  <button id="logoutBtn">SAIR</button>
+    <nav class="navigation-bar">
+      <div class="side-left">
+        <a href="/home" class="nav-logo bebas-neue-regular">Astro</a>
+      </div>
+      <div class="side-right">
+        <a href="./planos.html" class="btn-shine montserrat-bold">Seja <i>premium</i></a>
+        <a href="/user" class="btn-user">
+          <img
+            src="https://fakeimg.pl/40x40/e9e9e9/e9e9e9"
+            alt="placeholder"
+            class="user-perfil"
+          />
+        </a>
+      </div>
     </nav>
+    
     <div class="container_player">
       <div class="player">
         <!-- Seção esquerda do player -->
@@ -114,102 +129,80 @@
 
         <!-- Controle de volume -->
         <div class="volume-control">
-          <input
-            type="range"
-            id="volumeSlider"
-            min="0"
-            max="1"
-            step="0.01"
-            value="1"
-          />
+          <span class="material-symbols-outlined volume_up">volume_up</span>
+          <div class="volume-toolkit">
+            <input
+              type="range"
+              id="volumeSlider"
+              min="0"
+              max="1"
+              step="0.01"
+              value="1"
+            />
+          </div>
         </div>
       </div>
     </div>
-
     <main>
-      <div class="wrapper">
-        <div class="display-infomation-artist">
-          <p class="montserrat-regular">Conheça mais sobre</p>
-          <h1 class="bebas-neue-regular">Coldplay</h1>
-          <button id="navgationArtist" class="montserrat-semi-bold">
-            Encontre outras músicas
-          </button>
-        </div>
-        <div class="display-others-artist">
-          <h2 class="montserrat-regular">Continue escutando</h2>
-          <div class="section-artist">
-            <a href="#" class="card-artist">
-              <div
-                class="card-artist-box"
-                style="
-                  background: url('https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcQMJu44513s78l4Bzyurm_zL0oZhkn_3Un9oKwnBn7Aqr9QI7bI');
-                  background-size: cover;
-                  background-position: 50% 50%;
-                "
-              >
-                <p class="bebas-neue-regular">Adele</p>
-              </div>
-            </a>
-            <a href="#" class="card-artist">
-              <div
-                class="card-artist-box"
-                style="
-                  background: url('https://i.ytimg.com/vi/fHI8X4OXluQ/hq720.jpg?sqp=-oaymwEhCK4FEIIDSFryq4qpAxMIARUAAAAAGAElAADIQj0AgKJD&rs=AOn4CLDkvNyb9DIvJuwUcn0anv3POazJWg');
-                  background-size: cover;
-                  background-position: 50% 50%;
-                "
-              >
-                <p class="bebas-neue-regular">The Weeknd</p>
-              </div>
-            </a>
-            <a href="#" class="card-artist">
-              <div
-                class="card-artist-box"
-                style="
-                  background: url('https://i.insider.com/6523dcd36561dd877e745ee2?width=700');
-                  background-size: cover;
-                  background-position: 50% 50%;
-                "
-              >
-                <p class="bebas-neue-regular">Drake</p>
-              </div>
-            </a>
-          </div>
-        </div>
+      <div class="wrapper first-acess">
+        <span class="montserrat-bold" id="userNameAcess"></span>
+        <h1 class="bebas-neue-regular first-acess-title">
+          Seja bem-vindo ao Astro
+        </h1>
+        <p class="montserrat-regular subtitle">Suas músicas nas galáxias</p>
       </div>
 
-      <div class="content-section">
-        <section class="local-tracks">
-          <h2 class="bebas-neue-regular categoria-name">Andrômeda</h2>
-          <div class="swiper-container-musicas">
-            <div class="swiper-wrapper" id="lista-local-songs"></div>
-            <div class="swiper-button-next-musicas"></div>
-            <div class="swiper-button-prev-musicas"></div>
-          </div>
-        </section>
+      <section class="local-tracks swiper">
+        <h2 class="bebas-neue-regular categoria-name">Andrômeda</h2>
+        <div class="swiper-container">
+          <div class="swiper-wrapper" id="lista-local-songs"></div>
+          <button class="swiper-button-prev"></button>
+          <button class="swiper-button-next"></button>
+        </div>
+      </section>
 
-        <section class="artistas-section">
-          <h2 class="bebas-neue-regular categoria-name">Top Artistas</h2>
-          <div class="swiper-container-artistas">
-            <div class="swiper-wrapper" id="lista-artistas"></div>
-            <div class="swiper-button-next-artistas"></div>
-            <div class="swiper-button-prev-artistas"></div>
-          </div>
-        </section>
+      <section class="artistas-section swiper">
+        <h2 class="bebas-neue-regular categoria-name">Top Artistas</h2>
+        <div class="swiper-container">
+          <div class="swiper-wrapper" id="lista-artistas"></div>
+          <button class="swiper-button-prev"></button>
+          <button class="swiper-button-next"></button>
+        </div>
+      </section>
 
-        <section class="music-section">
-          <h2 class="bebas-neue-regular categoria-name">Rock</h2>
-          <div class="swiper-container-musicas">
-            <div class="swiper-wrapper" id="lista-musicas"></div>
-            <div class="swiper-button-next-musicas"></div>
-            <div class="swiper-button-prev-musicas"></div>
-          </div>
-        </section>
-      </div>
+      <section class="music-section swiper">
+        <h2 class="bebas-neue-regular categoria-name">Rock</h2>
+        <div class="swiper-container">
+          <div class="swiper-wrapper" id="lista-musicas"></div>
+          <button class="swiper-button-prev"></button>
+          <button class="swiper-button-next"></button>
+        </div>
+      </section>
+
+      <section class="music-section swiper">
+        <h2 class="bebas-neue-regular categoria-name">Pop</h2>
+        <div class="swiper-container">
+          <div class="swiper-wrapper" id="lista-albums"></div>
+          <button class="swiper-button-prev"></button>
+          <button class="swiper-button-next"></button>
+        </div>
+      </section>
     </main>
-    <script src="js/generator/menus.js"></script>
-    <script src="js/api/apiAcess.js"></script>
-    <script src="js/driver/driver.js"></script>
-    <script type="module" src="js/musicPlayer.js"></script>
+
+    <script src="/js/generator/menus.js"></script>
+    <script src="/js/driver/driver.js"></script>
+    <script src="/js/swipe.js"></script>
+    <script src="/js/token.js"></script>
+    <script src="/js/home.js"></script>
+    <script type="module" src="/js/musicPlayer.js"></script>
+    <script type="module" src="/js/api/apiAcess.js"></script>
+  <script>
+    // Pegue o token do modelo e armazene no localStorage
+    const token = /*[[${token}]]*/ ''; // O token é injetado no modelo pelo Spring
+    if (token) {
+        localStorage.setItem('authToken', token); // Armazena o token no localStorage
+    }
+  </script>
+
   </body>
 </html>

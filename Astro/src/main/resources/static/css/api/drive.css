@@ -1,60 +1,68 @@
+/* 
+  Arquivo: drive.css
+  Descrição: Este arquivo contém os estilos da api de tour do Astro.
+
+  Seções principais:
+  1. Estilos do popover do driver.js
+
+  Data: 20 de Outubro de 2024
+*/
+
 .driver-popover.driverjs-theme {
   background-color: var(--primary);
-  color: var(--white);
+  border-radius: 8px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  transition: transform 0.3s ease, opacity 0.3s ease;
 }
 
 .driver-popover.driverjs-theme .driver-popover-title {
   font-size: 20px;
+  font-weight: bold;
+  color: var(--secondary);
+  margin-bottom: 10px;
 }
 
-.driver-popover.driverjs-theme .driver-popover-title,
 .driver-popover.driverjs-theme .driver-popover-description,
 .driver-popover.driverjs-theme .driver-popover-progress-text {
-  color: var(--white);
+  color: var(--font-all);
+}
+
+.driver-popover.driverjs-theme .driver-popover-description {
+  font-size: 12px;
 }
 
 .driver-popover.driverjs-theme button {
-  padding-inline: 2rem;
+  flex: 1;
   text-align: center;
+  background-color: var(--secondary-shadow);
+  color: var(--font-all);
   text-shadow: none;
-  background: transparent;
-  color: var(--white);
   font-size: 14px;
-  border-radius: 8px;
+  padding: 5px 8px;
+  border: 0;
+  border-radius: 6px;
+  transition: background-color 0.3s, transform 0.2s;
 }
 
 .driver-popover.driverjs-theme button:hover {
   background-color: var(--secondary);
+  color: var(--font-all);
+  transform: scale(1.05);
 }
 
 .driver-popover.driverjs-theme .driver-popover-navigation-btns {
   justify-content: space-between;
+  gap: 3px;
 }
 
 .driver-popover.driverjs-theme .driver-popover-close-btn {
-  color: #9b9b9b;
-}
-
-.driver-popover.driverjs-theme .driver-popover-close-btn:hover {
   color: var(--white);
-}
+  font-weight: 800;
+  background: none;
+  border: 0;
 
-.driver-popover.driverjs-theme
-  .driver-popover-arrow-side-left.driver-popover-arrow {
-  border-left-color: var(--primary-shadow);
-}
-
-.driver-popover.driverjs-theme
-  .driver-popover-arrow-side-right.driver-popover-arrow {
-  border-right-color: var(--primary-shadow);
-}
-
-.driver-popover.driverjs-theme
-  .driver-popover-arrow-side-top.driver-popover-arrow {
-  border-top-color: var(--primary-shadow);
-}
-
-.driver-popover.driverjs-theme
-  .driver-popover-arrow-side-bottom.driver-popover-arrow {
-  border-bottom-color: var(--primary-shadow);
+  &:hover {
+    color: var(--secondary);
+    background: none;
+  }
 }
