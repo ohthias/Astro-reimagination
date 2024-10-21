@@ -59,7 +59,7 @@ document.addEventListener("DOMContentLoaded", function () {
       setTimeout(() => {
         notificationItem.remove();
       }, 500); // Tempo do fade
-    }, 5000); // Tempo antes de iniciar o fade
+    }, 3000); // Tempo antes de iniciar o fade
   }
   // Criação da sidebar
   const sidebar = document.createElement("div");

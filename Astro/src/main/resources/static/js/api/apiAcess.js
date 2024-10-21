@@ -351,7 +351,7 @@ const exibirAlbums = (albums) => {
         : "Artista desconhecido";
 
     slide.innerHTML = `
-      <a href="./album.html?id=${album.id}" class="album-item">
+      <a href="./album?id=${album.id}" class="album-item">
         <img src="${imgUrl}" class="album-image" alt="${albumName}" />
         <div class="album-item-detail">
           <h5 class="montserrat-bold">${albumName}</h5>

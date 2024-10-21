@@ -43,6 +43,11 @@ public class HomeController {
         return "login";
     }
 
+    @GetMapping("/plano")
+    public String plano(){
+        return "plano";
+    }
+
     @GetMapping("/sign")
     public String sign(){
         return "sign";
@@ -64,6 +69,12 @@ public class HomeController {
 
     @GetMapping("/artist")
     public String artist() { return  "artist";}
+
+    @GetMapping("/playlist")
+    public  String playlist() {return "playlist";}
+
+    @GetMapping("/album")
+    public  String album() {return "album";}
 
     @GetMapping("/busca")
     public  String busca() {return "busca";}
@@ -89,19 +100,6 @@ public class HomeController {
             model.addAttribute("errorMessage", "Erro ao processar o perfil do usuário");
             return "error"; // Retorna uma página de erro
         }
-    }
-
-
-    @GetMapping("/playlist/{id}")
-    public String playlist(@PathVariable("id") String id, @RequestParam("token") String token, Model model) {
-        model.addAttribute("token", token);
-        return "playlist";
-    }
-
-    @GetMapping("/album/{id}")
-    public String album(@PathVariable("id") String id, @RequestParam("token") String token, Model model) {
-        model.addAttribute("token", token);
-        return "album";
     }
 
     @GetMapping("/single/{id}")
