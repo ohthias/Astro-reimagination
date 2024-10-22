@@ -2,7 +2,7 @@
   Arquivo: eroor.css
   Descrição: Este arquivo contém os estilos da página index do Astro.
     
-  Data: 20 de Outubro de 2024
+  Data: 21 de Outubro de 2024
 */
 
 body {
@@ -261,6 +261,7 @@ section.container2 {
   box-shadow: 0 5px 5px var(--shadow-shadow);
 
   .wrapper-track {
+    width: 100%;
     display: flex;
     justify-content: space-evenly;
     align-items: stretch;
@@ -304,6 +305,7 @@ section.music-section {
     var(--shadow) 10%,
     var(--secondary-shadow) 100%
   );
+
   display: flex;
   justify-content: space-evenly;
   align-items: center;
@@ -324,8 +326,8 @@ section.music-section {
       top: 0;
       left: 0;
       border-radius: 12px;
-      background: url("https://images.theconversation.com/files/512871/original/file-20230301-26-ryosag.jpg?ixlib=rb-4.1.0&rect=97%2C79%2C5799%2C5817&q=45&auto=format&w=926&fit=clip") #000000
-        no-repeat center center;
+      background: url("https://images.theconversation.com/files/512871/original/file-20230301-26-ryosag.jpg?ixlib=rb-4.1.0&rect=97%2C79%2C5799%2C5817&q=45&auto=format&w=926&fit=clip")
+        #000000 no-repeat center center;
       background-size: cover;
       z-index: 2;
       opacity: 0;
@@ -344,7 +346,7 @@ section.music-section {
       position: absolute;
       background: url("https://images.vexels.com/content/161229/preview/vinyl-record-pattern-illustration-5517d1.png")
         no-repeat center center;
-      background-size: fill;
+      background-size: contain;
       z-index: 0;
       animation: rotateDicos 10s infinite linear;
     }
@@ -392,7 +394,8 @@ section.container3 {
     text-shadow: 0 0 25px var(--tertiary-shadow);
   }
 
-  p, a {
+  p,
+  a {
     margin: 0.5rem 0;
     font-size: 24px;
     text-align: center;
@@ -625,6 +628,35 @@ footer {
   .buttons button.button-sign {
     font-size: 24px;
   }
+  
+  section.container2 .wrapper-track {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    place-items: center;
+    .wrapper-item {
+      align-items: center;
+    }
+  }
+
+  section.music-section {
+    flex-direction: column;
+    gap: 2rem;
+    .music-image {
+      width: 400px;
+      height: 400px;
+    }
+    .music-detai {
+      width: 100%;
+      align-items: center;
+      text-align: center;
+      h1 {
+        font-size: 48px;
+      }
+      p {
+        font-size: 20px;
+      }
+    }
+  }
 }
 
 /* Smartphone */
@@ -634,36 +666,160 @@ footer {
   }
   .containner-info {
     margin-left: 0;
-    top: 10%;
-    -webkit-transform: translateY(-10%);
-    transform: translateY(-10%);
+    top: 50%;
+    -webkit-transform: translateY(-50%);
+    transform: translateY(-50%);
   }
+
+  .containner-info-subtitle {
+    width: 50%;
+    margin-top: -70px;
+    margin-left: 3rem;
+  }
+
   img.logo-image {
     width: 310px;
     height: auto;
   }
-  .containner-info-subtitle {
-    margin-top: -70px;
-    margin-left: 3rem;
-  }
+
   h2.montserrat-regular {
     font-size: 21px;
   }
+
   .console-container,
   .wrapper h3 {
     font-size: 18px;
   }
+
   .buttons button.button-sign {
     font-size: 21px;
   }
+
   .buttons {
     margin-left: 2rem;
   }
 
-  .wrapper-track {
-    flex-direction: column;
+  section.container2 .wrapper-track {
+    display: flex;
+    margin: 0 auto;
+    flex-wrap: wrap;
     justify-content: center;
     gap: 2rem;
+    align-items: stretch;
+  }
+
+  section.music-section {
+    flex-direction: column;
+
+    .music-image {
+      left: -50px;
+      width: 300px;
+      height: 300px;
+    }
+
+    .music-detai {
+      width: 100%;
+      align-items: center;
+      text-align: center;
+
+      h1 {
+        font-size: 42px;
+      }
+
+      p {
+        font-size: 18px;
+      }
+    }
+  }
+
+  section.container3 {
+    height: 350px;
+    h1 {
+      font-size: 42px;
+    }
+
+    p,
+    a {
+      font-size: 18px;
+    }
+
+    .circle {
+      width: 250px;
+      height: 250px;
+    }
+
+    .circle1::after,
+    .circle2::after {
+      width: 15px;
+      height: 15px;
+    }
+  }
+
+  section.container4 {
+    height: 700px;
+    h1 {
+      font-size: 42px;
+    }
+
+    .container-wrapper {
+      flex-direction: column;
+      gap: 2rem;
+
+      img {
+        width: 200px;
+      }
+
+      .container-details {
+        width: 100%;
+        align-items: center;
+        text-align: center;
+        gap: 1rem;
+
+        h2 {
+          font-size: 28px;
+        }
+
+        p {
+          text-align: center;
+          width: 75%;
+          font-size: 18px;
+        }
+
+        a.button-redirect {
+          font-size: 21px;
+        }
+      }
+    }
+  }
+
+  footer {
+    padding: 2rem 0;
+    padding-inline: 2rem;
+
+    .footer-container {
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      justify-content: center;
+      gap: 2rem;
+      .footer-container-item {
+        img {
+          margin-top: 0;
+        }
+      }
+    }
+
+    .others-informations {
+      flex-wrap: wrap;
+      gap: 2rem;
+      p {
+        font-size: 16px;
+      }
+
+      a {
+        font-size: 16px;
+      }
+    }
   }
 }
 
@@ -754,8 +910,14 @@ footer {
 }
 
 /* Animation-timeline */
-.leFadeIn span { animation-name: leFadeIn }
+.leFadeIn span {
+  animation-name: leFadeIn;
+}
 @keyframes leFadeIn {
-    from { opacity: 0 }
-    to { opacity: 1 }
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
 }

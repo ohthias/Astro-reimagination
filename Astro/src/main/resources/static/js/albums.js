@@ -70,13 +70,24 @@ const displayAlbumData = (albumData) => {
   albumImage.alt = albumData.name;
   albumImage.classList.add("album-image");
 
-  const albumTitleNav = document.getElementById("albumTitleNav");
-  albumTitleNav.textContent = albumData.name;
-  const albumTitle = document.getElementById("albumTitleElement");
-  albumTitle.textContent = albumData.name;
-  const albumArtist = document.getElementById("albumArtistElement");
-  albumArtist.textContent = albumData.artists[0].name;
-  albumArtist.href = `artist.html?id=${albumData.artists[0].id}`;
+  document.getElementById("albumTitleElement").textContent = albumData.name;
+  const albumArtistElement = document.getElementById("albumArtistElement");
+  albumArtistElement.innerHTML = ""; // Limpar qualquer conteúdo existente no elemento
+
+  albumData.artists.forEach((artist) => {
+    const artistLink = document.createElement("a");
+    artistLink.classList.add("montserrat-regular"); // Classe para estilização
+    artistLink.href = `/artist?id=${artist.id}`; // Definir o link para o artista
+    artistLink.textContent = artist.name; // Nome do artista
+
+    albumArtistElement.appendChild(artistLink); // Adicionar o link ao elemento
+
+    // Adicionar uma vírgula e espaço entre os links, exceto no último
+    if (artist !== albumData.artists[albumData.artists.length - 1]) {
+      const separator = document.createTextNode(", ");
+      albumArtistElement.appendChild(separator); // Adicionar a vírgula após cada artista, exceto o último
+    }
+  });
 
   // Criar a lista de faixas
   const trackList = document.createElement("ul");
@@ -90,7 +101,7 @@ const displayAlbumData = (albumData) => {
 
     const trackNumber = document.createElement("span");
     trackNumber.classList.add("track-number", "montserrat-regular");
-    trackNumber.textContent = `#${track.track_number}`;
+    trackNumber.innerHTML = `#${track.track_number}`;
     trackNumber.dataset.trackNumber = track.track_number;
 
     const trackPicture = document.createElement("picture");
@@ -119,24 +130,29 @@ const displayAlbumData = (albumData) => {
 
     const trackTitle = document.createElement("h3");
     trackTitle.classList.add("montserrat-bold");
-    trackTitle.textContent = track.name;
+    trackTitle.innerHTML = track.name;
     trackTitle.dataset.trackTitle = track.name;
 
-    const trackArtists = document.createElement("a");
-    trackArtists.classList.add("montserrat-regular");
-    trackArtists.href = `artist.html?id=${track.artists[0].id}`;
-    let artistNames = track.artists[0].name;
-    if (track.artists.length > 1) {
-      for (let i = 1; i < track.artists.length; i++) {
-        artistNames += ", " + track.artists[i].name; // Concatena os nomes com uma vírgula
-      }
-    }
+    const trackArtistsContainer = document.createElement("div"); // Contêiner para armazenar todos os links dos artistas
+    trackArtistsContainer.classList.add("artists-container"); // Classe opcional para estilização
 
-    trackArtists.textContent = artistNames;
-    trackArtists.dataset.trackArtist = track.artists[0].name;
+    track.artists.forEach((artist) => {
+      const trackArtistLink = document.createElement("a");
+      trackArtistLink.classList.add("montserrat-regular"); // Classe para estilização
+      trackArtistLink.href = `/artist?id=${artist.id}`; // Definir o link para o artista
+      trackArtistLink.textContent = artist.name; // Nome do artista
+
+      trackArtistsContainer.appendChild(trackArtistLink); // Adicionar o link ao contêiner
+
+      // Adicionar uma vírgula e espaço entre os links, exceto no último
+      if (artist !== track.artists[track.artists.length - 1]) {
+        const separator = document.createTextNode(", ");
+        trackArtistsContainer.appendChild(separator); // Adicionar a vírgula após cada artista, exceto o último
+      }
+    });
 
     trackInfo.appendChild(trackTitle);
-    trackInfo.appendChild(trackArtists);
+    trackInfo.appendChild(trackArtistsContainer);
 
     const trackDuration = document.createElement("span");
     trackDuration.classList.add("montserrat-regular");

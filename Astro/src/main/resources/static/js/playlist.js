@@ -73,13 +73,10 @@ const displayPlaylistData = (playlistData) => {
   playlistImage.alt = playlistData.name;
   playlistImage.classList.add("album-image");
 
-  const playlistTitleNav = document.getElementById("albumTitleNav");
-  playlistTitleNav.textContent = playlistData.name;
-  const playlistTitle = document.getElementById("albumTitleElement");
-  playlistTitle.textContent = playlistData.name;
+  document.getElementById("playlistName").innerHTML = playlistData.name
   const playlistOwner = document.getElementById("albumArtistElement");
-  playlistOwner.textContent = playlistData.owner.display_name;
-  playlistOwner.href = `user.html?username=${playlistData.name}`;
+  playlistOwner.innerHTML = playlistData.owner.display_name
+  playlistOwner.href = `user?id=${playlistData.id}`;
 
   // Criar a lista de faixas
   const trackList = document.createElement("ul");
@@ -132,7 +129,7 @@ const displayPlaylistData = (playlistData) => {
 
     const trackArtists = document.createElement("a");
     trackArtists.classList.add("montserrat-regular");
-    trackArtists.href = `artist.html?id=${track.artists[0].id}`;
+    trackArtists.href = `/artist?id=${track.artists[0].id}`;
     let artistNames = track.artists[0].name;
     if (track.artists.length > 1) {
       for (let i = 1; i < track.artists.length; i++) {

@@ -59,7 +59,7 @@ document.addEventListener("DOMContentLoaded", function () {
       setTimeout(() => {
         notificationItem.remove();
       }, 500); // Tempo do fade
-    }, 5000); // Tempo antes de iniciar o fade
+    }, 3000); // Tempo antes de iniciar o fade
   }
   // Criação da sidebar
   const sidebar = document.createElement("div");
@@ -71,7 +71,7 @@ document.addEventListener("DOMContentLoaded", function () {
   // Adicionando itens à lista
   navList.appendChild(
     createMenuItem(
-      '<i class="material-icons">public</i><span class="links_name bebas-neue-regular">Home</span>',
+      '<i class="material-icons">public</i>',
       "Home",
       "home"
     )
@@ -86,7 +86,7 @@ document.addEventListener("DOMContentLoaded", function () {
   navList.appendChild(document.createElement("hr")); // Separator
   navList.appendChild(
     createMenuItem(
-      '<i class="material-icons">folder</i><span class="links_name bebas-neue-regular">Biblioteca</span>',
+      '<i class="material-icons">folder</i>',
       "Biblioteca",
       null,
       true,
@@ -110,27 +110,29 @@ document.addEventListener("DOMContentLoaded", function () {
   );
 
   // Exit section
+  // Exit section
   const exitContainer = document.createElement("div");
   exitContainer.classList.add("exit-container");
 
   const exitItem = createMenuItem(
-    '<i class="material-icons">exit_to_app</i><span class="links_name bebas-neue-regular">Sair</span>',
+    '<i class="material-icons">exit_to_app</i>',
     "Sair",
-    "/",
-    true, // Define como um botão
+    true,
     () => {
-      // Aqui você pode adicionar a lógica de logout se necessário
-      window.location.href = "/"; // Redireciona para a página inicial
+      console.log("Saindo"); // Imprime mensagem no console
+      logout(); // Chama a função de logout
     }
   );
 
+  exitContainer.addEventListener("click", () => logout())
+
   // Adiciona a classe logoutBtn ao botão
-  exitItem.firstChild.classList.add("logoutBtn");
+  exitItem.firstChild.id = "logoutBtn";
 
   exitContainer.appendChild(exitItem);
   navList.appendChild(exitContainer);
 
   // Montagem da lista e sidebar
   sidebar.appendChild(navList);
-  document.body.appendChild(sidebar);
+  document.body.prepend(sidebar);
 });

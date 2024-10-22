@@ -5,7 +5,7 @@
   Seções principais:
   1. Estilos da sidebar
 
-  Data: 20 de Outubro de 2024
+  Data: 21 de Outubro de 2024
 */
 
 .sidebar {
@@ -94,7 +94,8 @@
   backdrop-filter: blur(10px);
 }
 
-.sidebar li a, .sidebar li button {
+.sidebar li a,
+.sidebar li button {
   display: flex;
   height: 100%;
   width: 100%;
@@ -227,4 +228,10 @@ hr {
 .notification-fade {
   transition: opacity 0.5s ease;
   opacity: 0;
+}
+
+@media screen and (max-width: 550px) {
+  .sidebar {
+    display: none;
+  }
 }

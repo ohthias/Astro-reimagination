@@ -77,7 +77,7 @@ main {
       cursor: default;
     }
 
-    button#seguir {
+    a {
       background-color: transparent;
       color: var(--font-all);
       border: 2px solid var(--white);
@@ -87,6 +87,7 @@ main {
       border-radius: 24px;
       cursor: pointer;
       transition: all 0.3s;
+      text-decoration: none;
 
       &:hover {
         background-color: var(--white);

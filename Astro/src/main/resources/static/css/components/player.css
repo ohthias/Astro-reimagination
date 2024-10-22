@@ -9,7 +9,7 @@
   4. Trackbar do player
   5. Botão de volume do player
 
-  Data: 20 de Outubro de 2024
+  Data: 21 de Outubro de 2024
 */
 
 /* Player */
@@ -158,85 +158,6 @@ button:is(#prevButton, #playPauseButton, #nextButton) {
   color: var(--white-shadow);
 }
 
-/* Media screen */
-
-@media screen and (max-width: 1025px) {
-  .containner_player {
-    bottom: 10px;
-  }
-
-  .player {
-    height: 95px;
-  }
-
-  .player_infoMusic #musicName {
-    font-size: 1em;
-  }
-
-  .player_infoMusic #artistName {
-    font-size: 0.5em;
-  }
-}
-
-@media screen and (max-width: 426px) {
-  .containner_player {
-    padding: 0;
-    bottom: 80px;
-  }
-
-  .player {
-    margin: 0;
-    border-bottom-left-radius: 0;
-    border-bottom-right-radius: 0;
-    height: 110px;
-    place-items: center;
-    justify-content: space-around;
-  }
-
-  .player_image #imgSong {
-    width: 60px;
-    height: 60px;
-  }
-
-  .player_infoMusic,
-  .player_infoMusic #musicName {
-    width: 120px;
-  }
-
-  #heartMusic,
-  #randomPlayerMusic {
-    font-size: 1em;
-  }
-
-  .controls {
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    position: absolute;
-    top: -50px;
-    left: 28%;
-    background: transparent;
-    background: var(--background-details-shadow);
-    -webkit-backdrop-filter: blur(20px);
-    backdrop-filter: blur(50px);
-  }
-
-  .progress-bar,
-  .container_volume,
-  .fi-rr-menu-burger,
-  .container_faixas .container_faixas_detalhes,
-  .container_faixas .container_faixas_detalhes.open,
-  .container_faixas {
-    display: none;
-  }
-
-  #duration,
-  #currentTime {
-    margin: 0 1px;
-    font-size: 0.5em;
-  }
-}
-
 .volume-control {
   display: flex;
   flex-direction: column-reverse;
@@ -320,4 +241,52 @@ span.volume_off {
   background: transparent;
   border-color: transparent;
   color: transparent;
+}
+
+/* Media screen */
+
+@media screen and (max-width: 1025px) {
+  .player {
+    height: 95px;
+  }
+
+  .player_infoMusic #musicName {
+    font-size: 1em;
+  }
+
+  .player_infoMusic #artistName {
+    font-size: 0.5em;
+  }
+}
+
+@media screen and (max-width: 550px) {
+  .container_player {
+    grid-area: 3 / 1 / 4 / 8;
+  }
+  .player_image #imgSong {
+    width: 60px;
+    height: 60px;
+  }
+
+  .side-left {
+    width: 80%;
+  }
+
+  .player_infoMusic {
+    width: 100%;
+  }
+
+  #randomPlayerMusic,
+  #nextButton,
+  #prevButton,
+  .container_volume,
+  .timecode_player,
+  .volume-control {
+    display: none;
+  }
+
+  #heartMusic,
+  .playPauseButton {
+    display: flex;
+  }
 }
