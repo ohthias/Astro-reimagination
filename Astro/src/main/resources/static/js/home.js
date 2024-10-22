@@ -25,7 +25,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
         if (decodedToken) {
             // Obtém o nome de usuário do token decodificado (supondo que esteja no campo 'sub')
-            
+
             const userName = decodedToken.sub || "Nome não disponível";
             const userEmail = decodedToken.email || "Email não disponível";
             const userCreationDate = decodedToken.iat ? new Date(decodedToken.iat * 1000).toLocaleDateString() : "Data de criação não disponível";
