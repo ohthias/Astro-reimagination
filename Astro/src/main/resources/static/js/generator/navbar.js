@@ -1,3 +1,8 @@
+/**
+ * Função para criar a barra de navegação do Astro
+ * @ohthias
+ */
+
 const createNavigationBar = () => {
   const nav = document.createElement("nav");
   nav.className = "navigation-bar";
@@ -95,9 +100,9 @@ const createNavigationBar = () => {
   closeButton.setAttribute("aria-label", "Fechar menu");
 
   const menuItems = [
-    { name: "Home", icon: "home", link: "./home.html" },
-    { name: "Busca", icon: "search", link: "./busca.html" },
-    { name: "Sair", icon: "logout", link: "./logout.html" },
+    { name: "Home", icon: "home", link: "./home" },
+    { name: "Busca", icon: "search", link: "./busca" },
+    { name: "Sair", icon: "logout", link: "/" },
   ];
 
   menuItems.forEach((item) => {
@@ -111,6 +116,11 @@ const createNavigationBar = () => {
     menuItem.appendChild(itemIcon);
     menuItem.appendChild(document.createTextNode(item.name));
     menuItem.className = "menu-item montserrat-bold";
+
+    if (item.name === "Sair") {
+      menuItem.classList.add("logoutBtn");
+    }
+
     overlayMenu.appendChild(menuItem);
   });
 
@@ -119,19 +129,19 @@ const createNavigationBar = () => {
   document.body.appendChild(overlayMenu);
 
   // Evento para mostrar/ocultar o menu
-  hamburgerIcon.addEventListener('click', () => {
-    overlayMenu.style.display = 'flex'; // Torna o menu visível
+  hamburgerIcon.addEventListener("click", () => {
+    overlayMenu.style.display = "flex"; // Torna o menu visível
     setTimeout(() => {
-      overlayMenu.classList.add('visible'); // Adiciona a classe de visibilidade após a exibição
+      overlayMenu.classList.add("visible"); // Adiciona a classe de visibilidade após a exibição
     }, 10); // Delay para permitir a aplicação da transição
   });
 
   // Evento para fechar o menu
-  closeButton.addEventListener('click', () => {
-    overlayMenu.classList.remove('visible'); // Remove a classe de visibilidade
+  closeButton.addEventListener("click", () => {
+    overlayMenu.classList.remove("visible");
     setTimeout(() => {
-      overlayMenu.style.display = 'none'; // Oculta o menu após a animação
-    }, 300); // Tempo igual à duração da transição
+      overlayMenu.style.display = "none";
+    }, 300);
   });
 };
 
