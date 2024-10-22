@@ -94,7 +94,8 @@
   backdrop-filter: blur(10px);
 }
 
-.sidebar li a, .sidebar li button {
+.sidebar li a,
+.sidebar li button {
   display: flex;
   height: 100%;
   width: 100%;

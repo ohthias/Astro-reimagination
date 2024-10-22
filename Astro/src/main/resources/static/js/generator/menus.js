@@ -123,7 +123,6 @@ document.addEventListener("DOMContentLoaded", function () {
       window.location.href = "/"; // Redireciona para a página inicial
     }
   );
-
   // Adiciona a classe logoutBtn ao botão
   exitItem.firstChild.classList.add("logoutBtn");
 

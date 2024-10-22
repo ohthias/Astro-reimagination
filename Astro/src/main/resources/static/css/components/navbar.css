@@ -59,6 +59,19 @@ nav.navigation-bar {
   gap: 1rem;
   transition: all 500ms ease;
 
+  .hamburger {
+    display: none;
+    cursor: pointer;
+    font-size: 24px;
+    color: var(--font-all);
+    transition: 250ms;
+
+    &:hover {
+      color: var(--tertiary);
+      text-shadow: 0 0 10px var(--tertiary-shadow);
+    }
+  }
+
   h6#albumTitleNav {
     width: 100%;
     font-size: 18px;
@@ -212,5 +225,30 @@ a.btn-user {
   }
   100% {
     background-position: 180px;
+  }
+}
+
+@media screen and (max-width: 550px) {
+  nav.navigation-bar {
+    grid-area: 1 / 1 / 2 / 8;
+  }
+
+  .side-left .hamburger {
+    display: block;
+  }
+
+  a.btn-user {
+    width: 40px;
+  }
+
+  .btn-shine {
+    padding: 12px 24px;
+    font-size: 14px;
+  }
+}
+
+@media screen and (max-width: 321px) {
+  .btn-shine {
+    display: none;
   }
 }

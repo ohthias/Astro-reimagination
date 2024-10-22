@@ -42,7 +42,7 @@ label.logo-title {
 main.container {
   height: 100%;
   position: absolute;
-  max-width: 550px;
+  max-width: 650px;
   left: 50%;
   -webkit-transform: translateX(-50%);
           transform: translateX(-50%);
@@ -80,7 +80,7 @@ main.container a {
 }
 
 .form-container {
-  margin: 1rem 0;
+  margin: 1rem auto;
   width: 520px;
 }
 
@@ -98,6 +98,7 @@ main.container a {
 }
 
 .form-container input {
+  position: relative;
   margin: 0.5rem 0;
   padding: 0.8rem 0.5rem;
   width: 100%;
@@ -137,6 +138,7 @@ main.container a {
 }
 
 .password-input {
+  position: relative;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -149,7 +151,11 @@ main.container a {
 }
 
 input[type="submit"].button-submit {
-  width: 100%;
+  position: relative;
+  left: 50%;
+  -webkit-transform: translateX(-50%);
+          transform: translateX(-50%);
+  width: 80%;
   padding: 1rem 0;
   border: 0;
   border-radius: 12px;
@@ -192,6 +198,67 @@ p {
   font-size: 21px;
   color: var(--tertiary);
   cursor: pointer;
+
+  a.terms {
+    font-size: 21px;
+  }
+}
+
+/*Google button*/
+#login-button {
+  margin: 1rem 0;
+  position: relative;
+  left: 50%;
+  -webkit-transform: translateX(-50%);
+          transform: translateX(-50%);
+  width: 80%;
+  padding: 0.8rem 0;
+  border: 0;
+  border-radius: 12px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: 500ms;
+  background: var(--black-shadow);
+  color: var(--font-all);
+
+  &:hover, &:focus {
+    background: var(--white);
+    box-shadow: 0 0 25px rgba(255, 255, 255, 0.5);
+    color: var(--secondary);
+  }
+}
+
+#login-button::before {
+  content: '';
+  background: url('https://www.svgrepo.com/show/303108/google-icon-logo.svg') no-repeat center;
+  background-size: 16px 16px;
+  display: inline-block;
+  --size: 16px;
+  width: var(--size);
+  height: var(--size);
+  margin-right: 10px;
+}
+
+
+/*Media*/
+
+@media screen and (min-width: 1080) {
+  main.container h1 {
+    font-size: 64px;
+  }
+  a {
+    font-size: 24px;
+  }
+  .form-container input {
+    font-size: 18px;
+  }
+
+  input[type="submit"].button-submit {
+    font-size: 18px;
+    padding: 1rem;
+  }
 }
 
 @media screen and (max-width: 850px) {
@@ -213,19 +280,19 @@ p {
   }
   label.logo-title,
   a {
-    font-size: 14px;
+    font-size: 21px;
   }
   main.container {
     width: 100%;
-    left: 50%;
-    -webkit-transform: translateX(-50%);
-            transform: translateX(-50%);
+    left: 25%;
+    -webkit-transform: translateX(-25%);
+            transform: translateX(-25%);
   }
   main.container h1 {
     font-size: 32px;
   }
   main.container a {
-    font-size: 14px;
+    font-size: 21px;
   }
   .form-container {
     margin-top: 8px;
@@ -238,9 +305,9 @@ p {
   }
   p {
     font-size: 12px;
-  }
-  p a.bebas-neue-regular {
-    font-size: 12px;
+    a.terms {
+      font-size: 12px;
+    }
   }
 }
 
@@ -261,41 +328,3 @@ p {
     opacity: 1;
   }
 }
-
-#login-button {
-  width: 100%;
-  padding: 1rem 0;
-  border: 0;
-  border-radius: 12px;
-  background: var; /* Cor do botão Google */
-  color: white; /* Texto branco */
-  font-size: 21px;
-  cursor: pointer;
-  transition: 500ms;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-weight: bold;
-}
-
-#login-button:hover {
-  background: #357ae8; /* Cor mais escura ao passar o mouse */
-  box-shadow: 0 0 25px rgba(66, 133, 244, 0.5);
-}
-
-#login-button:focus {
-  outline: none; /* Remove o contorno padrão */
-  box-shadow: 0 0 0 3px rgba(66, 133, 244, 0.5); /* Efeito de foco */
-}
-
-/* Para adicionar um ícone ao botão, se desejar */
-#login-button::before {
-  content: '';
-  background: url('C:\Users\Aluno\Documents\GitHub\Astro-reimagination\Astro\src\main\resources\static\favicon/google.png') no-repeat center; /* Caminho do ícone do Google */
-  background-size: 20px 20px; /* Ajuste o tamanho do ícone */
-  display: inline-block;
-  width: 20px; /* Largura do ícone */
-  height: 20px; /* Altura do ícone */
-  margin-right: 10px; /* Espaçamento entre o ícone e o texto */
-}
-
