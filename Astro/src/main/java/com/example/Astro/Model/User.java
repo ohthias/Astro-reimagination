@@ -8,7 +8,6 @@ import java.util.Date;
 @Entity
 @Table(name = "User_Details")
 public class User {
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "idUser_Details")
@@ -41,7 +40,6 @@ public class User {
         this.username = username;
         this.lastAccess = lastAccess;
         this.token = token;
-
     }
 
     // Getters e Setters

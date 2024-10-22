@@ -50,15 +50,9 @@
       <section class="user-banner">
         <div class="user-banner-details">
           <h1 class="montserrat-bold" id="userNameAcess"></h1>
+
           <div class="details-side-right">
-            <div class="followers-container">
-              <span class="seguidores montserrat-regular">000</span>
-              <div class="circle"></div>
-              <span class="seguindo montserrat-regular">000</span>
-            </div>
-            <button id="seguir" class="btn-seguir bebas-neue-regular">
-              Seguir
-            </button>
+            <a href="/setting" class="btn-seguir montserrat-bold">Editar</a>
           </div>
         </div>
         <div class="user-banner-image">
@@ -71,7 +65,7 @@
         </div>
       </section>
 
-      <section class="user-playlists swiper">
+      <section class="user-playlists swiper" style="display: none;">
         <h2 class="montserrat-bold categoria-name">Playlists</h2>
         <div class="swiper-container">
           <div class="swiper-wrapper"></div>
@@ -86,10 +80,11 @@
 
     <script src="/js/home.js"></script>
     <script src="/js/token.js"></script>
-    <script src="/js/background-color.js"></script>
+    <script src="/js/theme.js"></script>
 
     <script type="module" src="/js/user.js"></script>
     <script type="module" src="/js/swipe.js"></script>
     <script type="module" src="/js/musicPlayer.js"></script>
+    <script src="/js/background-color.js"></script>
   </body>
 </html>

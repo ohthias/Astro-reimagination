@@ -252,3 +252,58 @@ a.btn-user {
     display: none;
   }
 }
+
+.overlay-menu {
+  position: fixed;
+  padding: 1rem;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: var(--black-shadow);
+  backdrop-filter: blur(10px);
+  color: var(--font-all);
+  display: none;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+  z-index: 1000;
+  opacity: 0;
+  transform: translateY(-20px); 
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.overlay-menu.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.menu-item {
+  margin: 15px 0;
+  color: var(--font-all);
+  text-decoration: none;
+  font-size: 24px;
+  display: flex;
+  align-items: center;
+  transform: all 250ms;
+
+  span {
+    margin-right: 1rem;
+  }
+
+  &:hover {
+    color: var(--tertiary);
+    border-bottom: 2px solid var(--tertiary);
+  }
+}
+
+.close-button {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  background: transparent;
+  border: none;
+  color: white;
+  font-size: 30px;
+  cursor: pointer;
+}

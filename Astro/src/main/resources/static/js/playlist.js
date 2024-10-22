@@ -73,13 +73,10 @@ const displayPlaylistData = (playlistData) => {
   playlistImage.alt = playlistData.name;
   playlistImage.classList.add("album-image");
 
-  const playlistTitleNav = document.getElementById("albumTitleNav");
-  playlistTitleNav.textContent = playlistData.name;
-  const playlistTitle = document.getElementById("albumTitleElement");
-  playlistTitle.textContent = playlistData.name;
+  document.getElementById("playlistName").innerHTML = playlistData.name
   const playlistOwner = document.getElementById("albumArtistElement");
-  playlistOwner.textContent = playlistData.owner.display_name;
-  playlistOwner.href = `user?username=${playlistData.name}`;
+  playlistOwner.innerHTML = playlistData.owner.display_name
+  playlistOwner.href = `user?id=${playlistData.id}`;
 
   // Criar a lista de faixas
   const trackList = document.createElement("ul");

@@ -36,7 +36,7 @@
   --tertiary-shadow: #29f24749;
 }
 
-:root.light {
+.light {
   --font-all: #121212; /* Cor do texto */
   --background-all: #f3f3f3; /* Cor de fundo */
 
@@ -60,7 +60,7 @@
   --tertiary-shadow: rgba(41, 242, 71, 0.3); /* Sombra da cor terciária */
 }
 
-:root.dark {
+.dark {
    --font-all: #ffffff; /* Cor do texto em branco para contraste */
   --background-all: #121212; /* Cor de fundo preta */
 
@@ -84,7 +84,7 @@
   --tertiary-shadow: rgba(102, 102, 102, 0.3); /* Sombra da cor terciária */
 }
 
-:root.ocean {
+.ocean {
   --font-all: #ffffff; /* Cor do texto em branco para contraste */
   --background-all: #121212; /* Cor de fundo preta */
 
@@ -108,7 +108,7 @@
   --tertiary-shadow: rgba(38, 166, 154, 0.3); /* Sombra da cor terciária */
 }
 
-:root.fire {
+.fire {
   --font-all: #ffffff; /* Cor do texto em branco para contraste */
   --background-all: #ff4c4c; /* Cor de fundo preta */
 

@@ -26,9 +26,9 @@ document.addEventListener('DOMContentLoaded', addTokenToLinks);
 
 // Função para logout (chamada pelo botão de logout)
 function logout() {
+    window.confirm("Você realmente quer sair?")
     localStorage.removeItem('authToken'); // Remove o token do armazenamento local
+    localStorage.removeItem('theme')
+    localStorage.removeItem('driveInitialized')
     window.location.href = '/login'; // Redireciona para a página de login
 }
-
-// Adiciona o evento de logout ao botão de logout
-document.getElementById('logoutBtn').addEventListener('click', logout);

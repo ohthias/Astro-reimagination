@@ -229,3 +229,9 @@ hr {
   transition: opacity 0.5s ease;
   opacity: 0;
 }
+
+@media screen and (max-width: 550px) {
+  .sidebar {
+    display: none;
+  }
+}

@@ -68,16 +68,16 @@ const createNavigationBar = () => {
   sideRight.className = "side-right";
 
   const premiumLink = document.createElement("a");
-  premiumLink.href = "./planos.html";
+  premiumLink.href = "/plano";
   premiumLink.className = "btn-shine montserrat-bold";
   premiumLink.innerHTML = "Seja <i>premium</i>";
 
   const userLink = document.createElement("a");
-  userLink.href = "./user.html";
+  userLink.href = "/user";
   userLink.className = "btn-user";
 
   const userImage = document.createElement("img");
-  userImage.src = "https://fakeimg.pl/40x40/e9e9e9/e9e9e9";
+  userImage.src = "/images/placeholder.png";
   userImage.alt = "placeholder";
   userImage.className = "user-perfil";
 
@@ -100,8 +100,8 @@ const createNavigationBar = () => {
   closeButton.setAttribute("aria-label", "Fechar menu");
 
   const menuItems = [
-    { name: "Home", icon: "home", link: "./home" },
-    { name: "Busca", icon: "search", link: "./busca" },
+    { name: "Home", icon: "home", link: "/home" },
+    { name: "Busca", icon: "search", link: "/busca" },
     { name: "Sair", icon: "logout", link: "/" },
   ];
 

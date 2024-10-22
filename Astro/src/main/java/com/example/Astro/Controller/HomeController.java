@@ -6,22 +6,28 @@ package com.example.Astro.Controller;
     Data: 24.09.2024
  */
 
+import java.time.LocalDate;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpEntity;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpMethod;
+import org.springframework.http.ResponseEntity;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.client.RestTemplate;
+
 import com.example.Astro.Model.User;
 import com.example.Astro.Repository.UserRepository;
 import com.example.Astro.service.TokenService;
 import com.example.Astro.service.UserService;
-import io.jsonwebtoken.Claims;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.*;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.*;
-import org.springframework.web.client.RestTemplate;
-import java.util.Optional;
 
-import java.security.Principal;
-import java.time.LocalDate;
+import io.jsonwebtoken.Claims;
 
 @Controller
 public class HomeController {
@@ -78,6 +84,9 @@ public class HomeController {
 
     @GetMapping("/busca")
     public  String busca() {return "busca";}
+
+    @GetMapping("/setting")
+    public String setting() {return "setting";}
 
     @GetMapping("/user")
     public String userProfile(@RequestParam("token") String token, Model model) {
