@@ -49,6 +49,11 @@ public class HomeController {
         return "login";
     }
 
+    @GetMapping("/pagamento")
+    public String pagamento(){
+        return "pagamento";
+    }
+
     @GetMapping("/plano")
     public String plano(){
         return "plano";

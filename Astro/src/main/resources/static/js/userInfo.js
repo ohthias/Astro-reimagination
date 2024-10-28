@@ -20,6 +20,14 @@ document.getElementById("fireMode").addEventListener("click", () => {
   changeTheme("fire");
 });
 
+document.getElementById("garden").addEventListener("click", () => {
+  changeTheme("green");
+});
+
+document.getElementById("highContrast").addEventListener("click", () => {
+  changeTheme("high-contrast");
+});
+
 function changeTheme(themeClass) {
   rootElement.className = ""; // Remove all previous classes
   rootElement.classList.add(themeClass); // Add the new theme class
