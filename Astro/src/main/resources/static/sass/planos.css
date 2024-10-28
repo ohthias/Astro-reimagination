@@ -66,6 +66,7 @@ section.plans {
   justify-content: space-evenly;
   align-items: stretch;
 }
+
 section.plans .plan-card {
   background: var(--black-shadow);
   color: var(--white);

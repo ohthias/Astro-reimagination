@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Astro Pagamento</title>
+    <script src="https://js.stripe.com/v3/"></script>
+    <link rel="stylesheet" href="/css/screen/pagamento.css" />
+    <link rel="stylesheet" href="/css/root/root.css" />
+    <link rel="stylesheet" href="/css/root/variables.css" />
+  </head>
+  <body>
+    <nav class="navgation-bar">
+      <img
+        src="/svg/Astro.svg"
+        alt="logo-svg"
+        class="navgation-bar-logo"
+        onclick="redirectIndex()"
+      />
+      <div class="navgation-bar-menu">
+        <a
+          href="https://github.com/ohthias/Astro-reimagination/wiki"
+          target="_blank"
+          class="menu-button-redirect montserrat-bold"
+          >Documentação</a
+        >
+        <a
+          href="https://github.com/ohthias/Astro-reimagination/wiki"
+          target="_blank"
+          class="menu-button-redirect montserrat-bold"
+          >About</a
+        >
+        <a href="/login" class="menu-button-redirect montserrat-bold">Entrar</a>
+      </div>
+    </nav>
+    <section class="main">
+        <form id="payment-form">
+            <div id="card-element">
+                <!-- A Stripe Element will be inserted here. -->
+            </div>
+            <button type="submit">Pagar</button>
+            <div id="error-message"></div>
+        </form>
+    </section>
+    <script src="/js/others/redirects.js"></script>
+    <script>
+      const stripe = Stripe(
+        "pk_live_51QCOCvGsq2ZfkEa8EptkZ8yNBW0CuGJRJzfcfSS0FWbh4Vi2eHR0sKm2Dc0p9sAsdRtazJZwgFKdd9Bn259X9vhX00XOIXb6W0"
+      );
+      const elements = stripe.elements();
+      const cardElement = elements.create("card");
+      cardElement.mount("#card-element");
+
+      const form = document.getElementById("payment-form");
+      form.addEventListener("submit", async (event) => {
+        event.preventDefault();
+
+        // Criar um PaymentIntent
+        const response = await fetch("/payment/create-payment-intent", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ amount: 50, currency: "brl" }), // valor em centavos (ex: 50.00 BRL)
+        });
+
+        if (!response.ok) {
+          const errorMessage = await response.json();
+          document.getElementById("error-message").textContent =
+            errorMessage.error;
+          return;
+        }
+
+        const jsonResponse = await response.json();
+        console.log(jsonResponse); // Adicionado para depuração
+        const { clientSecret } = jsonResponse;
+
+        // Confirmar o pagamento com o método de pagamento do cartão
+        const { error, paymentIntent } = await stripe.confirmCardPayment(
+          clientSecret,
+          {
+            payment_method: {
+              card: cardElement,
+            },
+          }
+        );
+
+        if (error) {
+          document.getElementById("error-message").textContent = error.message;
+        } else if (paymentIntent.status === "succeeded") {
+          alert("Pagamento realizado com sucesso!");
+        }
+      });
+    </script>
+  </body>
+</html>

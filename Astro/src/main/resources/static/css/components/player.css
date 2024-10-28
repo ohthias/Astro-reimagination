@@ -142,12 +142,12 @@ button:is(#prevButton, #playPauseButton, #nextButton) {
 
 .progress {
   height: 8px;
-  background: var(--tertiary);
+  background: var(--secondary);
   border-radius: 15px;
   transition: 150ms;
 
   &:hover {
-    background: var(--tertiary-shadow);
+    background: var(--secondary-shadow);
   }
 }
 

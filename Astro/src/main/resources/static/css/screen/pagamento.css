@@ -1,0 +1,118 @@
+body {
+  font-family: Arial, sans-serif;
+  background: linear-gradient(
+    45deg, var(--primary) 0%, var(--shadow) 100%
+  );
+  height: 100vh;
+  background-repeat: no-repeat;
+  margin: 0;
+}
+
+section.main {
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: calc(100vh - 80px) !important;
+}
+
+nav.navgation-bar {
+  margin: 0 auto;
+  max-height: 80px;
+  padding: 2rem 0;
+  padding-inline: 2rem;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+nav.navgation-bar img.navgation-bar-logo {
+  width: 100px;
+  cursor: pointer;
+}
+
+nav.navgation-bar .navgation-bar-menu {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+}
+
+a.menu-button-redirect {
+  padding: 0.5rem 1rem;
+  color: var(--font-all);
+  text-decoration: none;
+  background: linear-gradient(
+      to right,
+      rgba(255, 255, 255, 0),
+      rgba(100, 200, 200, 0)
+    ),
+    linear-gradient(to right, var(--tertiary), var(--tertiary));
+  background-size: 100% 0.1em, 0 0.1em;
+  background-position: 100% 70%, 0 100%;
+  background-repeat: no-repeat;
+  transition: 0.5s;
+}
+
+a.menu-button-redirect:focus,
+a.menu-button-redirect:hover {
+  color: var(--tertiary);
+  background-size: 0 0.1em, 100% 0.1em;
+  transition: 0.3s;
+}
+
+a.menu-button-redirect:last-child {
+  background: none;
+  border: 2px solid var(--white);
+  border-radius: 50px;
+}
+
+a.menu-button-redirect:last-child:focus,
+a.menu-button-redirect:last-child:hover {
+  color: var(--tertiary);
+  background: var(--white);
+  transition: 0.3s;
+}
+
+#payment-form {
+  background: white;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  width: 300px;
+  display: flex;
+  flex-direction: column;
+}
+
+#card-element {
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  margin-bottom: 10px;
+  transition: border 0.3s;
+}
+
+#card-element:focus {
+  border-color: var(--secondary);
+  outline: none;
+}
+
+button {
+  background-color: var(--secondary-shadow);
+  color: white;
+  border: none;
+  border-radius: 4px;
+  padding: 10px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+button:hover {
+  background-color: var(--secondary);
+}
+
+#error-message {
+  color: red;
+  margin-top: 10px;
+}
