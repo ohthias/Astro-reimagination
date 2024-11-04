@@ -13,22 +13,20 @@
   "theme": "default",
   "language": "pt-BR",
   "country": "BR",
-  "level_system": {
-    "level": 0,
-    "current_experience": 0,
-    "next_level": 100
-  },
   "image": {
     "#text": "user_photo",
-    "url": "https://i.imgur.com/1.jpg"
+    "url": "/images/placeholder.png"
   },
-  "playlists": {
-    "astPlay010220": {
-      "name": "Astro Playlist",
-      "tracks": [],
+  "playlists": [
+    {
+      "name": "",
+      "tracks": [
+        {
+          "id": ""
+        }
+      ],
       "created_at": "2020-01-01 00:00:00",
-      "updated_at": "2020-01-01 00:00:00",
-      "public": true
+      "updated_at": "2020-01-01 00:00:00"
     }
-  }
+  ]
 }
