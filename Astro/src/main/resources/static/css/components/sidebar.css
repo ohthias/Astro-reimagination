@@ -16,6 +16,7 @@
   border-radius: 14px;
   z-index: 20;
   animation: fadeIn 1s ease;
+  border: var(--border-neon);
 
   ul.nav-list {
     width: 100%;

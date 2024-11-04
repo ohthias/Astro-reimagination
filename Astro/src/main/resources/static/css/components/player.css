@@ -19,6 +19,7 @@
   height: 80px;
   grid-area: 3 / 1 / 4 / 6;
   background: var(--black-shadow);
+  border: var(--border-neon);
 
   .player {
     animation: fadeIn 1s ease;
@@ -243,6 +244,68 @@ span.volume_off {
   color: transparent;
 }
 
+
+/* Menu lateral */
+
+.side-menu {
+  width: 100%;
+  background: var(--black-shadow);
+  border: var(--border-neon);
+  border-radius: 24px;
+  padding: 20px;
+  box-shadow: -2px 0 5px rgba(0, 0, 0, 0.1);
+  overflow-y: auto;
+  display: none;
+  animation: slideIn 1s;  
+}
+
+.side-menu.visible {
+  display: block;
+  animation: fadeIn 1s;
+}
+
+.menu-active {
+  grid-area: 7 / 7 / 1 / 7;
+}
+
+.song-details h3,
+.song-details p {
+  margin: 0;
+  padding: 5px 0;
+  color: var(--font-all);
+  text-transform: capitalize;
+}
+
+#sideMenuSongImage {
+  border-radius: 18px;
+}
+
+.song-lyrics {
+  padding: 12px;
+  border-radius: 18px;
+  min-height: 200px;
+  margin-top: 20px;
+  font-size: 12px;
+  white-space: pre-wrap;
+  color: var(--font-all);
+  background: var(--primary);
+  overflow-y: scroll;
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+}
+
+.side-menu::-webkit-scrollbar {
+  display: none;
+}
+
+.info-button {
+  font-size: 20px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: #333;
+}
+
 /* Media screen */
 
 @media screen and (max-width: 1025px) {
@@ -288,5 +351,24 @@ span.volume_off {
   #heartMusic,
   .playPauseButton {
     display: flex;
+  }
+}
+
+/* Animações */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes slideIn {
+  from {
+    right: -300px;
+  }
+  to {
+    right: 0;
   }
 }
