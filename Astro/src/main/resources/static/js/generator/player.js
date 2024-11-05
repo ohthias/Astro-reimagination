@@ -143,12 +143,25 @@ player.appendChild(volumeControl);
 // Botão de "info" para abrir o menu lateral
 const infoButton = document.createElement("button");
 infoButton.className = "info-button";
-infoButton.textContent = "+";
+const spanInfoButton = document.createElement("span");
+spanInfoButton.className = "material-symbols-outlined";
+spanInfoButton.textContent = "add";
+
+infoButton.appendChild(spanInfoButton);
+
 infoButton.onclick = () => {
   sideMenu.classList.toggle("visible"); // Alterna a visibilidade do menu lateral
   mainContent.classList.toggle("menu-active"); // Adiciona classe ao main quando o menu está ativo
+
+  spanInfoButton.textContent = spanInfoButton.textContent === "add" ? "close" : "add";
+  spanInfoButton.classList.add("rotate-animation");
+
+  spanInfoButton.addEventListener("animationend", () => {
+    spanInfoButton.classList.remove("rotate-animation");
+  }, { once: true });
 };
-volumeControl.appendChild(infoButton);
+
+player.appendChild(infoButton);
 
 // Adiciona o player ao container
 containerPlayer.appendChild(player);

@@ -28,6 +28,7 @@
     justify-content: space-between;
     align-items: center;
     padding: 0 1rem;
+    animation: fadeIn 500ms ease;
   }
 }
 
@@ -137,7 +138,7 @@ button:is(#prevButton, #playPauseButton, #nextButton) {
   transition: 150ms;
 
   &:hover {
-    background: var(--tertiary-shadow-light);
+    background: var(--secondary-shadow);
   }
 }
 
@@ -300,11 +301,21 @@ span.volume_off {
 }
 
 .info-button {
+  margin-left: 8px;
+  --size: 50px;
+  height: var(--size);
+  width: var(--size);
   font-size: 20px;
   background: none;
   border: none;
   cursor: pointer;
-  color: #333;
+  color: var(--white);
+  transition: 250ms;
+
+  &:hover {
+    color: var(--secondary);
+    text-shadow: 0 0 5px var(--secondary-shadow);
+  }
 }
 
 /* Media screen */
@@ -372,4 +383,17 @@ span.volume_off {
   to {
     right: 0;
   }
+}
+
+@keyframes rotate {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(90deg);
+  }
+}
+
+.rotate-animation {
+  animation: rotate 0.3s ease forwards;
 }
