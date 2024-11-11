@@ -258,7 +258,7 @@ const exibirArtistas = (artistas) => {
     const imgUrl = artista.images.length > 0 ? artista.images[0].url : "";
 
     slide.innerHTML = `
-      <a href="./artist?id=${artista.id}" class="artist-link">
+      <a onclick="loadContent('artist')" class="artist-link">
         <img src="${imgUrl}" class="artist_image" alt="${artista.name}" />
         <h4 class="bebas-neue-regular">${artista.name}</h4>
       </a>

@@ -7,6 +7,8 @@ package com.example.Astro.Controller;
  */
 
 import java.time.LocalDate;
+import java.util.HashMap;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpEntity;
@@ -16,10 +18,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.client.RestTemplate;
 
 import com.example.Astro.Model.User;
@@ -74,8 +73,25 @@ public class HomeController {
         } else {
             model.addAttribute("error", "Usuário não encontrado");
         }
-
         return "home"; // Nome da página HTML que será exibida
+    }
+
+    @GetMapping("/{page}")
+    public ResponseEntity<Map<String, String>> getContent(@PathVariable String page) {
+        Map<String, String> content = new HashMap<>();
+
+        // Define o conteúdo de cada página
+        switch (page) {
+            case "home":
+            case "busca":
+            case "album":
+            default:
+                content.put("title", "Erro");
+                content.put("body", "Conteúdo não encontrado.");
+        }
+
+        // Retorna o conteúdo como JSON
+        return ResponseEntity.ok(content);
     }
 
     @GetMapping("/artist")
@@ -86,9 +102,6 @@ public class HomeController {
 
     @GetMapping("/album")
     public  String album() {return "album";}
-
-    @GetMapping("/busca")
-    public  String busca() {return "busca";}
 
     @GetMapping("/setting")
     public String setting() {return "setting";}

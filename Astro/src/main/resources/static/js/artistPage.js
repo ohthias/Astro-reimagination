@@ -316,4 +316,3 @@ const displayArtist = async () => {
   }
 };
 
-window.onload = displayArtist;

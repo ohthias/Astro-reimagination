@@ -263,5 +263,7 @@ document.addEventListener("keydown", function (event) {
 });
 
 // Carregar estado ao iniciar
+document.addEventListener("DOMContentLoaded", function() {
 loadSavedState();
 loadTrackSlider();
+})
