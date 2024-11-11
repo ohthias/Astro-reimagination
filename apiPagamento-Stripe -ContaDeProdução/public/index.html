@@ -14,7 +14,7 @@
     </form>
     
     <script>
-        const stripe = Stripe('pk_live_51QCOCvGsq2ZfkEa8EptkZ8yNBW0CuGJRJzfcfSS0FWbh4Vi2eHR0sKm2Dc0p9sAsdRtazJZwgFKdd9Bn259X9vhX00XOIXb6W0'); // Substitua pela sua chave pública
+        const stripe = Stripe('pk_test_51QCOCvGsq2ZfkEa8HGgjf5BH3lHkGo1ubkIGx9IJ6ADnywry2Ux5AU2RottQUeC1LT2a1sR0he5HUOcRiWrMQDE40013SL8yrp'); // Substitua pela sua chave pública
         const elements = stripe.elements();
         const cardElement = elements.create('card');
         cardElement.mount('#card-element');

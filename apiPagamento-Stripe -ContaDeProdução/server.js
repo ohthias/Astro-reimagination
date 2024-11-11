@@ -2,7 +2,7 @@ const express = require('express');
 const Stripe = require('stripe');
 const path = require('path');
 
-const stripe = Stripe('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'); // chave secreta
+const stripe = Stripe('sk_test_51QCOCvGsq2ZfkEa8BEo9zQHLeML1jPDJzFN6Wk1YS35CS6eKkZrAvxZvJEftCDYBbsvdlrDo0iD4RzuMtVdhCtG900mIFvES5N'); // chave secreta
 
 const app = express();
 app.use(express.json());
