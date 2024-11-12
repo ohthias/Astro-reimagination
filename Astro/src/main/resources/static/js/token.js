@@ -9,6 +9,15 @@ if (token) {
     token = localStorage.getItem('authToken');
 }
 
+// Pega o theme da URL ou do armazenamento local
+let theme = urlParams.get('theme');
+// Se o theme for encontrado na URL, armazena no localStorage
+if (theme) {
+    localStorage.setItem('theme', theme);
+} else {
+    theme = localStorage.getItem('theme');
+}
+
 // Função para adicionar token a todos os links de navegação
 function addTokenToLinks() {
     if (token) {
