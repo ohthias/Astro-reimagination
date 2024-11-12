@@ -9,10 +9,7 @@ package com.example.Astro.Controller;
 import java.time.LocalDate;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpEntity;
-import org.springframework.http.HttpHeaders;
-import org.springframework.http.HttpMethod;
-import org.springframework.http.ResponseEntity;
+import org.springframework.http.*;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -160,9 +157,11 @@ public class HomeController {
 
         LocalDate currentDate = LocalDate.now();
 
-        User usuario = new User(null, email, clienteHashword, username, currentDate, token);
+        User usuario = new User(null, email, clienteHashword, username, currentDate, token, "defaultTheme");
         repository.save(usuario);
-        return "redirect:/home?token=" + token;
+        String theme = usuario.getTheme();
+        return "redirect:/home?token=" + token + "&theme=" + theme;
+
     }
 
     @PostMapping("/login-user")
@@ -190,8 +189,9 @@ public class HomeController {
 
             // Gerar token e redirecionar com o token na URL
             String token = tokenService.generateToken(username, user.getEmail());
+            String theme = user.getTheme();
 
-            return "redirect:/home?token=" + token;
+            return "redirect:/home?token=" + token + "&theme=" + theme;
         } catch (Exception e) {
             e.printStackTrace();
             model.addAttribute("errorMessage", "Erro ao processar o login");
@@ -205,5 +205,17 @@ public class HomeController {
         // O token é removido no frontend (no JavaScript), aqui só redirecionamos para a tela de login.
         return "redirect:/login";
     }
+
+    @PostMapping("/update-theme")
+    public ResponseEntity<?> updateTheme(@RequestParam("theme") String theme, @RequestParam("token") String token) {
+        boolean success = userService.updateUserTheme(token, theme);
+        if (success) {
+            return ResponseEntity.ok().body("Tema atualizado com sucesso");
+        } else {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Erro ao atualizar o tema");
+        }
+    }
+
+
 
 }

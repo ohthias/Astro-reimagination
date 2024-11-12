@@ -32,4 +32,5 @@ function changeTheme(themeClass) {
   rootElement.className = ""; // Remove all previous classes
   rootElement.classList.add(themeClass); // Add the new theme class
   localStorage.setItem("theme", themeClass)
+
 }
