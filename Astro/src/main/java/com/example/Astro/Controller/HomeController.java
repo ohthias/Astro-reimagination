@@ -160,7 +160,7 @@ public class HomeController {
 
         LocalDate currentDate = LocalDate.now();
 
-        User usuario = new User(null, email, clienteHashword, username, currentDate, token);
+        User usuario = new User(null, email, clienteHashword, username, currentDate, token, "");
         repository.save(usuario);
         return "redirect:/home?token=" + token;
     }
