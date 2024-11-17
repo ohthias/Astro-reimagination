@@ -26,11 +26,21 @@ let lastJumpTime = Date.now();
 const MAX_JUMPS_PER_HOUR = 6;
 const HOUR_IN_MS = 3600000;
 
-function loadTrackSlider() {
-  const trackSlider = document.querySelector("#lista-local-songs"); // Se houver apenas um contêiner, use querySelector ao invés de querySelectorAll
-  trackSlider.innerHTML = ""; // Limpa os slides existentes
+loadTrackSlider(); // Garante que o DOM está pronto
+
+export function loadTrackSlider() {
+  const trackSlider = document.getElementById("localListSongs");
+
+  if (!trackSlider) {
+    console.warn("Elemento 'localListSongs' não encontrado.");
+    return;
+  }
+
+  trackSlider.innerHTML = ""; // Limpa o conteúdo anterior
 
   localSongs.forEach((track, index) => {
+    console.log(track); // Verifica os dados de cada música
+
     const slide = document.createElement("div");
     slide.classList.add("swiper-slide");
 
@@ -63,7 +73,7 @@ function loadTrackSlider() {
 player.volume = volumeSlider.value;
 
 // Função para carregar o estado salvo
-function loadSavedState() {
+export function loadSavedState() {
   const savedIndex = localStorage.getItem("currentSongIndex");
   const savedTime = localStorage.getItem("currentTime");
   const savedVolume = localStorage.getItem("currentVolume");
@@ -274,10 +284,4 @@ document.addEventListener("keydown", function (event) {
       player.volume = 0;
     }
   }
-});
-
-// Carregar estado ao iniciar
-document.addEventListener("DOMContentLoaded", function () {
-  loadSavedState();
-  loadTrackSlider();
 });

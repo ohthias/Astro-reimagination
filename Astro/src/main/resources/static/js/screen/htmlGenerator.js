@@ -1,7 +1,7 @@
 // Função para gerar o conteúdo da página inicial
 function generateHomePageContent() {
-    const content = document.getElementById('content');
-    content.innerHTML = `
+  const content = document.getElementById("content");
+  content.innerHTML = `
                               <div class="wrapper first-acess">
                                 <span class="montserrat-bold" id="userNameAcess"></span>
                                 <h1 class="bebas-neue-regular first-acess-title">
@@ -13,7 +13,7 @@ function generateHomePageContent() {
                               <section class="local-tracks swiper">
                                 <h2 class="bebas-neue-regular categoria-name">Andrômeda</h2>
                                 <div class="swiper-container">
-                                  <div class="swiper-wrapper" id="lista-local-songs"></div>
+                                  <div class="swiper-wrapper" id="localListSongs"></div>
                                   <button class="swiper-button-prev"></button>
                                   <button class="swiper-button-next"></button>
                                 </div>
@@ -50,8 +50,8 @@ function generateHomePageContent() {
 
 // Função para gerar o conteúdo da playlist
 function generateSearchContent() {
-    const content = document.getElementById('content');
-    content.innerHTML = `
+  const content = document.getElementById("content");
+  content.innerHTML = `
                               <div class="container-search">
                                 <i class="material-icons">search</i>
                                 <input
@@ -81,8 +81,8 @@ function generateSearchContent() {
 }
 
 function generateArtistContent() {
-const content = document.getElementById('content');
-    content.innerHTML = `
+  const content = document.getElementById("content");
+  content.innerHTML = `
     <section class="module module1">
             <div class="banner-artist">
               <img
@@ -153,5 +153,5 @@ const content = document.getElementById('content');
               </div>
             </section>
           </div>
-    `
+    `;
 }
