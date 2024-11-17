@@ -1,5 +1,6 @@
 document.addEventListener("DOMContentLoaded", function () {
   const swipers = document.querySelectorAll(".swiper-container");
+  const menu = document.querySelector("#content"); // Seletor para o menu
 
   swipers.forEach((swiperContainer) => {
     const swiper = new Swiper(swiperContainer, {
@@ -31,6 +32,21 @@ document.addEventListener("DOMContentLoaded", function () {
           spaceBetween: 10,
         },
       },
+    });
+
+    // Verificar quando a classe "menu-active" é adicionada ou removida
+    const observer = new MutationObserver(() => {
+      if (menu.classList.contains("menu-active")) {
+        swiper.params.slidesPerView = Math.max(swiper.params.slidesPerView - 2, 1); // Reduz o número de slides, garantindo pelo menos 1
+      } else {
+        swiper.params.slidesPerView = 7; // Volta ao padrão (ou ajuste conforme necessário)
+      }
+      swiper.update(); // Atualiza o Swiper com os novos parâmetros
+    });
+
+    observer.observe(menu, {
+      attributes: true, // Observa mudanças nos atributos
+      attributeFilter: ["class"], // Limita para mudanças na classe
     });
   });
 });

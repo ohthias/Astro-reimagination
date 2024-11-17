@@ -194,10 +194,15 @@ songLyrics.id = "songLyrics";
 songLyrics.className = "song-lyrics montserrat-regular";
 songLyrics.textContent = "Letra da música aqui...";
 
+const songMoreInfo = document.createElement("div");
+songMoreInfo.className = "song-details-more-info";
+songMoreInfo.id = "songMoreInfo";
+
 songDetails.appendChild(songImageMenu);
 songDetails.appendChild(songTitle);
 songDetails.appendChild(songArtist);
 songDetails.appendChild(songLyrics);
+songDetails.appendChild(songMoreInfo);
 sideMenu.appendChild(songDetails);
 
 document.body.appendChild(sideMenu); // Adiciona o menu lateral ao body como um elemento separado

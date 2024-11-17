@@ -70,3 +70,80 @@ input:-webkit-autofill {
 *::-webkit-scrollbar-thumb:active {
   background-color: var(--secondary);
 }
+
+/* Overlay do pop-up */
+.popup-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: var(--black-shadow);
+  backdrop-filter: blur(5px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+/* Contêiner do pop-up */
+.popup-container {
+  background-color: var(--shadow);
+  padding: 20px;
+  border-radius: 10px;
+  text-align: center;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+  align-items: center;
+  max-width: 450px;
+  min-height: 200px;
+  width: 90%;
+  animation: fadeIn 0.3s ease;
+}
+
+/* Mensagem do pop-up */
+.popup-message {
+  font-size: 26px;
+  margin-bottom: 20px;
+  color: var(--font-all);
+}
+
+/* Botões do pop-up */
+.popup-button {
+  width: 45%;
+  margin: 5px;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  font-size: 18px;
+  cursor: pointer;
+
+  &:hover {
+    filter: brightness(1.5);
+    box-shadow: 0 2px 4px var(--black-shadow);
+  }
+}
+
+.popup-button.confirm {
+  background-color: var(--tertiary-shadow);
+  color: var(--font-all);
+}
+
+.popup-button.cancel {
+  background-color: var(--secondary-shadow);
+  color: var(--font-all);
+}
+
+/* Animação de entrada */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: scale(0.9);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}

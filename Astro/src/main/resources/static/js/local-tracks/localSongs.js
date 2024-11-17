@@ -1,4 +1,4 @@
-const localSongs = [
+export const localSongs = [
   {
     id: "ast0001",
     name: "bad guy",
@@ -25,7 +25,7 @@ const localSongs = [
 
   {
     id: "ast0003",
-    name: "Bohemian Rhapsody.mp3",
+    name: "Bohemian Rhapsody",
     artist: "Queen",
     tags: ["rock", "Romantico", "A Night at the Opera."],
     url: "/musicas/Bohemian-Rhapsody.mp3",
@@ -50,7 +50,7 @@ const localSongs = [
   {
     id: "ast0005",
     name: "Hotel California",
-    artist: "Eagle",
+    artist: "Eagles",
     tags: ["rock", "Romantico", "Eagle"],
     url: "/musicas/Hotel-California.mp3",
     image: {
@@ -62,7 +62,7 @@ const localSongs = [
   {
     id: "ast0006",
     name: "Juicy",
-    artist: "The Notorious B.I.G.",
+    artist: "Juicy",
     tags: ["hip-hop", "Romantico", "Ready to Die."],
     url: "/musicas/Juicy.mp3",
     image: {
@@ -119,5 +119,3 @@ const localSongs = [
     },
   },
 ];
-
-export default localSongs;
