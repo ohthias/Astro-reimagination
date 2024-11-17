@@ -161,7 +161,7 @@ const albumTemplate = (album) => {
       ? album.artists.map((artist) => artist.name).join(", ")
       : "Artista desconhecido";
   return `
-    <a href="./album?id=${album.id}" class="album-item">
+    <a onclick="loadContent('album', '${album.id}')" class="album-item">
       <img src="${imgUrl}" class="album-image" alt="${albumName}" />
       <div class="album-item-detail">
         <h5 class="montserrat-bold">${albumName}</h5>

@@ -155,3 +155,110 @@ function generateArtistContent() {
           </div>
     `;
 }
+
+function generateAlbumContent() {
+  const content = document.getElementById("content");
+  content.innerHTML = `<section class="display-album">
+        <picture id="albumPicture">
+          <source id="largeSource" media="(min-width: 1024px)" />
+          <source id="mediumSource" media="(max-width: 1023px)" />
+          <source id="smallSource" media="(max-width: 600px)" />
+          <img
+            src="https://placehold.co/350x350"
+            id="albumImage"
+            alt="Album cover"
+            class="album-image"
+            crossorigin="anonymous"
+          />
+        </picture>
+        <div class="display-album-details">
+          <h1
+            class="bebas-neue-regular"
+            data-album-title="albumTitle"
+            id="albumTitleElement"
+          >▬▬▬▬▬▬
+          </h1>
+          <a
+            href="#"
+            class="montserrat-regular"
+            data-album-artist="albumArtistName"
+            id="albumArtistElement"
+          >
+          ▬▬▬▬▬▬▬▬
+          </a>
+
+          <section class="controller">
+            <button id="playButton" class="controller-button">
+              <span class="material-symbols-outlined play_arrow"
+                >play_arrow</span
+              >
+            </button>
+            <button id="favoriteButton" class="controller-button">
+              <span class="material-symbols-outlined favorite">favorite</span>
+            </button>
+            <button id="shuffleButton" class="controller-button">
+              <span class="material-symbols-outlined shuffle">shuffle</span>
+            </button>
+            <button id="repeatButton" class="controller-button">
+              <span class="material-symbols-outlined repeat">repeat</span>
+            </button>
+          </section>
+        </div>
+      </section>
+      <section id="albumTracks"></section>`
+}
+
+function generatePlaylistContent() {
+  const content = document.getElementById("content");
+  content.innerHTML = `
+  <section class="display-album">
+        <picture id="albumPicture">
+          <source id="largeSource" media="(min-width: 1024px)" />
+          <source id="mediumSource" media="(max-width: 1023px)" />
+          <source id="smallSource" media="(max-width: 600px)" />
+          <img
+            src="https://placehold.co/350x350"
+            id="albumImage"
+            alt="Album cover"
+            class="album-image"
+            crossorigin="anonymous"
+          />
+        </picture>
+        <div class="display-album-details">
+          <h1
+            class="bebas-neue-regular"
+            data-album-title="albumTitle"
+            id="playlistName"
+          >
+            ▬▬▬▬▬▬
+          </h1>
+          <a
+            href="#"
+            class="montserrat-regular"
+            data-album-artist="albumArtistName"
+            id="albumArtistElement"
+          >
+            ▬▬▬▬▬▬▬▬
+          </a>
+
+          <section class="controller">
+            <button id="playButton" class="controller-button">
+              <span class="material-symbols-outlined play_arrow"
+                >play_arrow</span
+              >
+            </button>
+            <button id="favoriteButton" class="controller-button">
+              <span class="material-symbols-outlined favorite">favorite</span>
+            </button>
+            <button id="shuffleButton" class="controller-button">
+              <span class="material-symbols-outlined shuffle">shuffle</span>
+            </button>
+            <button id="repeatButton" class="controller-button">
+              <span class="material-symbols-outlined repeat">repeat</span>
+            </button>
+          </section>
+        </div>
+      </section>
+      <section id="albumTracks"></section>
+  `;
+}

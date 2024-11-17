@@ -257,8 +257,11 @@ span.volume_off {
   box-shadow: -2px 0 5px rgba(0, 0, 0, 0.1);
   overflow-y: auto;
   display: none;
-  animation: slideIn 1s;  
+  animation: slideIn 1s;
+  position: relative;
+  z-index: 10;
 }
+
 
 .side-menu.visible {
   display: block;

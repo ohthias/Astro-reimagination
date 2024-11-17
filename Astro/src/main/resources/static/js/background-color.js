@@ -1,4 +1,4 @@
-document.addEventListener("DOMContentLoaded", () => {
+export function imageGradient() {
   const imgArtist = document.querySelector("#imageArtist");
   const imgAlbum = document.querySelector("#albumImage");
   const userImage = document.querySelector("#userImage");
@@ -89,4 +89,4 @@ document.addEventListener("DOMContentLoaded", () => {
       navLogo.classList.add("near-white");
     }
   }
-});
+};

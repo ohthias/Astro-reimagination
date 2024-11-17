@@ -74,6 +74,12 @@
             <span class="tooltip">Search</span>
           </button>
         </li>
+        <li>
+          <button onclick="loadContent('jogos')">
+            <i class="material-symbols-outlined">stadia_controller</i>
+            <span class="tooltip">Jogos</span>
+          </button>
+        </li>
         <hr />
         <li>
           <button
@@ -101,8 +107,9 @@
         </div>
       </ul>
     </div>
-    <div id="loader" class="loader">
-      <div class="spinner"></div>
+    <div class="loader" id="loader">
+      <div class="planet">
+      </div>
     </div>
     <main id="content"></main>
     <script src="../static/js/token.js"></script>
@@ -113,7 +120,6 @@
     <script src="../static/js/generator/player.js"></script>
     <script src="../static/js/generator/navbar.js"></script>
     <script src="../static/js/home.js"></script>
-    <script src="../static/js/background-color.js"></script>
     <script src="../static/js/swipe.js"></script>
     <script src="../static/js/theme.js"></script>
   </body>

@@ -85,6 +85,8 @@ public class HomeController {
             case "home":
             case "busca":
             case "album":
+            case "artist":
+            case "playlist":
             default:
                 content.put("title", "Erro");
                 content.put("body", "Conteúdo não encontrado.");
@@ -93,15 +95,6 @@ public class HomeController {
         // Retorna o conteúdo como JSON
         return ResponseEntity.ok(content);
     }
-
-    @GetMapping("/artist")
-    public String artist() { return  "artist";}
-
-    @GetMapping("/playlist")
-    public  String playlist() {return "playlist";}
-
-    @GetMapping("/album")
-    public  String album() {return "album";}
 
     @GetMapping("/setting")
     public String setting() {return "setting";}

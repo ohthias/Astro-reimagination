@@ -244,18 +244,19 @@ export const displayArtist = async () => {
 
     discography.forEach((album) => {
       const albumHtml = `
-        <a href="/album?id=${album.id}" class="swiper-slide album-item">
+        <div 
+          onclick="loadContent('album', '${album.id}')" 
+          class="swiper-slide album-item">
           <img
             class="album-image"
             alt="${album.name}"
-            src="${album.images[0]?.url || "https://placehold.co/100x100"}"
+            src="${album.images[0]?.url || 'https://placehold.co/100x100'}"
             onerror="this.onerror=null; this.src='https://placehold.co/100x100';"
           />
-          <p class="album-name montserrat-regular">${album.name} (${new Date(
-        album.release_date
-      ).getFullYear()})</p>
-        </a>
+          <p class="album-name montserrat-regular">${album.name} (${new Date(album.release_date).getFullYear()})</p>
+        </div>
       `;
+
       containerDiscography.innerHTML += albumHtml;
     });
 
@@ -266,18 +267,18 @@ export const displayArtist = async () => {
 
     playlists.forEach((playlist) => {
       const playlistHtml = `
-        <a href="/playlist?id=${
-          playlist.id
-        }" class="playlist-item swiper-slide">
-          <img
-            class="playlist-image"
-            alt="${playlist.name}"
-            src="${playlist.images[0]?.url || "https://placehold.co/100x100"}"
-            onerror="this.onerror=null; this.src='https://placehold.co/100x100';"
-          />
-          <p class="playlist-name montserrat-regular">${playlist.name}</p>
-        </a>
-      `;
+          <div 
+            onclick="loadContent('playlist', '${playlist.id}')" 
+            class="playlist-item swiper-slide">
+            <img
+              class="playlist-image"
+              alt="${playlist.name}"
+              src="${playlist.images[0]?.url || 'https://placehold.co/100x100'}"
+              onerror="this.onerror=null; this.src='https://placehold.co/100x100';"
+            />
+            <p class="playlist-name montserrat-regular">${playlist.name}</p>
+          </div>
+        `;
       containerPlaylists.innerHTML += playlistHtml;
     });
 
