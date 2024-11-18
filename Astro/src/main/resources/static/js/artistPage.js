@@ -168,7 +168,7 @@ const fetchRelatedArtists = async (artistId) => {
 };
 
 // Função principal
-const displayArtist = async () => {
+export const displayArtist = async () => {
   const artistId = getArtistId();
   if (!artistId) {
     console.error("ID do artista não encontrado");
@@ -177,7 +177,7 @@ const displayArtist = async () => {
 
   try {
     const artistData = await fetchArtistData(artistId);
-    
+
     const artistGenres =
       artistData.genres.join(", ") ||
       "<img src='/images/astro7.png' alt='Erro' class='genres-image'>";
@@ -194,7 +194,6 @@ const displayArtist = async () => {
     ).textContent = `${artistData.followers.total.toLocaleString()} ouvintes`;
     document.getElementById("imageArtist").src =
       artistData.images[0]?.url || "https://placehold.co/1000x550";
-    document.title = `Astro - ${artistName}`;
 
     // Atualizando os dois novos cards de região, popularidade e gênero
     document.getElementById("artist-region").innerHTML = `${artistCountry}`;
@@ -245,18 +244,19 @@ const displayArtist = async () => {
 
     discography.forEach((album) => {
       const albumHtml = `
-        <a href="/album?id=${album.id}" class="album-item swiper-slide">
+        <div 
+          onclick="loadContent('album', '${album.id}')" 
+          class="swiper-slide album-item">
           <img
             class="album-image"
             alt="${album.name}"
-            src="${album.images[0]?.url || "https://placehold.co/100x100"}"
+            src="${album.images[0]?.url || 'https://placehold.co/100x100'}"
             onerror="this.onerror=null; this.src='https://placehold.co/100x100';"
           />
-          <p class="album-name montserrat-regular">${album.name} (${new Date(
-        album.release_date
-      ).getFullYear()})</p>
-        </a>
+          <p class="album-name montserrat-regular">${album.name} (${new Date(album.release_date).getFullYear()})</p>
+        </div>
       `;
+
       containerDiscography.innerHTML += albumHtml;
     });
 
@@ -267,16 +267,18 @@ const displayArtist = async () => {
 
     playlists.forEach((playlist) => {
       const playlistHtml = `
-        <a href="/playlist?id=${playlist.id}" class="playlist-item swiper-slide">
-          <img
-            class="playlist-image"
-            alt="${playlist.name}"
-            src="${playlist.images[0]?.url || "https://placehold.co/100x100"}"
-            onerror="this.onerror=null; this.src='https://placehold.co/100x100';"
-          />
-          <p class="playlist-name montserrat-regular">${playlist.name}</p>
-        </a>
-      `;
+          <div 
+            onclick="loadContent('playlist', '${playlist.id}')" 
+            class="playlist-item swiper-slide">
+            <img
+              class="playlist-image"
+              alt="${playlist.name}"
+              src="${playlist.images[0]?.url || 'https://placehold.co/100x100'}"
+              onerror="this.onerror=null; this.src='https://placehold.co/100x100';"
+            />
+            <p class="playlist-name montserrat-regular">${playlist.name}</p>
+          </div>
+        `;
       containerPlaylists.innerHTML += playlistHtml;
     });
 
@@ -289,7 +291,9 @@ const displayArtist = async () => {
 
     relatedArtists.forEach((artist) => {
       const artistHtml = `
-        <a href="/artist?id=${artist.id}" class="related-artist-item swiper-slide">
+        <a 
+          onclick="loadContent('artist', '${artist.id}')" 
+          class="related-artist-item swiper-slide">
           <img
             class="related-artist-image"
             alt="${artist.name}"
@@ -315,5 +319,3 @@ const displayArtist = async () => {
     console.error(error);
   }
 };
-
-window.onload = displayArtist;

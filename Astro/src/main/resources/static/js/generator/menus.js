@@ -10,7 +10,7 @@ document.addEventListener("DOMContentLoaded", function () {
     tooltip,
     link,
     isButton = false,
-    onClick = null
+    onClick = loadContent // Função padrão como `loadContent`
   ) {
     const item = document.createElement("li");
     const element = isButton
@@ -61,6 +61,7 @@ document.addEventListener("DOMContentLoaded", function () {
       }, 500); // Tempo do fade
     }, 3000); // Tempo antes de iniciar o fade
   }
+
   // Criação da sidebar
   const sidebar = document.createElement("div");
   sidebar.classList.add("sidebar");
@@ -110,24 +111,19 @@ document.addEventListener("DOMContentLoaded", function () {
   );
 
   // Exit section
-  // Exit section
   const exitContainer = document.createElement("div");
   exitContainer.classList.add("exit-container");
 
   const exitItem = createMenuItem(
     '<i class="material-icons">exit_to_app</i>',
     "Sair",
+    null,
     true,
     () => {
       console.log("Saindo"); // Imprime mensagem no console
       logout(); // Chama a função de logout
     }
   );
-
-  exitContainer.addEventListener("click", () => logout())
-
-  // Adiciona a classe logoutBtn ao botão
-  exitItem.firstChild.id = "logoutBtn";
 
   exitContainer.appendChild(exitItem);
   navList.appendChild(exitContainer);

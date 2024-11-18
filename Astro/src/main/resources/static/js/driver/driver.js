@@ -1,5 +1,5 @@
 const driver = window.driver.js.driver;
-let driveInicialize = localStorage.getItem("driveInitialized") === "true"; // Check localStorage
+  let driveInicialize = localStorage.getItem("driveInitialized") === "true"; // Check localStorage
 
 // Função para lançar partículas (confetti)
 function launchConfetti() {

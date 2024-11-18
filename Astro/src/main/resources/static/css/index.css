@@ -9,11 +9,6 @@ body {
   overflow-x: hidden;
 }
 
-:root {
-  --primary-shadow-light: var(--primary);
-  --secondary-shadow-light: var(--secondary);
-}
-
 main {
   background: var(--shadow);
   color: var(--font-all);
@@ -29,12 +24,12 @@ section.module.container1 {
     left top,
     from(var(--primary-shadow-light)),
     color-stop(80%, var(--secondary-shadow-light))
-  );
+  ), var(--shadow);
   background: linear-gradient(
     to top,
     var(--primary-shadow-light),
     var(--secondary-shadow-light) 80%
-  );
+  ), var(--shadow);
 }
 
 nav.navigation-bar {
@@ -81,6 +76,13 @@ nav.navigation-bar .navgation-bar-menu {
   -ms-flex-align: center;
   align-items: center;
   gap: 2rem;
+}
+
+nav.navigation-bar .navgation-bar-menu hr {
+    width: 3px;
+    height: 50px;
+    background: var(--white-shadow);
+    border: 0;
 }
 
 a.menu-button-redirect {

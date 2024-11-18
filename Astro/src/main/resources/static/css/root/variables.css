@@ -34,6 +34,9 @@
   --primary-shadow: #4b007276;
   --secondary-shadow: #ff3d2076;
   --tertiary-shadow: #29f24749;
+
+  --border-neon: 2px solid var(--primary);
+  --none-border: none;
 }
 
 .light {
@@ -130,4 +133,52 @@
   --primary-shadow: rgba(255, 204, 203, 0.3); /* Sombra da cor primária */
   --secondary-shadow: rgba(255, 127, 127, 0.3); /* Sombra da cor secundária */
   --tertiary-shadow: rgba(255, 76, 76, 0.3); /* Sombra da cor terciária */
+}
+
+.green {
+  --font-all: #ffffff; /* Cor do texto em branco para contraste */
+  --background-all: #2e7d32; /* Cor de fundo verde escuro */
+
+  --primary: #a5d6a7; /* Cor primária - verde claro */
+  --secondary: #66bb6a; /* Cor secundária - verde médio */
+  --tertiary: #388e3c; /* Cor terciária - verde escuro */
+  --shadow: #1b5e20; /* Sombra verde escuro */
+  --white: #ffffff; /* Cor branca para texto */
+  --black-shadow: rgba(0, 0, 0, 0.5); /* Sombra negra com transparência */
+
+  --white-shadow: rgba(255, 255, 255, 0.1); /* Sombra branca leve */
+  --shadow-shadow: rgba(0, 0, 0, 0.7); /* Sombra escura */
+  --black-shadow: rgba(0, 0, 0, 0.3); /* Sombra leve preta */
+
+  --primary-shadow-light: rgba(165, 214, 167, 0.5); /* Sombra leve da cor primária */
+  --secondary-shadow-light: rgba(102, 187, 106, 0.5); /* Sombra leve da cor secundária */
+  --tertiary-shadow-light: rgba(56, 142, 60, 0.5); /* Sombra leve da cor terciária */
+
+  --primary-shadow: rgba(165, 214, 167, 0.3); /* Sombra da cor primária */
+  --secondary-shadow: rgba(102, 187, 106, 0.3); /* Sombra da cor secundária */
+  --tertiary-shadow: rgba(56, 142, 60, 0.3); /* Sombra da cor terciária */
+}
+
+.high-contrast {
+  --font-all: #ffffff; /* Cor do texto em branco para contraste */
+  --background-all: #000000; /* Cor de fundo preta */
+
+  --primary: #ffea00; /* Cor primária - amarelo brilhante */
+  --secondary: #ff3d00; /* Cor secundária - laranja brilhante */
+  --tertiary: #00ff3d; /* Cor terciária - verde neon */
+  --shadow: #111111; /* Sombra negra */
+  --white: #ffffff; /* Cor branca para texto */
+  --black-shadow: rgba(0, 0, 0, 0.5); /* Sombra negra com transparência */
+
+  --white-shadow: rgba(255, 255, 255, 0.1); /* Sombra branca leve */
+  --shadow-shadow: rgba(0, 0, 0, 0.7); /* Sombra escura */
+  --black-shadow: rgba(0, 0, 0, 0.3); /* Sombra leve preta */
+
+  --primary-shadow-light: rgba(255, 234, 0, 0.5); /* Sombra leve da cor primária */
+  --secondary-shadow-light: rgba(255, 61, 0, 0.5); /* Sombra leve da cor secundária */
+  --tertiary-shadow-light: rgba(0, 255, 61, 0.5); /* Sombra leve da cor terciária */
+
+  --primary-shadow: rgba(255, 234, 0, 0.3); /* Sombra da cor primária */
+  --secondary-shadow: rgba(255, 61, 0, 0.3); /* Sombra da cor secundária */
+  --tertiary-shadow: rgba(0, 255, 61, 0.3); /* Sombra da cor terciária */
 }

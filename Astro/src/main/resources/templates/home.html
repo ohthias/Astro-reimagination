@@ -45,7 +45,7 @@
       rel="stylesheet"
       href="https://cdn.jsdelivr.net/npm/driver.js@1.0.1/dist/driver.css"
     />
-    
+
     <link rel="stylesheet" href="/css/api/drive.css" />
     <link rel="stylesheet" href="/css/api/swiper.css" />
 
@@ -56,65 +56,71 @@
     <link rel="stylesheet" href="/css/components/player.css" />
     <link rel="stylesheet" href="/css/components/sidebar.css" />
     <link rel="stylesheet" href="/css/components/navbar.css" />
-
     <link rel="stylesheet" href="/css/screen/home.css" />
   </head>
   <body>
-    <main>
-      <div class="wrapper first-acess">
-        <span class="montserrat-bold" id="userNameAcess"></span>
-        <h1 class="bebas-neue-regular first-acess-title">
-          Seja bem-vindo ao Astro
-        </h1>
-        <p class="montserrat-regular subtitle">Suas músicas nas galáxias</p>
+    <!-- Sidebar -->
+    <div class="sidebar">
+      <ul class="nav-list">
+        <li>
+          <button onclick="loadContent('home')">
+            <i class="material-icons">public</i>
+            <span class="tooltip">Home</span>
+          </button>
+        </li>
+        <li>
+          <button onclick="loadContent('busca')">
+            <i class="material-icons">search</i>
+            <span class="tooltip">Search</span>
+          </button>
+        </li>
+        <li>
+          <button onclick="loadContent('jogos')">
+            <i class="material-symbols-outlined">stadia_controller</i>
+            <span class="tooltip">Jogos</span>
+          </button>
+        </li>
+        <hr />
+        <li>
+          <button
+            onclick="loadContent('user')">
+            <i class="material-icons">folder</i>
+            <span class="tooltip">Biblioteca</span>
+          </button>
+        </li>
+        <li>
+          <button
+            onclick="showNotification('Essa função não está disponível nesta versão do Astro&copy, aguarde!')"
+          >
+            <i class="material-icons">add</i>
+            <span class="tooltip">Criar</span>
+          </button>
+        </li>
+        <div class="exit-container">
+          <li>
+            <button id="logoutBtn" onclick="logout()">
+              <i class="material-icons">exit_to_app</i>
+              <span class="tooltip">Sair</span>
+            </button>
+          </li>
+        </div>
+      </ul>
+    </div>
+    <div class="loader" id="loader">
+      <div class="planet">
       </div>
-
-      <section class="local-tracks swiper">
-        <h2 class="bebas-neue-regular categoria-name">Andrômeda</h2>
-        <div class="swiper-container">
-          <div class="swiper-wrapper" id="lista-local-songs"></div>
-          <button class="swiper-button-prev"></button>
-          <button class="swiper-button-next"></button>
-        </div>
-      </section>
-
-      <section class="artistas-section swiper">
-        <h2 class="bebas-neue-regular categoria-name">Top Artistas</h2>
-        <div class="swiper-container">
-          <div class="swiper-wrapper" id="lista-artistas"></div>
-          <button class="swiper-button-prev"></button>
-          <button class="swiper-button-next"></button>
-        </div>
-      </section>
-
-      <section class="music-section swiper">
-        <h2 class="bebas-neue-regular categoria-name">Rock</h2>
-        <div class="swiper-container">
-          <div class="swiper-wrapper" id="lista-musicas"></div>
-          <button class="swiper-button-prev"></button>
-          <button class="swiper-button-next"></button>
-        </div>
-      </section>
-
-      <section class="music-section swiper">
-        <h2 class="bebas-neue-regular categoria-name">Pop</h2>
-        <div class="swiper-container">
-          <div class="swiper-wrapper" id="lista-albums"></div>
-          <button class="swiper-button-prev"></button>
-          <button class="swiper-button-next"></button>
-        </div>
-      </section>
-    </main>
-
-    <script src="/js/generator/menus.js"></script>
-    <script src="/js/generator/player.js"></script>
-    <script src="/js/generator/navbar.js"></script>
-    <script src="/js/home.js"></script>
+    </div>
+    <main id="content"></main>
     <script src="/js/token.js"></script>
-    <script src="/js/driver/driver.js"></script>
+    <script src="/js/driver/driver.js" defer></script>
+    <script type="module" src="/js/screen/app.js"></script>
+    <script src="/js/screen/htmlGenerator.js"></script>
+    <script type="module" src="/js/musicPlayer.js"></script>
+    <script src="/js/generator/player.js"></script>
+    <script type="module" src="/js/generator/navbar.js"></script>
+    <script type="module" src="/js/home.js" defer></script>
     <script src="/js/swipe.js"></script>
     <script src="/js/theme.js"></script>
-    <script type="module" src="/js/musicPlayer.js"></script>
-    <script type="module" src="/js/api/apiAcess.js"></script>
+    <script type="module"  src="/js/getTheme.js"></script>
   </body>
 </html>

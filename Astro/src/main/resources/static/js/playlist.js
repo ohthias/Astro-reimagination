@@ -76,7 +76,7 @@ const displayPlaylistData = (playlistData) => {
   document.getElementById("playlistName").innerHTML = playlistData.name
   const playlistOwner = document.getElementById("albumArtistElement");
   playlistOwner.innerHTML = playlistData.owner.display_name
-  playlistOwner.href = `user?id=${playlistData.id}`;
+  playlistOwner.onclick = () => loadContent("user", playlistData.owner.id);
 
   // Criar a lista de faixas
   const trackList = document.createElement("ul");
@@ -129,7 +129,7 @@ const displayPlaylistData = (playlistData) => {
 
     const trackArtists = document.createElement("a");
     trackArtists.classList.add("montserrat-regular");
-    trackArtists.href = `/artist?id=${track.artists[0].id}`;
+    trackArtists.onclick = () => loadContent("artist", track.artists[0].id);
     let artistNames = track.artists[0].name;
     if (track.artists.length > 1) {
       for (let i = 1; i < track.artists.length; i++) {
@@ -160,7 +160,7 @@ const displayPlaylistData = (playlistData) => {
 };
 
 // Função principal para obter e exibir os dados da playlist
-const showPlaylist = async () => {
+export const showPlaylist = async () => {
   const playlistId = getPlaylistId(); // Pegar ID da playlist da URL
   if (playlistId) {
     try {

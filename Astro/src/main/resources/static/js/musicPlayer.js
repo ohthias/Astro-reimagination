@@ -1,4 +1,7 @@
-import localSongs from "./local-tracks/localSongs.mjs";
+import {localSongs} from "./local-tracks/localSongs.js";
+import {colorImage, showPopup} from "./musicPlayer/utils.js";
+import {getLyrics} from "./musicPlayer/lyrics.js";
+import {fetchMusicDetails} from "./musicPlayer/songDetails.js";
 
 let currentSongIndex = 0;
 const player = document.getElementById("player");
@@ -13,6 +16,9 @@ const durationDisplay = document.getElementById("duration");
 const progressBar = document.querySelector(".progress");
 const progressBarContainer = document.getElementById("progressBar");
 const volumeSlider = document.getElementById("volumeSlider");
+const sideMenuSongName = document.getElementById("sideMenuSongName");
+const sideMenuArtistName = document.getElementById("sideMenuArtistName");
+const sideMenuImage = document.getElementById("sideMenuSongImage");
 
 let jumpCount = 0;
 let lastJumpTime = Date.now();
@@ -20,24 +26,35 @@ let lastJumpTime = Date.now();
 const MAX_JUMPS_PER_HOUR = 6;
 const HOUR_IN_MS = 3600000;
 
-// Função para carregar e exibir as faixas no slider
-function loadTrackSlider() {
-  const trackSlider = document.getElementById("lista-local-songs");
-  trackSlider.innerHTML = ""; // Limpa os slides existentes
+loadTrackSlider(); // Garante que o DOM está pronto
+
+export function loadTrackSlider() {
+  const trackSlider = document.getElementById("localListSongs");
+
+  if (!trackSlider) {
+    console.warn("Elemento 'localListSongs' não encontrado.");
+    return;
+  }
+
+  trackSlider.innerHTML = ""; // Limpa o conteúdo anterior
 
   localSongs.forEach((track, index) => {
     const slide = document.createElement("div");
     slide.classList.add("swiper-slide");
 
-    slide.innerHTML = `
+    slide.innerHTML = (`
       <div class="track-item" data-index="${index}">
-        <img src="${track.image.url}" class="track-image" alt="${track.image.alt}" />
-        <div class='track-item-detail'>
-          <h5 class='montserrat-bold'>${track.name}</h5>
-          <p class='montserrat-regular'>${track.artist}</p>
+        <img
+          src="${track.image.url}"
+          class="track-image"
+          alt="${track.image.alt}"
+        />
+        <div class="track-item-detail">
+          <h5 class="montserrat-bold">${track.name}</h5>
+          <p class="montserrat-regular">${track.artist}</p>
         </div>
-      </div>
-    `;
+      </div>`
+    );
 
     slide.querySelector(".track-item").addEventListener("click", () => {
       currentSongIndex = index;
@@ -54,7 +71,7 @@ function loadTrackSlider() {
 player.volume = volumeSlider.value;
 
 // Função para carregar o estado salvo
-function loadSavedState() {
+export function loadSavedState() {
   const savedIndex = localStorage.getItem("currentSongIndex");
   const savedTime = localStorage.getItem("currentTime");
   const savedVolume = localStorage.getItem("currentVolume");
@@ -83,14 +100,36 @@ function loadSavedState() {
 }
 
 // Função para carregar a música
-function loadSong(song) {
-  player.src = song.url;
+async function loadSong(song) {
+  if (!song) {
+    console.error("Nenhuma música encontrada para carregar.");
+    setPlaceholder();
+    return;
+  }
+
+  player.src = song.url; // Configura a URL da música
   imgSong.src = song.image.url;
   imgSong.alt = song.image.alt;
   musicName.textContent = song.name;
   artistName.textContent = song.artist;
-  player.load();
+  sideMenuSongName.textContent = song.name;
+  sideMenuArtistName.textContent = song.artist;
+  sideMenuImage.src = song.image.url;
+
+  getLyrics(song.artist, song.name);
+
+  try {
+    const backgroundLyrics = await colorImage(song.image.url);
+    songLyrics.style.background = backgroundLyrics;
+  } catch (error) {
+    console.error(error);
+  }
+
+  fetchMusicDetails(song.name, song.artist);
+
+  player.load(); // Carrega o áudio no player
 }
+
 
 // Funções de controle do player
 function playSong() {
@@ -109,7 +148,7 @@ function pauseSong() {
 
 function canJump() {
   const currentTime = Date.now();
-  
+
   // Reseta o contador se uma hora se passou
   if (currentTime - lastJumpTime > HOUR_IN_MS) {
     jumpCount = 0;
@@ -121,12 +160,17 @@ function canJump() {
 
 function nextSong() {
   if (!canJump()) {
-    alert("Você atingiu o limite de pulos! Tente novamente mais tarde.");
+    showPopup("Você atingiu o limite de pulos! Tente novamente mais tarde.");
     return;
   }
 
+  // Incrementa o índice da música atual
   currentSongIndex = (currentSongIndex + 1) % localSongs.length;
+
+  // Salva o índice atual no localStorage
   localStorage.setItem("currentSongIndex", currentSongIndex);
+
+  // Carrega e toca a próxima música
   loadSong(localSongs[currentSongIndex]);
   playSong();
 
@@ -135,7 +179,7 @@ function nextSong() {
 
 function prevSong() {
   if (!canJump()) {
-    alert("Você atingiu o limite de pulos! Tente novamente mais tarde.");
+    showPopup("Você atigiu os limite de pulos por hora, aguarde!")
     return;
   }
 
@@ -256,6 +300,4 @@ document.addEventListener("keydown", function (event) {
   }
 });
 
-// Carregar estado ao iniciar
-loadSavedState();
-loadTrackSlider();
+loadSavedState(); 

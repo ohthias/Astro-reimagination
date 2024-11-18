@@ -42,6 +42,7 @@
   <body>
     <main>
       <section class="module container container1">
+        <audio src="/sounds/mixkit-fashion-01-661.mp3" loop autoplay></audio>
         <nav class="navigation-bar">
           <label
             id="logo"
@@ -52,15 +53,16 @@
             <a
               href="https://github.com/ohthias/Astro-reimagination/wiki"
               target="_blank"
-              class="menu-button-redirect montserrat-bold"
+              class="menu-button-redirect montserrat-semi-bold"
               >Documentação</a
             >
             <a
               href="https://github.com/ohthias/Astro-reimagination/wiki"
               target="_blank"
-              class="menu-button-redirect montserrat-bold"
+              class="menu-button-redirect montserrat-semi-bold"
               >About</a
             >
+            <hr class="divisor" />
             <a href="/login" class="menu-button-redirect montserrat-bold"
               >Entrar</a
             >
@@ -76,7 +78,7 @@
             <img src="/svg/Astro.svg" alt="logo-image" class="logo-image" />
             <div class="containner-info-subtitle">
               <h2 class="montserrat-regular">
-                Navegador de música das estrelas
+                Ouça suas músicas nas estrelas
               </h2>
               <div class="wrapper">
                 <h3 class="montserrat-regular">Escute</h3>
@@ -160,7 +162,7 @@
         <div class="circle circle2"></div>
         <h1 class="bebas-neue-regular">É GRÁTIS!</h1>
         <p class="montserrat-regular">Não precisa de cartão de crédito</p>
-        <a href="./planos.html" class="montserrat-regular">Consultar planos</a>
+        <a href="/plano" class="montserrat-regular">Consultar planos</a>
       </section>
       <section class="container4">
         <h1 class="bebas-neue-regular">O que você está esperando?</h1>
@@ -171,9 +173,7 @@
             <p class="montserrat-regular">
               Entre hoje no Astro, e embarque com suas músicas favoritas.
             </p>
-            <a href="./login.html" class="button-redirect montserrat-bold"
-              >Entrar</a
-            >
+            <a href="/login" class="button-redirect montserrat-bold">Entrar</a>
           </div>
         </div>
       </section>
@@ -189,7 +189,8 @@
               class="montserrat-regular"
               >Sobre</a
             >
-            <a href="" class="montserrat-regular">Preguntas Frequentes</a>
+            <a href="#" class="montserrat-regular">Preguntas Frequentes</a>
+            <a href="/plano" class="montserrat-regular">Planos</a>
             <a
               href="https://github.com/ohthias/Astro-reimagination"
               target="_blank"
@@ -201,23 +202,34 @@
             <a
               href="https://github.com/ohthias/Astro-reimagination/wiki/Documenta%C3%A7%C3%A3o"
               class="montserrat-regular"
+              target="_blank"
               >Desenvolvedor</a
             >
             <a
               href="https://github.com/ohthias/Astro-reimagination/wiki/Documenta%C3%A7%C3%A3o"
               class="montserrat-regular"
+              target="_blank"
               >Documentação</a
             >
           </div>
           <div class="footer-container-item">
             <h3 class="montserrat-bold">Contato</h3>
-            <a href="https://github.com/Kaique-ms27" class="montserrat-regular"
+            <a
+              href="https://github.com/Kaique-ms27"
+              target="_blank"
+              class="montserrat-regular"
               ><i class="fi fi-brands-github"></i> Kaique-ms27</a
             >
-            <a href="https://github.com/Nikolls06" class="montserrat-regular"
+            <a
+              href="https://github.com/Nikolls06"
+              target="_blank"
+              class="montserrat-regular"
               ><i class="fi fi-brands-github"></i> Nikolls06</a
             >
-            <a href="https://github.com/ohthias" class="montserrat-regular"
+            <a
+              href="https://github.com/ohthias"
+              target="_blank"
+              class="montserrat-regular"
               ><i class="fi fi-brands-github"></i> ohthias</a
             >
           </div>
@@ -227,9 +239,15 @@
           <a
             href="https://github.com/ohthias/Astro-reimagination/wiki/Termos"
             class="montserrat-regular"
+            target="_blank"
             >Termos e Condições da Plataforma</a
           >
-          <p class="montserrat-regular">Português(Brasil)</p>
+          <a
+            href="https://github.com/ohthias/Astro-reimagination/blob/master/LICENSE"
+            class="montserrat-regular"
+            target="_blank"
+            >Mozilla Public License 2.0
+          </a>
           <p class="montserrat-regular">&copy; 2024 Astro</p>
         </div>
       </footer>
@@ -240,7 +258,6 @@
     ></script>
     <script src="/js/others/words.js"></script>
     <script src="/js/others/redirects.js"></script>
-    <script src="/js/others/background.js"></script>
     <script src="/js/others/albumImages.js"></script>
     <script>
       const nav = document.querySelector(".navigation-bar");

@@ -52,7 +52,7 @@ const formatDuration = (durationMs) => {
 };
 
 // Função para exibir dados do álbum
-const displayAlbumData = (albumData) => {
+export const displayAlbumData = (albumData) => {
   const albumContainer = document.getElementById("albumTracks");
 
   // Obter os elementos do <picture> e <img> para definir o srcset dinamicamente
@@ -77,7 +77,7 @@ const displayAlbumData = (albumData) => {
   albumData.artists.forEach((artist) => {
     const artistLink = document.createElement("a");
     artistLink.classList.add("montserrat-regular"); // Classe para estilização
-    artistLink.href = `/artist?id=${artist.id}`; // Definir o link para o artista
+    artistLink.onclick = () => loadContent("artist", artist.id);
     artistLink.textContent = artist.name; // Nome do artista
 
     albumArtistElement.appendChild(artistLink); // Adicionar o link ao elemento
@@ -139,7 +139,7 @@ const displayAlbumData = (albumData) => {
     track.artists.forEach((artist) => {
       const trackArtistLink = document.createElement("a");
       trackArtistLink.classList.add("montserrat-regular"); // Classe para estilização
-      trackArtistLink.href = `/artist?id=${artist.id}`; // Definir o link para o artista
+      trackArtistLink.onclick = () => loadContent("artist", artist.id); // Carregar a página do artista
       trackArtistLink.textContent = artist.name; // Nome do artista
 
       trackArtistsContainer.appendChild(trackArtistLink); // Adicionar o link ao contêiner
@@ -171,7 +171,7 @@ const displayAlbumData = (albumData) => {
 };
 
 // Função principal para obter e exibir os dados do álbum
-const showAlbum = async () => {
+export const showAlbum = async () => {
   const albumId = getAlbumId(); // Pegar ID do álbum da URL
   if (albumId) {
     try {

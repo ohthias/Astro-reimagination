@@ -34,4 +34,6 @@ public class UserController {
         return userRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("Usuário não encontrado"));
     }
+
+
 }

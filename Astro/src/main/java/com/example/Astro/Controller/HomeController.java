@@ -7,19 +7,15 @@ package com.example.Astro.Controller;
  */
 
 import java.time.LocalDate;
+import java.util.HashMap;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpEntity;
-import org.springframework.http.HttpHeaders;
-import org.springframework.http.HttpMethod;
-import org.springframework.http.ResponseEntity;
+import org.springframework.http.*;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.client.RestTemplate;
 
 import com.example.Astro.Model.User;
@@ -49,6 +45,11 @@ public class HomeController {
         return "login";
     }
 
+    @GetMapping("/pagamento")
+    public String pagamento(){
+        return "pagamento";
+    }
+
     @GetMapping("/plano")
     public String plano(){
         return "plano";
@@ -69,21 +70,29 @@ public class HomeController {
         } else {
             model.addAttribute("error", "Usuário não encontrado");
         }
-
         return "home"; // Nome da página HTML que será exibida
     }
 
-    @GetMapping("/artist")
-    public String artist() { return  "artist";}
+    @GetMapping("/{page}")
+    public ResponseEntity<Map<String, String>> getContent(@PathVariable String page) {
+        Map<String, String> content = new HashMap<>();
 
-    @GetMapping("/playlist")
-    public  String playlist() {return "playlist";}
+        // Define o conteúdo de cada página
+        switch (page) {
+            case "home":
+            case "busca":
+            case "album":
+            case "artist":
+            case "playlist":
+            case "user":
+            default:
+                content.put("title", "Erro");
+                content.put("body", "Conteúdo não encontrado.");
+        }
 
-    @GetMapping("/album")
-    public  String album() {return "album";}
-
-    @GetMapping("/busca")
-    public  String busca() {return "busca";}
+        // Retorna o conteúdo como JSON
+        return ResponseEntity.ok(content);
+    }
 
     @GetMapping("/setting")
     public String setting() {return "setting";}
@@ -155,9 +164,11 @@ public class HomeController {
 
         LocalDate currentDate = LocalDate.now();
 
-        User usuario = new User(null, email, clienteHashword, username, currentDate, token);
+        User usuario = new User(null, email, clienteHashword, username, currentDate , token, "defaultTheme");
         repository.save(usuario);
-        return "redirect:/home?token=" + token;
+        String theme = usuario.getTheme();
+        return "redirect:/home?token=" + token + "&theme=" + theme;
+
     }
 
     @PostMapping("/login-user")
@@ -185,8 +196,11 @@ public class HomeController {
 
             // Gerar token e redirecionar com o token na URL
             String token = tokenService.generateToken(username, user.getEmail());
+            user.setToken(token);
+            repository.save(user);
+            String theme = user.getTheme();
 
-            return "redirect:/home?token=" + token;
+            return "redirect:/home?token=" + token + "&theme=" + theme;
         } catch (Exception e) {
             e.printStackTrace();
             model.addAttribute("errorMessage", "Erro ao processar o login");

@@ -19,6 +19,7 @@
   height: 80px;
   grid-area: 3 / 1 / 4 / 6;
   background: var(--black-shadow);
+  border: var(--border-neon);
 
   .player {
     animation: fadeIn 1s ease;
@@ -27,6 +28,7 @@
     justify-content: space-between;
     align-items: center;
     padding: 0 1rem;
+    animation: fadeIn 500ms ease;
   }
 }
 
@@ -136,18 +138,18 @@ button:is(#prevButton, #playPauseButton, #nextButton) {
   transition: 150ms;
 
   &:hover {
-    background: var(--tertiary-shadow-light);
+    background: var(--secondary-shadow);
   }
 }
 
 .progress {
   height: 8px;
-  background: var(--tertiary);
+  background: var(--secondary);
   border-radius: 15px;
   transition: 150ms;
 
   &:hover {
-    background: var(--tertiary-shadow);
+    background: var(--secondary-shadow);
   }
 }
 
@@ -165,6 +167,7 @@ button:is(#prevButton, #playPauseButton, #nextButton) {
   justify-content: flex-start;
   position: relative;
   gap: 1rem;
+  z-index: 1000;
 }
 
 .volume-control span {
@@ -187,7 +190,7 @@ span.volume_off {
   top: -85px;
   rotate: -90deg;
   display: none;
-  z-index: 99;
+  z-index: 1000;
   transition: opacity 0.3s ease; /* Para suavizar a transição */
 }
 
@@ -243,6 +246,118 @@ span.volume_off {
   color: transparent;
 }
 
+
+/* Menu lateral */
+
+.side-menu {
+  width: 100%;
+  background: var(--black-shadow);
+  border: var(--border-neon);
+  border-radius: 24px;
+  padding: 20px;
+  box-shadow: -2px 0 5px rgba(0, 0, 0, 0.1);
+  overflow-y: auto;
+  display: none;
+  animation: slideIn 1s;
+  position: relative;
+  z-index: 2;
+}
+
+
+.side-menu.visible {
+  display: block;
+  animation: fadeIn 1s;
+}
+
+.menu-active {
+  grid-area: 7 / 7 / 1 / 7;
+}
+
+.song-details h3,
+.song-details p {
+  margin: 0;
+  padding: 5px 0;
+  color: var(--font-all);
+  text-transform: capitalize;
+}
+
+#sideMenuSongImage {
+  width: 100%;
+  border-radius: 18px;
+}
+
+.song-lyrics {
+  padding: 12px;
+  border-radius: 18px;
+  min-height: 200px;
+  margin-top: 20px;
+  font-size: 12px;
+  white-space: pre-wrap;
+  color: var(--font-all);
+  background: var(--primary);
+  overflow-y: scroll;
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  cursor: default;  
+  user-select: none;
+  user-drag: none;
+  .lyrics-line {
+    margin: -4px 0;
+    font-size: 16px;
+    text-transform: none;
+    color: var(--white-shadow);
+    transition: all 150ms ease;
+
+      &:hover {
+        color: var(--font-all);
+      }
+    }
+}
+
+#songMoreInfo {
+  margin: 1rem 0;
+  padding: 8px 0;
+  padding-inline: 12px;
+  border-radius: 18px;
+  background: var(--shadow);
+  color: var(--font-all);
+  cursor: default;
+  user-select: none;
+  user-drag: none;
+
+  .collaborators-list, .gravadora{
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin: 0.8rem 0;
+    background: var(--black-shadow);
+    padding: 0.5rem;
+    border-radius: 10px;
+  }	
+}
+
+.side-menu::-webkit-scrollbar {
+  display: none;
+}
+
+.info-button {
+  margin-left: 8px;
+  --size: 50px;
+  height: var(--size);
+  width: var(--size);
+  font-size: 20px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: var(--white);
+  transition: 250ms;
+
+  &:hover {
+    color: var(--secondary);
+    text-shadow: 0 0 5px var(--secondary-shadow);
+  }
+}
+
 /* Media screen */
 
 @media screen and (max-width: 1025px) {
@@ -288,5 +403,90 @@ span.volume_off {
   #heartMusic,
   .playPauseButton {
     display: flex;
+  }
+}
+
+/* Popup */
+/* Estilo do pop-up */
+.mini-popup {
+  position: fixed;
+  top: 90px;
+  right: 35px;
+  padding: 15px 20px;
+  background-color: var(--secondary-shadow);
+  color: var(--font-all);
+  border-radius: 5px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  font-family: Arial, sans-serif;
+  font-size: 14px;
+  z-index: 1000;
+  /* Estado inicial para animação */
+  opacity: 0;
+  transform: translateY(20px);
+  animation: popupIn 0.5s forwards;
+}
+
+/* Animação para esconder o pop-up */
+.mini-popup.hide {
+  animation: popupOut 0.5s forwards;
+}
+
+.menu-active ~ .mini-popup {
+  right: 400px;
+}
+
+/* Animações */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes slideIn {
+  from {
+    right: -300px;
+  }
+  to {
+    right: 0;
+  }
+}
+
+@keyframes rotate {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(90deg);
+  }
+}
+
+/* Animação para exibir o pop-up */
+@keyframes popupIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.rotate-animation {
+  animation: rotate 0.3s ease forwards;
+}
+
+/* Animação para ocultar o pop-up */
+@keyframes popupOut {
+  from {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  to {
+    opacity: 0;
+    transform: translateY(20px);
   }
 }
