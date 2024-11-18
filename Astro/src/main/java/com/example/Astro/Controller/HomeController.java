@@ -87,6 +87,7 @@ public class HomeController {
             case "album":
             case "artist":
             case "playlist":
+            case "user":
             default:
                 content.put("title", "Erro");
                 content.put("body", "Conteúdo não encontrado.");

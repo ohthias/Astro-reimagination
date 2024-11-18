@@ -1,8 +1,10 @@
-const getTokenFromLocalStorage = () => {
+// Função para obter o token do localStorage
+export const getTokenFromLocalStorage = () => {
   return localStorage.getItem("authToken"); // Obtém o token do localStorage
 };
 
-const parseJwt = (token) => {
+// Função para decodificar o token JWT
+export const parseJwt = (token) => {
   try {
     const base64Url = token.split(".")[1]; // Obtém o payload (a segunda parte do token)
     const base64 = atob(base64Url); // Decodifica o Base64
@@ -15,7 +17,8 @@ const parseJwt = (token) => {
   }
 };
 
-document.addEventListener("DOMContentLoaded", function () {
+// Função para exibir as informações do usuário no HTML
+export const displayUserInfo = () => {
   const token = getTokenFromLocalStorage(); // Obtém o token do localStorage
   console.log("Token do localStorage: ", token);
 
@@ -24,8 +27,7 @@ document.addEventListener("DOMContentLoaded", function () {
     console.log("Token decodificado: ", decodedToken);
 
     if (decodedToken) {
-      // Obtém o nome de usuário do token decodificado (supondo que esteja no campo 'sub')
-
+      // Obtém o nome de usuário, e-mail e data de criação do token
       const userName = decodedToken.sub || "Nome não disponível";
       const userEmail = decodedToken.email || "Email não disponível";
       const userCreationDate = decodedToken.iat
@@ -33,13 +35,26 @@ document.addEventListener("DOMContentLoaded", function () {
         : "Data de criação não disponível";
 
       // Exibindo as informações no HTML
-      document.getElementById("userNameAcess").innerHTML = userName;
-      document.querySelector("input#userNameAcess").value = userName;
-      document.getElementById("userEmail").value = userEmail;
+      const userNameElement = document.getElementById("userNameAcess");
+      if (userNameElement) {
+        userNameElement.innerHTML = userName;
+      }
+
+      const userNameInput = document.querySelector("input#userNameAcess");
+      if (userNameInput) {
+        userNameInput.value = userName;
+      }
+
+      const userEmailInput = document.getElementById("userEmail");
+      if (userEmailInput) {
+        userEmailInput.value = userEmail;
+      }
+
+      console.log(`Nome: ${userName}, Email: ${userEmail}, Data: ${userCreationDate}`);
     } else {
       console.error("Falha ao decodificar o token.");
     }
   } else {
     console.error("Token não encontrado no localStorage.");
   }
-});
+};

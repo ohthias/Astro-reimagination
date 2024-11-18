@@ -167,6 +167,7 @@ button:is(#prevButton, #playPauseButton, #nextButton) {
   justify-content: flex-start;
   position: relative;
   gap: 1rem;
+  z-index: 1000;
 }
 
 .volume-control span {
@@ -189,7 +190,7 @@ span.volume_off {
   top: -85px;
   rotate: -90deg;
   display: none;
-  z-index: 99;
+  z-index: 1000;
   transition: opacity 0.3s ease; /* Para suavizar a transição */
 }
 
@@ -259,7 +260,7 @@ span.volume_off {
   display: none;
   animation: slideIn 1s;
   position: relative;
-  z-index: 10;
+  z-index: 2;
 }
 
 

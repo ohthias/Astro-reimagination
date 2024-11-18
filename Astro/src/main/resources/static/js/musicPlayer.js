@@ -39,8 +39,6 @@ export function loadTrackSlider() {
   trackSlider.innerHTML = ""; // Limpa o conteúdo anterior
 
   localSongs.forEach((track, index) => {
-    console.log(track); // Verifica os dados de cada música
-
     const slide = document.createElement("div");
     slide.classList.add("swiper-slide");
 
@@ -103,7 +101,13 @@ export function loadSavedState() {
 
 // Função para carregar a música
 async function loadSong(song) {
-  player.src = song.url;
+  if (!song) {
+    console.error("Nenhuma música encontrada para carregar.");
+    setPlaceholder();
+    return;
+  }
+
+  player.src = song.url; // Configura a URL da música
   imgSong.src = song.image.url;
   imgSong.alt = song.image.alt;
   musicName.textContent = song.name;
@@ -111,17 +115,21 @@ async function loadSong(song) {
   sideMenuSongName.textContent = song.name;
   sideMenuArtistName.textContent = song.artist;
   sideMenuImage.src = song.image.url;
+
   getLyrics(song.artist, song.name);
+
   try {
     const backgroundLyrics = await colorImage(song.image.url);
-    // Aplicar a cor como fundo
     songLyrics.style.background = backgroundLyrics;
   } catch (error) {
     console.error(error);
   }
+
   fetchMusicDetails(song.name, song.artist);
-  player.load();
+
+  player.load(); // Carrega o áudio no player
 }
+
 
 // Funções de controle do player
 function playSong() {
@@ -156,16 +164,22 @@ function nextSong() {
     return;
   }
 
+  // Incrementa o índice da música atual
   currentSongIndex = (currentSongIndex + 1) % localSongs.length;
+
+  // Salva o índice atual no localStorage
   localStorage.setItem("currentSongIndex", currentSongIndex);
+
+  // Carrega e toca a próxima música
   loadSong(localSongs[currentSongIndex]);
   playSong();
 
   jumpCount++;
 }
+
 function prevSong() {
   if (!canJump()) {
-    alert("Você atingiu o limite de pulos! Tente novamente mais tarde.");
+    showPopup("Você atigiu os limite de pulos por hora, aguarde!")
     return;
   }
 
@@ -285,3 +299,5 @@ document.addEventListener("keydown", function (event) {
     }
   }
 });
+
+loadSavedState(); 

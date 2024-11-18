@@ -32,9 +32,7 @@ export async function loadContent(page, id = null) {
   }
 
   window.history.pushState({}, "", url);
-  loadSavedState();
 
-  // Remove o estilo anterior
   removeStyleSheet();
 
   // Adiciona o estilo correspondente à página
@@ -47,6 +45,10 @@ export async function loadContent(page, id = null) {
       await buscarArtistas();
       await buscarMusicas("rock");
       await buscarAlbums();
+      import("../home.js").then(({ displayUserInfo }) => {
+        displayUserInfo();
+      });
+      localStorage.setItem("driveInicialize", true);
       break;
     case "busca":
       addStyleSheet("busca.css");
@@ -90,6 +92,23 @@ export async function loadContent(page, id = null) {
       addStyleSheet("jogos.css");
       generateGamesContent();
       break;
+    case "user":
+      addStyleSheet("user.css");
+      generateUserContent();
+
+      // Importa e chama a função para carregar as informações do usuário
+      import("../home.js").then(({ displayUserInfo }) => {
+        displayUserInfo();
+      });
+      break;
+    case "settings":
+      addStyleSheet("settings.css");
+      generateSettingsContent();
+      import("../home.js").then(({ displayUserInfo }) => {
+        displayUserInfo();
+      });
+      addScript("userInfo.js");
+      break;
     default:
       content.innerHTML = "<p>Conteúdo não encontrado.</p>";
       break;
@@ -113,7 +132,7 @@ export async function loadContent(page, id = null) {
 function addStyleSheet(styleFile) {
   const link = document.createElement("link");
   link.rel = "stylesheet";
-  link.href = `../static/css/screen/${styleFile}`;
+  link.href = `/css/screen/${styleFile}`;
   link.id = "dynamic-stylesheet";
   document.head.appendChild(link);
 }
@@ -124,6 +143,18 @@ function removeStyleSheet() {
   if (existingLink) {
     existingLink.parentNode.removeChild(existingLink);
   }
+}
+// Função para adicionar o arquivo JS
+function addScript(scriptFile) {
+  const existingScript = document.getElementById("dynamic-script");
+  if (existingScript) {
+    existingScript.parentNode.removeChild(existingScript);
+  }
+
+  const script = document.createElement("script");
+  script.src = `/js/${scriptFile}`;
+  script.id = "dynamic-script";
+  document.body.appendChild(script);
 }
 
 // Garantindo que loadContent esteja disponível globalmente
