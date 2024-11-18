@@ -15,4 +15,5 @@ public class UserService {
         // Supondo que você tenha um método que busca o usuário pelo token
         return userRepository.findByToken(token);
     }
+
 }

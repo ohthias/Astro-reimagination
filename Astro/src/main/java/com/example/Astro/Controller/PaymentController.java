@@ -12,7 +12,6 @@ import java.util.Map;
 @RestController
 @RequestMapping("/payment")
 public class PaymentController {
-
     @PostConstruct
     public void init() {
         Stripe.apiKey = "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"; // Substitua pela sua chave secreta

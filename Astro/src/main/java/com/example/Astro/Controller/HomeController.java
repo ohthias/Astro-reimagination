@@ -11,10 +11,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpEntity;
-import org.springframework.http.HttpHeaders;
-import org.springframework.http.HttpMethod;
-import org.springframework.http.ResponseEntity;
+import org.springframework.http.*;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -167,9 +164,11 @@ public class HomeController {
 
         LocalDate currentDate = LocalDate.now();
 
-        User usuario = new User(null, email, clienteHashword, username, currentDate, token);
+        User usuario = new User(null, email, clienteHashword, username, currentDate, token, "defaultTheme");
         repository.save(usuario);
-        return "redirect:/home?token=" + token;
+        String theme = usuario.getTheme();
+        return "redirect:/home?token=" + token + "&theme=" + theme;
+
     }
 
     @PostMapping("/login-user")
@@ -197,8 +196,9 @@ public class HomeController {
 
             // Gerar token e redirecionar com o token na URL
             String token = tokenService.generateToken(username, user.getEmail());
+            String theme = user.getTheme();
 
-            return "redirect:/home?token=" + token;
+            return "redirect:/home?token=" + token + "&theme=" + theme;
         } catch (Exception e) {
             e.printStackTrace();
             model.addAttribute("errorMessage", "Erro ao processar o login");
