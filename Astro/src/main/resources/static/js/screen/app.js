@@ -3,11 +3,12 @@ import {
   buscarArtistas,
   buscarMusicas,
   buscarAlbums,
-} from "../api/apiAcess.js";
-import { displayArtist } from "../artistPage.js";
-import { showAlbum } from "../albums.js";
-import { showPlaylist } from "../playlist.js";
-import { imageGradient } from "../background-color.js";
+} from "../apis/apiAcess.js";
+import { displayArtist } from "../process/artistPage.js";
+import { showAlbum } from "../process/albums.js";
+import { showPlaylist } from "../process/playlist.js";
+import { imageGradient } from "../others/background-color.js";
+import {loadUserPlaylists} from "../process/playlistUser.js";
 
 export async function loadContent(page, id = null) {
   const content = document.getElementById("content");
@@ -45,7 +46,7 @@ export async function loadContent(page, id = null) {
       await buscarArtistas();
       await buscarMusicas("rock");
       await buscarAlbums();
-      import("../home.js").then(({ displayUserInfo }) => {
+      import("../process/home.js").then(({ displayUserInfo }) => {
         displayUserInfo();
       });
       localStorage.setItem("driveInicialize", true);
@@ -95,17 +96,17 @@ export async function loadContent(page, id = null) {
     case "user":
       addStyleSheet("user.css");
       generateUserContent();
-
       // Importa e chama a função para carregar as informações do usuário
-      import("../home.js").then(({ displayUserInfo }) => {
+      import("../process/home.js").then(({ displayUserInfo }) => {
         displayUserInfo();
       });
+      loadUserPlaylists()
       break;
     case "settings":
       addStyleSheet("settings.css");
       generateSettingsContent();
-      addScript("userInfo.js");
-      import("../home.js").then(({ displayUserInfo }) => {
+      addScript("process/userInfo.js");
+      import("../process/home.js").then(({ displayUserInfo }) => {
         displayUserInfo();
       });
       break;
@@ -132,7 +133,7 @@ export async function loadContent(page, id = null) {
 function addStyleSheet(styleFile) {
   const link = document.createElement("link");
   link.rel = "stylesheet";
-  link.href = `/css/screen/${styleFile}`;
+  link.href = `../static/css/screen/${styleFile}`;
   link.id = "dynamic-stylesheet";
   document.head.appendChild(link);
 }
@@ -152,7 +153,7 @@ function addScript(scriptFile) {
   }
 
   const script = document.createElement("script");
-  script.src = `/js/${scriptFile}`;
+  script.src = `../static/js/${scriptFile}`;
   script.id = "dynamic-script";
   document.body.appendChild(script);
 }

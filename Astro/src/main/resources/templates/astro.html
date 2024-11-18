@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Astro</title>
+    <link rel='stylesheet' href='https://cdn-uicons.flaticon.com/2.6.0/uicons-solid-straight/css/uicons-solid-straight.css'>
+    <link
+      rel="apple-touch-icon"
+      sizes="180x180"
+      href="/favicon/apple-touch-icon.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="32x32"
+      href="/favicon/favicon-32x32.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="16x16"
+      href="/favicon/favicon-16x16.png"
+    />
+    <link rel="manifest" href="/favicon/site.webmanifest" />
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/icon?family=Material+Symbols+Outlined"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/swiper/swiper-bundle.min.css"
+    />
+    <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1/dist/confetti.browser.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/driver.js@1.0.1/dist/driver.js.iife.js"></script>
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/driver.js@1.0.1/dist/driver.css"
+    />
+
+    <link rel="stylesheet" href="../static/css/api/drive.css" />
+    <link rel="stylesheet" href="../static/css/api/swiper.css" />
+
+    <link rel="stylesheet" href="../static/css/root/font.css" />
+    <link rel="stylesheet" href="../static/css/root/root.css" />
+    <link rel="stylesheet" href="../static/css/root/variables.css" />
+
+    <link rel="stylesheet" href="../static/css/components/player.css" />
+    <link rel="stylesheet" href="../static/css/components/sidebar.css" />
+    <link rel="stylesheet" href="../static/css/components/navbar.css" />
+    <link rel="stylesheet" href="../static/css/screen/home.css" />
+  </head>
+  <body>
+    <!-- Sidebar -->
+    <div class="sidebar">
+      <ul class="nav-list">
+        <li>
+          <button onclick="loadContent('home')">
+            <i class="material-icons">public</i>
+            <span class="tooltip">Home</span>
+          </button>
+        </li>
+        <li>
+          <button onclick="loadContent('busca')">
+            <i class="material-icons">search</i>
+            <span class="tooltip">Search</span>
+          </button>
+        </li>
+        <li>
+          <button onclick="loadContent('jogos')">
+            <i class="material-symbols-outlined">stadia_controller</i>
+            <span class="tooltip">Jogos</span>
+          </button>
+        </li>
+        <hr />
+        <li>
+          <button
+            onclick="loadContent('user')">
+            <i class="material-icons">folder</i>
+            <span class="tooltip">Biblioteca</span>
+          </button>
+        </li>
+        <li>
+          <button
+            onclick="showNotification('Essa função não está disponível nesta versão do Astro&copy, aguarde!')"
+          >
+            <i class="material-icons">add</i>
+            <span class="tooltip">Criar</span>
+          </button>
+        </li>
+        <div class="exit-container">
+          <li>
+            <button id="logoutBtn" onclick="logout()">
+              <i class="material-icons">exit_to_app</i>
+              <span class="tooltip">Sair</span>
+            </button>
+          </li>
+        </div>
+      </ul>
+    </div>
+    <div class="loader" id="loader">
+      <div class="planet">
+      </div>
+    </div>
+    <main id="content"></main>
+    <script src="../static/js/token.js"></script>
+    <script src="../static/js/driver/driver.js" defer></script>
+    <script type="module" src="../static/js/screen/app.js"></script>
+    <script src="../static/js/screen/htmlGenerator.js"></script>
+    <script type="module" src="../static/js/musicPlayer.js"></script>
+    <script src="../static/js/generator/player.js"></script>
+    <script type="module" src="../static/js/generator/navbar.js"></script>
+    <script type="module" src="../static/js/process/home.js" defer></script>
+    <script src="../static/js/others/swipe.js"></script>
+    <script src="../static/js/theme/theme.js"></script>
+    <script type="module"  src="../static/js/theme/getTheme.js"></script>
+  </body>
+</html>

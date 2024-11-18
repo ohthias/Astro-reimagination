@@ -60,7 +60,7 @@ public class HomeController {
         return "sign";
     }
 
-    @GetMapping("/home")
+    @GetMapping("/astro")
     public String home(@RequestParam("token") String token, Model model) {
         // Busca o usuário usando o token
         User user = userService.getUserByToken(token);
@@ -70,7 +70,7 @@ public class HomeController {
         } else {
             model.addAttribute("error", "Usuário não encontrado");
         }
-        return "home"; // Nome da página HTML que será exibida
+        return "astro"; // Nome da página HTML que será exibida
     }
 
     @GetMapping("/{page}")
@@ -167,8 +167,7 @@ public class HomeController {
         User usuario = new User(null, email, clienteHashword, username, currentDate , token, "defaultTheme");
         repository.save(usuario);
         String theme = usuario.getTheme();
-        return "redirect:/home?token=" + token + "&theme=" + theme;
-
+        return "redirect:/astro?token=" + token + "&theme=" + theme;
     }
 
     @PostMapping("/login-user")
@@ -212,7 +211,6 @@ public class HomeController {
     @GetMapping("/logout")
     public String logout() {
         // O token é removido no frontend (no JavaScript), aqui só redirecionamos para a tela de login.
-        return "redirect:/login";
+        return "redirect:/astro";
     }
-
 }

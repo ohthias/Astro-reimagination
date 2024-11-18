@@ -105,6 +105,20 @@
   &:hover {
     color: var(--secondary);
   }
+
+  &.active {
+    color: var(--tertiary);
+  }
+}
+
+.fi-ss-heart, .fi-rr-heart {
+  font-size: 1.4em;
+  color: var(--secondary-shadow);
+  transition: 250ms;
+
+  &:hover {
+    color: var(--secondary);
+  }
 }
 
 button:is(#prevButton, #playPauseButton, #nextButton) {

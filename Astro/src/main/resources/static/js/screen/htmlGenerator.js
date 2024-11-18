@@ -284,10 +284,10 @@ function generateUserContent() {
         </div>
       </section>
 
-      <section class="user-playlists swiper" style="display: none;">
+      <section class="user-playlists swiper" id="userPlaylistsSection">
         <h2 class="montserrat-bold categoria-name">Playlists</h2>
         <div class="swiper-container">
-          <div class="swiper-wrapper"></div>
+          <div class="swiper-wrapper" id="playlistsContainer"></div>
           <button class="swiper-button-prev"></button>
           <button class="swiper-button-next"></button>
         </div>
