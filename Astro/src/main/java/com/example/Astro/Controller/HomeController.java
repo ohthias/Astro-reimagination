@@ -164,7 +164,7 @@ public class HomeController {
 
         LocalDate currentDate = LocalDate.now();
 
-        User usuario = new User(null, email, clienteHashword, username, currentDate, token, "defaultTheme");
+        User usuario = new User(null, email, clienteHashword, username, currentDate , token, "defaultTheme");
         repository.save(usuario);
         String theme = usuario.getTheme();
         return "redirect:/home?token=" + token + "&theme=" + theme;
@@ -196,6 +196,8 @@ public class HomeController {
 
             // Gerar token e redirecionar com o token na URL
             String token = tokenService.generateToken(username, user.getEmail());
+            user.setToken(token);
+            repository.save(user);
             String theme = user.getTheme();
 
             return "redirect:/home?token=" + token + "&theme=" + theme;

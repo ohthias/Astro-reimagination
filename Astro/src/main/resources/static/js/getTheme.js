@@ -1,6 +1,6 @@
 console.log(theme);
 
-function addThemeToLink() {
+export function addThemeToLink() {
     if(theme) {
         document.querySelectorAll('a').forEach(link => {
             let href = link.getAttribute('href');

@@ -29,10 +29,12 @@ public class ThemeController {
 
         // Remove o prefixo "Bearer " do token
         token = token.replace("Bearer ", "");
+        System.out.println("token: \n" +token);
 
         // Busca o usuário pelo token
         User user = userService.getUserByToken(token);
         if (user == null) {
+            System.out.println("\nUsuário não encontrado\n");
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Usuário não autenticado.");
         }
 

@@ -104,10 +104,10 @@ export async function loadContent(page, id = null) {
     case "settings":
       addStyleSheet("settings.css");
       generateSettingsContent();
+      addScript("userInfo.js");
       import("../home.js").then(({ displayUserInfo }) => {
         displayUserInfo();
       });
-      addScript("userInfo.js");
       break;
     default:
       content.innerHTML = "<p>Conteúdo não encontrado.</p>";
