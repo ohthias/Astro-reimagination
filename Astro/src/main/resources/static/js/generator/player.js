@@ -41,7 +41,7 @@ const userPrefers = document.createElement("div");
 userPrefers.className = "user-prefers";
 
 const heartMusicButton = document.createElement("button");
-heartMusicButton.id = "heartMusic";
+heartMusicButton.id = "favoriteButton";
 const heartIcon = document.createElement("span");
 heartIcon.className = "material-symbols-outlined heart";
 heartIcon.textContent = "favorite";

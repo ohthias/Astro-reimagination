@@ -26,7 +26,56 @@ let lastJumpTime = Date.now();
 const MAX_JUMPS_PER_HOUR = 6;
 const HOUR_IN_MS = 3600000;
 
+const favoriteButton = document.getElementById("favoriteButton");
+let favoriteSongs = JSON.parse(localStorage.getItem("favoriteSongs")) || [];
+
 loadTrackSlider(); // Garante que o DOM está pronto
+
+// Adiciona a lógica para favoritar/desfavoritar músicas
+function toggleFavorite() {
+  const currentSong = localSongs[currentSongIndex];
+
+  if (!currentSong) {
+    console.error("Nenhuma música está sendo reproduzida para favoritar.");
+    return;
+  }
+
+  const isFavorite = favoriteSongs.some(
+    (favSong) => favSong.url === currentSong.url
+  );
+
+  if (isFavorite) {
+    favoriteSongs = favoriteSongs.filter(
+      (favSong) => favSong.url !== currentSong.url
+    );
+    favoriteButton.innerHTML = "favorite_border"; // Ícone de coração vazio
+    favoriteButton.classList.remove("favorited");
+    showPopup(`${currentSong.name} removida dos favoritos!`);
+  } else {
+    favoriteSongs.push(currentSong);
+    favoriteButton.innerHTML = "favorite"; // Ícone de coração preenchido
+    favoriteButton.classList.add("favorited");
+    showPopup(`${currentSong.name} adicionada aos favoritos!`);
+  }
+
+  localStorage.setItem("favoriteSongs", JSON.stringify(favoriteSongs));
+}
+
+// Atualiza o estado do botão de favorito
+function updateFavoriteButton(song) {
+  const isFavorite = favoriteSongs.some((favSong) => favSong.url === song.url);
+
+  if (isFavorite) {
+    favoriteButton.innerHTML = "favorite"; // Ícone de coração preenchido
+    favoriteButton.classList.add("favorited");
+  } else {
+    favoriteButton.innerHTML = "favorite_border"; // Ícone de coração vazio
+    favoriteButton.classList.remove("favorited");
+  }
+}
+
+// Eventos do botão de favorito
+favoriteButton.addEventListener("click", toggleFavorite);
 
 export function loadTrackSlider() {
   const trackSlider = document.getElementById("localListSongs");
@@ -126,7 +175,7 @@ async function loadSong(song) {
   }
 
   fetchMusicDetails(song.name, song.artist);
-
+  updateFavoriteButton(song)
   player.load(); // Carrega o áudio no player
 }
 

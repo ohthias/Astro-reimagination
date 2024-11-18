@@ -19,47 +19,42 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   // Função para carregar a música
-  export function loadSong(
-    song,
-    player,
-    imgElement,
-    musicName,
-    artistName,
-    sideMenuSongName,
-    sideMenuArtistName,
-    sideMenuImage,
-    getLyrics,
-    colorImage
-  ) {
-    if (!song) return;
+  const favoriteButton = document.getElementById("favoriteButton");
 
-    // Atualizar a música e o artista
-    musicName.innerText = song.name;
-    artistName.innerText = song.artist;
-    sideMenuSongName.innerText = song.name;
-    sideMenuArtistName.innerText = song.artist;
+  favoriteButton.addEventListener("click", toggleFavorite);
 
-    // Carregar a imagem da música
-    if (song.imageUrl) {
-      sideMenuImage.src = song.imageUrl;
+  // Atualiza o botão ao carregar a música
+  async function loadSong(song) {
+    if (!song) {
+      console.error("Nenhuma música encontrada para carregar.");
+      setPlaceholder();
+      return;
     }
 
-    // Atualizar o player com a nova música
-    player.src = song.audioUrl;
+    player.src = song.url; // Configura a URL da música
+    imgSong.src = song.image.url;
+    imgSong.alt = song.image.alt;
+    musicName.textContent = song.name;
+    artistName.textContent = song.artist;
+    sideMenuSongName.textContent = song.name;
+    sideMenuArtistName.textContent = song.artist;
+    sideMenuImage.src = song.image.url;
 
-    // Atualizar a cor da imagem da música
-    if (imgElement) {
-      colorImage(imgElement, song.artist);
+    // Atualiza o botão de favorito
+    updateFavoriteButton(song);
+
+    getLyrics(song.artist, song.name);
+
+    try {
+      const backgroundLyrics = await colorImage(song.image.url);
+      songLyrics.style.background = backgroundLyrics;
+    } catch (error) {
+      console.error(error);
     }
 
-    // Tentar carregar a letra da música
-    getLyrics(song.artist, song.name)
-      .then((lyrics) => {
-        displayLyrics(lyrics);
-      })
-      .catch((error) => {
-        displayLyrics("Erro ao carregar letra.");
-      });
+    fetchMusicDetails(song.name, song.artist);
+
+    player.load(); // Carrega o áudio no player
   }
 
   // Função para exibir a letra da música
