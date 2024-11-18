@@ -1,0 +1,433 @@
+/* 
+  Arquivo: artist.css
+  Descrição: Este arquivo contém os estilos da página do artista do Astro.
+    
+  Seções principais:
+  1. Estilos da seção display-artist
+  2. Estilos da seção artistTracks
+  3. Estilos da seção artistAlbums
+    
+  Data: 20 de Outubro de 2024
+*/
+
+body {
+  padding: 1rem;
+  width: 100%;
+  height: 100vh !important;
+  display: grid;
+  grid-template-columns: 80px 1fr 1fr 1fr 1fr;
+  grid-template-rows: auto 1fr auto;
+  grid-column-gap: 16px;
+  grid-row-gap: 16px;
+
+  background: linear-gradient(
+      to top,
+      var(--primary-shadow) 0%,
+      var(--shadow) 10%
+    ),
+    var(--shadow);
+  behavior: smooth;
+}
+
+main {
+  padding-right: 1rem;
+  grid-area: 2 / 2 / 3 / 6;
+  overflow-x: hidden;
+  position: relative;
+
+  section.module1 {
+    display: flex;
+    justify-content: space-between;
+    gap: 2rem;
+    flex: 1;
+  }
+}
+
+.banner-artist {
+  width: 50%;
+  position: relative;
+
+  .banner-details {
+    position: absolute;
+    bottom: 50px;
+    left: 50px;
+
+    h1#artist-name {
+      font-size: 56px;
+      text-shadow: 0 0 24px var(--secondary-shadow-light);
+      color: var(--font-all);
+    }
+  }
+}
+
+img#imageArtist {
+  width: 100%;
+  height: 500px;
+  object-fit: cover;
+  position: relative;
+  border-radius: 24px;
+  place-items: center;
+}
+
+.container-details-artist {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: flex-start;
+  color: var(--font-all);
+  width: 50%;
+  h3#ouvintes {
+    font-size: 21px;
+    margin-bottom: 1rem;
+  }
+
+  .artist-biography {
+    font-size: 14px;
+    text-align: justify;
+  }
+
+  .others-informations {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+
+    #artist-popularity {
+      background: var(--primary-shadow-light);
+      font-size: 26px;
+    }
+    #artist-region {
+      background: var(--secondary-shadow-light);
+    }
+    #artist-genres {
+      font-size: 16px;
+      background: var(--tertiary-shadow-light);
+      white-space: wrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    #artist-popularity,
+    #artist-region,
+    #artist-genres {
+      width: 180px;
+      height: 120px;
+      border-radius: 24px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      box-shadow: 0 0 10px var(--black-shadow);
+
+      img {
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+        animation: upDown 10s ease-in-out infinite alternate;
+      }
+    }
+  }
+}
+
+.container2 {
+  padding: 1rem;
+  margin-top: 2rem;
+  background: var(--shadow-shadow);
+  backdrop-filter: blur(10px);
+  border-radius: 12px;
+}
+
+section.module2 {
+  display: flex;
+  justify-content: space-between;
+  flex: 1;
+  width: 100%;
+  color: var(--font-all);
+
+  .hot-tracks,
+  .hot-tracks {
+    width: 50%;
+  }
+
+  .container-songs {
+    width: 100%;
+  }
+}
+
+section.module2 li.track-song {
+  margin: 1rem 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  .track-song-details {
+    display: flex;
+    justify-content: flex-start;
+    gap: 1rem;
+    align-items: center;
+    width: 100%;
+
+    img.track-song-image {
+      width: 50px;
+      height: 50px;
+      border-radius: 4px;
+      object-fit: cover;
+    }
+
+    p.name-song {
+      position: relative;
+      width: 50%;
+      display: inline-block;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+  }
+
+  .time-code {
+    font-size: 12px;
+    font-weight: 300;
+  }
+}
+
+section.swiper {
+  margin: 2rem 0;
+}
+
+h2.categoria-name {
+  margin-bottom: 1.5rem;
+  letter-spacing: 3px;
+  font-size: 1.5em;
+  position: relative;
+  color: var(--tertiary);
+  &::after {
+    bottom: -5px;
+    left: 0;
+    content: "";
+    width: 150px;
+    height: 2px;
+    background: var(--tertiary);
+    position: absolute;
+  }
+}
+
+.album-item,
+.playlist-item {
+  margin: 0 1rem;
+  padding-top: 8px;
+  padding-bottom: 12px;
+  padding-left: 8px;
+  padding-right: 8px;
+  border-radius: 8px;
+
+  display: flex;
+  justify-content: flex-start;
+  align-items: baseline;
+  flex-direction: column;
+  gap: 1rem;
+  text-decoration: none;
+  color: var(--font-all);
+
+  img.playlist-image,
+  img.album-image {
+    --size: 150px;
+    width: var(--size);
+    height: var(--size);
+    border-radius: 8px;
+    filter: grayscale(0.5);
+  }
+
+  p {
+    width: 150px;
+    display: inline-block;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    color: var(--font-all);
+    text-decoration: none;
+    text-align: left;
+    font-size: 16px;
+  }
+
+  opacity: 0.7;
+  &:hover {
+    img {
+      filter: grayscale(0);
+    }
+    cursor: pointer;
+    background: var(--black-shadow);
+    opacity: 1;
+  }
+}
+
+a.related-artist-item {
+  margin: 0 1rem;
+  max-width: 150px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  gap: 1rem;
+
+  text-decoration: none;
+  color: var(--font-all);
+  text-align: center;
+  font-size: 16px;
+  opacity: 0.6;
+  transition: 150ms;
+
+  &:hover {
+    opacity: 1;
+    color: var(--tertiary);
+  }
+
+  img.related-artist-image {
+    --size: 125px;
+    width: var(--size);
+    height: var(--size);
+    border-radius: 100%;
+    object-fit: cover;
+  }
+}
+
+/* erro */
+.error-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: var(--font-all);
+
+  img.error-image {
+    animation: upDown 10s ease-in-out infinite;
+  }
+
+  .error-message {
+    width: 450px;
+  }
+
+  h1 {
+    font-size: 2.5em;
+    color: var(--tertiary);
+  }
+  h3 {
+    font-size: 1.8em;
+  }
+
+  p {
+    font-size: 1.25em;
+    font-style: italic;
+  }
+}
+
+.music-card {
+  cursor: pointer;
+  max-width: 420px;
+  width: 100%;
+  margin: 0 auto;
+  background-color: #f7f7f7;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
+  overflow: hidden;
+  transition: transform 0.3s ease;
+}
+
+.music-card:hover {
+  transform: translateY(-5px);
+}
+
+.card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16px;
+  background-color: #fff;
+}
+
+.card-track-info {
+  display: flex;
+  align-items: center;
+}
+
+.track-icon {
+  height: 24px;
+  width: 24px;
+  color: #f59e0b;
+}
+
+.track-details {
+  width: 300px;
+  margin-left: 12px;
+}
+
+.card-track-title {
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: #333;
+}
+
+.card-track-artist {
+  font-size: 0.9rem;
+  color: #666;
+}
+
+.card-icons {
+  display: flex;
+  align-items: center;
+}
+
+.icon-heart {
+  height: 24px;
+  width: 24px;
+  color: #ef4444;
+  cursor: pointer;
+}
+
+.icon-star {
+  height: 24px;
+  width: 24px;
+  color: #9ca3af;
+  margin-left: 16px;
+  cursor: pointer;
+}
+
+.icon-star:hover {
+  color: #fbbf24;
+}
+
+.card-progress-container {
+  position: relative;
+  margin: 16px 16px 8px 16px;
+  height: 6px;
+  background-color: #e5e7eb;
+  border-radius: 3px;
+  overflow: hidden;
+}
+
+.card-progress-bar {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 60%;
+  background-color: #f59e0b;
+  border-radius: 3px;
+}
+
+.card-progress-time {
+  display: flex;
+  justify-content: space-between;
+  padding: 0 16px 16px 16px;
+  font-size: 0.85rem;
+  color: #6b7280;
+}
+
+@keyframes upDown {
+  0% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}

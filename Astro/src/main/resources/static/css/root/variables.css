@@ -34,6 +34,9 @@
   --primary-shadow: #4b007276;
   --secondary-shadow: #ff3d2076;
   --tertiary-shadow: #29f24749;
+
+  --border-neon: 2px solid var(--primary);
+  --none-border: none;
 }
 
 .light {

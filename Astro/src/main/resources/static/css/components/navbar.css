@@ -149,8 +149,12 @@ section.nav-menu {
   }
 }
 
-a.btn-user {
+button.btn-user {
   width: 50px;
+  cursor: pointer;
+  border-radius: 50%;
+  background: none;
+  border: none;
   
   img.user-perfil {
     width: 100%;
