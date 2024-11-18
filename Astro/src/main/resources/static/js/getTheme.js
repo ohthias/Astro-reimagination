@@ -10,5 +10,4 @@ function addThemeToLink() {
         });
     }
 }
-
 document.addEventListener('DOMContentLoaded', addThemeToLink);

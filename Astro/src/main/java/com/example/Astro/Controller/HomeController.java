@@ -206,16 +206,4 @@ public class HomeController {
         return "redirect:/login";
     }
 
-    @PostMapping("/update-theme")
-    public ResponseEntity<?> updateTheme(@RequestParam("theme") String theme, @RequestParam("token") String token) {
-        boolean success = userService.updateUserTheme(token, theme);
-        if (success) {
-            return ResponseEntity.ok().body("Tema atualizado com sucesso");
-        } else {
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Erro ao atualizar o tema");
-        }
-    }
-
-
-
 }

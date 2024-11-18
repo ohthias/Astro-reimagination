@@ -15,13 +15,5 @@ public class UserService {
         // Supondo que você tenha um método que busca o usuário pelo token
         return userRepository.findByToken(token);
     }
-    public boolean updateUserTheme(String token, String theme) {
-        User user = getUserByToken(token);
-        if (user != null) {
-            user.setTheme(theme);
-            userRepository.save(user);
-            return true;
-        }
-        return false;
-    }
+
 }
