@@ -156,10 +156,24 @@ public class HomeController {
     @PostMapping("/register")
     public String insertUser(@RequestParam String username,
                              @RequestParam String email,
-                             @RequestParam String hashWord) {
+                             @RequestParam String hashWord,
+                             Model model) {
 
         BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
         String clienteHashword = encoder.encode(hashWord);
+        User userExist = repository.findByUsername(username);
+        User emailExist = repository.findByEmail(email);
+
+        if (userExist != null) {
+            model.addAttribute("errorMessage", "Esse usuário já está sendo usado");
+            return "sign";
+        }
+
+        if (emailExist != null) {
+            model.addAttribute("errorMessage", "Esse email já está sendo usado por um usuário");
+            return "sign";
+        }
+
         String token = tokenService.generateToken(username, email);
 
         LocalDate currentDate = LocalDate.now();
