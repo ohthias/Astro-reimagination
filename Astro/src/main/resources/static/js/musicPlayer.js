@@ -62,6 +62,7 @@ function toggleFavorite() {
     return;
   }
 
+  // Verifica se a música atual já está nos favoritos
   const isFavorite = favoriteSongs.some(
     (favSong) => favSong.url === currentSong.url
   );
@@ -80,8 +81,43 @@ function toggleFavorite() {
     showPopup(`${currentSong.name} adicionada aos favoritos!`);
   }
 
+  // Atualiza os favoritos no localStorage
   localStorage.setItem("favoriteSongs", JSON.stringify(favoriteSongs));
+
+  // Atualiza ou cria a playlist de favoritos em userPlaylists
+  updateFavoritesPlaylist();
 }
+
+function updateFavoritesPlaylist() {
+  // Recupera as playlists do localStorage
+  const storedPlaylists =
+    JSON.parse(localStorage.getItem("userPlaylists")) || [];
+
+  // Verifica se a playlist "Favoritos" já existe
+  let favoritesPlaylist = storedPlaylists.find(
+    (playlist) => playlist.name === "Favoritos"
+  );
+
+  if (!favoritesPlaylist) {
+    // Cria a playlist de favoritos se não existir
+    favoritesPlaylist = {
+      id: "astroFavorites",
+      name: "Favoritos",
+      author: "Você",
+      isUserOwned: true,
+      coverImage: "/images/favoritos.svg", // Caminho para imagem de capa
+      songs: [],
+    };
+    storedPlaylists.push(favoritesPlaylist);
+  }
+
+  // Atualiza as músicas na playlist de favoritos
+  favoritesPlaylist.songs = [...favoriteSongs];
+
+  // Salva as playlists atualizadas no localStorage
+  localStorage.setItem("userPlaylists", JSON.stringify(storedPlaylists));
+}
+
 
 // Atualiza o estado do botão de favorito
 function updateFavoriteButton(song) {

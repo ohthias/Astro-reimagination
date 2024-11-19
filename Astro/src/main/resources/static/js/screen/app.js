@@ -129,7 +129,7 @@ export async function loadContent(page, id = null) {
 function addStyleSheet(styleFile) {
   const link = document.createElement("link");
   link.rel = "stylesheet";
-  link.href = `../static/css/screen/${styleFile}`;
+  link.href = `/css/screen/${styleFile}`;
   link.id = "dynamic-stylesheet";
   document.head.appendChild(link);
 }
@@ -149,7 +149,7 @@ function addScript(scriptFile) {
   }
 
   const script = document.createElement("script");
-  script.src = `../static/js/${scriptFile}`;
+  script.src = `/js/${scriptFile}`;
   script.id = "dynamic-script";
   document.body.appendChild(script);
 }

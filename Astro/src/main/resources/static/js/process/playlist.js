@@ -216,7 +216,7 @@ const displayAstroFavorites = (favorites) => {
   }
 
   const playlistImage = document.getElementById("albumImage");
-  playlistImage.src = "../static/images/favoritos.svg"; // Coloque a URL da imagem da playlist de Favoritos
+  playlistImage.src = "/images/favoritos.svg"; // Coloque a URL da imagem da playlist de Favoritos
   playlistImage.alt = "Imagem de Favoritos";
   playlistImage.classList.add("album-image");
 

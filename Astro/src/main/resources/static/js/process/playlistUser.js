@@ -1,3 +1,12 @@
+function initializePlaylists() {
+  const defaultPlaylists = [];
+
+  // Atualiza o localStorage com as playlists padrão toda vez que o usuário entra
+  localStorage.setItem("userPlaylists", JSON.stringify(defaultPlaylists));
+  console.log("Playlists criadas/atualizadas no localStorage!");
+}
+
+
 // Função para carregar as playlists do localStorage
 export function loadUserPlaylists() {
   const playlistsContainer = document.getElementById("playlistsContainer");
@@ -52,5 +61,5 @@ export function loadUserPlaylists() {
   }
 }
 
-// Chama a função ao carregar a página
-document.addEventListener("DOMContentLoaded", loadUserPlaylists);
+  initializePlaylists();
+  loadUserPlaylists();

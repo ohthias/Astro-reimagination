@@ -111,7 +111,7 @@
   }
 }
 
-.fi-ss-heart, .fi-rr-heart {
+.fi-rr-heart {
   font-size: 1.4em;
   color: var(--secondary-shadow);
   transition: 250ms;
@@ -119,6 +119,10 @@
   &:hover {
     color: var(--secondary);
   }
+}
+
+.fi-ss-heart {
+    background: var(--secondary-shadow);
 }
 
 button:is(#prevButton, #playPauseButton, #nextButton) {

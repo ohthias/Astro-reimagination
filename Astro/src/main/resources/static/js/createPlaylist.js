@@ -11,7 +11,7 @@ function closePopup() {
 // Função para criar a nova playlist
 function createPlaylist() {
   const playlistName = document.getElementById("playlistName").value;
-  const playlistImageInput = document.getElementById("playlistImage");
+  const playlistImageInput = document.getElementById("file");
   const playlistImageFile = playlistImageInput.files[0];
 
   if (!playlistName || !playlistImageFile) {

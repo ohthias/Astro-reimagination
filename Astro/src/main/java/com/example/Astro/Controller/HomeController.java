@@ -199,7 +199,7 @@ public class HomeController {
             repository.save(user);
             String theme = user.getTheme();
 
-            return "redirect:/home?token=" + token + "&theme=" + theme;
+            return "redirect:/astro?token=" + token + "&theme=" + theme;
         } catch (Exception e) {
             e.printStackTrace();
             model.addAttribute("errorMessage", "Erro ao processar o login");
