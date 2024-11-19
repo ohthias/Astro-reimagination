@@ -382,6 +382,10 @@ function generateSettingsContent() {
               <button id="highContrast"></button>
               <p class="nome-tema montserrat-regular">Alto Contraste</p>
             </div>
+            <div class="container-temas">
+              <button id="galaxy"></button>
+              <p class="nome-tema montserrat-regular">Galaxy</p>
+            </div>
           </div>
         </article>
       </section>

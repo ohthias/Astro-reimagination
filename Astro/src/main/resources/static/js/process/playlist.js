@@ -54,9 +54,21 @@ const formatDuration = (durationMs) => {
   return `${minutes}:${seconds < 10 ? "0" : ""}${seconds}`;
 };
 
+// Verificar se é uma playlist Astro
+const isAstroPlaylist = (id) => {
+  return id === "astroFavorites"; // Verifica se o ID é da playlist de músicas favoritas
+};
+
 // Função para exibir dados da playlist
 const displayPlaylistData = (playlistData) => {
   const playlistContainer = document.getElementById("albumTracks");
+
+  const favoriteButton = document.getElementById("favoriteButton");
+  if (isAstroPlaylist(playlistData.id)) {
+    favoriteButton.style.display = "none"; // Oculta o botão de favoritar
+  } else {
+    favoriteButton.style.display = "block"; // Exibe o botão de favoritar para playlists normais
+  }
 
   // Obter os elementos do <picture> e <img> para definir o srcset dinamicamente
   const largeSource = document.getElementById("largeSource");
@@ -73,9 +85,9 @@ const displayPlaylistData = (playlistData) => {
   playlistImage.alt = playlistData.name;
   playlistImage.classList.add("album-image");
 
-  document.getElementById("playlistName").innerHTML = playlistData.name
+  document.getElementById("playlistName").innerHTML = playlistData.name;
   const playlistOwner = document.getElementById("albumArtistElement");
-  playlistOwner.innerHTML = playlistData.owner.display_name
+  playlistOwner.innerHTML = playlistData.owner.display_name;
   playlistOwner.onclick = () => loadContent("user", playlistData.owner.id);
 
   // Criar a lista de faixas
@@ -158,14 +170,30 @@ const displayPlaylistData = (playlistData) => {
 
   playlistContainer.appendChild(trackList);
 };
+// Função para buscar dados de astroFavorites no localStorage
+const fetchAstroFavorites = () => {
+  const favorites = localStorage.getItem("favoriteSongs");
+  return favorites ? JSON.parse(favorites) : [];
+};
 
-// Função principal para obter e exibir os dados da playlist
+// Modificar função principal
 export const showPlaylist = async () => {
   const playlistId = getPlaylistId(); // Pegar ID da playlist da URL
   if (playlistId) {
     try {
-      const playlistData = await fetchPlaylistData(playlistId); // Buscar dados da playlist
-      displayPlaylistData(playlistData); // Exibir os dados
+      if (isAstroPlaylist(playlistId)) {
+        // Se for a playlist de músicas favoritas
+        const astroFavorites = fetchAstroFavorites();
+        if (astroFavorites.length > 0) {
+          displayAstroFavorites(astroFavorites); // Exibir músicas favoritas
+        } else {
+          console.warn("Nenhuma música salva no astroFavorites");
+        }
+      } else {
+        // Caso contrário, tratar como uma playlist do Spotify
+        const playlistData = await fetchPlaylistData(playlistId);
+        displayPlaylistData(playlistData);
+      }
     } catch (error) {
       console.error("Erro ao exibir playlist:", error);
     }
@@ -174,5 +202,118 @@ export const showPlaylist = async () => {
   }
 };
 
-// Chamar a função principal quando a página carregar
+// Função para exibir dados de astroFavorites
+const displayAstroFavorites = (favorites) => {
+  const playlistContainer = document.getElementById("albumTracks");
+
+  document.getElementById("playlistName").innerHTML = "Favoritos";
+  const userElement = document.getElementById("albumArtistElement");
+  if (userElement) {
+    userElement.innerHTML = "Você";
+    userElement.onclick = () => loadContent("user");
+  } else {
+    console.error("Elemento 'albumArtistElement' não encontrado!");
+  }
+
+  const playlistImage = document.getElementById("albumImage");
+  playlistImage.src = "../static/images/favoritos.svg"; // Coloque a URL da imagem da playlist de Favoritos
+  playlistImage.alt = "Imagem de Favoritos";
+  playlistImage.classList.add("album-image");
+
+  // Criar a lista de faixas
+  const trackList = document.createElement("ul");
+  favorites.forEach((track, index) => {
+    const trackItem = document.createElement("li");
+    trackItem.classList.add("track-item");
+
+    const trackDetails = document.createElement("div");
+    trackDetails.classList.add("track-details");
+
+    const trackNumber = document.createElement("span");
+    trackNumber.classList.add("track-number", "montserrat-regular");
+    trackNumber.textContent = `#${index + 1}`;
+
+    const trackInfo = document.createElement("div");
+    trackInfo.classList.add("track-info");
+
+    const trackTitle = document.createElement("h3");
+    trackTitle.classList.add("montserrat-bold");
+    trackTitle.textContent = track.name;
+
+    const trackArtists = document.createElement("span");
+    trackArtists.classList.add("montserrat-regular");
+    trackArtists.textContent = track.artist;
+
+    trackInfo.appendChild(trackTitle);
+    trackInfo.appendChild(trackArtists);
+
+    const trackDuration = document.createElement("span");
+    trackDuration.classList.add("montserrat-regular");
+    trackDuration.textContent = formatDuration(track.durationMs);
+
+    trackDetails.appendChild(trackNumber);
+    trackDetails.appendChild(trackInfo);
+    trackItem.appendChild(trackDetails);
+    trackItem.appendChild(trackDuration);
+    trackList.appendChild(trackItem);
+  });
+
+  // Adiciona as faixas ao contêiner
+  playlistContainer.innerHTML = ""; // Limpa conteúdo anterior
+  playlistContainer.appendChild(trackList);
+};
+
+const playPlaylist = (playlistId) => {
+  const playlistData = fetchPlaylistData(playlistId); // Pegar dados da playlist
+  const tracks = playlistData.tracks.items.map((item) => item.track.uri); // Coleta URIs das faixas
+
+  // Aqui você pode adicionar o código para tocar as faixas com seu player de música
+  console.log("Tocando playlist:", playlistData.name);
+  console.log("Faixas:", tracks);
+
+  // Exemplo de como tocar a playlist (precisa ser ajustado conforme seu player de música)
+  playTracksWithPlayer(tracks); // Função fictícia que deve ser adaptada conforme o seu player
+};
+
+document.addEventListener("DOMContentLoaded", function () {
+  const playButton = document.getElementById("playButton");
+  const favoriteButton = document.getElementById("favoriteButton");
+  const shuffleButton = document.getElementById("shuffleButton");
+
+  if (playButton) {
+    playButton.addEventListener("click", () => {
+      const playlistId = getPlaylistId();
+      if (playlistId) {
+        playPlaylist(playlistId);
+      } else {
+        console.error("ID da playlist não encontrado.");
+      }
+    });
+  }
+
+  if (shuffleButton) {
+    shuffleButton.addEventListener("click", () => {
+      const playlistId = getPlaylistId();
+      if (playlistId) {
+        const playlistData = fetchPlaylistData(playlistId);
+        const shuffledTracks = shuffleArray(playlistData.tracks.items); // Função para embaralhar as faixas
+        const tracks = shuffledTracks.map((item) => item.track.uri);
+        playTracksWithPlayer(tracks); // Função fictícia para tocar as faixas
+      } else {
+        console.error("ID da playlist não encontrado.");
+      }
+    });
+  }
+
+  if (favoriteButton) {
+    const playlistData = fetchPlaylistData(getPlaylistId());
+    const favoriteButton = document.getElementById("favoriteButton");
+    if (playlistData.isFavorite) {
+      favoriteButton.style.display = "none"; // Oculta o botão de favoritar se for uma playlist de favoritos
+    } else {
+      favoriteButton.style.display = "inline-block"; // Exibe o botão de favoritar para outras playlists
+    }
+  }
+});
+
 window.onload = showPlaylist;

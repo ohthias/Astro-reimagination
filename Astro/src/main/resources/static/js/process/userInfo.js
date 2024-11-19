@@ -29,6 +29,10 @@ document.getElementById("highContrast").addEventListener("click", () => {
   changeTheme("high-contrast");
 });
 
+document.getElementById("galaxy").addEventListener("click", () => {
+  changeTheme("galaxy");
+});
+
 async function changeTheme(themeClass = "") {
   // Remove todas as classes de tema existentes
   rootElement.className = "";

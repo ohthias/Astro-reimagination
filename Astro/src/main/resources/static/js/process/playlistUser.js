@@ -1,29 +1,4 @@
-// Exemplo de playlists que o usuário pode ter
-const userPlaylists = [
-  {
-    id: 1,
-    name: "Favoritos",
-    author: "Você",
-    isUserOwned: true,
-    coverImage: "path/to/favorites-cover.jpg", // Caminho para a imagem de capa
-  },
-  {
-    id: 2,
-    name: "Rock Clássico",
-    author: "John Doe",
-    isUserOwned: false,
-    coverImage: "path/to/rock-cover.jpg",
-  },
-  {
-    id: 3,
-    name: "Relaxamento",
-    author: "Você",
-    isUserOwned: true,
-    coverImage: "path/to/relaxation-cover.jpg",
-  },
-];
-
-// Função para carregar as playlists
+// Função para carregar as playlists do localStorage
 export function loadUserPlaylists() {
   const playlistsContainer = document.getElementById("playlistsContainer");
 
@@ -35,24 +10,34 @@ export function loadUserPlaylists() {
   // Limpa qualquer conteúdo existente
   playlistsContainer.innerHTML = "";
 
+  const storedPlaylists = localStorage.getItem("userPlaylists");
+
+  if (!storedPlaylists) {
+    console.error("Nenhuma playlist encontrada no localStorage!");
+    return;
+  }
+
+  const userPlaylists = JSON.parse(storedPlaylists); 
   // Cria cada playlist dinamicamente
   userPlaylists.forEach((playlist) => {
     const playlistDiv = document.createElement("div");
     playlistDiv.classList.add("playlist-item");
+
+    // Alteração aqui: passa o ID da playlist ao invés de uma variável não definida
     playlistDiv.setAttribute(
       "onclick",
-      `loadContent('playlist', ${playlist.id})`
+      `loadContent('playlist', '${playlist.id}')`
     );
 
     playlistDiv.innerHTML = `
         <img src="${playlist.coverImage}" alt="${
       playlist.name
-    }" class="playlist-cover">
-        <h4 class="playlist-name">${playlist.name}</h4>
+    }" class="playlist-image">
+        <h3 class="playlist-name bebas-neue-regular">${playlist.name}</h3>
         ${
           playlist.isUserOwned
             ? ""
-            : `<p class="playlist-author">Por ${playlist.author}</p>`
+            : `<p class="playlist-author montserrat-regular">Por ${playlist.author}</p>`
         }
       `;
 

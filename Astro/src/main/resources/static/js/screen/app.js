@@ -89,10 +89,6 @@ export async function loadContent(page, id = null) {
         content.innerHTML = "<p>Playlist não encontrada.</p>";
       }
       break;
-    case "jogos":
-      addStyleSheet("jogos.css");
-      generateGamesContent();
-      break;
     case "user":
       addStyleSheet("user.css");
       generateUserContent();

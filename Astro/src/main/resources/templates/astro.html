@@ -91,7 +91,7 @@
         </li>
         <li>
           <button
-            onclick="showNotification('Essa função não está disponível nesta versão do Astro&copy, aguarde!')"
+            onclick="showCreatePlaylistPopup()"
           >
             <i class="material-icons">add</i>
             <span class="tooltip">Criar</span>
@@ -112,6 +112,20 @@
       </div>
     </div>
     <main id="content"></main>
+
+    <div id="createPlaylistPopup" class="popup">
+      <div class="popup-content">
+        <h2 class="montserrat-bold">Criar Nova Playlist</h2>
+        <label for="playlistName" class="montserrat-bold">Nome da Playlist:</label>
+        <input type="text" id="playlistName" placeholder="Digite o nome da playlist" required class="montserrat-regular"/>
+    
+        <label for="playlistImage" class="montserrat-bold">Escolha uma Imagem:</label>
+        <input type="file" id="playlistImage" accept="image/*" required class="montserrat-regular"/>
+    
+        <button onclick="createPlaylist()" class="bebas-neue-regular">Criar Playlist</button>
+        <button onclick="closePopup()" class="bebas-neue-regular">Cancelar</button>
+      </div>
+    </div>
     <script src="../static/js/token.js"></script>
     <script src="../static/js/driver/driver.js" defer></script>
     <script type="module" src="../static/js/screen/app.js"></script>
@@ -123,5 +137,6 @@
     <script src="../static/js/others/swipe.js"></script>
     <script src="../static/js/theme/theme.js"></script>
     <script type="module"  src="../static/js/theme/getTheme.js"></script>
+    <script src="../static/js/createPlaylist.js"></script>
   </body>
 </html>

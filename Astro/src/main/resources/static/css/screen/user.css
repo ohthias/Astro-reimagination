@@ -153,6 +153,7 @@ h2.categoria-name {
     height: var(--size);
     border-radius: 8px;
     filter: grayscale(0.5);
+    object-fit: cover;
   }
 
   h3 {
@@ -170,6 +171,10 @@ h2.categoria-name {
     cursor: pointer;
     background: var(--black-shadow);
     opacity: 1;
+  }
+
+  .playlist-author {
+    font-size: 0.8em;
   }
 }
 
