@@ -923,3 +923,11 @@ footer {
     opacity: 1;
   }
 }
+
+#play-button {
+  background-color: #121212;
+  color: #121212;
+  font-size: 2px;
+  border: none;
+  cursor: pointer;
+}

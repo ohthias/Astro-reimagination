@@ -40,9 +40,14 @@
   </head>
 
   <body>
+    <audio
+      id="background-audio"
+      src="/sounds/Beyond.mp3"
+      loop
+      muted
+    ></audio>
     <main>
       <section class="module container container1">
-        <audio src="/sounds/mixkit-fashion-01-661.mp3" loop autoplay></audio>
         <nav class="navigation-bar">
           <label
             id="logo"
@@ -77,9 +82,7 @@
           <div class="containner-text">
             <img src="/svg/Astro.svg" alt="logo-image" class="logo-image" />
             <div class="containner-info-subtitle">
-              <h2 class="montserrat-regular">
-                Ouça suas músicas nas estrelas
-              </h2>
+              <h2 class="montserrat-regular">Ouça suas músicas nas estrelas</h2>
               <div class="wrapper">
                 <h3 class="montserrat-regular">Escute</h3>
                 <div class="console-container">
@@ -232,6 +235,7 @@
               class="montserrat-regular"
               ><i class="fi fi-brands-github"></i> ohthias</a
             >
+            <button id="play-button">Play Music</button>
           </div>
         </div>
         <div class="others-informations">
@@ -252,6 +256,41 @@
         </div>
       </footer>
     </main>
+    <script>
+      const nav = document.querySelector(".navigation-bar");
+    const playButton = document.getElementById("play-button");
+    const audio = document.getElementById("background-audio");
+
+    // Adicionar/remover a classe "scrolled" da navegação ao rolar
+    document.addEventListener("scroll", () => {
+      if (window.scrollY > 80) {
+        nav.classList.add("scrolled");
+      } else {
+        nav.classList.remove("scrolled");
+      }
+    });
+
+    // Evento DOMContentLoaded para remover o mudo e preparar a reprodução
+    window.addEventListener("DOMContentLoaded", () => {
+      audio.muted = true;  // Inicia o áudio mudo
+      // Tenta iniciar o áudio, caso o navegador bloqueie o autoplay
+      audio.play().catch((error) => {
+        console.error("Erro de autoplay:", error);
+      });
+    });
+
+    // Função para tocar o áudio e habilitar o loop quando o botão for clicado
+    playButton.addEventListener("click", () => {
+      if (audio.paused) {
+        audio.muted = false;  // Desmutar o áudio
+        audio.play();         // Reproduzir áudio
+        playButton.textContent = "Stop Music";  // Alterar texto do botão
+      } else {
+        audio.pause();        // Pausar o áudio
+        playButton.textContent = "Play Music"; // Alterar texto do botão
+      }
+    });
+    </script>
     <script
       type="text/javascript"
       src="https://cdn.jsdelivr.net/gh/yesiamrocks/cssanimation.io@1.0.3/letteranimation.min.js"
@@ -259,16 +298,5 @@
     <script src="/js/others/words.js"></script>
     <script src="/js/others/redirects.js"></script>
     <script src="/js/others/albumImages.js"></script>
-    <script>
-      const nav = document.querySelector(".navigation-bar");
-      document.addEventListener("scroll", () => {
-        console.log(window.scrollY);
-        if (window.scrollY > 80) {
-          nav.classList.add("scrolled");
-        } else {
-          nav.classList.remove("scrolled");
-        }
-      });
-    </script>
   </body>
 </html>
