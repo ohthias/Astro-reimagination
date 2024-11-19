@@ -143,11 +143,11 @@ section.settings-container {
         transition: 250ms;
 
         &:hover {
-            filter: grayscale(0);
+          filter: grayscale(0);
         }
 
         &:active {
-            filter: grayscale(0);
+          filter: grayscale(0);
         }
 
         &#defaultTheme {
@@ -186,22 +186,26 @@ section.settings-container {
         }
 
         &#garden {
-                  background: linear-gradient(
-                    to top,
-                    #a5d6a7 0%,
-                    #66bb6a 50%,
-                    #388e3c     00%
-                  );
-                }
+          background: linear-gradient(
+            to top,
+            #a5d6a7 0%,
+            #66bb6a 50%,
+            #388e3c 00%
+          );
+        }
 
-                &#highContrast {
-                          background: linear-gradient(
-                            to top,
-                            #ffea00 0%,
-                            #ff3d00 50%,
-                            #00ff3d 100%
-                          );
-                        }
+        &#highContrast {
+          background: linear-gradient(
+            to top,
+            #ffea00 0%,
+            #ff3d00 50%,
+            #00ff3d 100%
+          );
+        }
+        
+        &#galaxy {
+          background: linear-gradient(to top, #6967fb 0%, #c8f904 100%);
+        }
       }
     }
   }

@@ -137,34 +137,14 @@ section#albumTracks {
     li.track-item {
       position: relative;
       display: flex;
+      flex-direction: row;
       justify-content: space-between;
       align-items: center;
       gap: 1rem;
       padding: 0.5rem 0.8rem;
       transition: all 250ms ease;
       border-radius: 18px;
-
-      &::after {
-        --size: 50px;
-        width: var(--size);
-        height: var(--size);
-        border-radius: 8px;
-        content: "play_arrow";
-        font-family: "Material Symbols Outlined";
-        font-size: 40px;
-        color: white;
-        position: absolute;
-        top: 50%;
-        left: 3.5%;
-        transform: translate(-3.5%, -50%);
-        display: none;
-        pointer-events: none;
-        background: var(--black-shadow);
-      }
-
-      &:hover::after {
-        display: block; /* Mostra o ícone quando hover */
-      }
+      width: 100%;
 
       .track-details {
         display: flex;

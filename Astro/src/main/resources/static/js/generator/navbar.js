@@ -3,6 +3,8 @@
  * @ohthias
  */
 
+ import {loadContent} from "../screen/app.js"
+
 const createNavigationBar = () => {
   const nav = document.createElement("nav");
   nav.className = "navigation-bar";
@@ -72,8 +74,8 @@ const createNavigationBar = () => {
   premiumLink.className = "btn-shine montserrat-bold";
   premiumLink.innerHTML = "Seja <i>premium</i>";
 
-  const userLink = document.createElement("a");
-  userLink.href = "/user";
+  const userLink = document.createElement("button");
+  userLink.onclick = () => loadContent('user');
   userLink.className = "btn-user";
 
   const userImage = document.createElement("img");

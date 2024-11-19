@@ -28,11 +28,14 @@ public class User {
     @Column(name = "last_access")
     private LocalDate lastAccess;
 
+    @Column(name = "theme")
+    private String theme;
+
     public User() {
         super();
     }
 
-    public User(Long idUserDetails, String email, String password, String username, LocalDate lastAccess, String token) {
+    public User(Long idUserDetails, String email, String password, String username, LocalDate lastAccess, String token, String theme) {
         super();
         this.idUserDetails = idUserDetails;
         this.email = email;
@@ -40,6 +43,7 @@ public class User {
         this.username = username;
         this.lastAccess = lastAccess;
         this.token = token;
+        this.theme = theme;
     }
 
     // Getters e Setters
@@ -89,5 +93,11 @@ public class User {
 
     public void setLastAccess(LocalDate lastAccess) {
         this.lastAccess = lastAccess;
+    }
+
+    public void setTheme(String theme){this.theme = theme;}
+
+    public String getTheme() {
+        return theme;
     }
 }

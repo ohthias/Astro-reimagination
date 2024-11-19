@@ -1,4 +1,4 @@
-// Criação da estrutura HTML usando JavaScript
+// Criação da estrutura HTML para o player usando JavaScript
 const containerPlayer = document.createElement("div");
 containerPlayer.className = "container_player";
 
@@ -41,7 +41,7 @@ const userPrefers = document.createElement("div");
 userPrefers.className = "user-prefers";
 
 const heartMusicButton = document.createElement("button");
-heartMusicButton.id = "heartMusic";
+heartMusicButton.id = "favoriteButton";
 const heartIcon = document.createElement("span");
 heartIcon.className = "material-symbols-outlined heart";
 heartIcon.textContent = "favorite";
@@ -116,7 +116,7 @@ timecodePlayer.appendChild(progressBar);
 timecodePlayer.appendChild(duration);
 player.appendChild(timecodePlayer);
 
-// Controle de volume
+// Controle de volume e botão de menu lateral
 const volumeControl = document.createElement("div");
 volumeControl.className = "volume-control";
 
@@ -140,8 +140,71 @@ volumeControl.appendChild(volumeIcon);
 volumeControl.appendChild(volumeToolkit);
 player.appendChild(volumeControl);
 
+// Botão de "info" para abrir o menu lateral
+const infoButton = document.createElement("button");
+infoButton.className = "info-button";
+const spanInfoButton = document.createElement("span");
+spanInfoButton.className = "material-symbols-outlined";
+spanInfoButton.textContent = "add";
+
+infoButton.appendChild(spanInfoButton);
+
+infoButton.onclick = () => {
+  sideMenu.classList.toggle("visible"); // Alterna a visibilidade do menu lateral
+  mainContent.classList.toggle("menu-active"); // Adiciona classe ao main quando o menu está ativo
+
+  spanInfoButton.textContent = spanInfoButton.textContent === "add" ? "close" : "add";
+  spanInfoButton.classList.add("rotate-animation");
+
+  spanInfoButton.addEventListener("animationend", () => {
+    spanInfoButton.classList.remove("rotate-animation");
+  }, { once: true });
+};
+
+player.appendChild(infoButton);
+
 // Adiciona o player ao container
 containerPlayer.appendChild(player);
+document.body.appendChild(containerPlayer); // Adiciona o container ao body
 
-// Adiciona o container ao body (ou outro elemento desejado)
-document.body.appendChild(containerPlayer);
+// Menu lateral com informações da música e letra
+const sideMenu = document.createElement("div");
+sideMenu.className = "side-menu";
+
+const songDetails = document.createElement("div");
+songDetails.className = "song-details";
+
+const songImageMenu = document.createElement("img");
+songImageMenu.id = "sideMenuSongImage";
+songImageMenu.src = "https://fakeimg.pl/210x210/e9e9e9/e9e9e9";
+songImageMenu.alt = "Song_Image";
+
+const songTitle = document.createElement("h3");
+songTitle.id = "sideMenuSongName";
+songTitle.className = "montserrat-bold";
+songTitle.textContent = "Título da Música";
+
+const songArtist = document.createElement("p");
+songArtist.id = "sideMenuArtistName";
+songArtist.className = "montserrat-regular";
+songArtist.textContent = "Artista";
+
+const songLyrics = document.createElement("div");
+songLyrics.id = "songLyrics";
+songLyrics.className = "song-lyrics montserrat-regular";
+songLyrics.textContent = "Letra da música aqui...";
+
+const songMoreInfo = document.createElement("div");
+songMoreInfo.className = "song-details-more-info";
+songMoreInfo.id = "songMoreInfo";
+
+songDetails.appendChild(songImageMenu);
+songDetails.appendChild(songTitle);
+songDetails.appendChild(songArtist);
+songDetails.appendChild(songLyrics);
+songDetails.appendChild(songMoreInfo);
+sideMenu.appendChild(songDetails);
+
+document.body.appendChild(sideMenu); // Adiciona o menu lateral ao body como um elemento separado
+
+const mainContent = document.querySelector("main");

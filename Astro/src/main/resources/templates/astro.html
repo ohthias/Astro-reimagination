@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Astro</title>
+    <link
+      rel="stylesheet"
+      href="https://cdn-uicons.flaticon.com/2.6.0/uicons-solid-straight/css/uicons-solid-straight.css"
+    />
+    <link
+      rel="apple-touch-icon"
+      sizes="180x180"
+      href="/favicon/apple-touch-icon.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="32x32"
+      href="/favicon/favicon-32x32.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="16x16"
+      href="/favicon/favicon-16x16.png"
+    />
+    <link rel="manifest" href="/favicon/site.webmanifest" />
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/icon?family=Material+Symbols+Outlined"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/swiper/swiper-bundle.min.css"
+    />
+    <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1/dist/confetti.browser.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/driver.js@1.0.1/dist/driver.js.iife.js"></script>
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/driver.js@1.0.1/dist/driver.css"
+    />
+
+    <link rel="stylesheet" href="/css/api/drive.css" />
+    <link rel="stylesheet" href="/css/api/swiper.css" />
+
+    <link rel="stylesheet" href="/css/root/font.css" />
+    <link rel="stylesheet" href="/css/root/root.css" />
+    <link rel="stylesheet" href="/css/root/variables.css" />
+
+    <link rel="stylesheet" href="/css/components/player.css" />
+    <link rel="stylesheet" href="/css/components/sidebar.css" />
+    <link rel="stylesheet" href="/css/components/navbar.css" />
+    <link rel="stylesheet" href="/css/screen/home.css" />
+  </head>
+  <body>
+    <!-- Sidebar -->
+    <div class="sidebar">
+      <ul class="nav-list">
+        <li>
+          <button onclick="loadContent('home')">
+            <i class="material-icons">public</i>
+            <span class="tooltip">Home</span>
+          </button>
+        </li>
+        <li>
+          <button onclick="loadContent('busca')">
+            <i class="material-icons">search</i>
+            <span class="tooltip">Search</span>
+          </button>
+        </li>
+        <hr />
+        <li>
+          <button onclick="loadContent('user')">
+            <i class="material-icons">folder</i>
+            <span class="tooltip">Biblioteca</span>
+          </button>
+        </li>
+        <li>
+          <button onclick="showCreatePlaylistPopup()">
+            <i class="material-icons">add</i>
+            <span class="tooltip">Criar</span>
+          </button>
+        </li>
+        <div class="exit-container">
+          <li>
+            <button id="logoutBtn" onclick="logout()">
+              <i class="material-icons">exit_to_app</i>
+              <span class="tooltip">Sair</span>
+            </button>
+          </li>
+        </div>
+      </ul>
+    </div>
+    <div class="loader" id="loader">
+      <div class="planet"></div>
+    </div>
+    <main id="content"></main>
+
+    <div id="createPlaylistPopup" class="popup">
+      <div class="popup-content">
+        <h2 class="montserrat-bold">Criar Nova Playlist</h2>
+        <div class="container-input">
+          <div class="input-group">
+            <input
+              required=""
+              type="text"
+              name="text"
+              autocomplete="off"
+              class="input"
+              id="playlistName"
+            />
+            <label class="user-label montserrat-bold">Nome da Playlist</label>
+          </div>
+        </div>
+
+        <label class="custum-file-upload" for="file">
+          <div class="icon">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="" viewBox="0 0 24 24">
+              <g stroke-width="0" id="SVGRepo_bgCarrier"></g>
+              <g
+                stroke-linejoin="round"
+                stroke-linecap="round"
+                id="SVGRepo_tracerCarrier"
+              ></g>
+              <g id="SVGRepo_iconCarrier">
+                <path
+                  fill=""
+                  d="M10 1C9.73478 1 9.48043 1.10536 9.29289 1.29289L3.29289 7.29289C3.10536 7.48043 3 7.73478 3 8V20C3 21.6569 4.34315 23 6 23H7C7.55228 23 8 22.5523 8 22C8 21.4477 7.55228 21 7 21H6C5.44772 21 5 20.5523 5 20V9H10C10.5523 9 11 8.55228 11 8V3H18C18.5523 3 19 3.44772 19 4V9C19 9.55228 19.4477 10 20 10C20.5523 10 21 9.55228 21 9V4C21 2.34315 19.6569 1 18 1H10ZM9 7H6.41421L9 4.41421V7ZM14 15.5C14 14.1193 15.1193 13 16.5 13C17.8807 13 19 14.1193 19 15.5V16V17H20C21.1046 17 22 17.8954 22 19C22 20.1046 21.1046 21 20 21H13C11.8954 21 11 20.1046 11 19C11 17.8954 11.8954 17 13 17H14V16V15.5ZM16.5 11C14.142 11 12.2076 12.8136 12.0156 15.122C10.2825 15.5606 9 17.1305 9 19C9 21.2091 10.7909 23 13 23H20C22.2091 23 24 21.2091 24 19C24 17.1305 22.7175 15.5606 20.9844 15.122C20.7924 12.8136 18.858 11 16.5 11Z"
+                  clip-rule="evenodd"
+                  fill-rule="evenodd"
+                ></path>
+              </g>
+            </svg>
+          </div>
+          <div class="text">
+            <span>Click to upload image</span>
+          </div>
+          <input type="file" id="file" />
+        </label>
+
+        <button onclick="createPlaylist()" class="montserrat-bold">
+          Criar Playlist
+        </button>
+        <button onclick="closePopup()" class="montserrat-bold">Cancelar</button>
+      </div>
+    </div>
+    <script src="/js/token.js"></script>
+    <script src="/js/driver/driver.js" defer></script>
+    <script type="module" src="/js/screen/app.js"></script>
+    <script src="/js/screen/htmlGenerator.js"></script>
+    <script type="module" src="/js/musicPlayer.js"></script>
+    <script src="/js/generator/player.js"></script>
+    <script type="module" src="/js/generator/navbar.js"></script>
+    <script type="module" src="/js/process/home.js" defer></script>
+    <script src="/js/others/swipe.js"></script>
+    <script src="/js/theme/theme.js"></script>
+    <script type="module" src="/js/theme/getTheme.js"></script>
+    <script src="/js/createPlaylist.js"></script>
+    <script>
+      const fileInput = document.getElementById("file");
+      const customUpload = document.querySelector(".custum-file-upload");
+      const textElement = customUpload.querySelector(".text");
+      const iconElement = customUpload.querySelector(".icon");
+
+      fileInput.addEventListener("change", (event) => {
+        const file = event.target.files[0];
+
+        if (file && file.type.startsWith("image/")) {
+          const reader = new FileReader();
+
+          reader.onload = (e) => {
+            // Remove o texto e o ícone
+            textElement.style.display = "none";
+            iconElement.style.display = "none";
+
+            // Adiciona a pré-visualização da imagem
+            const imgPreview = document.createElement("img");
+            imgPreview.src = e.target.result;
+            imgPreview.style.maxWidth = "100%";
+            imgPreview.style.maxHeight = "100%";
+            imgPreview.style.objectFit = "cover";
+            imgPreview.style.borderRadius = "10px";
+
+            // Remove pré-visualização anterior se existir
+            const existingPreview = customUpload.querySelector("img");
+            if (existingPreview) {
+              existingPreview.remove();
+            }
+
+            customUpload.appendChild(imgPreview);
+          };
+
+          reader.readAsDataURL(file);
+        } else {
+          alert("Por favor, selecione um arquivo de imagem válido.");
+        }
+      });
+    </script>
+  </body>
+</html>

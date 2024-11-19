@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="pt-BR" xmlns:th="http://www.w3.org/1999/xhtml">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -64,7 +64,8 @@
               name="hashWord"
               id="password"
               class="montserrat-medium"
-              placeholder="Digite sua senha"
+              placeholder="Digite sua senha (Mínimo 8 caracteres)"
+              minlength="8"
               required
             />
             <span class="material-symbols-outlined"> visibility_off </span>
@@ -94,6 +95,14 @@
       <div id="error-message" style="color: red"></div>
     </main>
 
+    <script th:inline="javascript">
+      /*<![CDATA[*/
+      var errorMessage = /*[[${errorMessage}]]*/ "";
+      if (errorMessage && errorMessage.trim() !== "") {
+        alert(errorMessage); // Exibe o alerta somente se houver uma mensagem de erro
+      }
+      /*]]>*/
+    </script>
     <script src="/js/others/togglePassword.js"></script>
     <script src="/js/others/redirects.js"></script>
     <script type="module" src="/js/google.js"></script>
