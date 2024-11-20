@@ -60,7 +60,7 @@ public class HomeController {
         return "sign";
     }
 
-    @GetMapping("/home")
+    @GetMapping("/astro")
     public String home(@RequestParam("token") String token, Model model) {
         // Busca o usuário usando o token
         User user = userService.getUserByToken(token);
@@ -70,7 +70,7 @@ public class HomeController {
         } else {
             model.addAttribute("error", "Usuário não encontrado");
         }
-        return "home"; // Nome da página HTML que será exibida
+        return "astro"; // Nome da página HTML que será exibida
     }
 
     @GetMapping("/{page}")
@@ -156,10 +156,24 @@ public class HomeController {
     @PostMapping("/register")
     public String insertUser(@RequestParam String username,
                              @RequestParam String email,
-                             @RequestParam String hashWord) {
+                             @RequestParam String hashWord,
+                             Model model) {
 
         BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
         String clienteHashword = encoder.encode(hashWord);
+        User userExist = repository.findByUsername(username);
+        User emailExist = repository.findByEmail(email);
+
+        if (userExist != null) {
+            model.addAttribute("errorMessage", "Esse usuário já está sendo usado");
+            return "sign";
+        }
+
+        if (emailExist != null) {
+            model.addAttribute("errorMessage", "Esse email já está sendo usado por um usuário");
+            return "sign";
+        }
+
         String token = tokenService.generateToken(username, email);
 
         LocalDate currentDate = LocalDate.now();
@@ -167,8 +181,7 @@ public class HomeController {
         User usuario = new User(null, email, clienteHashword, username, currentDate , token, "defaultTheme");
         repository.save(usuario);
         String theme = usuario.getTheme();
-        return "redirect:/home?token=" + token + "&theme=" + theme;
-
+        return "redirect:/astro?token=" + token + "&theme=" + theme;
     }
 
     @PostMapping("/login-user")
@@ -200,7 +213,7 @@ public class HomeController {
             repository.save(user);
             String theme = user.getTheme();
 
-            return "redirect:/home?token=" + token + "&theme=" + theme;
+            return "redirect:/astro?token=" + token + "&theme=" + theme;
         } catch (Exception e) {
             e.printStackTrace();
             model.addAttribute("errorMessage", "Erro ao processar o login");
@@ -212,7 +225,6 @@ public class HomeController {
     @GetMapping("/logout")
     public String logout() {
         // O token é removido no frontend (no JavaScript), aqui só redirecionamos para a tela de login.
-        return "redirect:/login";
+        return "redirect:/astro";
     }
-
 }

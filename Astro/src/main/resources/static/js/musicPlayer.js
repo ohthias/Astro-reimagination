@@ -26,7 +26,114 @@ let lastJumpTime = Date.now();
 const MAX_JUMPS_PER_HOUR = 6;
 const HOUR_IN_MS = 3600000;
 
+const favoriteButton = document.getElementById("favoriteButton");
+let favoriteSongs = JSON.parse(localStorage.getItem("favoriteSongs")) || [];
+
 loadTrackSlider(); // Garante que o DOM está pronto
+
+let isShuffleMode = false;
+
+// Seleciona o botão de música aleatória
+const randomButton = document.getElementById("randomPlayerMusic");
+
+// Função para ativar/desativar o modo aleatório
+function toggleShuffleMode() {
+  isShuffleMode = !isShuffleMode; // Alterna entre ligado/desligado
+
+  // Atualiza o ícone do botão de shuffle para indicar o estado
+  if (isShuffleMode) {
+    randomButton.classList.add("active"); // Adiciona classe para destacar o botão
+    showPopup("Modo aleatório ativado!");
+  } else {
+    randomButton.classList.remove("active"); // Remove destaque do botão
+    showPopup("Modo aleatório desativado!");
+  }
+}
+
+// Adiciona evento de clique ao botão de shuffle
+randomButton.addEventListener("click", toggleShuffleMode);
+
+// Adiciona a lógica para favoritar/desfavoritar músicas
+function toggleFavorite() {
+  const currentSong = localSongs[currentSongIndex];
+
+  if (!currentSong) {
+    console.error("Nenhuma música está sendo reproduzida para favoritar.");
+    return;
+  }
+
+  // Verifica se a música atual já está nos favoritos
+  const isFavorite = favoriteSongs.some(
+    (favSong) => favSong.url === currentSong.url
+  );
+
+  if (isFavorite) {
+    favoriteSongs = favoriteSongs.filter(
+      (favSong) => favSong.url !== currentSong.url
+    );
+    favoriteButton.innerHTML = "<i class='fi fi-rr-heart'></i>"; // Ícone de coração vazio
+    favoriteButton.classList.remove("favorited");
+    showPopup(`${currentSong.name} removida dos favoritos!`);
+  } else {
+    favoriteSongs.push(currentSong);
+    favoriteButton.innerHTML = "<i class='fi fi-ss-heart'></i>"; // Ícone de coração preenchido
+    favoriteButton.classList.add("favorited");
+    showPopup(`${currentSong.name} adicionada aos favoritos!`);
+  }
+
+  // Atualiza os favoritos no localStorage
+  localStorage.setItem("favoriteSongs", JSON.stringify(favoriteSongs));
+
+  // Atualiza ou cria a playlist de favoritos em userPlaylists
+  updateFavoritesPlaylist();
+}
+
+function updateFavoritesPlaylist() {
+  // Recupera as playlists do localStorage
+  const storedPlaylists =
+    JSON.parse(localStorage.getItem("userPlaylists")) || [];
+
+  // Verifica se a playlist "Favoritos" já existe
+  let favoritesPlaylist = storedPlaylists.find(
+    (playlist) => playlist.name === "Favoritos"
+  );
+
+  if (!favoritesPlaylist) {
+    // Cria a playlist de favoritos se não existir
+    favoritesPlaylist = {
+      id: "astroFavorites",
+      name: "Favoritos",
+      author: "Você",
+      isUserOwned: true,
+      coverImage: "/images/favoritos.svg", // Caminho para imagem de capa
+      songs: [],
+    };
+    storedPlaylists.push(favoritesPlaylist);
+  }
+
+  // Atualiza as músicas na playlist de favoritos
+  favoritesPlaylist.songs = [...favoriteSongs];
+
+  // Salva as playlists atualizadas no localStorage
+  localStorage.setItem("userPlaylists", JSON.stringify(storedPlaylists));
+}
+
+
+// Atualiza o estado do botão de favorito
+function updateFavoriteButton(song) {
+  const isFavorite = favoriteSongs.some((favSong) => favSong.url === song.url);
+
+  if (isFavorite) {
+    favoriteButton.innerHTML = "<i class='fi fi-ss-heart></i>"; // Ícone de coração preenchido
+    favoriteButton.classList.add("favorited");
+  } else {
+    favoriteButton.innerHTML = "<i class='fi fi-rr-heart'></i>"; // Ícone de coração vazio
+    favoriteButton.classList.remove("favorited");
+  }
+}
+
+// Eventos do botão de favorito
+favoriteButton.addEventListener("click", toggleFavorite);
 
 export function loadTrackSlider() {
   const trackSlider = document.getElementById("localListSongs");
@@ -126,7 +233,7 @@ async function loadSong(song) {
   }
 
   fetchMusicDetails(song.name, song.artist);
-
+  updateFavoriteButton(song)
   player.load(); // Carrega o áudio no player
 }
 
@@ -164,13 +271,25 @@ function nextSong() {
     return;
   }
 
-  // Incrementa o índice da música atual
-  currentSongIndex = (currentSongIndex + 1) % localSongs.length;
+  // Verifica se o modo shuffle está ativado
+  if (isShuffleMode) {
+    let randomIndex;
+
+    // Garante que a próxima música seja diferente da atual
+    do {
+      randomIndex = Math.floor(Math.random() * localSongs.length);
+    } while (randomIndex === currentSongIndex && localSongs.length > 1);
+
+    currentSongIndex = randomIndex; // Define o índice da música aleatória
+  } else {
+    // Reproduz a próxima música na ordem normal
+    currentSongIndex = (currentSongIndex + 1) % localSongs.length;
+  }
 
   // Salva o índice atual no localStorage
   localStorage.setItem("currentSongIndex", currentSongIndex);
 
-  // Carrega e toca a próxima música
+  // Carrega e toca a nova música
   loadSong(localSongs[currentSongIndex]);
   playSong();
 
@@ -179,7 +298,7 @@ function nextSong() {
 
 function prevSong() {
   if (!canJump()) {
-    showPopup("Você atigiu os limite de pulos por hora, aguarde!")
+    showPopup("Você atingiu o limite de pulos por hora, aguarde!");
     return;
   }
 

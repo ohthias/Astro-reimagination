@@ -14,6 +14,9 @@
 @import url("https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap");
 @import url("https://cdn-uicons.flaticon.com/2.6.0/uicons-brands/css/uicons-brands.css");
 @import url("https://cdn-uicons.flaticon.com/2.6.0/uicons-solid-straight/css/uicons-solid-straight.css");
+@import url('https://cdn-uicons.flaticon.com/2.6.0/uicons-regular-rounded/css/uicons-regular-rounded.css');
+@import url('https://cdn-uicons.flaticon.com/2.6.0/uicons-solid-rounded/css/uicons-solid-rounded.css');
+@import url('https://cdn-uicons.flaticon.com/2.6.0/uicons-solid-straight/css/uicons-solid-straight.css');
 
 * {
   margin: 0;
@@ -266,4 +269,147 @@ input:-webkit-autofill {
     opacity: 1;
     transform: scale(1);
   }
+}
+
+/* Estilo do Popup */
+.popup {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.popup-content {
+  background: var(--shadow);
+  padding: 20px;
+  border-radius: 5px;
+  width: 300px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+  color: var(--font-all);
+
+  h2 {
+    text-align: center;
+    color: var(--primary);
+  }
+
+  .container-input {
+    margin: 1rem 0;
+  }
+}
+
+/* From Uiverse.io by alexruix */ 
+.input-group {
+  width: 100%;
+  position: relative;
+ }
+ 
+ .input {
+  width: 100%;
+  border: solid 1.5px #9e9e9e;
+  border-radius: 1rem;
+  background: none;
+  padding: 1rem;
+  font-size: 1rem;
+  color: var(--font-all);
+  transition: border 150ms cubic-bezier(0.4,0,0.2,1);
+ }
+ 
+ .user-label {
+  position: absolute;
+  left: 15px;
+  color: var(--font-all);
+  pointer-events: none;
+  transform: translateY(1rem);
+  transition: 150ms cubic-bezier(0.4,0,0.2,1);
+ }
+ 
+ .input:focus, input:valid {
+  outline: none;
+  border: 1.5px solid var(--secondary);
+ }
+ 
+ .input:focus ~ label, input:valid ~ label {
+  transform: translateY(-50%) scale(0.8);
+  background-color: var(--shadow);
+  padding: 0 .2em;
+  color: var(--font-all);
+ }
+
+.popup button {
+  width: 48%;
+  padding: 10px;
+  margin-top: 10px;
+  cursor: pointer;
+  border: none;
+  border-radius: 5px;
+  font-size: 21px;
+  background-color: var(--primary-shadow);
+  color: var(--font-all);
+  font-size: 14px;
+  transition: 250ms;
+}
+
+.popup button:hover {
+  background-color: var(--primary);
+  box-shadow: 0 0 25px var(--primary-shadow);
+  border: 1px solid var(--primary);
+}
+
+.popup button:nth-child(2) {
+  background-color: #ccc;
+}
+
+.popup button:nth-child(2):hover {
+  background-color: #999;
+}
+
+/* From Uiverse.io by Yaya12085 */ 
+.custum-file-upload {
+  z-index: 35;
+  height: 200px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: space-between;
+  gap: 20px;
+  cursor: pointer;
+  align-items: center;
+  justify-content: center;
+  border: 2px dashed #cacaca;
+  background-color: rgba(255, 255, 255, 1);
+  padding: 1.5rem;
+  border-radius: 10px;
+  box-shadow: 0px 48px 35px -48px rgba(0,0,0,0.1);
+}
+
+.custum-file-upload .icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.custum-file-upload .icon svg {
+  height: 80px;
+  fill: rgba(75, 85, 99, 1);
+}
+
+.custum-file-upload .text {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.custum-file-upload .text span {
+  font-weight: 400;
+  color: rgba(75, 85, 99, 1);
+}
+
+.custum-file-upload input {
+  display: none;
 }

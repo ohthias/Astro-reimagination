@@ -88,27 +88,27 @@
 }
 
 .ocean {
-  --font-all: #ffffff; /* Cor do texto em branco para contraste */
+  --font-all: #f3f3f3; /* Cor do texto em branco para contraste */
   --background-all: #121212; /* Cor de fundo preta */
 
-  --primary: #a8e6cf; /* Cor primária - verde claro */
-  --secondary: #61c0bf; /* Cor secundária - verde médio */
-  --tertiary: #26a69a; /* Cor terciária - verde escuro */
-  --shadow: #092d29; /* Sombra preta */
+  --primary: #56e1e9; /* Cor primária - verde claro */
+  --secondary: #5b58eb; /* Cor secundária - verde médio */
+  --tertiary: #bb63ff; /* Cor terciária - verde escuro */
+  --shadow: #0a2353; /* Sombra preta */
   --white: #ffffff; /* Cor branca para texto */
   --black-shadow: rgba(0, 0, 0, 0.5); /* Sombra negra com transparência */
 
-  --white-shadow: rgba(255, 255, 255, 0.1); /* Sombra branca leve */
-  --shadow-shadow: rgba(0, 0, 0, 0.7); /* Sombra escura */
+  --white-shadow: rgba(255, 255, 255, 0.3); /* Sombra branca leve */
+  --shadow-shadow: #0a2353b3; /* Sombra escura */
   --black-shadow: rgba(0, 0, 0, 0.3); /* Sombra leve preta */
 
-  --primary-shadow-light: rgba(168, 230, 207, 0.5); /* Sombra leve da cor primária */
-  --secondary-shadow-light: rgba(97, 192, 191, 0.5); /* Sombra leve da cor secundária */
-  --tertiary-shadow-light: rgba(38, 166, 154, 0.5); /* Sombra leve da cor terciária */
+  --primary-shadow-light: #56e1e980; /* Sombra leve da cor primária */
+  --secondary-shadow-light: #5b58eb80; /* Sombra leve da cor secundária */
+  --tertiary-shadow-light: #bb63ff80; /* Sombra leve da cor terciária */
 
-  --primary-shadow: rgba(168, 230, 207, 0.3); /* Sombra da cor primária */
-  --secondary-shadow: rgba(97, 192, 191, 0.3); /* Sombra da cor secundária */
-  --tertiary-shadow: rgba(38, 166, 154, 0.3); /* Sombra da cor terciária */
+  --primary-shadow: #56e1e94d; /* Sombra da cor primária */
+  --secondary-shadow: #5b58eb4d; /* Sombra da cor secundária */
+  --tertiary-shadow: #bb63ffd4; /* Sombra da cor terciária */
 }
 
 .fire {
@@ -136,18 +136,18 @@
 }
 
 .green {
-  --font-all: #ffffff; /* Cor do texto em branco para contraste */
-  --background-all: #2e7d32; /* Cor de fundo verde escuro */
+  --font-all: #f4fffc; /* Cor do texto em branco para contraste */
+  --background-all: #1f4b2c; /* Cor de fundo verde escuro */
 
-  --primary: #a5d6a7; /* Cor primária - verde claro */
-  --secondary: #66bb6a; /* Cor secundária - verde médio */
-  --tertiary: #388e3c; /* Cor terciária - verde escuro */
-  --shadow: #1b5e20; /* Sombra verde escuro */
-  --white: #ffffff; /* Cor branca para texto */
+  --primary: #91eaaf; /* Cor primária - verde claro */
+  --secondary: #4d7111; /* Cor secundária - verde médio */
+  --tertiary: #c3e956; /* Cor terciária - verde escuro */
+  --shadow: #1f4b2c; /* Sombra verde escuro */
+  --white: #f4fffc; /* Cor branca para texto */
   --black-shadow: rgba(0, 0, 0, 0.5); /* Sombra negra com transparência */
 
-  --white-shadow: rgba(255, 255, 255, 0.1); /* Sombra branca leve */
-  --shadow-shadow: rgba(0, 0, 0, 0.7); /* Sombra escura */
+  --white-shadow: #f4fffc50; /* Sombra branca leve */
+  --shadow-shadow: #1f4b2cb3; /* Sombra escura */
   --black-shadow: rgba(0, 0, 0, 0.3); /* Sombra leve preta */
 
   --primary-shadow-light: rgba(165, 214, 167, 0.5); /* Sombra leve da cor primária */
@@ -181,4 +181,28 @@
   --primary-shadow: rgba(255, 234, 0, 0.3); /* Sombra da cor primária */
   --secondary-shadow: rgba(255, 61, 0, 0.3); /* Sombra da cor secundária */
   --tertiary-shadow: rgba(0, 255, 61, 0.3); /* Sombra da cor terciária */
+}
+
+.galaxy {
+  --font-all: #f3f3f3; /* Cor do texto em branco para contraste */
+  --background-all: #121212; /* Cor de fundo preta */
+
+  --primary: #ffffff; /* Cor primária - amarelo brilhante */
+  --secondary: #6967fb; /* Cor secundária - laranja brilhante */
+  --tertiary: #c8f904; /* Cor terciária - verde neon */
+  --shadow: #0e1a1f; /* Sombra negra */
+  --white: #ffffff; /* Cor branca para texto */
+  --black-shadow: rgba(0, 0, 0, 0.5); /* Sombra negra com transparência */
+
+  --white-shadow: #ffffff1a; /* Sombra branca leve */
+  --shadow-shadow: #0e1a1fb3; /* Sombra escura */
+  --black-shadow: #121212d4; /* Sombra leve preta */
+
+  --primary-shadow-light: #ffffff80; /* Sombra leve da cor primária */
+  --secondary-shadow-light: #6967fb80; /* Sombra leve da cor secundária */
+  --tertiary-shadow-light: #c8f90480; /* Sombra leve da cor terciária */
+
+  --primary-shadow: #ffffff4d; /* Sombra da cor primária */
+  --secondary-shadow: #6967fb80; /* Sombra da cor secundária */
+  --tertiary-shadow: #c8f9044d; /* Sombra da cor terciária */
 }

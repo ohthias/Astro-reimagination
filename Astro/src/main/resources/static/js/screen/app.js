@@ -3,11 +3,12 @@ import {
   buscarArtistas,
   buscarMusicas,
   buscarAlbums,
-} from "../api/apiAcess.js";
-import { displayArtist } from "../artistPage.js";
-import { showAlbum } from "../albums.js";
-import { showPlaylist } from "../playlist.js";
-import { imageGradient } from "../background-color.js";
+} from "../apis/apiAcess.js";
+import { displayArtist } from "../process/artistPage.js";
+import { showAlbum } from "../process/albums.js";
+import { showPlaylist } from "../process/playlist.js";
+import { imageGradient } from "../others/background-color.js";
+import {loadUserPlaylists} from "../process/playlistUser.js";
 
 export async function loadContent(page, id = null) {
   const content = document.getElementById("content");
@@ -45,7 +46,7 @@ export async function loadContent(page, id = null) {
       await buscarArtistas();
       await buscarMusicas("rock");
       await buscarAlbums();
-      import("../home.js").then(({ displayUserInfo }) => {
+      import("../process/home.js").then(({ displayUserInfo }) => {
         displayUserInfo();
       });
       localStorage.setItem("driveInicialize", true);
@@ -88,24 +89,20 @@ export async function loadContent(page, id = null) {
         content.innerHTML = "<p>Playlist não encontrada.</p>";
       }
       break;
-    case "jogos":
-      addStyleSheet("jogos.css");
-      generateGamesContent();
-      break;
     case "user":
       addStyleSheet("user.css");
       generateUserContent();
-
       // Importa e chama a função para carregar as informações do usuário
-      import("../home.js").then(({ displayUserInfo }) => {
+      import("../process/home.js").then(({ displayUserInfo }) => {
         displayUserInfo();
       });
+      loadUserPlaylists()
       break;
     case "settings":
       addStyleSheet("settings.css");
       generateSettingsContent();
-      addScript("userInfo.js");
-      import("../home.js").then(({ displayUserInfo }) => {
+      addScript("process/userInfo.js");
+      import("../process/home.js").then(({ displayUserInfo }) => {
         displayUserInfo();
       });
       break;
