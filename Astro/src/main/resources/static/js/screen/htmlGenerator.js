@@ -391,3 +391,64 @@ function generateSettingsContent() {
       </section>
   `
 }
+
+function generatePreferencesContent() {
+  const content = document.getElementById("content");
+
+  // Recuperar preferências do localStorage
+  const neonBordersPref = localStorage.getItem("neonBorders") === "true";
+  const dynamicBackgroundPref = localStorage.getItem("dynamicBackground") === "true";
+  const transitionTypePref = localStorage.getItem("transitionType") || "none";
+
+  content.innerHTML = `
+    <h2 class='bebas-neue-regular'>Configurações do Astro</h2>
+    <div class="preferences-section">
+      <h3 class='montserrat-bold'>Bordas Neon</h3>
+      <label class='montserrat-regular'>
+        <input type="checkbox" id="neonBorders" ${neonBordersPref ? "checked" : ""} />
+        Ativar bordas neon
+      </label>
+    </div>
+
+    <div class="preferences-section">
+      <h3 class='montserrat-bold'>Fundo do Player</h3>
+      <label class='montserrat-regular'>
+        <input type="checkbox" id="dynamicBackground" ${dynamicBackgroundPref ? "checked" : ""} />
+        Mudar o fundo do player dinamicamente
+      </label>
+    </div>
+
+    <div class="preferences-section">
+      <h3 class='montserrat-bold'>Transições de Música</h3>
+      <label for="transitionType" class='montserrat-regular'>Escolha o tipo de transição:</label>
+      <select id="transitionType" class='montserrat-semi-bold'>
+        <option value="none" ${transitionTypePref === "none" ? "selected" : ""}>Nenhuma</option>
+        <option value="fade" ${transitionTypePref === "fade" ? "selected" : ""}>Desvanecer</option>
+        <option value="slide" ${transitionTypePref === "slide" ? "selected" : ""}>Deslizar</option>
+      </select>
+    </div>
+
+    <button id="savePreferences" class='montserrat-bold'>Salvar Preferências</button>
+  `;
+
+  // Adicionar evento para salvar as preferências
+  document.getElementById("savePreferences").addEventListener("click", savePreferences);
+}
+
+function savePreferences() {
+  const neonBorders = document.getElementById("neonBorders").checked;
+  const dynamicBackground = document.getElementById("dynamicBackground").checked;
+  const transitionType = document.getElementById("transitionType").value;
+
+  console.log("Preferências Salvas:");
+  console.log("Bordas Neon:", neonBorders);
+  console.log("Fundo Dinâmico:", dynamicBackground);
+  console.log("Tipo de Transição:", transitionType);
+
+  localStorage.setItem("neonBorders", neonBorders);
+  localStorage.setItem("dynamicBackground", dynamicBackground);
+  localStorage.setItem("transitionType", transitionType);
+
+  alert("Preferências salvas com sucesso!");
+  window.location.reload();
+}
