@@ -2,9 +2,9 @@ package com.example.Astro.Controller;
 
 import com.example.Astro.Model.User;
 import com.example.Astro.Repository.UserRepository;
+import com.example.Astro.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -15,6 +15,17 @@ public class UserController {
 
     @Autowired
     private UserRepository userRepository;
+    private UserService userService;
+
+    public void UserDetailsController(UserService userService) {
+        this.userService = userService;
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<String> deleteUser(@PathVariable int id) {
+        userService.deleteUser(id);
+        return ResponseEntity.ok("User deleted successfully");
+    }
 
     // Método para adicionar um novo usuário
     @PostMapping

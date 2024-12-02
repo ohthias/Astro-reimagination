@@ -7,6 +7,11 @@ package com.example.Astro.Controller;
  */
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.ZoneId;
+import java.time.ZonedDateTime;
+import java.time.format.DateTimeFormatter;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -176,9 +181,13 @@ public class HomeController {
 
         String token = tokenService.generateToken(username, email);
 
-        LocalDate currentDate = LocalDate.now();
+        // Obter a data e hora atual no fuso horário de Brasília
+        ZonedDateTime now = ZonedDateTime.now(ZoneId.of("America/Sao_Paulo"));
 
-        User usuario = new User(null, email, clienteHashword, username, currentDate , token, "defaultTheme");
+        // Converter ZonedDateTime para Date
+        Date date = Date.from(now.toInstant());
+
+        User usuario = new User(null, email, clienteHashword, username, date , token, "defaultTheme");
         repository.save(usuario);
         String theme = usuario.getTheme();
         return "redirect:/astro?token=" + token + "&theme=" + theme;
@@ -204,7 +213,32 @@ public class HomeController {
                 return "login";
             }
 
-            user.setLastAccess(LocalDate.now());
+            if (user.isAdmin()) {
+
+                // Obter a data e hora atual no fuso horário de Brasília
+                ZonedDateTime now = ZonedDateTime.now(ZoneId.of("America/Sao_Paulo"));
+
+                // Converter ZonedDateTime para Date
+                Date date = Date.from(now.toInstant());
+                user.setLastAccess(date);
+                repository.save(user);
+
+                // Gerar token e redirecionar com o token na URL
+                String token = tokenService.generateToken(username, user.getEmail());
+                user.setToken(token);
+                repository.save(user);
+                String theme = user.getTheme();
+
+                return "redirect:/admpage?token=" + token + "&theme=" + theme;
+
+
+            }
+            // Obter a data e hora atual no fuso horário de Brasília
+            ZonedDateTime now = ZonedDateTime.now(ZoneId.of("America/Sao_Paulo"));
+
+            // Converter ZonedDateTime para Date
+            Date date = Date.from(now.toInstant());
+            user.setLastAccess(date);
             repository.save(user);
 
             // Gerar token e redirecionar com o token na URL
@@ -226,5 +260,10 @@ public class HomeController {
     public String logout() {
         // O token é removido no frontend (no JavaScript), aqui só redirecionamos para a tela de login.
         return "redirect:/astro";
+    }
+
+    @GetMapping("/admpage")
+    public String admPage() {
+        return "admpage";
     }
 }

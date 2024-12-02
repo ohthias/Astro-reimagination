@@ -1,0 +1,40 @@
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+}
+th,
+td {
+  border: 1px solid #ddd;
+  padding: 8px;
+  text-align: left;
+  color: var(--font-all);
+}
+th {
+  background-color: #f2f2f2;
+}
+
+body {
+  padding: 1rem;
+  width: 100%;
+  height: 100vh !important;
+  display: grid;
+  grid-template-columns: 80px 1fr 1fr 1fr 1fr;
+  grid-template-rows: auto 1fr auto;
+  grid-column-gap: 16px;
+  grid-row-gap: 16px;
+
+  background: linear-gradient(
+      to top,
+      var(--primary-shadow) 0%,
+      var(--shadow) 10%
+    ),
+    var(--shadow);
+  behavior: smooth;
+}
+
+main {
+  grid-area: 2 / 2 / 3 / 6;
+  overflow-x: hidden;
+  position: relative;
+}

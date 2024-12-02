@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Astro</title>
+    <link
+      rel="stylesheet"
+      href="https://cdn-uicons.flaticon.com/2.6.0/uicons-solid-straight/css/uicons-solid-straight.css"
+    />
+    <link
+      rel="apple-touch-icon"
+      sizes="180x180"
+      href="/favicon/apple-touch-icon.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="32x32"
+      href="/favicon/favicon-32x32.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="16x16"
+      href="/favicon/favicon-16x16.png"
+    />
+    <link rel="manifest" href="/favicon/site.webmanifest" />
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/icon?family=Material+Symbols+Outlined"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="/css/root/font.css" />
+    <link rel="stylesheet" href="/css/root/root.css" />
+    <link rel="stylesheet" href="/css/root/variables.css" />
+
+    <link rel="stylesheet" href="/css/components/sidebar.css" />
+    <link rel="stylesheet" href="/css/components/navbar.css" />
+    <link rel="stylesheet" href="/css/screen/adm.css" />
+  </head>
+  <body>
+    <div class="sidebar">
+        <ul class="nav-list">
+          <li>
+            <button onclick="loadContent('astro')">
+              <i class="material-icons">admin_panel_settings</i>
+              <span class="tooltip">Home ADM</span>
+            </button>
+          </li>
+          <li>
+            <button onclick="loadContent('astro')">
+              <i class="material-icons">public</i>
+              <span class="tooltip">Home Astro</span>
+            </button>
+          </li>
+          <hr />
+          <div class="exit-container">
+            <li>
+              <button id="logoutBtn" onclick="logout()">
+                <i class="material-icons">exit_to_app</i>
+                <span class="tooltip">Sair</span>
+              </button>
+            </li>
+          </div>
+        </ul>
+      </div>
+
+    <main id="content">
+      <h1 class="bebas-neue-regular">Lista de Usuários</h1>
+      <table id="users-table">
+        <thead>
+          <tr>
+            <th class="montserrat-bold">ID</th>
+            <th class="montserrat-bold">Email</th>
+            <th class="montserrat-bold">Nome de Usuário</th>
+            <th class="montserrat-bold">Data de Criação</th>
+            <th class="montserrat-bold">Último Acesso</th>
+          </tr>
+        </thead>
+        <tbody class="montserrat-regular"></tbody>
+      </table>
+    </main>
+
+    <script>
+      const apiUrl = "api/users";
+
+      function formatDate(dateString) {
+        const date = new Date(dateString);
+        return new Intl.DateTimeFormat("pt-BR", {
+          day: "2-digit",
+          month: "2-digit",
+          year: "numeric",
+          hour: "2-digit",
+          minute: "2-digit",
+          second: "2-digit",
+        }).format(date);
+      }
+
+      async function fetchUsers() {
+        try {
+          const response = await fetch(apiUrl);
+          if (!response.ok) {
+            throw new Error("Erro ao buscar os dados: " + response.statusText);
+          }
+          const users = await response.json();
+          const tableBody = document.querySelector("#users-table tbody");
+
+          users.forEach((user) => {
+            const row = document.createElement("tr");
+
+            row.innerHTML = `
+                    <td>${user.idUserDetails}</td>
+                    <td>${user.email}</td>
+                    <td>${user.username}</td>
+                    <td>${formatDate(user.createAt)}</td>
+                    <td>${formatDate(user.lastAccess)}</td>
+                    `;
+
+            tableBody.appendChild(row);
+          });
+        } catch (error) {
+          console.error("Erro:", error);
+        }
+      }
+
+      fetchUsers();
+    </script>
+  </body>
+</html>
