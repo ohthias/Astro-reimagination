@@ -228,7 +228,6 @@ public class HomeController {
                 user.setToken(token);
                 repository.save(user);
                 String theme = user.getTheme();
-
                 return "redirect:/admpage?token=" + token + "&theme=" + theme;
 
 

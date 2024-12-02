@@ -38,3 +38,15 @@ main {
   overflow-x: hidden;
   position: relative;
 }
+
+.remove-btn {
+  color: white;
+  background-color: red;
+  border: none;
+  padding: 5px 10px;
+  cursor: pointer;
+  border-radius: 3px;
+}
+.remove-btn:hover {
+  background-color: darkred;
+}

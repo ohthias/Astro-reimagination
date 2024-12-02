@@ -391,3 +391,28 @@ function generateSettingsContent() {
       </section>
   `
 }
+
+function generateAdmHome() {
+  const content = document.getElementById("content")
+  content.innerHTML = `
+  `
+}
+
+function generateListUsers() {
+  const content = document.getElementById("content")
+  content.innerHTML = `
+   <h1 class="bebas-neue-regular">Lista de Usuários</h1>
+      <table id="users-table">
+        <thead>
+          <tr>
+            <th class="montserrat-bold">ID</th>
+            <th class="montserrat-bold">Email</th>
+            <th class="montserrat-bold">Nome de Usuário</th>
+            <th class="montserrat-bold">Data de Criação</th>
+            <th class="montserrat-bold">Último Acesso</th>
+          </tr>
+        </thead>
+        <tbody class="montserrat-regular"></tbody>
+      </table>
+  `
+}

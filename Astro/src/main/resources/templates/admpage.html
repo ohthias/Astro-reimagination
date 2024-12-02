@@ -50,7 +50,7 @@
     <div class="sidebar">
         <ul class="nav-list">
           <li>
-            <button onclick="loadContent('astro')">
+            <button onclick="loadContent('ADM_home')">
               <i class="material-icons">admin_panel_settings</i>
               <span class="tooltip">Home ADM</span>
             </button>
@@ -62,6 +62,12 @@
             </button>
           </li>
           <hr />
+          <li>
+            <button onclick="loadContent('list_users')">
+              <i class="material-icons">group</i>
+              <span class="tooltip">Usuário</span>
+            </button>
+          </li>
           <div class="exit-container">
             <li>
               <button id="logoutBtn" onclick="logout()">
@@ -73,65 +79,10 @@
         </ul>
       </div>
 
-    <main id="content">
-      <h1 class="bebas-neue-regular">Lista de Usuários</h1>
-      <table id="users-table">
-        <thead>
-          <tr>
-            <th class="montserrat-bold">ID</th>
-            <th class="montserrat-bold">Email</th>
-            <th class="montserrat-bold">Nome de Usuário</th>
-            <th class="montserrat-bold">Data de Criação</th>
-            <th class="montserrat-bold">Último Acesso</th>
-          </tr>
-        </thead>
-        <tbody class="montserrat-regular"></tbody>
-      </table>
-    </main>
+    <main id="content"></main>
 
-    <script>
-      const apiUrl = "api/users";
-
-      function formatDate(dateString) {
-        const date = new Date(dateString);
-        return new Intl.DateTimeFormat("pt-BR", {
-          day: "2-digit",
-          month: "2-digit",
-          year: "numeric",
-          hour: "2-digit",
-          minute: "2-digit",
-          second: "2-digit",
-        }).format(date);
-      }
-
-      async function fetchUsers() {
-        try {
-          const response = await fetch(apiUrl);
-          if (!response.ok) {
-            throw new Error("Erro ao buscar os dados: " + response.statusText);
-          }
-          const users = await response.json();
-          const tableBody = document.querySelector("#users-table tbody");
-
-          users.forEach((user) => {
-            const row = document.createElement("tr");
-
-            row.innerHTML = `
-                    <td>${user.idUserDetails}</td>
-                    <td>${user.email}</td>
-                    <td>${user.username}</td>
-                    <td>${formatDate(user.createAt)}</td>
-                    <td>${formatDate(user.lastAccess)}</td>
-                    `;
-
-            tableBody.appendChild(row);
-          });
-        } catch (error) {
-          console.error("Erro:", error);
-        }
-      }
-
-      fetchUsers();
-    </script>
+    <script src="/js/token.js"></script>
+    <script type="module" src="/js/screen/app.js"></script>
+    <script src="/js/screen/htmlGenerator.js"></script>
   </body>
 </html>
