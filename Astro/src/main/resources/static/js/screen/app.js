@@ -8,12 +8,13 @@ import { displayArtist } from "../process/artistPage.js";
 import { showAlbum } from "../process/albums.js";
 import { showPlaylist } from "../process/playlist.js";
 import { imageGradient } from "../others/background-color.js";
-import {loadUserPlaylists} from "../process/playlistUser.js";
+import { loadUserPlaylists } from "../process/playlistUser.js";
 
 export async function loadContent(page, id = null) {
   const content = document.getElementById("content");
   const loader = document.getElementById("loader");
   const url = new URL(window.location.href);
+  const isAdmin = localStorage.getItem("isAdmin") === "true"; // Verifica se o usuário é admin
 
   loader.style.display = "flex";
   content.classList.add("fade-out");
@@ -46,7 +47,7 @@ export async function loadContent(page, id = null) {
 
   removeStyleSheet();
 
-  // Adiciona o estilo correspondente à página
+  // Páginas comuns
   switch (page) {
     case "home":
       addStyleSheet("home.css");
@@ -69,9 +70,9 @@ export async function loadContent(page, id = null) {
     case "artist":
       addStyleSheet("artista.css");
       if (id) {
-        await generateArtistContent(); // Chama a função para carregar o artista
+        await generateArtistContent();
         initializeSwipers();
-        displayArtist(id); // Exibe os detalhes do artista
+        displayArtist(id);
         imageGradient();
       } else {
         content.innerHTML = "<p>Artista não encontrado.</p>";
@@ -102,11 +103,10 @@ export async function loadContent(page, id = null) {
     case "user":
       addStyleSheet("user.css");
       generateUserContent();
-      // Importa e chama a função para carregar as informações do usuário
       import("../process/home.js").then(({ displayUserInfo }) => {
         displayUserInfo();
       });
-      loadUserPlaylists()
+      loadUserPlaylists();
       break;
     case "settings":
       addStyleSheet("settings.css");
@@ -124,6 +124,19 @@ export async function loadContent(page, id = null) {
       content.innerHTML = "<p>Conteúdo não encontrado.</p>";
       break;
   }
+
+  // Páginas de administrador
+    switch (page) {
+      case "ADM_home":
+        addScript("/adm/admSettings.js");
+        addStyleSheet("adm.css");
+        generateAdmHome();
+        break;
+      case "list_users":
+        addStyleSheet("adm.css");
+        generateListUsers();
+        break;
+    }
 
   setTimeout(() => {
     content.classList.remove("fade-out");
@@ -155,6 +168,7 @@ function removeStyleSheet() {
     existingLink.parentNode.removeChild(existingLink);
   }
 }
+
 // Função para adicionar o arquivo JS
 function addScript(scriptFile) {
   const existingScript = document.getElementById("dynamic-script");

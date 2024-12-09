@@ -8,10 +8,12 @@ import com.example.Astro.Repository.UserRepository;
 
 @Service
 public class UserService {
-
     @Autowired
     private UserRepository userRepository;
 
+    public void deleteUser(long id) {
+        userRepository.deleteById(id);
+    }
     public User getUserByToken(String token) {
         // Supondo que você tenha um método que busca o usuário pelo token
         System.out.println(token);

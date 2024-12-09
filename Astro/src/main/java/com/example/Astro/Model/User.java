@@ -26,16 +26,22 @@ public class User {
     private String token;
 
     @Column(name = "last_access")
-    private LocalDate lastAccess;
+    private Date lastAccess;
 
     @Column(name = "theme")
     private String theme;
+
+    @Column(name = "is_admin")
+    private boolean isAdmin;
+
+    @Column(name = "create_at")
+    private Date createAt;
 
     public User() {
         super();
     }
 
-    public User(Long idUserDetails, String email, String password, String username, LocalDate lastAccess, String token, String theme) {
+    public User(Long idUserDetails, String email, String password, String username, Date lastAccess, String token, String theme) {
         super();
         this.idUserDetails = idUserDetails;
         this.email = email;
@@ -87,11 +93,11 @@ public class User {
         this.token = token;
     }
 
-    public LocalDate getLastAccess() {
+    public Date getLastAccess() {
         return lastAccess;
     }
 
-    public void setLastAccess(LocalDate lastAccess) {
+    public void setLastAccess(Date lastAccess) {
         this.lastAccess = lastAccess;
     }
 
@@ -99,5 +105,21 @@ public class User {
 
     public String getTheme() {
         return theme;
+    }
+
+    public boolean isAdmin() {
+        return isAdmin;
+    }
+
+    public void setAdmin(boolean admin) {
+        isAdmin = admin;
+    }
+
+    public Date getCreateAt() {
+        return createAt;
+    }
+
+    public void setCreateAt(Date createAt) {
+        this.createAt = createAt;
     }
 }
