@@ -66,7 +66,7 @@ public class HomeController {
     }
 
     @GetMapping("/astro")
-    public String home(@RequestParam("token") String token, Model model) {
+    public String home(String token, Model model) {
         // Busca o usuário usando o token
         User user = userService.getUserByToken(token);
 
@@ -190,7 +190,7 @@ public class HomeController {
         User usuario = new User(null, email, clienteHashword, username, date , token, "defaultTheme");
         repository.save(usuario);
         String theme = usuario.getTheme();
-        return "redirect:/astro?" + "theme=" + theme;
+        return "redirect:/astro?" + "theme=" + theme + "&username=" + username;
     }
 
     @PostMapping("/login-user")
@@ -228,7 +228,7 @@ public class HomeController {
                 user.setToken(token);
                 repository.save(user);
                 String theme = user.getTheme();
-                return "redirect:/admpage?" + "theme=" + theme;
+                return "redirect:/admpage?" + "theme=" + theme + "&username=" + username;
 
 
             }
@@ -246,7 +246,7 @@ public class HomeController {
             repository.save(user);
             String theme = user.getTheme();
 
-            return "redirect:/astro?" + "theme=" + theme;
+            return "redirect:/astro?" + "theme=" + theme + "&username=" + username;
         } catch (Exception e) {
             e.printStackTrace();
             model.addAttribute("errorMessage", "Erro ao processar o login");

@@ -1,12 +1,12 @@
 // Pega o token da URL ou do armazenamento local
 let urlParams = new URLSearchParams(window.location.search);
-let token = urlParams.get("token");
+let username = urlParams.get("username");
 
 // Se o token for encontrado na URL, armazena no localStorage
-if (token) {
-  localStorage.setItem("authToken", token);
+if (username) {
+  localStorage.setItem("username", username);
 } else {
-  token = localStorage.getItem("authToken");
+  token = localStorage.getItem("username");
 }
 
 // Pega o theme da URL ou do armazenamento local
@@ -20,13 +20,13 @@ if (theme) {
 
 // Função para adicionar token a todos os links de navegação
 function addTokenToLinks() {
-  if (token) {
+  if (username) {
     document.querySelectorAll("a").forEach((link) => {
       let href = link.getAttribute("href");
-      if (href && !href.includes("token=")) {
+      if (href && !href.includes("username=")) {
         link.setAttribute(
           "href",
-          href + (href.includes("?") ? "&" : "?") + "token=" + token
+          href + (href.includes("?") ? "&" : "?") + "username=" + username
         );
       }
     });
@@ -39,7 +39,7 @@ document.addEventListener("DOMContentLoaded", addTokenToLinks);
 // Função para logout (chamada pelo botão de logout)
 function logout() {
   showConfirmationPopup("Você realmente quer sair?", () => {
-    localStorage.removeItem("authToken");
+    localStorage.removeItem("username");
     localStorage.removeItem("theme");
     localStorage.removeItem("driveInitialized");
     window.location.href = "/login";
