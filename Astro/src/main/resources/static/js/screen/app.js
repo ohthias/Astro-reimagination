@@ -32,6 +32,20 @@ export async function loadContent(page, id = null) {
     url.searchParams.set("id", id); // Adiciona o id do artista na URL
   }
 
+  if (localStorage.getItem("neonBorders") === "true") {
+    document.getElementsByClassName("container_player")[0].style.border =
+      "var(--border-neon)";
+    document.getElementsByClassName("sidebar")[0].style.border =
+      "var(--border-neon)";
+    document.getElementsByClassName("side-menu")[0].style.border =
+      "var(--border-neon)";
+  } else {
+    document.getElementsByClassName("container_player")[0].style.border =
+      "none";
+    document.getElementsByClassName("sidebar")[0].style.border = "none";
+    document.getElementsByClassName("side-menu")[0].style.border = "none";
+  }
+
   window.history.pushState({}, "", url);
 
   removeStyleSheet();
@@ -114,6 +128,9 @@ export async function loadContent(page, id = null) {
     case "list_users":
       addStyleSheet("adm.css");
       generateListUsers();
+    case "preferences":
+      addStyleSheet("preferences.css");
+      generatePreferencesContent();
       break;
     default:
       content.innerHTML = "<p>Conteúdo não encontrado.</p>";
