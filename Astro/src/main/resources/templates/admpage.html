@@ -50,20 +50,20 @@
     <div class="sidebar">
         <ul class="nav-list">
           <li>
-            <button onclick="loadContent('ADM_home')">
+            <button id="event1" onclick="loadContent('ADM_home')">
               <i class="material-icons">admin_panel_settings</i>
               <span class="tooltip">Home ADM</span>
             </button>
           </li>
           <li>
-            <button onclick="loadContent('astro')">
+            <button id="event2" onclick="loadContent('home')">
               <i class="material-icons">public</i>
               <span class="tooltip">Home Astro</span>
             </button>
           </li>
           <hr />
           <li>
-            <button onclick="loadContent('list_users')">
+            <button id="event3" onclick="loadContent('list_users')">
               <i class="material-icons">group</i>
               <span class="tooltip">Usuário</span>
             </button>
@@ -81,8 +81,9 @@
 
     <main id="content"></main>
 
-    <script src="/js/token.js"></script>
     <script type="module" src="/js/screen/app.js"></script>
-    <script src="/js/screen/htmlGenerator.js"></script>
+    <script src="/js/token.js" defer></script>
+    <script src="/js/screen/htmlGenerator.js" defer></script>
+    <script type="module" src="/js/process/home.js" defer></script>
   </body>
 </html>

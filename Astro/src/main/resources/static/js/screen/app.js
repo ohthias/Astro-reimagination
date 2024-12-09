@@ -14,7 +14,6 @@ export async function loadContent(page, id = null) {
   const content = document.getElementById("content");
   const loader = document.getElementById("loader");
   const url = new URL(window.location.href);
-  const isAdmin = localStorage.getItem("isAdmin") === "true"; // Verifica se o usuário é admin
 
   loader.style.display = "flex";
   content.classList.add("fade-out");
@@ -31,6 +30,20 @@ export async function loadContent(page, id = null) {
 
   if (id) {
     url.searchParams.set("id", id); // Adiciona o id do artista na URL
+  }
+
+  if (localStorage.getItem("neonBorders") === "true") {
+    document.getElementsByClassName("container_player")[0].style.border =
+      "var(--border-neon)";
+    document.getElementsByClassName("sidebar")[0].style.border =
+      "var(--border-neon)";
+    document.getElementsByClassName("side-menu")[0].style.border =
+      "var(--border-neon)";
+  } else {
+    document.getElementsByClassName("container_player")[0].style.border =
+      "none";
+    document.getElementsByClassName("sidebar")[0].style.border = "none";
+    document.getElementsByClassName("side-menu")[0].style.border = "none";
   }
 
   window.history.pushState({}, "", url);
@@ -54,6 +67,7 @@ export async function loadContent(page, id = null) {
       break;
     case "busca":
       addStyleSheet("busca.css");
+      addScript("search/search.js");
       generateSearchContent();
       initializeSwipers();
       break;
@@ -106,23 +120,22 @@ export async function loadContent(page, id = null) {
         displayUserInfo();
       });
       break;
+    case "ADM_home":
+      addScript("/adm/admSettings.js");
+      addStyleSheet("adm.css");
+      generateAdmHome();
+      break;
+    case "list_users":
+      addStyleSheet("adm.css");
+      generateListUsers();
+    case "preferences":
+      addStyleSheet("preferences.css");
+      generatePreferencesContent();
+      break;
     default:
       content.innerHTML = "<p>Conteúdo não encontrado.</p>";
       break;
   }
-
-  // Páginas de administrador
-    switch (page) {
-      case "ADM_home":
-        addScript("/adm/admSettings.js");
-        addStyleSheet("adm.css");
-        generateAdmHome();
-        break;
-      case "list_users":
-        addStyleSheet("adm.css");
-        generateListUsers();
-        break;
-    }
 
   setTimeout(() => {
     content.classList.remove("fade-out");

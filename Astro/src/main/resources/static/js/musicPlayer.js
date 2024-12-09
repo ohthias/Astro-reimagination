@@ -1,7 +1,7 @@
-import {localSongs} from "./local-tracks/localSongs.js";
-import {colorImage, showPopup} from "./musicPlayer/utils.js";
-import {getLyrics} from "./musicPlayer/lyrics.js";
-import {fetchMusicDetails} from "./musicPlayer/songDetails.js";
+import { localSongs } from "./local-tracks/localSongs.js";
+import { colorImage, showPopup } from "./musicPlayer/utils.js";
+import { getLyrics } from "./musicPlayer/lyrics.js";
+import { fetchMusicDetails } from "./musicPlayer/songDetails.js";
 
 let currentSongIndex = 0;
 const player = document.getElementById("player");
@@ -206,7 +206,6 @@ export function loadSavedState() {
   }
 }
 
-// Função para carregar a música
 async function loadSong(song) {
   if (!song) {
     console.error("Nenhuma música encontrada para carregar.");
@@ -223,20 +222,50 @@ async function loadSong(song) {
   sideMenuArtistName.textContent = song.artist;
   sideMenuImage.src = song.image.url;
 
+  // Atualiza as letras
   getLyrics(song.artist, song.name);
 
-  try {
-    const backgroundLyrics = await colorImage(song.image.url);
-    songLyrics.style.background = backgroundLyrics;
-  } catch (error) {
-    console.error(error);
+  if (localStorage.getItem("dynamicBackground") === "true") {
+
+    try {
+      // Obtém a cor dominante da imagem
+      const color = await colorImage(song.image.url);
+
+      // Converte a cor para RGBA com transparência
+      const transparentColor = convertToRGBA(color, 0.25);
+
+      // Atualiza a cor de fundo do player
+      const playerElement = document.querySelector(".container_player");
+      playerElement.style.backgroundColor = transparentColor;
+    } catch (error) {
+      console.error("Erro ao obter a cor da imagem:", error);
+    }
   }
 
+  // Atualiza os detalhes da música
   fetchMusicDetails(song.name, song.artist);
-  updateFavoriteButton(song)
+  updateFavoriteButton(song);
   player.load(); // Carrega o áudio no player
 }
 
+// Função para converter a cor para RGBA com transparência
+function convertToRGBA(color, alpha) {
+  // Caso seja um formato HEX (#RRGGBB)
+  if (color.startsWith("#")) {
+    const r = parseInt(color.slice(1, 3), 16);
+    const g = parseInt(color.slice(3, 5), 16);
+    const b = parseInt(color.slice(5, 7), 16);
+    return `rgba(${r}, ${g}, ${b}, ${alpha})`;
+  }
+
+  // Caso seja um formato RGB
+  if (color.startsWith("rgb")) {
+    return color.replace("rgb", "rgba").replace(")", `, ${alpha})`);
+  }
+
+  // Retorna a cor original se não for possível converter
+  return color;
+}
 
 // Funções de controle do player
 function playSong() {

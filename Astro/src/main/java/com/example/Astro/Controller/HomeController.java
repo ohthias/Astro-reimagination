@@ -190,7 +190,7 @@ public class HomeController {
         User usuario = new User(null, email, clienteHashword, username, date , token, "defaultTheme");
         repository.save(usuario);
         String theme = usuario.getTheme();
-        return "redirect:/astro?token=" + token + "&theme=" + theme;
+        return "redirect:/astro?" + "theme=" + theme;
     }
 
     @PostMapping("/login-user")
@@ -228,7 +228,7 @@ public class HomeController {
                 user.setToken(token);
                 repository.save(user);
                 String theme = user.getTheme();
-                return "redirect:/admpage?token=" + token + "&theme=" + theme;
+                return "redirect:/admpage?" + "theme=" + theme;
 
 
             }
@@ -246,7 +246,7 @@ public class HomeController {
             repository.save(user);
             String theme = user.getTheme();
 
-            return "redirect:/astro?token=" + token + "&theme=" + theme;
+            return "redirect:/astro?" + "theme=" + theme;
         } catch (Exception e) {
             e.printStackTrace();
             model.addAttribute("errorMessage", "Erro ao processar o login");
