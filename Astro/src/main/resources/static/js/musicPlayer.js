@@ -430,13 +430,6 @@ document.addEventListener("keydown", function (event) {
     nextSong();
   } else if (event.key === "ArrowLeft") {
     prevSong();
-  } else if (event.key === " ") {
-    if (isPlay) {
-      pauseSong();
-    } else {
-      playSong();
-    }
-    isPlay = !isPlay; // Inverte o estado de reprodução
   } else if (event.key === "m") {
     if (player.volume === 0) {
       const currentVolume = localStorage.getItem("currentVolume");

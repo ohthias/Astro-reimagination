@@ -129,36 +129,52 @@ section.nav-menu {
   align-items: center;
   justify-content: flex-end;
   gap: 1rem;
+  position: relative;
+  .user-preferences {
+    top: 0;
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
 
-  .btn-config {
-    color: var(--font-all);
-    padding: 0.5rem;
-    background: none;
-    border: 0;
-    outline: none;
-    font-size: 26px;
-    place-items: center;
-    cursor: pointer;
-    transition: 250ms;
-    border-radius: 50%;
+    .btn-preferences{
+      top: -66px;
+      z-index: 0;
+      position: relative;
+      color: var(--secondary);
+      text-align: center;
+      background: var(--shadow-shadow);
+      backdrop-filter: blur(10px);
+      transition: 250ms;
 
-    &:hover {
-      color: var(--tertiary);
-      text-shadow: 0 0 10px var(--tertiary-shadow);
+      &:hover {
+        box-shadow: 0 0 25px var(--primary-shadow);
+        border: 2px solid var(--primary-shadow);
+      }
+    }
+
+    &:hover .btn-preferences {
+      top: 0;
+      transition: 500ms;
     }
   }
 }
 
 button.btn-user {
+  z-index: 1;
   width: 50px;
   cursor: pointer;
   border-radius: 50%;
   background: none;
   border: none;
+  height: 50px;
+  background: var(--white);
+  place-items: center;
   
   img.user-perfil {
     width: 100%;
     height: auto;
+    object-fit: cover;
     border-radius: 50%;
     box-shadow: 0 0 10px var(--shadow-shadow);
     cursor: pointer;
@@ -171,6 +187,7 @@ button.btn-user {
 }
 
 .btn-shine {
+  margin-right: 2rem;
   padding: 12px 48px;
   color: #fff;
   background: linear-gradient(to right, #9f9f9f 0, #fff 10%, #868686 20%);

@@ -1,4 +1,3 @@
-// Função para buscar o tema no localStorage e enviá-lo ao backend
 function saveThemeToDatabase() {
     const theme = localStorage.getItem('theme'); // Obtém o tema do localStorage
     if (!theme) {
@@ -6,7 +5,6 @@ function saveThemeToDatabase() {
         return;
     }
 
-    // URL do endpoint no backend
     const endpoint = '/api/save-theme';
 
     // Requisição para salvar o tema
@@ -28,5 +26,4 @@ function saveThemeToDatabase() {
     .catch(error => console.error("Erro na requisição:", error));
 }
 
-// Chame essa função após o usuário fazer login
 saveThemeToDatabase();

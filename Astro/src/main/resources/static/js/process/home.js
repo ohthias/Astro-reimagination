@@ -47,11 +47,9 @@ export const displayUserInfo = async () => {
       throw new Error("Token não encontrado para o username especificado.");
     }
 
-    console.log("Token obtido do backend:", token);
-
     // Decodifica o token
     const decodedToken = parseJwt(token);
-    console.log("Token decodificado:", decodedToken);
+    console.log("Token decodificado");
 
     if (decodedToken) {
       // Obtém o nome de usuário, e-mail e data de criação do token
@@ -77,9 +75,6 @@ export const displayUserInfo = async () => {
         userEmailInput.value = userEmail;
       }
 
-      console.log(
-        `Nome: ${userName}, Email: ${userEmail}, Data: ${userCreationDate}`
-      );
     } else {
       console.error("Falha ao decodificar o token.");
     }

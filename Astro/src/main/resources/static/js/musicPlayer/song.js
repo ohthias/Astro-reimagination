@@ -14,7 +14,7 @@ document.addEventListener("DOMContentLoaded", () => {
     !sideMenuArtistName ||
     !sideMenuImage
   ) {
-    console.error("Um ou mais elementos DOM não foram encontrados!");
+    console.warn("Um ou mais elementos DOM não foram encontrados!");
     return; // Interromper a execução do código se algum elemento não for encontrado
   }
 
@@ -63,7 +63,7 @@ document.addEventListener("DOMContentLoaded", () => {
     if (lyricsContainer) {
       lyricsContainer.innerText = lyrics;
     } else {
-      console.error("Elemento para exibir a letra não encontrado!");
+      console.warn("Elemento para exibir a letra não encontrado!");
     }
   }
 
@@ -71,7 +71,7 @@ document.addEventListener("DOMContentLoaded", () => {
   function loadSelectedSong(songIndex) {
     const song = localSongs[songIndex]; // Usando o localSongs para carregar a música
     if (!song) {
-      console.error("Música não encontrada!");
+      console.warn("Música não encontrada!");
       return;
     }
 

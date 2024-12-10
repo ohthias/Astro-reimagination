@@ -92,6 +92,7 @@ const exibirResultados = (data) => {
 document.querySelector("#search").addEventListener("input", (event) => {
   const query = event.target.value;
   if (query.length > 2) {
+    // Apenas busca se o tamanho for maior que 2
     searchArtists(query);
   }
 });

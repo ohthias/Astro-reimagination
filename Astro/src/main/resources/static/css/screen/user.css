@@ -22,7 +22,9 @@ body {
   background: linear-gradient(
       to top,
       var(--primary-shadow) 0%,
-      var(--shadow) 10%
+      var(--shadow) 10%,
+      var(--shadow) 90%,
+      var(--primary-shadow) 100%
     ),
     var(--shadow);
   behavior: smooth;
@@ -37,7 +39,7 @@ main {
 
 .user-banner {
   height: 250px;
-  background: linear-gradient(to left, var(--primary) 0%, #f3f3f3 100%);
+  background: linear-gradient(to left, var(--primary) 0%, var(--secondary) 100%);
   border-radius: 24px;
   position: relative;
   color: var(--font-all);
@@ -57,7 +59,7 @@ main {
       white-space: wrap;
       overflow: hidden;
       text-overflow: ellipsis;
-      text-shadow: 0 0 24px var(--secondary-shadow-light);
+      text-shadow: 0 0 10px var(--secondary-shadow-light);
     }
 
     .circle {

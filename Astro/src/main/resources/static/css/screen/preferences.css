@@ -1,51 +1,59 @@
+main {
+  padding-inline: 1rem;
+}
+
 h2 {
-    text-align: center;
-    color: #444;
-  }
-  
-  .preferences-section {
-    margin-bottom: 15px;
-    padding: 10px;
-    border: 1px solid #ddd;
-    border-radius: 4px;
-    background-color: #fff;
-  }
-  
-  .preferences-section h3 {
+  text-align: center;
+  font-size: 42px;
+  color: var(--secondary);
+  margin-bottom: 1rem;
+}
+
+.preferences-section {
+  margin-bottom: 15px;
+  padding: 10px;
+  border: var(--border-neon);
+  border-radius: 8px;
+  background: var(--shadow);
+
+  h3 {
     margin: 0 0 10px;
     font-size: 18px;
-    color: #555;
+    color:var(--font-all);
   }
-  
-  label {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    font-size: 14px;
-  }
-  
-  select {
-    margin-top: 5px;
-    padding: 5px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-  }
-  
-  #savePreferences {
-    display: block;
-    width: 100%;
-    max-width: 200px;
-    margin: 20px auto 0;
-    padding: 10px 0;
-    background-color: #007bff;
-    color: #fff;
-    border: none;
-    border-radius: 4px;
-    font-size: 16px;
-    cursor: pointer;
-    text-align: center;
-  }
-  
-  #savePreferences:hover {
-    background-color: #0056b3;
-  }
+}
+
+label {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--font-all);
+  font-size: 14px;
+}
+
+select {
+  margin-top: 5px;
+  padding: 5px;
+  border: 1px solid var(--secondary);
+  border-radius: 4px;
+}
+
+#savePreferences {
+  display: block;
+  width: 100%;
+  max-width: 200px;
+  margin: 20px auto 0;
+  padding: 10px 0;
+  background-color: var(--secondary-shadow-light);
+  color: var(--font-all);
+  border: none;
+  border-radius: 4px;
+  font-size: 16px;
+  cursor: pointer;
+  text-align: center;
+}
+
+#savePreferences:hover {
+  background-color: var(--secondary);
+  transition: 250ms;
+}

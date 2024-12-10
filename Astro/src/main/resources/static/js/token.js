@@ -1,24 +1,19 @@
-// Pega o token da URL ou do armazenamento local
 let urlParams = new URLSearchParams(window.location.search);
 let username = urlParams.get("username");
 
-// Se o token for encontrado na URL, armazena no localStorage
 if (username) {
   localStorage.setItem("username", username);
 } else {
   token = localStorage.getItem("username");
 }
 
-// Pega o theme da URL ou do armazenamento local
-let theme = urlParams.get('theme');
-// Se o theme for encontrado na URL, armazena no localStorage
+let theme = urlParams.get("theme");
 if (theme) {
-    localStorage.setItem('theme', theme);
+  localStorage.setItem("theme", theme);
 } else {
-    theme = localStorage.getItem('theme');
+  theme = localStorage.getItem("theme");
 }
 
-// Função para adicionar token a todos os links de navegação
 function addTokenToLinks() {
   if (username) {
     document.querySelectorAll("a").forEach((link) => {
@@ -33,10 +28,8 @@ function addTokenToLinks() {
   }
 }
 
-// Adicionar o token aos links no carregamento da página
 document.addEventListener("DOMContentLoaded", addTokenToLinks);
 
-// Função para logout (chamada pelo botão de logout)
 function logout() {
   showConfirmationPopup("Você realmente quer sair?", () => {
     localStorage.removeItem("username");
@@ -71,7 +64,6 @@ function showConfirmationPopup(message, onConfirm) {
   };
   popup.appendChild(confirmButton);
 
-  // Botão de cancelar
   const cancelButton = document.createElement("button");
   cancelButton.textContent = "Não";
   cancelButton.className = "popup-button cancel monsterrat-regular";
@@ -80,9 +72,7 @@ function showConfirmationPopup(message, onConfirm) {
   };
   popup.appendChild(cancelButton);
 
-  // Adiciona o pop-up ao overlay
   overlay.appendChild(popup);
 
-  // Adiciona o overlay ao corpo do documento
   document.body.appendChild(overlay);
 }

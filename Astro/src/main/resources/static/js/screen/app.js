@@ -52,7 +52,7 @@ export async function loadContent(page, id = null) {
 
   // Páginas comuns
   switch (page) {
-    case "home":
+    case "astro":
       addStyleSheet("home.css");
       generateHomePageContent();
       initializeSwipers();

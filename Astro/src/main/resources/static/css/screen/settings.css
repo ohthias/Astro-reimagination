@@ -26,7 +26,7 @@ main {
 
 .user-banner {
   height: 250px;
-  background: linear-gradient(to left, var(--primary) 0%, #f3f3f3 100%);
+  background: linear-gradient(to left, var(--primary) 0%, var(--secondary) 100%);
   border-radius: 24px;
   position: relative;
   color: var(--font-all);
