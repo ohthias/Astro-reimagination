@@ -64,18 +64,7 @@ function generateSearchContent() {
                               </div>
 
                               <div class="container-results" id="results">
-                                <div class="tracks-container">
-                                  <h2 class="bebas-neue-regular">Músicas</h2>
-                                  <div id="lista-musicas" class="results-list"></div>
-                                </div>
-                                <div class="artists-container">
-                                  <h2 class="bebas-neue-regular">Artistas</h2>
-                                  <div id="lista-artistas" class="results-list"></div>
-                                </div>
-                                <div class="playlists-container">
-                                  <h2 class="bebas-neue-regular">Playlists</h2>
-                                  <div id="lista-playlists" class="results-list"></div>
-                                </div>
+                               
                               </div>
                           `;
 }
@@ -144,7 +133,7 @@ function generateArtistContent() {
               </div>
             </section>
 
-            <section class="swiper">
+            <section class="swiper" id="othersArtists">
               <h2 class="bebas-neue-regular categoria-name">Estrelas similares</h2>
               <div class="swiper-container swiper-artists">
                 <div class="swiper-wrapper container-related-artists"></div>
@@ -390,4 +379,75 @@ function generateSettingsContent() {
         </article>
       </section>
   `
+}
+
+function generateAdmHome() {
+  const content = document.getElementById("content")
+  content.innerHTML = `
+  `
+}
+
+function generateListUsers() {
+  const content = document.getElementById("content")
+  content.innerHTML = `
+   <h1 class="bebas-neue-regular">Lista de Usuários</h1>
+      <table id="users-table">
+        <thead>
+          <tr>
+            <th class="montserrat-bold">ID</th>
+            <th class="montserrat-bold">Email</th>
+            <th class="montserrat-bold">Nome de Usuário</th>
+            <th class="montserrat-bold">Data de Criação</th>
+            <th class="montserrat-bold">Último Acesso</th>
+          </tr>
+        </thead>
+        <tbody class="montserrat-regular"></tbody>
+      </table>
+  `
+}
+
+function generatePreferencesContent() {
+  const content = document.getElementById("content");
+
+  const neonBordersPref = localStorage.getItem("neonBorders") === "true";
+  const dynamicBackgroundPref = localStorage.getItem("dynamicBackground") === "true";
+
+  content.innerHTML = `
+    <h2 class='bebas-neue-regular'>Preferências</h2>
+    <div class="preferences-section">
+      <h3 class='montserrat-bold'>Bordas Neon</h3>
+      <label class='montserrat-regular'>
+        <input type="checkbox" id="neonBorders" ${neonBordersPref ? "checked" : ""} />
+        Ativar bordas neon
+      </label>
+    </div>
+
+    <div class="preferences-section">
+      <h3 class='montserrat-bold'>Fundo do Player</h3>
+      <label class='montserrat-regular'>
+        <input type="checkbox" id="dynamicBackground" ${dynamicBackgroundPref ? "checked" : ""} />
+        Mudar o fundo do player dinamicamente
+      </label>
+    </div>
+
+    <button id="savePreferences" class='montserrat-bold'>Salvar Preferências</button>
+  `;
+
+  // Adicionar evento para salvar as preferências
+  document.getElementById("savePreferences").addEventListener("click", savePreferences);
+}
+
+function savePreferences() {
+  const neonBorders = document.getElementById("neonBorders").checked;
+  const dynamicBackground = document.getElementById("dynamicBackground").checked;
+
+  console.log("Preferências Salvas:");
+  console.log("Bordas Neon:", neonBorders);
+  console.log("Fundo Dinâmico:", dynamicBackground);
+
+  localStorage.setItem("neonBorders", neonBorders);
+  localStorage.setItem("dynamicBackground", dynamicBackground);
+
+  alert("Preferências salvas com sucesso!");
+  window.location.reload();
 }

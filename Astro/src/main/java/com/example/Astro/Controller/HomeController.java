@@ -7,6 +7,11 @@ package com.example.Astro.Controller;
  */
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.ZoneId;
+import java.time.ZonedDateTime;
+import java.time.format.DateTimeFormatter;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -61,7 +66,7 @@ public class HomeController {
     }
 
     @GetMapping("/astro")
-    public String home(@RequestParam("token") String token, Model model) {
+    public String home(String token, Model model) {
         // Busca o usuário usando o token
         User user = userService.getUserByToken(token);
 
@@ -176,12 +181,16 @@ public class HomeController {
 
         String token = tokenService.generateToken(username, email);
 
-        LocalDate currentDate = LocalDate.now();
+        // Obter a data e hora atual no fuso horário de Brasília
+        ZonedDateTime now = ZonedDateTime.now(ZoneId.of("America/Sao_Paulo"));
 
-        User usuario = new User(null, email, clienteHashword, username, currentDate , token, "defaultTheme");
+        // Converter ZonedDateTime para Date
+        Date date = Date.from(now.toInstant());
+
+        User usuario = new User(null, email, clienteHashword, username, date , token, "defaultTheme");
         repository.save(usuario);
         String theme = usuario.getTheme();
-        return "redirect:/astro?token=" + token + "&theme=" + theme;
+        return "redirect:/astro?" + "theme=" + theme + "&username=" + username;
     }
 
     @PostMapping("/login-user")
@@ -204,7 +213,31 @@ public class HomeController {
                 return "login";
             }
 
-            user.setLastAccess(LocalDate.now());
+            if (user.isAdmin()) {
+
+                // Obter a data e hora atual no fuso horário de Brasília
+                ZonedDateTime now = ZonedDateTime.now(ZoneId.of("America/Sao_Paulo"));
+
+                // Converter ZonedDateTime para Date
+                Date date = Date.from(now.toInstant());
+                user.setLastAccess(date);
+                repository.save(user);
+
+                // Gerar token e redirecionar com o token na URL
+                String token = tokenService.generateToken(username, user.getEmail());
+                user.setToken(token);
+                repository.save(user);
+                String theme = user.getTheme();
+                return "redirect:/admpage?" + "theme=" + theme + "&username=" + username;
+
+
+            }
+            // Obter a data e hora atual no fuso horário de Brasília
+            ZonedDateTime now = ZonedDateTime.now(ZoneId.of("America/Sao_Paulo"));
+
+            // Converter ZonedDateTime para Date
+            Date date = Date.from(now.toInstant());
+            user.setLastAccess(date);
             repository.save(user);
 
             // Gerar token e redirecionar com o token na URL
@@ -213,7 +246,7 @@ public class HomeController {
             repository.save(user);
             String theme = user.getTheme();
 
-            return "redirect:/astro?token=" + token + "&theme=" + theme;
+            return "redirect:/astro?" + "theme=" + theme + "&username=" + username;
         } catch (Exception e) {
             e.printStackTrace();
             model.addAttribute("errorMessage", "Erro ao processar o login");
@@ -226,5 +259,10 @@ public class HomeController {
     public String logout() {
         // O token é removido no frontend (no JavaScript), aqui só redirecionamos para a tela de login.
         return "redirect:/astro";
+    }
+
+    @GetMapping("/admpage")
+    public String admPage() {
+        return "admpage";
     }
 }

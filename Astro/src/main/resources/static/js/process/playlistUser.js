@@ -1,7 +1,6 @@
 function initializePlaylists() {
   const defaultPlaylists = [];
 
-  // Atualiza o localStorage com as playlists padrão toda vez que o usuário entra
   localStorage.setItem("userPlaylists", JSON.stringify(defaultPlaylists));
   console.log("Playlists criadas/atualizadas no localStorage!");
 }
@@ -12,7 +11,7 @@ export function loadUserPlaylists() {
   const playlistsContainer = document.getElementById("playlistsContainer");
 
   if (!playlistsContainer) {
-    console.error("Elemento 'playlistsContainer' não encontrado!");
+    console.warn("Elemento 'playlistsContainer' não encontrado!");
     return;
   }
 

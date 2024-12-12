@@ -3,7 +3,7 @@
  * @ohthias
  */
 
- import {loadContent} from "../screen/app.js"
+import { loadContent } from "../screen/app.js";
 
 const createNavigationBar = () => {
   const nav = document.createElement("nav");
@@ -17,7 +17,7 @@ const createNavigationBar = () => {
   hamburgerIcon.textContent = "menu";
 
   const logoLink = document.createElement("a");
-  logoLink.href = "/home";
+  logoLink.href = "/astro";
   logoLink.className = "nav-logo bebas-neue-regular";
   logoLink.textContent = "Astro";
 
@@ -74,6 +74,9 @@ const createNavigationBar = () => {
   premiumLink.className = "btn-shine montserrat-bold";
   premiumLink.innerHTML = "Seja <i>premium</i>";
 
+  const userPreferences = document.createElement("div");
+  userPreferences.className = "user-preferences";
+
   const userLink = document.createElement("button");
   userLink.onclick = () => loadContent('user');
   userLink.className = "btn-user";
@@ -84,8 +87,22 @@ const createNavigationBar = () => {
   userImage.className = "user-perfil";
 
   userLink.appendChild(userImage);
+
+  const preferencesLink = document.createElement("button");
+  preferencesLink.onclick = () => loadContent('preferences');
+  preferencesLink.className = "btn-user btn-preferences";
+
+  const settingsIcon = document.createElement("span");
+  settingsIcon.className = "material-symbols-outlined";
+  settingsIcon.textContent = "settings_account_box";
+
+  preferencesLink.appendChild(settingsIcon);
+
+  userPreferences.appendChild(userLink);
+  userPreferences.appendChild(preferencesLink);
+
   sideRight.appendChild(premiumLink);
-  sideRight.appendChild(userLink);
+  sideRight.appendChild(userPreferences);
 
   nav.appendChild(sideLeft);
   nav.appendChild(sideRight);
@@ -95,12 +112,7 @@ const createNavigationBar = () => {
   overlayMenu.className = "overlay-menu";
   overlayMenu.style.display = "none";
 
-  // Botão de fechar
-  const closeButton = document.createElement("button");
-  closeButton.className = "close-button";
-  closeButton.innerHTML = "&times;"; // Símbolo de fechar
-  closeButton.setAttribute("aria-label", "Fechar menu");
-
+  // Itens do menu
   const menuItems = [
     { name: "Home", icon: "home", link: "/home" },
     { name: "Busca", icon: "search", link: "/busca" },
@@ -126,11 +138,15 @@ const createNavigationBar = () => {
     overlayMenu.appendChild(menuItem);
   });
 
+  const closeButton = document.createElement("button");
+  closeButton.className = "close-button";
+  closeButton.innerHTML = "&times;"; // Símbolo de fechar
+  closeButton.setAttribute("aria-label", "Fechar menu");
+
   overlayMenu.appendChild(closeButton); // Adiciona o botão de fechar
   document.body.appendChild(nav);
   document.body.appendChild(overlayMenu);
 
-  // Evento para mostrar/ocultar o menu
   hamburgerIcon.addEventListener("click", () => {
     overlayMenu.style.display = "flex"; // Torna o menu visível
     setTimeout(() => {
@@ -138,7 +154,6 @@ const createNavigationBar = () => {
     }, 10); // Delay para permitir a aplicação da transição
   });
 
-  // Evento para fechar o menu
   closeButton.addEventListener("click", () => {
     overlayMenu.classList.remove("visible");
     setTimeout(() => {
@@ -147,5 +162,4 @@ const createNavigationBar = () => {
   });
 };
 
-// Chamar a função para gerar a barra de navegação
 createNavigationBar();

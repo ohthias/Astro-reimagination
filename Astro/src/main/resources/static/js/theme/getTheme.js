@@ -1,5 +1,3 @@
-console.log(theme);
-
 export function addThemeToLink() {
     if(theme) {
         document.querySelectorAll('a').forEach(link => {

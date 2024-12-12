@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Astro</title>
+    <link
+      rel="stylesheet"
+      href="https://cdn-uicons.flaticon.com/2.6.0/uicons-solid-straight/css/uicons-solid-straight.css"
+    />
+    <link
+      rel="apple-touch-icon"
+      sizes="180x180"
+      href="/favicon/apple-touch-icon.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="32x32"
+      href="/favicon/favicon-32x32.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="16x16"
+      href="/favicon/favicon-16x16.png"
+    />
+    <link rel="manifest" href="/favicon/site.webmanifest" />
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/icon?family=Material+Symbols+Outlined"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="/css/root/font.css" />
+    <link rel="stylesheet" href="/css/root/root.css" />
+    <link rel="stylesheet" href="/css/root/variables.css" />
+
+    <link rel="stylesheet" href="/css/components/sidebar.css" />
+    <link rel="stylesheet" href="/css/components/navbar.css" />
+    <link rel="stylesheet" href="/css/screen/adm.css" />
+  </head>
+  <body>
+    <div class="sidebar">
+        <ul class="nav-list">
+          <li>
+            <button id="event1" onclick="loadContent('ADM_home')">
+              <i class="material-icons">admin_panel_settings</i>
+              <span class="tooltip">Home ADM</span>
+            </button>
+          </li>
+          <li>
+            <button id="event2" onclick="loadContent('home')">
+              <i class="material-icons">public</i>
+              <span class="tooltip">Home Astro</span>
+            </button>
+          </li>
+          <hr />
+          <li>
+            <button id="event3" onclick="loadContent('list_users')">
+              <i class="material-icons">group</i>
+              <span class="tooltip">Usuário</span>
+            </button>
+          </li>
+          <div class="exit-container">
+            <li>
+              <button id="logoutBtn" onclick="logout()">
+                <i class="material-icons">exit_to_app</i>
+                <span class="tooltip">Sair</span>
+              </button>
+            </li>
+          </div>
+        </ul>
+      </div>
+
+    <main id="content"></main>
+
+    <script type="module" src="/js/screen/app.js"></script>
+    <script src="/js/token.js" defer></script>
+    <script src="/js/screen/htmlGenerator.js" defer></script>
+    <script type="module" src="/js/process/home.js" defer></script>
+  </body>
+</html>

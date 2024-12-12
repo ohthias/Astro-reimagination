@@ -30,6 +30,7 @@
     padding: 0 1rem;
     animation: fadeIn 500ms ease;
   }
+  transition: background-color 0.5s ease;
 }
 
 .side-left {
@@ -323,7 +324,7 @@ span.volume_off {
     margin: -4px 0;
     font-size: 16px;
     text-transform: none;
-    color: var(--white-shadow);
+    color: var(--font-all);
     transition: all 150ms ease;
 
       &:hover {

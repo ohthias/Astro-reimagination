@@ -86,27 +86,10 @@
           class="button-submit montserrat-bold"
           value="Cadastrar"
         />
-        <button id="login-button" class="montserrat-bold">
-          Entrar com Google
-        </button>
       </form>
-
-      <div id="user-info" style="display: none"></div>
-      <div id="error-message" style="color: red"></div>
     </main>
-
-    <script th:inline="javascript">
-      /*<![CDATA[*/
-      var errorMessage = /*[[${errorMessage}]]*/ "";
-      if (errorMessage && errorMessage.trim() !== "") {
-        alert(errorMessage); // Exibe o alerta somente se houver uma mensagem de erro
-      }
-      /*]]>*/
-    </script>
     <script src="/js/others/togglePassword.js"></script>
     <script src="/js/others/redirects.js"></script>
-    <script type="module" src="/js/google.js"></script>
     <script src="/js/token.js"></script>
-
   </body>
 </html>

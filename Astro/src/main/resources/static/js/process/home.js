@@ -1,6 +1,26 @@
-// Função para obter o token do localStorage
-export const getTokenFromLocalStorage = () => {
-  return localStorage.getItem("authToken"); // Obtém o token do localStorage
+// Função para obter o token baseado no username armazenado no localStorage
+export const getTokenFromApi = async () => {
+  try {
+    const username = localStorage.getItem("username");
+    if (!username) throw new Error("Username não encontrado no localStorage.");
+
+    const response = await fetch(`/api/users`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ username }),
+    });
+
+    if (!response.ok) {
+      const errorText = await response.text(); // Captura a mensagem do backend
+      throw new Error(`Erro na requisição: ${response.status} - ${errorText}`);
+    }
+
+    const userData = await response.json();
+    return userData.token;
+  } catch (error) {
+    console.error("Erro ao buscar o token do usuário:", error.message);
+    return null;
+  }
 };
 
 // Função para decodificar o token JWT
@@ -18,13 +38,18 @@ export const parseJwt = (token) => {
 };
 
 // Função para exibir as informações do usuário no HTML
-export const displayUserInfo = () => {
-  const token = getTokenFromLocalStorage(); // Obtém o token do localStorage
-  console.log("Token do localStorage: ", token);
+export const displayUserInfo = async () => {
+  try {
+    // Busca o token diretamente da API
+    const token = await getTokenFromApi();
 
-  if (token) {
-    const decodedToken = parseJwt(token); // Decodifica o token para extrair o payload
-    console.log("Token decodificado: ", decodedToken);
+    if (!token) {
+      throw new Error("Token não encontrado para o username especificado.");
+    }
+
+    // Decodifica o token
+    const decodedToken = parseJwt(token);
+    console.log("Token decodificado");
 
     if (decodedToken) {
       // Obtém o nome de usuário, e-mail e data de criação do token
@@ -50,11 +75,10 @@ export const displayUserInfo = () => {
         userEmailInput.value = userEmail;
       }
 
-      console.log(`Nome: ${userName}, Email: ${userEmail}, Data: ${userCreationDate}`);
     } else {
       console.error("Falha ao decodificar o token.");
     }
-  } else {
-    console.error("Token não encontrado no localStorage.");
+  } catch (error) {
+    console.error("Erro ao exibir informações do usuário:", error);
   }
 };

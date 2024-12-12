@@ -1,182 +1,30 @@
-import SPOTIFY_CONFIG from "../config.js";
+import { ApiAccess } from "../apis/apiAcess.js";
+import { WikipediaAccess } from "../apis/WikipediaAccess.js";
 
-const clientId = SPOTIFY_CONFIG.SPOTIFY_CLIENT_ID;
-const clientSecret = SPOTIFY_CONFIG.SPOTIFY_CLIENT_SECRET;
-let artistName;
-let accessToken;
+const api = new ApiAccess();
+const wikipedia = new WikipediaAccess();
 
-const getArtistId = () => {
-  const params = new URLSearchParams(window.location.search);
-  return params.get("id");
-};
-
-const getToken = async () => {
-  const response = await fetch("https://accounts.spotify.com/api/token", {
-    method: "POST",
-    headers: {
-      Authorization: "Basic " + btoa(`${clientId}:${clientSecret}`),
-      "Content-Type": "application/x-www-form-urlencoded",
-    },
-    body: "grant_type=client_credentials",
-  });
-
-  if (!response.ok) {
-    throw new Error("Erro ao obter o token");
-  }
-
-  const data = await response.json();
-  return data.access_token;
-};
-
-// Função para buscar os dados do artista na API do Spotify
-const fetchArtistData = async (artistId) => {
-  if (!accessToken) {
-    accessToken = await getToken(); // Obter token se não existir
-  }
-
-  const response = await fetch(
-    `https://api.spotify.com/v1/artists/${artistId}`,
-    {
-      headers: {
-        Authorization: `Bearer ${accessToken}`,
-      },
-    }
-  );
-
-  if (!response.ok) {
-    throw new Error("Erro ao buscar dados do artista");
-  }
-
-  return await response.json();
-};
-
-// Função para buscar as músicas mais populares do artista
-const fetchTopTracks = async (artistId) => {
-  if (!accessToken) {
-    accessToken = await getToken(); // Obter token se não existir
-  }
-
-  const response = await fetch(
-    `https://api.spotify.com/v1/artists/${artistId}/top-tracks?market=US`,
-    {
-      headers: {
-        Authorization: `Bearer ${accessToken}`,
-      },
-    }
-  );
-
-  if (!response.ok) {
-    throw new Error("Erro ao buscar top tracks do artista");
-  }
-
-  const data = await response.json();
-  return data.tracks.slice(0, 5); // Retorna as 5 primeiras músicas
-};
-
-// Função para buscar a biografia do artista na Wikipedia
-const fetchBiography = async (artistName) => {
-  const response = await fetch(
-    `https://pt.wikipedia.org/api/rest_v1/page/summary/${encodeURIComponent(
-      artistName
-    )}`
-  );
-
-  if (!response.ok) {
-    throw new Error("Erro ao buscar biografia");
-  }
-
-  const data = await response.json();
-  return data.extract; // Retorna a biografia
-};
-
-// Função para formatar a duração da música
+// Função formatadora de duração
 const formatDuration = (durationMs) => {
   const minutes = Math.floor(durationMs / 60000);
   const seconds = Math.floor((durationMs % 60000) / 1000);
   return `${minutes}:${seconds < 10 ? "0" : ""}${seconds}`;
 };
 
-// Função para buscar a discografia do artista
-const fetchDiscography = async (artistId) => {
-  if (!accessToken) {
-    accessToken = await getToken(); // Obter token se não existir
-  }
-
-  const response = await fetch(
-    `https://api.spotify.com/v1/artists/${artistId}/albums?include_groups=album,single&market=US&limit=10`,
-    {
-      headers: {
-        Authorization: `Bearer ${accessToken}`,
-      },
-    }
-  );
-
-  if (!response.ok) {
-    throw new Error("Erro ao buscar discografia do artista");
-  }
-
-  const data = await response.json();
-  return data.items; // Retorna os álbuns
-};
-
-// Função para buscar playlists relacionadas ao artista
-const fetchPlaylists = async (artistName) => {
-  if (!accessToken) {
-    accessToken = await getToken(); // Obter token se não existir
-  }
-
-  const response = await fetch(
-    `https://api.spotify.com/v1/search?q=${encodeURIComponent(
-      artistName
-    )}&type=playlist&market=US&limit=5`,
-    {
-      headers: {
-        Authorization: `Bearer ${accessToken}`,
-      },
-    }
-  );
-
-  if (!response.ok) {
-    throw new Error("Erro ao buscar playlists do artista");
-  }
-
-  const data = await response.json();
-  return data.playlists.items; // Retorna as playlists
-};
-
-// Função para buscar artistas similares
-const fetchRelatedArtists = async (artistId) => {
-  if (!accessToken) {
-    accessToken = await getToken(); // Obter token se não existir
-  }
-
-  const response = await fetch(
-    `https://api.spotify.com/v1/artists/${artistId}/related-artists`,
-    {
-      headers: {
-        Authorization: `Bearer ${accessToken}`,
-      },
-    }
-  );
-
-  if (!response.ok) {
-    throw new Error("Erro ao buscar artistas similares");
-  }
-
-  const data = await response.json();
-  return data.artists; // Retorna os artistas similares
-};
-
-// Função principal
-export const displayArtist = async () => {
-  const artistId = getArtistId();
+export const displayArtist = async (id) => {
+  // Recebe o ID do artista diretamente
+  const artistId = id;
+  console.log("ID do artista:", artistId);
   if (!artistId) {
     console.error("ID do artista não encontrado");
     return;
   }
 
   try {
-    const artistData = await fetchArtistData(artistId);
+    // Buscar dados do artista
+    const artistData = await api.fetchArtistaPorId(artistId);
+    const artistName = artistData.name;
+    console.log("Dados do artista:", artistData);
 
     const artistGenres =
       artistData.genres.join(", ") ||
@@ -185,33 +33,35 @@ export const displayArtist = async () => {
     const artistCountry =
       artistData.origin_country ||
       "<img src='/images/astro5.png' alt='Erro' class='country-image'>";
-    artistName = artistData.name;
 
-    console.log("Artista: " + artistName);
-    document.getElementById("artist-name").textContent = artistData.name;
+    // Atualizar informações na página
+    document.getElementById("artist-name").textContent = artistName;
     document.getElementById(
       "ouvintes"
     ).textContent = `${artistData.followers.total.toLocaleString()} ouvintes`;
     document.getElementById("imageArtist").src =
       artistData.images[0]?.url || "https://placehold.co/1000x550";
-
-    // Atualizando os dois novos cards de região, popularidade e gênero
-    document.getElementById("artist-region").innerHTML = `${artistCountry}`;
+    document.getElementById("artist-region").innerHTML = artistCountry;
     document.getElementById(
       "artist-popularity"
     ).innerHTML = `${artistPopularity}º`;
-    document.getElementById("artist-genres").innerHTML = `${artistGenres}`;
+    document.getElementById("artist-genres").innerHTML = artistGenres;
 
-    // Agora chama a função para buscar a biografia
-    const biography = await fetchBiography(artistName);
+    // Buscar e exibir biografia
+    const biography = await wikipedia.fetchBiography(artistName);
     document.getElementById("artist-biography").innerHTML = biography;
+    console.log("Biografia:", biography);
 
-    // Chama a função para buscar as top tracks
-    const topTracks = await fetchTopTracks(artistId);
+    // Buscar e exibir top tracks
+    const topTracks = await api
+      .fetchData(
+        `https://api.spotify.com/v1/artists/${artistId}/top-tracks?market=US`
+      )
+      .then((data) => data.tracks.slice(0, 5));
+    console.log("Top tracks:", topTracks);
 
-    // Gerar as músicas no HTML
     const containerSongs = document.querySelector(".container-songs");
-    containerSongs.innerHTML = ""; // Limpa a lista anterior, se houver
+    containerSongs.innerHTML = ""; // Limpa a lista anterior
 
     topTracks.forEach((track) => {
       const trackHtml = `
@@ -236,11 +86,17 @@ export const displayArtist = async () => {
     });
 
     // Buscar e exibir discografia
-    const discography = await fetchDiscography(artistId);
+    const discography = await api
+      .fetchData(
+        `https://api.spotify.com/v1/artists/${artistId}/albums?include_groups=album,single&market=US&limit=10`
+      )
+      .then((data) => data.items);
+
+    console.log("Discografia:", discography);
     const containerDiscography = document.querySelector(
       "#container-discography"
     );
-    containerDiscography.innerHTML = ""; // Limpa a lista anterior, se houver
+    containerDiscography.innerHTML = ""; // Limpa a lista anterior
 
     discography.forEach((album) => {
       const albumHtml = `
@@ -250,44 +106,71 @@ export const displayArtist = async () => {
           <img
             class="album-image"
             alt="${album.name}"
-            src="${album.images[0]?.url || 'https://placehold.co/100x100'}"
+            src="${album.images[0]?.url || "https://placehold.co/100x100"}"
             onerror="this.onerror=null; this.src='https://placehold.co/100x100';"
           />
-          <p class="album-name montserrat-regular">${album.name} (${new Date(album.release_date).getFullYear()})</p>
+          <p class="album-name montserrat-regular">${album.name} (${new Date(
+        album.release_date
+      ).getFullYear()})</p>
         </div>
       `;
-
       containerDiscography.innerHTML += albumHtml;
     });
 
-    // Buscar e exibir playlists
-    const playlists = await fetchPlaylists(artistName);
+    const playlists = await api.fetchPlaylists(artistName);
+    const validPlaylists = playlists.filter(
+      (playlist) => playlist && playlist.name && playlist.images
+    );
+
+    console.log("Playlists válidas:", validPlaylists);
     const containerPlaylists = document.querySelector(".container-playlists");
     containerPlaylists.innerHTML = ""; // Limpa a lista anterior, se houver
 
-    playlists.forEach((playlist) => {
+    validPlaylists.forEach((playlist) => {
       const playlistHtml = `
-          <div 
-            onclick="loadContent('playlist', '${playlist.id}')" 
-            class="playlist-item swiper-slide">
-            <img
-              class="playlist-image"
-              alt="${playlist.name}"
-              src="${playlist.images[0]?.url || 'https://placehold.co/100x100'}"
-              onerror="this.onerror=null; this.src='https://placehold.co/100x100';"
-            />
-            <p class="playlist-name montserrat-regular">${playlist.name}</p>
-          </div>
-        `;
+      <div
+        class="playlist-item swiper-slide">
+        <img
+          class="playlist-image"
+          alt="${playlist.name}"
+          src="${playlist.images[0]?.url || "https://placehold.co/100x100"}"
+          onerror="this.onerror=null; this.src='https://placehold.co/100x100';"
+        />
+        <p class="playlist-name montserrat-regular">${playlist.name}</p>
+      </div>
+    `;
       containerPlaylists.innerHTML += playlistHtml;
     });
 
+    async function fetchRelatedArtists(artistaId) {
+      if (!artistaId) throw new Error("ID do artista não informado.");
+      const url = `https://api.spotify.com/v1/artists/${artistaId}/related-artists`;
+    
+      try {
+        const response = await api.fetchData(url);
+        if (!response || !response.artists) {
+          console.error("Resposta inválida ou vazia da API para artistas relacionados:", response);
+          return [];
+        }
+        return response.artists;
+      } catch (error) {
+        console.error("Erro ao buscar artistas relacionados:", error);
+        return [];
+      }
+    }
+
     // Buscar e exibir artistas similares
     const relatedArtists = await fetchRelatedArtists(artistId);
+    console.log("Artistas relacionados:", relatedArtists);
     const containerRelatedArtists = document.querySelector(
       ".container-related-artists"
     );
     containerRelatedArtists.innerHTML = ""; // Limpa a lista anterior, se houver
+
+    if(relatedArtists.length === 0) {
+      document.getElementById('othersArtists').innerHTML = "";
+      return;
+    }
 
     relatedArtists.forEach((artist) => {
       const artistHtml = `
@@ -306,16 +189,6 @@ export const displayArtist = async () => {
       containerRelatedArtists.innerHTML += artistHtml;
     });
   } catch (error) {
-    const module2 = document.querySelector(".container2");
-    module2.innerHTML = `
-      <div class='error-container'>
-        <img src='/images/astro4.png' alt='Erro' class='error-image'>
-        <div class='error-message'>
-        <h1 class='montserrat-bold'>Galáxia perdida!</h1>
-        <h3 class='montserrat-semi-bold'>Erro ao carregar os dados do artista</h3>
-        <p class='montserrat-regular'>${error.message}</p>
-        </div>
-      </div>`;
-    console.error(error);
+    console.error("Erro ao carregar os dados do artista", error);
   }
 };

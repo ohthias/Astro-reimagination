@@ -1,6 +1,6 @@
 import SPOTIFY_CONFIG from "../config.js";
 
-class ApiAccess {
+export class ApiAccess {
   constructor(clientId, clientSecret) {
     this.clientId = clientId || SPOTIFY_CONFIG.SPOTIFY_CLIENT_ID; // Usando variáveis de ambiente
     this.clientSecret = clientSecret || SPOTIFY_CONFIG.SPOTIFY_CLIENT_SECRET; // Usando variáveis de ambiente
@@ -86,6 +86,31 @@ class ApiAccess {
       .then((albums) => {
         return albums.sort((a, b) => (b.popularity || 0) - (a.popularity || 0));
       });
+  }
+
+  async fetchPlaylists(artistName) {
+    const url = `https://api.spotify.com/v1/search?q=${encodeURIComponent(
+      artistName
+    )}&type=playlist`;
+    return await this.fetchData(url).then((data) => data.playlists?.items || []);
+  }
+
+  async fetchRelatedArtists(artistaId) {
+    if (!artistaId) throw new Error("ID do artista não informado.");
+    const url = `https://api.spotify.com/v1/artists/${artistaId}/related-artists`;
+    return await this.fetchData(url).then((data) => data.artists || []);
+  }
+
+  // Novo método: busca por artistas, álbuns e músicas
+  async search(query, types = ["artist", "album", "track"], limit = 10) {
+    if (!query) throw new Error("Consulta não informada.");
+    if (!Array.isArray(types)) throw new Error("Tipos devem ser um array.");
+
+    const url = `https://api.spotify.com/v1/search?q=${encodeURIComponent(
+      query
+    )}&type=${types.join(",")}&limit=${limit}`;
+    
+    return await this.fetchData(url);
   }
 }
 
@@ -209,10 +234,3 @@ export const buscarAlbums = async () => {
       "<li>Erro ao buscar álbuns. Tente novamente.</li>";
   }
 };
-
-// Inicialização
-document.addEventListener("DOMContentLoaded", async () => {
-  await buscarArtistas();
-  await buscarMusicas("rock");
-  await buscarAlbums();
-});
