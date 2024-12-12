@@ -21,12 +21,19 @@ export async function loadContent(page, id = null) {
 
   content.innerHTML = "";
 
-  // Atualiza a URL com o id do artista (se disponível)
   url.searchParams.set("page", page);
 
   // Se estamos saindo da página do artista, removemos o ID da URL
   if (page !== "artist") {
-    url.searchParams.delete("id"); // Remove o ID se não for a página do artista
+    url.searchParams.delete("id");
+  } else if (page !== "busca") {
+    url.searchParams.delete("query");
+  } else if (page !== "album") {
+    url.searchParams.delete("query");
+    url.searchParams.delete("id");
+  } else if (page !== "astro") { 
+    url.searchParams.delete("query");
+    url.searchParams.delete("id");
   }
 
   if (id) {
@@ -47,6 +54,9 @@ export async function loadContent(page, id = null) {
     document.getElementsByClassName("side-menu")[0].style.border = "none";
   }
 
+  document.body.style.background =
+    "linear-gradient(to bottom, var(--shadow) 90%, var(--primary-shadow) 100%), var(--shadow)";
+
   window.history.pushState({}, "", url);
 
   removeStyleSheet();
@@ -54,6 +64,7 @@ export async function loadContent(page, id = null) {
   // Páginas comuns
   switch (page) {
     case "astro":
+      document.body.id = "deafult";
       addStyleSheet("home.css");
       generateHomePageContent();
       initializeSwipers();
@@ -67,6 +78,7 @@ export async function loadContent(page, id = null) {
       localStorage.setItem("driveInicialize", true);
       break;
     case "busca":
+      document.body.id = "deafult";
       generateSearchContent(); // Gera o conteúdo da página de busca
       addStyleSheet("busca.css"); // Adiciona o estilo específico para a busca
       addScript("search/search.js", true); // Adiciona o script da busca dinamicamente
@@ -98,17 +110,17 @@ export async function loadContent(page, id = null) {
       });
       break;
     case "artist":
+      generateArtistContent();
+      document.body.id = "backParallax";
       addStyleSheet("artista.css");
       if (id) {
-        generateArtistContent();
         initializeSwipers();
         displayArtist(id);
         imageGradient();
-      } else {
-        content.innerHTML = "<p>Artista não encontrado.</p>";
       }
       break;
     case "album":
+      document.body.id = "backParallax";
       addStyleSheet("album.css");
       if (id) {
         await generateAlbumContent();
@@ -120,6 +132,7 @@ export async function loadContent(page, id = null) {
       }
       break;
     case "playlist":
+      document.body.id = "backParallax";
       addStyleSheet("album.css");
       if (id) {
         await generatePlaylistContent();

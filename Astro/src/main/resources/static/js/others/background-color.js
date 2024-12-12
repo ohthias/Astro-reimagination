@@ -6,8 +6,8 @@ export function imageGradient() {
   const defaultColor = "#05061e";
   const navLogo = document.querySelector(".nav-logo");
 
-  const darkenFactor = 0.2;
-  const saturationFactor = 1.2;
+  const darkenFactor = 0.5;
+  const saturationFactor = 0.9;
 
   function adicionaListenerImagem(img) {
     if (!img) {
@@ -22,7 +22,12 @@ export function imageGradient() {
     });
   }
 
-  [imgArtist, imgAlbum, userImage].forEach(adicionaListenerImagem);
+  if (document.body && document.body.id === "backParallax") {
+    [imgArtist, imgAlbum, userImage].forEach(adicionaListenerImagem);
+  } else {
+    document.body.style.backgroundColor = defaultColor;
+  }
+
 
   function analiseDaImagem(img) {
     try {
@@ -34,10 +39,12 @@ export function imageGradient() {
 
       const imageData = capturarCentroDaImagem(ctx, img);
       const predominanteCor = calcularCorPredominante(imageData.data);
-      
+
       const rgbMatch = predominanteCor.match(/\d+/g);
       if (!rgbMatch || rgbMatch.length !== 3) {
-        throw new Error("Failed to extract RGB values from the predominant color.");
+        throw new Error(
+          "Failed to extract RGB values from the predominant color."
+        );
       }
 
       const [r, g, b] = rgbMatch.map(Number);
@@ -46,6 +53,7 @@ export function imageGradient() {
       aplicarGradiente(saturatedColor, r, g, b);
     } catch (error) {
       console.error("Error analyzing image:", error);
+      document.body.style.backgroundColor = `linear-gradient(to bottom, ${defaultColor} 300px, ${defaultColor}), var(--shadow)`;
     }
   }
 
@@ -65,28 +73,36 @@ export function imageGradient() {
       contaCor[rgb] = (contaCor[rgb] || 0) + 1;
     }
 
-    return Object.keys(contaCor).reduce((a, b) => contaCor[a] > contaCor[b] ? a : b);
+    return Object.keys(contaCor).reduce((a, b) =>
+      contaCor[a] > contaCor[b] ? a : b
+    );
   }
 
   function ajustarCor(r, g, b) {
-    const darkenedColor = [r, g, b].map(c => Math.max(0, c - c * darkenFactor));
+    const darkenedColor = [r, g, b].map((c) =>
+      Math.max(0, c - c * darkenFactor)
+    );
     const max = Math.max(...darkenedColor);
 
     if (max === 0) return [darkenedColor, darkenedColor]; // Evitar divisão por zero
 
-    const normColor = darkenedColor.map(c => c / max);
-    const saturatedColor = normColor.map(c => Math.min(1, c * saturationFactor) * 255);
+    const normColor = darkenedColor.map((c) => c / max);
+    const saturatedColor = normColor.map(
+      (c) => Math.min(1, c * saturationFactor) * 255
+    );
 
     return [saturatedColor.map(Math.round), darkenedColor];
   }
 
   function aplicarGradiente([r, g, b], origR, origG, origB) {
-    const rgbaPredominanteCor = `rgba(${r}, ${g}, ${b}, 2)`;
-    const gradient = `linear-gradient(to bottom, ${rgbaPredominanteCor} 0%, ${defaultColor} 300px, var(--primary-shadow) 100%), var(--shadow)`;
+    const rgbaPredominanteCor = `rgba(${r}, ${g}, ${b}, 0.8)`;  // Adjust alpha value for visibility
+    const gradient = `linear-gradient(to bottom, ${rgbaPredominanteCor} 0%, ${defaultColor} 300px), var(--shadow)`;
     gradientDiv.style.background = gradient;
 
     if (origR >= 215 && origG >= 215 && origB >= 215 && navLogo) {
       navLogo.classList.add("near-white");
+    } else if (origR <= 65 && origG <= 65 && origB <= 65 && navLogo) {
+      navLogo.classList.remove("near-white");
     }
   }
-};
+}
