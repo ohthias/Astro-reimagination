@@ -267,7 +267,7 @@ export const displayArtist = async () => {
 
     playlists.forEach((playlist) => {
       const playlistHtml = `
-          <div 
+          <div
             onclick="loadContent('playlist', '${playlist.id}')" 
             class="playlist-item swiper-slide">
             <img

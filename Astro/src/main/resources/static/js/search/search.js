@@ -11,7 +11,7 @@ async function buscarSpotify(query) {
     ]);
     exibirResultados(resultados);
   } catch (error) {
-    console.error(error);
+    console.warn("Campo vazio");
   }
 }
 
@@ -25,12 +25,14 @@ const exibirResultados = (data) => {
   listaMusicas.innerHTML = "";
   listaPlaylists.innerHTML = "";
 
+  let conteudoExibido = false;
+
   // Exibir artistas
-  // TODO - Arrumar para carregar com loadContent()
   if (data.artists && data.artists.items.length > 0) {
+    conteudoExibido = true;
     data.artists.items.forEach((artista) => {
       const item = document.createElement("a");
-      item.href = `./artist?id=${artista.id}`;
+      item.onclick = () => loadContent("artist", artista.id);
       item.classList.add("track-item");
 
       const imagemUrl =
@@ -50,6 +52,7 @@ const exibirResultados = (data) => {
 
   // Exibir músicas
   if (data.tracks && data.tracks.items.length > 0) {
+    conteudoExibido = true;
     data.tracks.items.forEach((musica) => {
       const item = document.createElement("div");
       item.classList.add("track-item");
@@ -72,68 +75,90 @@ const exibirResultados = (data) => {
     });
   }
 
-  // Exibir playlists
-  // TODO - Arrumar para carregar com loadContent()
+  // Exibir álbuns
   if (data.albums && data.albums.items.length > 0) {
-    data.albums.items.forEach((playlist) => {
+    conteudoExibido = true;
+    data.albums.items.forEach((album) => {
       const item = document.createElement("a");
-      item.href = `/playlist?id=${playlist.id}`;
+      item.onclick = () => loadContent("album", album.id);
       item.classList.add("track-item");
 
       const imagemUrl =
-        playlist.images.length > 0
-          ? playlist.images[0].url
+        album.images.length > 0
+          ? album.images[0].url
           : "https://via.placeholder.com/50";
 
+      const artistas = album.artists.map((album) => album.name).join(", ");
       item.innerHTML = `
-        <img src="${imagemUrl}" class="track-image" alt="${playlist.name}" />
+        <img src="${imagemUrl}" class="track-image" alt="${album.name}" />
         <div class='track-item-detail'>
-            <h3 class='montserrat-bold'>${playlist.name}</h3>
+            <h3 class='montserrat-bold'>${album.name}</h3>
+            <p class='montserrat-regular'>${artistas}</p>
         </div>
       `;
       listaPlaylists.appendChild(item);
     });
   }
+
+  // Caso nenhuma informação seja exibida
+  if (!conteudoExibido) {
+    exibirMensagemErro(
+      "Nenhum resultado encontrado. Tente outro termo de busca."
+    );
+  }
 };
 
-// Listener para a barra de busca
-document.querySelector("#search").addEventListener("input", (event) => {
-  const query = event.target.value;
-  if (query.length > 0) {
-    generateResultsContainer()
+export function consultSearch(event) {
+  const query = event.target.value.trim();
+  const url = new URL(window.location.href);
+
+  if (query) {
+    url.searchParams.set("query", query); // Atualiza a URL com a query
+    window.history.pushState({}, "", url); // Atualiza o histórico sem recarregar
+    generateResultsContainer();
     buscarSpotify(query);
   } else {
-    generateSearchBase()
+    generateSearchBase();
+    url.searchParams.delete("query"); // Remove a query da URL se estiver vazia
+    window.history.pushState({}, "", url);
   }
-});
-
-document.onload = generateSearchBase()
+}
 
 function generateResultsContainer() {
   const results = document.getElementById("results");
   results.innerHTML = `
-  <div class="playlists-container">
-    <h2 class="bebas-neue-regular">Albuns</h2>
-    <div id="lista-albums" class="results-list"></div>
-  </div>
-  <div class="artists-container">
-    <h2 class="bebas-neue-regular">Artistas</h2>
-    <div id="lista-artistas" class="results-list"></div>
-  </div>
-  <div class="tracks-container">
-                                 <h2 class="bebas-neue-regular">Músicas</h2>
-                                 <div id="lista-musicas" class="results-list"></div>
-                               </div>
+    <div class="albums-container">
+      <h2 class="bebas-neue-regular">Álbuns</h2>
+      <div id="lista-albums" class="results-list"></div>
+    </div>
+    <div class="artists-container">
+      <h2 class="bebas-neue-regular">Artistas</h2>
+      <div id="lista-artistas" class="results-list"></div>
+    </div>
+    <div class="tracks-container">
+      <h2 class="bebas-neue-regular">Músicas</h2>
+      <div id="lista-musicas" class="results-list"></div>
+    </div>
   `;
 }
 
-function generateSearchBase() {
+export function generateSearchBase() {
   const results = document.getElementById("results");
   results.innerHTML = `
-  <div class='error-container'>
-        <img src='/images/astro4.png' alt='Erro' class='error-image'>
-        <div class='error-message'>
+    <div class='error-container'>
+      <img src='/images/astro4.png' alt='Erro' class='error-image'>
+      <div class='error-message'>
         <h1 class='montserrat-bold'>Procure sua próxima galáxia musical!</h1>
-        </div>
-      </div>`;
+      </div>
+    </div>`;
+}
+
+function exibirMensagemErro(mensagem) {
+  const results = document.getElementById("results");
+  results.innerHTML = `
+    <div class='error-container'>
+      <div class='error-message'>
+        <h1 class='montserrat-bold'>${mensagem}</h1>
+      </div>
+    </div>`;
 }

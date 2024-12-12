@@ -9,6 +9,7 @@ import { showAlbum } from "../process/albums.js";
 import { showPlaylist } from "../process/playlist.js";
 import { imageGradient } from "../others/background-color.js";
 import { loadUserPlaylists } from "../process/playlistUser.js";
+import { generateSearchBase } from "../search/search.js";
 
 export async function loadContent(page, id = null) {
   const content = document.getElementById("content");
@@ -66,15 +67,40 @@ export async function loadContent(page, id = null) {
       localStorage.setItem("driveInicialize", true);
       break;
     case "busca":
-      generateSearchContent();
-      addStyleSheet("busca.css");
-      await addScript("search/search.js", true);
-      initializeSwipers();
+      generateSearchContent(); // Gera o conteúdo da página de busca
+      addStyleSheet("busca.css"); // Adiciona o estilo específico para a busca
+      addScript("search/search.js", true); // Adiciona o script da busca dinamicamente
+
+      // Importação dinâmica da função consultSearch
+      import("../search/search.js").then(({ consultSearch }) => {
+        generateSearchBase();
+        const searchInput = document.querySelector("#search");
+
+        if (searchInput) {
+          // Remove event listener anterior, se necessário
+          searchInput.removeEventListener("input", consultSearch);
+
+          // Associa o evento de input ao campo de busca
+          searchInput.addEventListener("input", (event) => {
+            consultSearch(event); // Chama a função consultSearch ao digitar
+          });
+
+          // Realiza a busca inicial se houver query na URL
+          const url = new URL(window.location.href);
+          const query = url.searchParams.get("query");
+          if (query && query.trim() !== "") {
+            searchInput.value = query; // Preenche o input com a query
+            consultSearch({ target: { value: query } }); // Realiza a busca inicial
+          }
+        } else {
+          console.error("Campo de busca (#search) não encontrado.");
+        }
+      });
       break;
     case "artist":
       addStyleSheet("artista.css");
       if (id) {
-        await generateArtistContent();
+        generateArtistContent();
         initializeSwipers();
         displayArtist(id);
         imageGradient();
@@ -200,5 +226,14 @@ window.addEventListener("popstate", function () {
 document.addEventListener("DOMContentLoaded", function () {
   const url = new URL(window.location.href);
   const page = url.searchParams.get("page") || "astro";
+  const query = url.searchParams.get("query") || ""; // Obtém a query da URL
+
+  // Carrega o conteúdo inicial
   loadContent(page);
+
+  // Verifica se estamos na página de busca e há uma query
+  if (page === "busca" && query.trim() !== "") {
+    generateSearchContent(); // Configura a estrutura de busca
+    consultSearch({ target: { value: query } }); // Chama a busca inicial
+  }
 });
