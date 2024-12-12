@@ -133,7 +133,7 @@ function generateArtistContent() {
               </div>
             </section>
 
-            <section class="swiper">
+            <section class="swiper" id="othersArtists">
               <h2 class="bebas-neue-regular categoria-name">Estrelas similares</h2>
               <div class="swiper-container swiper-artists">
                 <div class="swiper-wrapper container-related-artists"></div>

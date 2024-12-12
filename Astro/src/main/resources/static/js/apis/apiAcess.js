@@ -79,7 +79,7 @@ export class ApiAccess {
     return await this.fetchData(url).then((data) => data.tracks?.items || []);
   }
 
-  async fetchTopAlbums(market = "BR") {
+  async fetchTopAlbums(market = "US") {
     const url = `https://api.spotify.com/v1/browse/new-releases?market=${market}&limit=15`;
     return await this.fetchData(url)
       .then((data) => data.albums?.items || [])
@@ -234,10 +234,3 @@ export const buscarAlbums = async () => {
       "<li>Erro ao buscar álbuns. Tente novamente.</li>";
   }
 };
-
-// Inicialização
-document.addEventListener("DOMContentLoaded", async () => {
-  await buscarArtistas();
-  await buscarMusicas("rock");
-  await buscarAlbums();
-});

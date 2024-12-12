@@ -117,34 +117,60 @@ export const displayArtist = async (id) => {
       containerDiscography.innerHTML += albumHtml;
     });
 
-    // Buscar e exibir playlists
     const playlists = await api.fetchPlaylists(artistName);
+    const validPlaylists = playlists.filter(
+      (playlist) => playlist && playlist.name && playlist.images
+    );
+
+    console.log("Playlists válidas:", validPlaylists);
     const containerPlaylists = document.querySelector(".container-playlists");
     containerPlaylists.innerHTML = ""; // Limpa a lista anterior, se houver
 
-    playlists.forEach((playlist) => {
+    validPlaylists.forEach((playlist) => {
       const playlistHtml = `
-          <div
-            onclick="loadContent('playlist', '${playlist.id}')" 
-            class="playlist-item swiper-slide">
-            <img
-              class="playlist-image"
-              alt="${playlist.name}"
-              src="${playlist.images[0]?.url || 'https://placehold.co/100x100'}"
-              onerror="this.onerror=null; this.src='https://placehold.co/100x100';"
-            />
-            <p class="playlist-name montserrat-regular">${playlist.name}</p>
-          </div>
-        `;
+      <div
+        class="playlist-item swiper-slide">
+        <img
+          class="playlist-image"
+          alt="${playlist.name}"
+          src="${playlist.images[0]?.url || "https://placehold.co/100x100"}"
+          onerror="this.onerror=null; this.src='https://placehold.co/100x100';"
+        />
+        <p class="playlist-name montserrat-regular">${playlist.name}</p>
+      </div>
+    `;
       containerPlaylists.innerHTML += playlistHtml;
     });
 
+    async function fetchRelatedArtists(artistaId) {
+      if (!artistaId) throw new Error("ID do artista não informado.");
+      const url = `https://api.spotify.com/v1/artists/${artistaId}/related-artists`;
+    
+      try {
+        const response = await api.fetchData(url);
+        if (!response || !response.artists) {
+          console.error("Resposta inválida ou vazia da API para artistas relacionados:", response);
+          return [];
+        }
+        return response.artists;
+      } catch (error) {
+        console.error("Erro ao buscar artistas relacionados:", error);
+        return [];
+      }
+    }
+
     // Buscar e exibir artistas similares
-    const relatedArtists = await api.fetchRelatedArtists(artistId);
+    const relatedArtists = await fetchRelatedArtists(artistId);
+    console.log("Artistas relacionados:", relatedArtists);
     const containerRelatedArtists = document.querySelector(
       ".container-related-artists"
     );
     containerRelatedArtists.innerHTML = ""; // Limpa a lista anterior, se houver
+
+    if(relatedArtists.length === 0) {
+      document.getElementById('othersArtists').innerHTML = "";
+      return;
+    }
 
     relatedArtists.forEach((artist) => {
       const artistHtml = `
