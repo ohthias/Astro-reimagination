@@ -64,18 +64,7 @@ function generateSearchContent() {
                               </div>
 
                               <div class="container-results" id="results">
-                                <div class="tracks-container">
-                                  <h2 class="bebas-neue-regular">Músicas</h2>
-                                  <div id="lista-musicas" class="results-list"></div>
-                                </div>
-                                <div class="artists-container">
-                                  <h2 class="bebas-neue-regular">Artistas</h2>
-                                  <div id="lista-artistas" class="results-list"></div>
-                                </div>
-                                <div class="playlists-container">
-                                  <h2 class="bebas-neue-regular">Playlists</h2>
-                                  <div id="lista-playlists" class="results-list"></div>
-                                </div>
+                               
                               </div>
                           `;
 }

@@ -1,6 +1,6 @@
 import SPOTIFY_CONFIG from "../config.js";
 
-class ApiAccess {
+export class ApiAccess {
   constructor(clientId, clientSecret) {
     this.clientId = clientId || SPOTIFY_CONFIG.SPOTIFY_CLIENT_ID; // Usando variáveis de ambiente
     this.clientSecret = clientSecret || SPOTIFY_CONFIG.SPOTIFY_CLIENT_SECRET; // Usando variáveis de ambiente
@@ -79,13 +79,25 @@ class ApiAccess {
     return await this.fetchData(url).then((data) => data.tracks?.items || []);
   }
 
-  async fetchTopAlbums(market = "US") {
+  async fetchTopAlbums(market = "BR") {
     const url = `https://api.spotify.com/v1/browse/new-releases?market=${market}&limit=15`;
     return await this.fetchData(url)
       .then((data) => data.albums?.items || [])
       .then((albums) => {
         return albums.sort((a, b) => (b.popularity || 0) - (a.popularity || 0));
       });
+  }
+
+  // Novo método: busca por artistas, álbuns e músicas
+  async search(query, types = ["artist", "album", "track"], limit = 10) {
+    if (!query) throw new Error("Consulta não informada.");
+    if (!Array.isArray(types)) throw new Error("Tipos devem ser um array.");
+
+    const url = `https://api.spotify.com/v1/search?q=${encodeURIComponent(
+      query
+    )}&type=${types.join(",")}&limit=${limit}`;
+    
+    return await this.fetchData(url);
   }
 }
 

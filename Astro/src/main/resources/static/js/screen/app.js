@@ -66,9 +66,9 @@ export async function loadContent(page, id = null) {
       localStorage.setItem("driveInicialize", true);
       break;
     case "busca":
-      addStyleSheet("busca.css");
-      addScript("search/search.js");
       generateSearchContent();
+      addStyleSheet("busca.css");
+      await addScript("search/search.js", true);
       initializeSwipers();
       break;
     case "artist":
@@ -155,7 +155,7 @@ export async function loadContent(page, id = null) {
 function addStyleSheet(styleFile) {
   const link = document.createElement("link");
   link.rel = "stylesheet";
-  link.href = `/css/screen/${styleFile}`;
+  link.href = `../static/css/screen/${styleFile}`;
   link.id = "dynamic-stylesheet";
   document.head.appendChild(link);
 }
@@ -169,15 +169,20 @@ function removeStyleSheet() {
 }
 
 // Função para adicionar o arquivo JS
-function addScript(scriptFile) {
+function addScript(scriptFile, isModule = false) {
   const existingScript = document.getElementById("dynamic-script");
   if (existingScript) {
     existingScript.parentNode.removeChild(existingScript);
   }
 
   const script = document.createElement("script");
-  script.src = `/js/${scriptFile}`;
+  script.src = `../static/js/${scriptFile}`;
   script.id = "dynamic-script";
+
+  if (isModule) {
+    script.type = "module"; // Define o script como módulo
+  }
+
   document.body.appendChild(script);
 }
 
@@ -187,13 +192,13 @@ window.loadContent = loadContent;
 // Manipula evento de mudança no histórico
 window.addEventListener("popstate", function () {
   const url = new URL(window.location.href);
-  const page = url.searchParams.get("page") || "home";
+  const page = url.searchParams.get("page") || "astro";
   loadContent(page);
 });
 
 // Carrega conteúdo inicial
 document.addEventListener("DOMContentLoaded", function () {
   const url = new URL(window.location.href);
-  const page = url.searchParams.get("page") || "home";
+  const page = url.searchParams.get("page") || "astro";
   loadContent(page);
 });
